@@ -56472,7 +56472,11 @@ var render = function () {
                   staticClass: "alert alert-success",
                   attrs: { role: "alert" },
                 },
-                [_vm._v("\n                Cargando información\n            ")]
+                [
+                  _vm._v(
+                    "\n                Cargando información del usuario\n            "
+                  ),
+                ]
               ),
             ]),
       ]),
