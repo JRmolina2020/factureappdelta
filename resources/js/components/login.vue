@@ -51,7 +51,7 @@
             </div>
             <div class="col-12" v-else>
                 <div class="alert alert-success" role="alert">
-                    Cargando información del usuario
+                    Cargando información del usuario1
                 </div>
             </div>
         </div>
