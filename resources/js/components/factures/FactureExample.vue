@@ -1,17 +1,19 @@
 <template>
     <div>
         <section class="section">
-            <!-- <store-client ref="form_client"></store-client> -->
+            <store-facture ref=""></store-facture>
             <list-facture v-on:show="show" class="mt-3"></list-facture>
         </section>
     </div>
 </template>
 <script>
 import ListFacture from "./ListFacture.vue";
+import StoreFacture from "./StoreFacture.vue";
 
 export default {
     components: {
         ListFacture,
+        StoreFacture,
     },
     methods: {
         show(row) {

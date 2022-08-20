@@ -9,7 +9,7 @@ class Facture extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'client_id', 'date_facture','subtot','discount','tot','state'
+        'client_id', 'date_facture','subtot','disc','tot','state'
     ];
     public function client()
     {
@@ -19,10 +19,7 @@ class Facture extends Model
     {
         return $this->hasMany('App\Model\FactureDetail');
     }
-    function products()
-    {
-        return $this->hasMany('App\Model\Products');
-    }
+   
 
     
    

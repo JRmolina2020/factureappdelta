@@ -86,27 +86,6 @@
                                     </template>
                                 </VTable>
                             </div>
-
-                            <!-- <div class="col-lg-3 mt-3">
-                                <table class="table table-light">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>Cantidad</th>
-                                            <th>Subtotal</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                               {{}}
-                                            </td>
-                                            <td>
-                                                
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div> -->
                         </div>
                     </div>
                 </div>

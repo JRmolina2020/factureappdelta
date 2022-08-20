@@ -5,11 +5,43 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Facture;
+use App\Models\FactureDetail;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class FactureController extends Controller
 {
 
+    public function store(Request $request)
+    {
+        if (!$request->ajax()) return redirect('/');
+
+        try {
+            DB::beginTransaction();
+            $facture = new Facture();
+            $facture->client_id = $request->client_id;
+            $facture->date_facture ='2022/01/02' ;
+            $facture->sub = $request->sub;
+            $facture->disc = $request->disc;
+            $facture->tot = $request->tot;
+            $facture->state = $request->state;
+            $facture->save();
+            $details = $request-> dataDetails;
+            foreach ($details as $ep => $det) {
+                $details = new FactureDetail();
+                $details->facture_id = $facture->id;
+                $details->product_id = $det['product_id'];
+                $details->quantity = $det['quantity'];
+                $details->price = $det['price'];
+                $details->sub = $det['sub'];
+                $details->save();
+            }
+            DB::commit();
+            return response()->json(['message' => 'Venta registrada'], 200);
+        } catch (Exception $e) {
+            DB::rollBack();
+        }
+    }
   public function index(Request $request)
   {
     if (!$request->ajax()) return redirect('/');
@@ -47,18 +79,7 @@ return $income;
   return $income;
     }
   // add post
-  public function store(Request $request)
-  {
-      if (!$request->ajax()) return redirect('/');
-       Facture::create([
-          'client_id' => $request['client_id'],
-          'date_facture' => $request['date_facture'],
-          'sub' => $request['sub'],
-          'disc' => $request['disc'],
-          'tot' => $request['tot'],
-      ]);
-      return response()->json(['message' => 'Factura creada'], 200);
-  }
+
 
   public function update(Request $request, $id)
   {
