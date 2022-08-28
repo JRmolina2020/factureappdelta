@@ -20,15 +20,7 @@ class ProductController extends Controller
     // add post
     public function store(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
-         Product::create([
-            'name' => $request['name'],
-            'price' => $request['price'],
-            'price_two' => $request['price_two'],
-
-
-        ]);
-        return response()->json(['message' => 'El producto ha sido creado'], 200);
+       return $request;
     }
 
     public function update(Request $request, $id)
