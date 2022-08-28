@@ -20,7 +20,7 @@ class ProductController extends Controller
     // add post
     public function store(Request $request)
     {
-       return $request;
+       return 'hola';
     }
 
     public function update(Request $request, $id)

@@ -39,7 +39,6 @@ module.exports = {
                     this.send = true;
                     $("#model").modal("hide");
                     this.$store.dispatch(actions);
-                    console.log(this.form);
                 } catch (error) {
                     console.log(error.response);
                 }
