@@ -4698,13 +4698,7 @@ module.exports = {
                 _response = _context.sent;
 
                 try {
-                  Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "".concat(_response.data.message),
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
+                  console.log(_response);
                   _this2.send = true;
                   $("#model").modal("hide");
 
@@ -4763,7 +4757,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     facUnique: [],
     status: false,
     urlusers: "/api/users/",
-    urlproducts: "/api/products/",
+    urlproducts: "/api/products",
     urlclients: "/api/clients/",
     urlfactures: "/api/factures/",
     urldetails: "/api/details",

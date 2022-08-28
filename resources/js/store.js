@@ -12,7 +12,7 @@ export default new Vuex.Store({
         facUnique: [],
         status: false,
         urlusers: "/api/users/",
-        urlproducts: "/api/products/",
+        urlproducts: "/api/products",
         urlclients: "/api/clients/",
         urlfactures: "/api/factures/",
         urldetails: "/api/details",
