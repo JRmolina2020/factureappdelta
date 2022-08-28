@@ -40,7 +40,7 @@ Route::prefix('api')->group(function () {
 //routes app fuctions
 //routes users
 Route::get('/users', [UserController::class, 'index']);
-Route::post('/users', [UserController::class, 'store']);
+Route::post('users', [UserController::class, 'store']);
 Route::put('/user/password/{id}', [UserController::class, 'updatePassword'])->where('id', '[0-9]+');
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::put('/users/available/{id}', [UserController::class, 'available']);
@@ -55,12 +55,12 @@ Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 //end
 //clients
 Route::get('/clients', [ClientController::class, 'index']);
-Route::post('/clients', [ClientController::class, 'store']);
+Route::post('clients', [ClientController::class, 'store']);
 Route::put('/clients/{id}', [ClientController::class, 'update'])->where('id', '[0-9]+');
 Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->where('id', '[0-9]+');
 //end
 //facture
-Route::post('/factures', [FactureController::class, 'store']);
+Route::post('factures', [FactureController::class, 'store']);
 Route::get('/factures', [FactureController::class, 'index']);
 Route::get('/factureUnique/{id}', [FactureController::class, 'factureUnique'])->where('id', '[0-9]+');
 Route::delete('/factures/{id}', [FactureController::class, 'destroy'])->where('id', '[0-9]+');

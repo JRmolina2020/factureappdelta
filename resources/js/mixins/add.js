@@ -29,7 +29,13 @@ module.exports = {
             } else {
                 let response = await axios.post(url, this.form);
                 try {
-                    console.log(response);
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: `${response.data.message}`,
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
                     this.send = true;
                     $("#model").modal("hide");
                     this.$store.dispatch(actions);
