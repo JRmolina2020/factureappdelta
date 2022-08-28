@@ -61,9 +61,9 @@ class UserController extends Controller
     {
         $user = User::find($id, ['id']);
         $user->fill([
-            $user['password'] = bcrypt($request['password'])
-
+            'password' => bcrypt(request('password')),
         ])->save();
+        
         return response()->json(['message' => 'El password ha sido cambiado'], 201);
     }
 }

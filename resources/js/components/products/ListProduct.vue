@@ -20,9 +20,8 @@
                 <template #head>
                     <tr>
                         <VTh sortKey="name">Nombre</VTh>
-                        <th>Precio 1</th>
-                        <th>Precio 2</th>
-                        <th>Ganancia</th>
+                        <th>Precio M</th>
+                        <th>Precio D</th>
                         <th>Op</th>
                     </tr>
                 </template>
@@ -31,7 +30,6 @@
                         <td>{{ row.name }}</td>
                         <td>${{ row.price | currency }}</td>
                         <td>${{ row.price_two | currency }}</td>
-                        <td>${{ (row.price_two - row.price) | currency }}</td>
                         <td>
                             <button
                                 type="button"

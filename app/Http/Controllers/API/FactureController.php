@@ -34,6 +34,8 @@ class FactureController extends Controller
                 $details->quantity = $det['quantity'];
                 $details->price = $det['price'];
                 $details->sub = $det['sub'];
+                $details->disc = $det['disc'];
+                $details->tot = $det['tot'];
                 $details->save();
             }
             DB::commit();
@@ -45,7 +47,7 @@ class FactureController extends Controller
   public function index(Request $request)
   {
     if (!$request->ajax()) return redirect('/');
-    $income = DB::table('factures as f')
+    $facture = DB::table('factures as f')
     ->join('clients as c', 'c.id', '=', 'f.client_id')
     ->select(
         'f.id',
@@ -56,11 +58,12 @@ class FactureController extends Controller
         'f.state',
     )
     ->orderBy('f.id', 'desc')->get();
-return $income;
+return $facture;
   }
-  public function factureUnique($id)
+  public function factureUnique(Request $request,$id)
     {
-      $income = DB::table('factures as f')
+        if (!$request->ajax()) return redirect('/');
+      $facture = DB::table('factures as f')
       ->join('clients as c', 'c.id', '=', 'f.client_id')
       ->select(
           'f.id',
@@ -71,25 +74,16 @@ return $income;
           'f.state',
           'c.nit',
           'c.fullname',
-          'c.phone'
+          'c.phone',
+          'f.created_at'
 
       )
       ->where('f.id', '=', $id)
       ->orderBy('f.id', 'desc')->get();
-  return $income;
+  return $facture;
     }
-  // add post
 
 
-  public function update(Request $request, $id)
-  {
-      if (!$request->ajax()) return redirect('/');
-      $facture = Facture::find($id, ['id']);
-      $facture->fill([
-          'client_id' => request('client_id'),
-      ])->save();
-      return response()->json(['message' => 'La cabezera de la factura ha sido modificada'], 201);
-  }
   public function destroy(Request $request, $id)
   {   if (!$request->ajax()) return redirect('/');
       $facture = Facture::find($id);

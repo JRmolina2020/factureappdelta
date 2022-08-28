@@ -21,7 +21,9 @@ class FactureDetailController extends Controller
           'p.name', 
           'fd.quantity',
           'fd.price',
-          'fd.sub'
+          'fd.sub',
+          'fd.disc',
+          'fd.tot'
       )
       ->where('f.id', '=', $id)
       ->orderBy('fd.id', 'desc')->get();

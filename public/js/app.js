@@ -2509,8 +2509,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _utilities_modaldetails__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utilities/modaldetails */ "./resources/js/components/utilities/modaldetails.vue");
+/* harmony import */ var vue_html_to_paper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-html-to-paper */ "./node_modules/vue-html-to-paper/dist/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -2594,8 +2595,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
+
+var options = {
+  name: "_blank",
+  specs: ["fullscreen=yes", "titlebar=yes", "scrollbars=yes"],
+  styles: ["https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"],
+  timeout: 1000,
+  autoClose: true,
+  windowTitle: "Vue Html To Paper - Vue mixin for html elements printing."
+};
+Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2612,7 +2628,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     ModalDetails: _utilities_modaldetails__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["factures", "status", "urlfactures"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)(["factures", "status", "urlfactures"])),
   created: function created() {
     this.getList();
   },
@@ -2923,6 +2939,70 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   $_veeValidate: {
@@ -2946,13 +3026,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var tot = parseInt(sub) - parseInt(disc);
         return tot;
       }
+    },
+    onviewTotDetail: function onviewTotDetail() {
+      var tot = [];
+
+      for (var i = 0; i < this.formFacture.dataDetails.length; i++) {
+        tot[i] = this.formFacture.dataDetails[i].sub - this.discDetail[i];
+      }
+
+      return tot;
     }
   }),
   data: function data() {
     return {
       actions: "Factureactions",
       submitted: true,
-      send: false,
       totalPages: 1,
       currentPage: 1,
       filters: {
@@ -2961,6 +3049,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           keys: ["name"]
         }
       },
+      type_sale: 1,
+      discDetail: [],
       formFacture: {
         id: 0,
         client_id: 0,
@@ -2985,6 +3075,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                //agregando valores calculados fuction en el form
                 _this.formFacture.sub = _this.onViewSub;
                 _this.formFacture.tot = _this.onViewTot;
                 _context.next = 4;
@@ -2994,8 +3085,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 response = _context.sent;
 
                 try {
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "".concat(response.data.message),
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+
+                  _this.$store.dispatch("Factureactions");
+
                   console.log(_this.formFacture);
-                  console.log(response);
+
+                  _this.clear();
                 } catch (error) {
                   console.log(error.response);
                 }
@@ -3013,19 +3115,67 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch("Productactions");
     },
     addRow: function addRow(row) {
+      var price = 0;
+
+      if (this.type_sale == 1) {
+        price = row.price;
+      } else {
+        price = row.price_two;
+      }
+
       this.formFacture.dataDetails.push({
         product_id: row.id,
         name: row.name,
-        price: row.price_two,
+        price: price,
         quantity: 1,
-        sub: 0
+        sub: 0,
+        disc: 0,
+        tot: 0
       });
-      this.filters.name.value = "";
+      this.filters.name.value = ""; //para cuandro se agregue a la lista del detalle el descuento tome valor 0
+
+      for (var i = 0; i < this.formFacture.dataDetails.length; i++) {
+        this.discDetail[i] = 0;
+      }
+    },
+    calculateDisc: function calculateDisc() {
+      var totDisc = 0;
+
+      for (var i = 0; i < this.formFacture.dataDetails.length; i++) {
+        totDisc = parseInt(totDisc + this.discDetail[i]);
+        this.formFacture.dataDetails[i].disc = this.discDetail[i];
+      }
+
+      this.formFacture.disc = totDisc;
     },
     show: function show(row) {},
     clear: function clear() {
-      this.$validator.reset();
-      this.send = false;
+      this.formFacture.id = 0;
+      this.formFacture.client_id = 0;
+      this.formFacture.sub = 0;
+      this.formFacture.disc = 0;
+      this.formFacture.tot = 0;
+      this.formFacture.state = 0;
+      this.formFacture.dataDetails = [];
+    },
+    typeSale: function typeSale() {
+      if (this.type_sale == 1) {
+        this.type_sale = 1;
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Usted ha escogido venta mayorista",
+          showConfirmButton: true
+        });
+      } else {
+        this.type_sale = 0;
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Usted ha escogido venta al detal",
+          showConfirmButton: true
+        });
+      }
     },
     incrementDetail: function incrementDetail(index) {
       this.formFacture.dataDetails[index].quantity++;
@@ -3056,7 +3206,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
 //
 //
 //
@@ -3243,8 +3392,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -3365,20 +3512,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -4280,6 +4413,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "modaldetails",
@@ -4292,7 +4472,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       currentPage: 1,
-      totalPages: 0
+      totalPages: 0,
+      company: "BOLSOSVALLEDUPAR23",
+      nit: "1003242515",
+      direction: "CENTRO COMERCIAL LOS PAISAS LOCAL #22",
+      phone: "3012074828"
     };
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)(["details", "facUnique"])), {}, {
@@ -4305,6 +4489,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: {
+    print: function print() {
+      this.$htmlToPaper("facture");
+    },
     getlistProducts: function getlistProducts() {
       this.$store.dispatch("FactureDetailactions", this.cod);
       this.$store.dispatch("FactureUniquections", this.cod);
@@ -54846,6 +55033,103 @@ var version = vue__WEBPACK_IMPORTED_MODULE_0__["default"].version
 
 /***/ }),
 
+/***/ "./node_modules/vue-html-to-paper/dist/index.js":
+/*!******************************************************!*\
+  !*** ./node_modules/vue-html-to-paper/dist/index.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+
+function addStyles (win, styles) {
+  styles.forEach(style => {
+    let link = win.document.createElement('link');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('type', 'text/css');
+    link.setAttribute('href', style);
+    win.document.getElementsByTagName('head')[0].appendChild(link);
+  });
+}
+
+function openWindow (url, name, props) {
+  let windowRef = null;
+  windowRef = window.open(url, name, props);
+  if (!windowRef.opener) {
+    windowRef.opener = self;
+  }
+  windowRef.focus();
+  return windowRef;
+}
+  
+const VueHtmlToPaper = {
+  install (Vue, options = {}) {
+    Vue.prototype.$htmlToPaper = (el, localOptions, cb = () => true) => {
+      let defaultName = '_blank', 
+        defaultSpecs = ['fullscreen=yes','titlebar=yes', 'scrollbars=yes'],
+        defaultReplace = true,
+        defaultStyles = [];
+      let {
+        name = defaultName,
+        specs = defaultSpecs,
+        replace = defaultReplace,
+        styles = defaultStyles,
+      } = options;
+
+      // If has localOptions
+      // TODO: improve logic
+      if (!!localOptions) {
+        if (localOptions.name) name = localOptions.name;
+        if (localOptions.specs) specs = localOptions.specs;
+        if (localOptions.replace) replace = localOptions.replace;
+        if (localOptions.styles) styles = localOptions.styles;
+      }
+
+      specs = !!specs.length ? specs.join(',') : '';
+
+      const element = window.document.getElementById(el);
+
+      if (!element) {
+        alert(`Element to print #${el} not found!`);
+        return;
+      }
+      
+      const url = '';
+      const win = openWindow(url, name, specs);
+
+      win.document.write(`
+        <html>
+          <head>
+            <title>${window.document.title}</title>
+          </head>
+          <body>
+            ${element.innerHTML}
+          </body>
+        </html>
+      `);
+
+      addStyles(win, styles);
+      
+      setTimeout(() => {
+        win.document.close();
+        win.focus();
+        win.print();
+        setTimeout(function () {window.close();}, 1);
+        cb();
+      }, 1000);
+        
+      return true;
+    };
+  },
+};
+
+exports["default"] = VueHtmlToPaper;
+
+
+/***/ }),
+
 /***/ "./resources/js/components/clients/ClientExample.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/clients/ClientExample.vue ***!
@@ -56695,7 +56979,17 @@ var render = function () {
                       _vm._v("$" + _vm._s(_vm._f("currency")(row.tot))),
                     ]),
                     _vm._v(" "),
-                    _c("th", [_vm._v(_vm._s(row.state))]),
+                    row.state == 1
+                      ? _c("th", [
+                          _c("span", { staticClass: "badge badge-primary" }, [
+                            _vm._v("Pagó"),
+                          ]),
+                        ])
+                      : _c("th", [
+                          _c("span", { staticClass: "badge badge-danger" }, [
+                            _vm._v("No pagó"),
+                          ]),
+                        ]),
                     _vm._v(" "),
                     _c("td", [
                       _c(
@@ -56791,83 +57085,157 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "row" }, [
-      _c("table", { staticClass: "table" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.formFacture.dataDetails, function (item, index) {
-            return _c("tr", { key: index, attrs: { value: item.id } }, [
-              _c("td", [_vm._v(_vm._s(item.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v("$" + _vm._s(_vm._f("currency")(item.price)))]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn bg-danger btn-xs",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function ($event) {
-                        return _vm.decrementDetail(index)
+      _c("div", { staticClass: "table-responsive" }, [
+        _c("table", { staticClass: "table" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.formFacture.dataDetails, function (item, index) {
+              return _c("tr", { key: index, attrs: { value: item.id } }, [
+                _c("td", [_vm._v(_vm._s(item.name))]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v("$" + _vm._s(_vm._f("currency")(item.price))),
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn bg-danger btn-xs",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.decrementDetail(index)
+                        },
                       },
                     },
-                  },
-                  [_c("i", { staticClass: "fi fi-angle-down" })]
-                ),
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(item.quantity) +
-                    "\n                        "
-                ),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn bg-success btn-xs",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function ($event) {
-                        return _vm.incrementDetail(index)
+                    [_c("i", { staticClass: "fi fi-angle-down" })]
+                  ),
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(item.quantity) +
+                      "\n                            "
+                  ),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn bg-success btn-xs",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.incrementDetail(index)
+                        },
                       },
                     },
-                  },
-                  [_c("i", { staticClass: "fi fi-angle-up" })]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(
-                      _vm._f("currency")(
-                        (_vm.formFacture.dataDetails[index].sub =
-                          item.price * item.quantity)
-                      )
-                    ) +
-                    "\n                    "
-                ),
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn bg-danger btn-xs",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function ($event) {
-                        return _vm.removeDetail()
+                    [_c("i", { staticClass: "fi fi-angle-up" })]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(
+                        _vm._f("currency")(
+                          (_vm.formFacture.dataDetails[index].sub =
+                            item.price * item.quantity)
+                        )
+                      ) +
+                      "\n                        "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group row" },
+                      [
+                        _c("currency-input", {
+                          directives: [
+                            {
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: {
+                                required: true,
+                                min_value: 0,
+                                max_value:
+                                  _vm.formFacture.dataDetails[index].sub,
+                              },
+                              expression:
+                                "{\n                                            required: true,\n                                            min_value: 0,\n                                            max_value:\n                                                formFacture.dataDetails[\n                                                    index\n                                                ].sub,\n                                        }",
+                            },
+                            {
+                              name: "currency",
+                              rawName: "v-currency",
+                              value: {
+                                currency: "USD",
+                                precision: 0,
+                                locale: "en",
+                              },
+                              expression:
+                                "{\n                                            currency: 'USD',\n                                            precision: 0,\n                                            locale: 'en',\n                                        }",
+                            },
+                          ],
+                          staticClass: "form-control form-control-sm col-xs-2",
+                          class: {
+                            "is-invalid":
+                              _vm.submitted && _vm.errors.has("descuento"),
+                          },
+                          attrs: { name: "descuento", id: "descuento" },
+                          on: {
+                            keyup: function ($event) {
+                              return _vm.calculateDisc()
+                            },
+                          },
+                          model: {
+                            value: _vm.discDetail[index],
+                            callback: function ($$v) {
+                              _vm.$set(_vm.discDetail, index, $$v)
+                            },
+                            expression: "discDetail[index]",
+                          },
+                        }),
+                      ],
+                      1
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    "\n                            $" +
+                      _vm._s(
+                        _vm._f("currency")(
+                          (_vm.formFacture.dataDetails[index].tot =
+                            _vm.onviewTotDetail[index])
+                        )
+                      ) +
+                      "\n                        "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn bg-danger btn-xs",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.removeDetail()
+                        },
                       },
                     },
-                  },
-                  [_c("i", { staticClass: "fi fi-close-a" })]
-                ),
-              ]),
-            ])
-          }),
-          0
-        ),
+                    [_c("i", { staticClass: "fi fi-close-a" })]
+                  ),
+                ]),
+              ])
+            }),
+            0
+          ),
+        ]),
       ]),
     ]),
     _vm._v(" "),
@@ -56896,6 +57264,55 @@ var render = function () {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-lg-2" }, [
             _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "" } }, [_vm._v("Venta")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.type_sale,
+                      expression: "type_sale",
+                    },
+                  ],
+                  staticClass: "form-control form-control-sm",
+                  attrs: { required: "" },
+                  on: {
+                    change: [
+                      function ($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function (o) {
+                            return o.selected
+                          })
+                          .map(function (o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.type_sale = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function ($event) {
+                        return _vm.typeSale()
+                      },
+                    ],
+                  },
+                },
+                [
+                  _c("option", { attrs: { value: "1" } }, [
+                    _vm._v("Mayorista"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "0" } }, [_vm._v("Detal")]),
+                ]
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-2" }, [
+            _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "" } }, [_vm._v("Clientes")]),
               _vm._v(" "),
               _c(
@@ -56908,18 +57325,9 @@ var render = function () {
                       value: _vm.formFacture.client_id,
                       expression: "formFacture.client_id",
                     },
-                    {
-                      name: "validate",
-                      rawName: "v-validate",
-                      value: "required",
-                      expression: "'required'",
-                    },
                   ],
                   staticClass: "form-control form-control-sm",
-                  class: {
-                    "is-invalid": _vm.submitted && _vm.errors.has("cliente"),
-                  },
-                  attrs: { name: "cliente", id: "cliente" },
+                  attrs: { required: "" },
                   on: {
                     change: function ($event) {
                       var $$selectedVal = Array.prototype.filter
@@ -56955,88 +57363,137 @@ var render = function () {
                 }),
                 0
               ),
-              _vm._v(" "),
-              _vm.submitted && _vm.errors.has("clientes")
-                ? _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.errors.first("cliente")) +
-                        "\n                    "
-                    ),
-                  ])
-                : _vm._e(),
             ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-lg-2" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "" } }, [_vm._v("Subtotal")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control form-control-sm",
-                attrs: { type: "number" },
-                domProps: { value: _vm.onViewSub },
-              }),
-            ]),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Subtotal")]),
+                _vm._v(" "),
+                _c("currency-input", {
+                  directives: [
+                    {
+                      name: "currency",
+                      rawName: "v-currency",
+                      value: {
+                        currency: "USD",
+                        precision: 0,
+                        locale: "en",
+                      },
+                      expression:
+                        "{\n                            currency: 'USD',\n                            precision: 0,\n                            locale: 'en',\n                        }",
+                    },
+                  ],
+                  staticClass: "form-control form-control-sm",
+                  attrs: { disabled: "", value: _vm.onViewSub },
+                }),
+              ],
+              1
+            ),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-lg-2" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "" } }, [_vm._v("Descuento")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model.number",
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Descuento")]),
+                _vm._v(" "),
+                _c("currency-input", {
+                  directives: [
+                    {
+                      name: "currency",
+                      rawName: "v-currency",
+                      value: {
+                        currency: "USD",
+                        precision: 0,
+                        locale: "en",
+                      },
+                      expression:
+                        "{\n                            currency: 'USD',\n                            precision: 0,\n                            locale: 'en',\n                        }",
+                    },
+                  ],
+                  staticClass: "form-control form-control-sm",
+                  model: {
                     value: _vm.formFacture.disc,
+                    callback: function ($$v) {
+                      _vm.$set(_vm.formFacture, "disc", _vm._n($$v))
+                    },
                     expression: "formFacture.disc",
-                    modifiers: { number: true },
                   },
-                ],
-                staticClass: "form-control form-control-sm",
-                attrs: { type: "number" },
-                domProps: { value: _vm.formFacture.disc },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.formFacture,
-                      "disc",
-                      _vm._n($event.target.value)
-                    )
-                  },
-                  blur: function ($event) {
-                    return _vm.$forceUpdate()
-                  },
-                },
-              }),
-            ]),
+                }),
+              ],
+              1
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-2" }, [
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Total")]),
+                _vm._v(" "),
+                _c("currency-input", {
+                  directives: [
+                    {
+                      name: "currency",
+                      rawName: "v-currency",
+                      value: {
+                        currency: "USD",
+                        precision: 0,
+                        locale: "en",
+                      },
+                      expression:
+                        "{\n                            currency: 'USD',\n                            precision: 0,\n                            locale: 'en',\n                        }",
+                    },
+                  ],
+                  staticClass: "form-control form-control-sm",
+                  attrs: { disabled: "", value: _vm.onViewTot },
+                }),
+              ],
+              1
+            ),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-lg-2" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "" } }, [_vm._v("Total")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control form-control-sm",
-                attrs: { type: "number" },
-                domProps: { value: _vm.onViewTot },
-              }),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-2" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "" } }, [_vm._v("Estado")]),
+              _c("label", [_vm._v("Estado")]),
               _vm._v(" "),
               _c(
                 "select",
                 {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formFacture.state,
+                      expression: "formFacture.state",
+                    },
+                  ],
                   staticClass: "form-control form-control-sm",
-                  attrs: { "v-model": _vm.formFacture.state },
+                  on: {
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.formFacture,
+                        "state",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                  },
                 },
                 [
                   _c("option", { attrs: { value: "0" } }, [_vm._v("No pago")]),
@@ -57051,21 +57508,19 @@ var render = function () {
         _c("div", { staticClass: "row" }, [
           _vm._m(1),
           _vm._v(" "),
-          _c("div", { staticClass: "col-lg-2" }, [
-            !_vm.send
-              ? _c(
+          _vm.formFacture.dataDetails.length != 0 &&
+          _vm.onViewSub >= _vm.formFacture.disc
+            ? _c("div", { staticClass: "col-lg-2" }, [
+                _c(
                   "button",
                   {
-                    class: {
-                      "btn btn btn-primary btn-sm ": !this.formFacture.id,
-                      "btn btn-danger-danger btn-sm ": this.formFacture.id,
-                    },
-                    attrs: { hidden: _vm.errors.any(), type: "submit" },
+                    staticClass: "btn btn btn-primary btn-sm",
+                    attrs: { type: "submit", disabled: _vm.errors.any() },
                   },
                   [_vm._v("\n                    Guardar\n                ")]
-                )
-              : _vm._e(),
-          ]),
+                ),
+              ])
+            : _vm._e(),
         ]),
       ]
     ),
@@ -57164,12 +57619,23 @@ var render = function () {
                             return _c("tr", { key: row.id }, [
                               _c("td", [_vm._v(_vm._s(row.name))]),
                               _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  "$" +
-                                    _vm._s(_vm._f("currency")(row.price_two))
-                                ),
-                              ]),
+                              _vm.type_sale
+                                ? _c("td", [
+                                    _vm._v(
+                                      "\n                                        $" +
+                                        _vm._s(_vm._f("currency")(row.price)) +
+                                        "\n                                    "
+                                    ),
+                                  ])
+                                : _c("td", [
+                                    _vm._v(
+                                      "\n                                        $" +
+                                        _vm._s(
+                                          _vm._f("currency")(row.price_two)
+                                        ) +
+                                        "\n                                    "
+                                    ),
+                                  ]),
                               _vm._v(" "),
                               _c("td", [
                                 _c(
@@ -57239,6 +57705,10 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Cantidad")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Subtotal")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Descuento")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
         _vm._v(" "),
         _c("th", [_vm._v("Op")]),
       ]),
@@ -57334,12 +57804,7 @@ var render = function () {
           class: {
             "is-invalid": _vm.submitted && _vm.errors.has("email"),
           },
-          attrs: {
-            type: "email",
-            placeholder: "Email",
-            onfocus: "",
-            name: "email",
-          },
+          attrs: { type: "email", placeholder: "Email", name: "email" },
           domProps: { value: _vm.form.email },
           on: {
             input: function ($event) {
@@ -57522,11 +57987,9 @@ var render = function () {
                         _vm._v("Nombre"),
                       ]),
                       _vm._v(" "),
-                      _c("th", [_vm._v("Precio 1")]),
+                      _c("th", [_vm._v("Precio M")]),
                       _vm._v(" "),
-                      _c("th", [_vm._v("Precio 2")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Ganancia")]),
+                      _c("th", [_vm._v("Precio D")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("Op")]),
                     ],
@@ -57550,13 +58013,6 @@ var render = function () {
                     _vm._v(" "),
                     _c("td", [
                       _vm._v("$" + _vm._s(_vm._f("currency")(row.price_two))),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(
-                        "$" +
-                          _vm._s(_vm._f("currency")(row.price_two - row.price))
-                      ),
                     ]),
                     _vm._v(" "),
                     _c("td", [
@@ -57801,7 +58257,7 @@ var render = function () {
                       { staticClass: "form-group" },
                       [
                         _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Precio de compra"),
+                          _vm._v("Precio mayorista"),
                         ]),
                         _vm._v(" "),
                         _c("currency-input", {
@@ -57809,8 +58265,8 @@ var render = function () {
                             {
                               name: "validate",
                               rawName: "v-validate",
-                              value: "|required",
-                              expression: "'|required'",
+                              value: "|required|min_value:0",
+                              expression: "'|required|min_value:0'",
                             },
                             {
                               name: "currency",
@@ -57828,7 +58284,7 @@ var render = function () {
                           class: {
                             "is-invalid":
                               _vm.submitted &&
-                              _vm.errors.has("precio de compra"),
+                              _vm.errors.has("precio mayorista"),
                           },
                           attrs: { name: "precio de compra" },
                           model: {
@@ -57840,11 +58296,11 @@ var render = function () {
                           },
                         }),
                         _vm._v(" "),
-                        _vm.submitted && _vm.errors.has("precio de compra")
+                        _vm.submitted && _vm.errors.has("precio mayorista")
                           ? _c("div", { staticClass: "invalid-feedback" }, [
                               _vm._v(
                                 "\n                                " +
-                                  _vm._s(_vm.errors.first("precio de compra")) +
+                                  _vm._s(_vm.errors.first("precio mayorista")) +
                                   "\n                            "
                               ),
                             ])
@@ -57912,37 +58368,6 @@ var render = function () {
                               ),
                             ])
                           : _vm._e(),
-                      ],
-                      1
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-lg-12" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Ganancia"),
-                        ]),
-                        _vm._v(" "),
-                        _c("currency-input", {
-                          directives: [
-                            {
-                              name: "currency",
-                              rawName: "v-currency",
-                              value: {
-                                currency: "USD",
-                                precision: 0,
-                                locale: "en",
-                              },
-                              expression:
-                                "{\n                                    currency: 'USD',\n                                    precision: 0,\n                                    locale: 'en',\n                                }",
-                            },
-                          ],
-                          staticClass: "form-control form-control-sm",
-                          attrs: { value: _vm.form.price_two - _vm.form.price },
-                        }),
                       ],
                       1
                     ),
@@ -58710,7 +59135,7 @@ var render = function () {
     _c(
       "button",
       {
-        staticClass: "btn bg-secondary btn-sm",
+        staticClass: "btn bg-success btn-sm",
         attrs: {
           type: "button",
           "data-toggle": "modal",
@@ -58718,7 +59143,7 @@ var render = function () {
         },
         on: { click: _vm.getlistProducts },
       },
-      [_vm._v("\n        Detalle\n    ")]
+      [_c("i", { staticClass: "fi fi-file-1" })]
     ),
     _vm._v(" "),
     _c(
@@ -58740,161 +59165,241 @@ var render = function () {
           [
             _c("div", { staticClass: "modal-content" }, [
               _c("div", { staticClass: "modal-body" }, [
-                _c(
-                  "div",
-                  { staticClass: "table-responsive" },
-                  [
-                    _c("strong", [_vm._v("Información cliente")]),
+                _c("div", { attrs: { id: "facture" } }, [
+                  _c("div", { staticClass: "text-center" }, [
+                    _c("strong", [_vm._v(_vm._s(_vm.company))]),
                     _vm._v(" "),
-                    _c("VTable", {
-                      staticClass: "table table-light",
-                      attrs: { data: _vm.facUnique },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "head",
-                          fn: function () {
-                            return [
-                              _c("tr", [
-                                _c("th", [_vm._v("Nit")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Nombre")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Teléfono")]),
-                              ]),
-                            ]
-                          },
-                          proxy: true,
-                        },
-                        {
-                          key: "body",
-                          fn: function (ref) {
-                            var rows = ref.rows
-                            return _vm._l(rows, function (row) {
-                              return _c("tr", { key: row.id }, [
-                                _c("td", [_vm._v(_vm._s(row.nit))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(row.fullname))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(row.phone))]),
-                              ])
-                            })
-                          },
-                        },
-                      ]),
-                    }),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "table-responsive" },
-                  [
-                    _c("strong", [_vm._v("DETALLE FACTURA")]),
+                    _c("p", [
+                      _c("strong", [_vm._v("NIT: " + _vm._s(_vm.nit))]),
+                    ]),
                     _vm._v(" "),
-                    _c("VTable", {
-                      staticClass: "table table-striped",
-                      attrs: { data: _vm.details },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "head",
-                          fn: function () {
-                            return [
-                              _c("tr", [
-                                _c("th", [_vm._v("Nombre")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Cantidad")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Precio")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Subtotal")]),
-                              ]),
-                            ]
-                          },
-                          proxy: true,
-                        },
-                        {
-                          key: "body",
-                          fn: function (ref) {
-                            var rows = ref.rows
-                            return _vm._l(rows, function (row) {
-                              return _c("tr", { key: row.idd }, [
-                                _c("td", [_vm._v(_vm._s(row.name))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(row.quantity))]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(_vm._s(_vm._f("currency")(row.price))),
+                    _c("p", [_c("em", [_vm._v(_vm._s(_vm.phone))])]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(_vm.direction))]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "table-responsive" },
+                    [
+                      _c("strong", [_vm._v("Datos cliente")]),
+                      _vm._v(" "),
+                      _c("VTable", {
+                        staticClass: "table table-borderless",
+                        attrs: { data: _vm.facUnique },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "head",
+                            fn: function () {
+                              return [
+                                _c("tr", [
+                                  _c("th", [_vm._v("Nit")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Nombre")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Teléfono")]),
                                 ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(
-                                    "$" + _vm._s(_vm._f("currency")(row.sub))
-                                  ),
-                                ]),
-                              ])
-                            })
+                              ]
+                            },
+                            proxy: true,
                           },
-                        },
-                      ]),
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "table-responsive" },
-                      [
-                        _c("VTable", {
-                          staticClass: "table table-light",
-                          attrs: { data: _vm.facUnique },
-                          scopedSlots: _vm._u([
-                            {
-                              key: "head",
-                              fn: function () {
-                                return [
-                                  _c("tr", [
-                                    _c("th", [_vm._v("Fecha")]),
-                                    _vm._v(" "),
-                                    _c("th", [_vm._v("Descuento")]),
-                                    _vm._v(" "),
-                                    _c("th", [_vm._v("Subtotal")]),
-                                    _vm._v(" "),
-                                    _c("th", [_vm._v("Total")]),
-                                    _vm._v(" "),
-                                    _c("th", [_vm._v("Estado")]),
+                          {
+                            key: "body",
+                            fn: function (ref) {
+                              var rows = ref.rows
+                              return _vm._l(rows, function (row) {
+                                return _c("tr", { key: row.id }, [
+                                  _c("td", [_vm._v(_vm._s(row.nit))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(row.fullname))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(row.phone))]),
+                                ])
+                              })
+                            },
+                          },
+                        ]),
+                      }),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "table-responsive" },
+                    [
+                      _c("strong", [_vm._v("Detalle factura")]),
+                      _vm._v(" "),
+                      _c("VTable", {
+                        staticClass: "table table-borderless table-striped",
+                        attrs: { data: _vm.details },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "head",
+                            fn: function () {
+                              return [
+                                _c("tr", [
+                                  _c("th", [_vm._v("Ref")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Precio")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Cant.")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Sub")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Des")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Total")]),
+                                ]),
+                              ]
+                            },
+                            proxy: true,
+                          },
+                          {
+                            key: "body",
+                            fn: function (ref) {
+                              var rows = ref.rows
+                              return _vm._l(rows, function (row) {
+                                return _c("tr", { key: row.idd }, [
+                                  _c("td", [_vm._v(_vm._s(row.name))]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      "$" +
+                                        _vm._s(_vm._f("currency")(row.price))
+                                    ),
                                   ]),
-                                ]
-                              },
-                              proxy: true,
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(row.quantity))]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      "$" + _vm._s(_vm._f("currency")(row.sub))
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      "$" + _vm._s(_vm._f("currency")(row.disc))
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      "$" + _vm._s(_vm._f("currency")(row.tot))
+                                    ),
+                                  ]),
+                                ])
+                              })
                             },
-                            {
-                              key: "body",
-                              fn: function (ref) {
-                                var rows = ref.rows
-                                return _vm._l(rows, function (row) {
-                                  return _c("tr", { key: row.id }, [
-                                    _c("td", [
-                                      _vm._v(_vm._s(row.date_facture)),
+                          },
+                        ]),
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "table-responsive" },
+                        [
+                          _c("strong", [_vm._v("Totalizable de factura")]),
+                          _vm._v(" "),
+                          _c("VTable", {
+                            staticClass: "table table-borderless",
+                            attrs: { data: _vm.facUnique },
+                            scopedSlots: _vm._u([
+                              {
+                                key: "head",
+                                fn: function () {
+                                  return [
+                                    _c("tr", [
+                                      _c("th", [_vm._v("Cant")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v("Desc")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v("Sub")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v("Tot")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v("Estado")]),
                                     ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(row.disc))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(row.sub))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(row.tot))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(row.state))]),
-                                  ])
-                                })
+                                  ]
+                                },
+                                proxy: true,
                               },
-                            },
-                          ]),
-                        }),
-                      ],
-                      1
-                    ),
-                  ],
-                  1
-                ),
+                              {
+                                key: "body",
+                                fn: function (ref) {
+                                  var rows = ref.rows
+                                  return _vm._l(rows, function (row) {
+                                    return _c("tr", { key: row.id }, [
+                                      _c("td", [
+                                        _vm._v(_vm._s(_vm.sumProducts)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          "\n                                                $" +
+                                            _vm._s(
+                                              _vm._f("currency")(row.disc)
+                                            ) +
+                                            "\n                                            "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          "\n                                                $" +
+                                            _vm._s(
+                                              _vm._f("currency")(row.sub)
+                                            ) +
+                                            "\n                                            "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          "\n                                                $" +
+                                            _vm._s(
+                                              _vm._f("currency")(row.tot)
+                                            ) +
+                                            "\n                                            "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      row.state
+                                        ? _c("td", [_vm._v("Pagado")])
+                                        : _c("td", [_vm._v("Pendiente")]),
+                                    ])
+                                  })
+                                },
+                              },
+                            ]),
+                          }),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.print()
+                        },
+                      },
+                    },
+                    [
+                      _vm._v("\n                            Factura "),
+                      _c("i", { staticClass: "fi fi-table-2" }),
+                    ]
+                  ),
+                ]),
               ]),
             ]),
           ]

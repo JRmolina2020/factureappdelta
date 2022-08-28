@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class FactureDetail extends Model
 {
+
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = [
-        'facture_id','product_id','quantity','price','sub'
+        'facture_id','product_id','quantity','price','sub','disc','tot'
     ];
     public function facture()
     {

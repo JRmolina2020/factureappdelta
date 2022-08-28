@@ -50,9 +50,9 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for>Precio de compra</label>
+                                <label for>Precio mayorista</label>
                                 <currency-input
-                                    v-validate="'|required'"
+                                    v-validate="'|required|min_value:0'"
                                     class="form-control form-control-sm"
                                     v-currency="{
                                         currency: 'USD',
@@ -62,7 +62,7 @@
                                     :class="{
                                         'is-invalid':
                                             submitted &&
-                                            errors.has('precio de compra'),
+                                            errors.has('precio mayorista'),
                                     }"
                                     v-model.number="form.price"
                                     name="precio de compra"
@@ -70,11 +70,11 @@
                                 <div
                                     v-if="
                                         submitted &&
-                                        errors.has('precio de compra')
+                                        errors.has('precio mayorista')
                                     "
                                     class="invalid-feedback"
                                 >
-                                    {{ errors.first("precio de compra") }}
+                                    {{ errors.first("precio mayorista") }}
                                 </div>
                             </div>
                         </div>
@@ -109,20 +109,6 @@
                                 >
                                     {{ errors.first("precio de venta") }}
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label for>Ganancia</label>
-                                <currency-input
-                                    class="form-control form-control-sm"
-                                    v-currency="{
-                                        currency: 'USD',
-                                        precision: 0,
-                                        locale: 'en',
-                                    }"
-                                    :value="form.price_two - form.price"
-                                />
                             </div>
                         </div>
                     </div>

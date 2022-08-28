@@ -3,12 +3,12 @@
         <!-- Button trigger modal -->
         <button
             type="button"
-            class="btn bg-secondary btn-sm"
+            class="btn bg-success btn-sm"
             data-toggle="modal"
             :data-target="'#model' + cod"
             @click="getlistProducts"
         >
-            Detalle
+            <i class="fi fi-file-1"></i>
         </button>
 
         <div
@@ -22,70 +22,117 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <div class="table-responsive">
-                            <strong>Información cliente</strong>
-                            <VTable :data="facUnique" class="table table-light">
-                                <template #head>
-                                    <tr>
-                                        <th>Nit</th>
-                                        <th>Nombre</th>
-                                        <th>Teléfono</th>
-                                    </tr>
-                                </template>
-                                <template #body="{ rows }">
-                                    <tr v-for="row in rows" :key="row.id">
-                                        <td>{{ row.nit }}</td>
-                                        <td>{{ row.fullname }}</td>
-                                        <td>{{ row.phone }}</td>
-                                    </tr>
-                                </template>
-                            </VTable>
-                        </div>
-                        <div class="table-responsive">
-                            <strong>DETALLE FACTURA</strong>
-                            <VTable :data="details" class="table table-striped">
-                                <template #head>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Cantidad</th>
-                                        <th>Precio</th>
-                                        <th>Subtotal</th>
-                                    </tr>
-                                </template>
-                                <template #body="{ rows }">
-                                    <tr v-for="row in rows" :key="row.idd">
-                                        <td>{{ row.name }}</td>
-                                        <td>{{ row.quantity }}</td>
-                                        <td>{{ row.price | currency }}</td>
-                                        <td>${{ row.sub | currency }}</td>
-                                    </tr>
-                                </template>
-                            </VTable>
+                        <div id="facture">
+                            <div class="text-center">
+                                <strong>{{ company }}</strong>
+                                <p>
+                                    <strong>NIT: {{ nit }}</strong>
+                                </p>
+
+                                <p>
+                                    <em>{{ phone }}</em>
+                                </p>
+                                <p>{{ direction }}</p>
+                            </div>
+
                             <div class="table-responsive">
+                                <strong>Datos cliente</strong>
                                 <VTable
                                     :data="facUnique"
-                                    class="table table-light"
+                                    class="table table-borderless"
                                 >
                                     <template #head>
                                         <tr>
-                                            <th>Fecha</th>
-                                            <th>Descuento</th>
-                                            <th>Subtotal</th>
-                                            <th>Total</th>
-                                            <th>Estado</th>
+                                            <th>Nit</th>
+                                            <th>Nombre</th>
+                                            <th>Teléfono</th>
                                         </tr>
                                     </template>
                                     <template #body="{ rows }">
                                         <tr v-for="row in rows" :key="row.id">
-                                            <td>{{ row.date_facture }}</td>
-                                            <td>{{ row.disc }}</td>
-                                            <td>{{ row.sub }}</td>
-                                            <td>{{ row.tot }}</td>
-                                            <td>{{ row.state }}</td>
+                                            <td>{{ row.nit }}</td>
+                                            <td>{{ row.fullname }}</td>
+                                            <td>{{ row.phone }}</td>
                                         </tr>
                                     </template>
                                 </VTable>
                             </div>
+                            <div class="table-responsive">
+                                <strong>Detalle factura</strong>
+                                <VTable
+                                    :data="details"
+                                    class="table table-borderless table-striped"
+                                >
+                                    <template #head>
+                                        <tr>
+                                            <th>Ref</th>
+                                            <th>Precio</th>
+                                            <th>Cant.</th>
+                                            <th>Sub</th>
+                                            <th>Des</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </template>
+                                    <template #body="{ rows }">
+                                        <tr v-for="row in rows" :key="row.idd">
+                                            <td>{{ row.name }}</td>
+                                            <td>${{ row.price | currency }}</td>
+                                            <td>{{ row.quantity }}</td>
+
+                                            <td>${{ row.sub | currency }}</td>
+                                            <td>${{ row.disc | currency }}</td>
+                                            <td>${{ row.tot | currency }}</td>
+                                        </tr>
+                                    </template>
+                                </VTable>
+
+                                <div class="table-responsive">
+                                    <strong>Totalizable de factura</strong>
+                                    <VTable
+                                        :data="facUnique"
+                                        class="table table-borderless"
+                                    >
+                                        <template #head>
+                                            <tr>
+                                                <th>Cant</th>
+                                                <th>Desc</th>
+                                                <th>Sub</th>
+                                                <th>Tot</th>
+                                                <th>Estado</th>
+                                            </tr>
+                                        </template>
+
+                                        <template #body="{ rows }">
+                                            <tr
+                                                v-for="row in rows"
+                                                :key="row.id"
+                                            >
+                                                <td>{{ sumProducts }}</td>
+                                                <td>
+                                                    ${{ row.disc | currency }}
+                                                </td>
+                                                <td>
+                                                    ${{ row.sub | currency }}
+                                                </td>
+                                                <td>
+                                                    ${{ row.tot | currency }}
+                                                </td>
+                                                <td v-if="row.state">Pagado</td>
+                                                <td v-else>Pendiente</td>
+                                            </tr>
+                                        </template>
+                                    </VTable>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button
+                                type="button"
+                                @click="print()"
+                                class="btn btn-primary"
+                            >
+                                Factura <i class="fi fi-table-2"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -108,6 +155,10 @@ export default {
         return {
             currentPage: 1,
             totalPages: 0,
+            company: "BOLSOSVALLEDUPAR23",
+            nit: "1003242515",
+            direction: "CENTRO COMERCIAL LOS PAISAS LOCAL #22",
+            phone: "3012074828",
         };
     },
 
@@ -122,6 +173,9 @@ export default {
         },
     },
     methods: {
+        print() {
+            this.$htmlToPaper("facture");
+        },
         getlistProducts() {
             this.$store.dispatch("FactureDetailactions", this.cod);
             this.$store.dispatch("FactureUniquections", this.cod);

@@ -41,7 +41,7 @@ Route::prefix('api')->group(function () {
 //routes users
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
-Route::put('/user/password/{id}', [UserController::class, 'updatePassword']);
+Route::put('/user/password/{id}', [UserController::class, 'updatePassword'])->where('id', '[0-9]+');
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::put('/users/available/{id}', [UserController::class, 'available']);
 Route::put('/users/locked/{id}', [UserController::class, 'locked']);
@@ -50,19 +50,20 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 //products
 Route::get('/products', [ProductController::class, 'index']);
 Route::post('/products', [ProductController::class, 'store']);
-Route::put('/products/{id}', [ProductController::class, 'update'])->where('id', '[0-9]+');;
+Route::put('/products/{id}', [ProductController::class, 'update'])->where('id', '[0-9]+');
 Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 //end
 //clients
 Route::get('/clients', [ClientController::class, 'index']);
 Route::post('/clients', [ClientController::class, 'store']);
-Route::put('/clients/{id}', [ClientController::class, 'update'])->where('id', '[0-9]+');;
-Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->where('id', '[0-9]+');;
+Route::put('/clients/{id}', [ClientController::class, 'update'])->where('id', '[0-9]+');
+Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->where('id', '[0-9]+');
 //end
 //facture
 Route::post('/factures', [FactureController::class, 'store']);
 Route::get('/factures', [FactureController::class, 'index']);
-Route::get('/factureUnique/{id}', [FactureController::class, 'factureUnique'])->where('id', '[0-9]+');;
+Route::get('/factureUnique/{id}', [FactureController::class, 'factureUnique'])->where('id', '[0-9]+');
+Route::delete('/factures/{id}', [FactureController::class, 'destroy'])->where('id', '[0-9]+');
 //
 //facture details
 Route::get('/details/{id}', [FactureDetailController::class, 'index'])->where('id', '[0-9]+');

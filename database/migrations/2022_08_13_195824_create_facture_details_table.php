@@ -22,6 +22,8 @@ class CreateFactureDetailsTable extends Migration
             $table->integer('quantity');
             $table->decimal('price', 11, 0);
             $table->decimal('sub', 11, 0);
+            $table->decimal('disc', 11, 0);
+            $table->decimal('tot', 11, 0);
         });
     }
 

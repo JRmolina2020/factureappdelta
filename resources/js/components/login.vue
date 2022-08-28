@@ -10,7 +10,6 @@
                 }"
                 placeholder="Email"
                 v-model="form.email"
-                onfocus
                 name="email"
             />
             <div

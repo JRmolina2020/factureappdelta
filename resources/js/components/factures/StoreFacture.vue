@@ -2,59 +2,100 @@
     <div>
         <!-- detailsx -->
         <div class="row">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Producto</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Subtotal</th>
-                        <th>Op</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                        v-for="(item, index) in formFacture.dataDetails"
-                        :value="item.id"
-                        :key="index"
-                    >
-                        <td>{{ item.name }}</td>
-                        <td>${{ item.price | currency }}</td>
-                        <td>
-                            <button
-                                type="button"
-                                @click="decrementDetail(index)"
-                                class="btn bg-danger btn-xs"
-                            >
-                                <i class="fi fi-angle-down"></i>
-                            </button>
-                            {{ item.quantity }}
-                            <button
-                                type="button"
-                                @click="incrementDetail(index)"
-                                class="btn bg-success btn-xs"
-                            >
-                                <i class="fi fi-angle-up"></i>
-                            </button>
-                        </td>
-                        <td>
-                            {{
-                                (formFacture.dataDetails[index].sub =
-                                    item.price * item.quantity) | currency
-                            }}
-                        </td>
-                        <td>
-                            <button
-                                type="button"
-                                @click="removeDetail()"
-                                class="btn bg-danger btn-xs"
-                            >
-                                <i class="fi fi-close-a"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col">Descuento</th>
+                            <th scope="col">Total</th>
+                            <th>Op</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            v-for="(item, index) in formFacture.dataDetails"
+                            :value="item.id"
+                            :key="index"
+                        >
+                            <td>{{ item.name }}</td>
+                            <td>${{ item.price | currency }}</td>
+                            <td>
+                                <button
+                                    type="button"
+                                    @click="decrementDetail(index)"
+                                    class="btn bg-danger btn-xs"
+                                >
+                                    <i class="fi fi-angle-down"></i>
+                                </button>
+                                {{ item.quantity }}
+                                <button
+                                    type="button"
+                                    @click="incrementDetail(index)"
+                                    class="btn bg-success btn-xs"
+                                >
+                                    <i class="fi fi-angle-up"></i>
+                                </button>
+                            </td>
+                            <td>
+                                {{
+                                    (formFacture.dataDetails[index].sub =
+                                        item.price * item.quantity) | currency
+                                }}
+                            </td>
+                            <td>
+                                <div class="form-group row">
+                                    <div class="form-group row">
+                                        <currency-input
+                                            name="descuento"
+                                            id="descuento"
+                                            v-validate="{
+                                                required: true,
+                                                min_value: 0,
+                                                max_value:
+                                                    formFacture.dataDetails[
+                                                        index
+                                                    ].sub,
+                                            }"
+                                            :class="{
+                                                'is-invalid':
+                                                    submitted &&
+                                                    errors.has('descuento'),
+                                            }"
+                                            v-model="discDetail[index]"
+                                            v-on:keyup="calculateDisc()"
+                                            class="form-control form-control-sm col-xs-2"
+                                            v-currency="{
+                                                currency: 'USD',
+                                                precision: 0,
+                                                locale: 'en',
+                                            }"
+                                        />
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                ${{
+                                    (formFacture.dataDetails[index].tot =
+                                        onviewTotDetail[index]) | currency
+                                }}
+                            </td>
+                            <td>
+                                <button
+                                    type="button"
+                                    @click="removeDetail()"
+                                    class="btn bg-danger btn-xs"
+                                >
+                                    <i class="fi fi-close-a"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <!-- facture main -->
         <form
@@ -66,17 +107,25 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="form-group">
+                        <label for>Venta</label>
+                        <select
+                            class="form-control form-control-sm"
+                            v-model="type_sale"
+                            required
+                            @change="typeSale()"
+                        >
+                            <option value="1">Mayorista</option>
+                            <option value="0">Detal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
                         <label for>Clientes</label>
                         <select
                             class="form-control form-control-sm"
-                            :class="{
-                                'is-invalid':
-                                    submitted && errors.has('cliente'),
-                            }"
-                            name="cliente"
-                            id="cliente"
                             v-model="formFacture.client_id"
-                            v-validate="'required'"
+                            required
                         >
                             <option
                                 v-for="(item, index) in clients"
@@ -86,21 +135,20 @@
                                 {{ item.fullname }}
                             </option>
                         </select>
-                        <div
-                            v-if="submitted && errors.has('clientes')"
-                            class="invalid-feedback"
-                        >
-                            {{ errors.first("cliente") }}
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="form-group">
                         <label for>Subtotal</label>
-                        <input
-                            type="number"
+                        <currency-input
+                            disabled
                             :value="onViewSub"
                             class="form-control form-control-sm"
+                            v-currency="{
+                                currency: 'USD',
+                                precision: 0,
+                                locale: 'en',
+                            }"
                         />
                     </div>
                 </div>
@@ -108,28 +156,37 @@
                 <div class="col-lg-2">
                     <div class="form-group">
                         <label for>Descuento</label>
-                        <input
-                            type="number"
+                        <currency-input
                             v-model.number="formFacture.disc"
                             class="form-control form-control-sm"
+                            v-currency="{
+                                currency: 'USD',
+                                precision: 0,
+                                locale: 'en',
+                            }"
                         />
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="form-group">
                         <label for>Total</label>
-                        <input
-                            type="number"
+                        <currency-input
+                            disabled
                             class="form-control form-control-sm"
                             :value="onViewTot"
+                            v-currency="{
+                                currency: 'USD',
+                                precision: 0,
+                                locale: 'en',
+                            }"
                         />
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="form-group">
-                        <label for>Estado</label>
+                        <label>Estado</label>
                         <select
-                            :v-model="formFacture.state"
+                            v-model="formFacture.state"
                             class="form-control form-control-sm"
                         >
                             <option value="0">No pago</option>
@@ -149,16 +206,18 @@
                         Productos
                     </button>
                 </div>
-                <div class="col-lg-2">
+
+                <div
+                    v-if="
+                        formFacture.dataDetails.length != 0 &&
+                        onViewSub >= formFacture.disc
+                    "
+                    class="col-lg-2"
+                >
                     <button
-                        v-if="!send"
-                        :hidden="errors.any()"
                         type="submit"
-                        v-bind:class="{
-                            'btn btn btn-primary btn-sm ': !this.formFacture.id,
-                            'btn btn-danger-danger btn-sm ':
-                                this.formFacture.id,
-                        }"
+                        :disabled="errors.any()"
+                        class="btn btn btn-primary btn-sm"
                     >
                         Guardar
                     </button>
@@ -208,7 +267,12 @@
                                 <template #body="{ rows }">
                                     <tr v-for="row in rows" :key="row.id">
                                         <td>{{ row.name }}</td>
-                                        <td>${{ row.price_two | currency }}</td>
+                                        <td v-if="type_sale">
+                                            ${{ row.price | currency }}
+                                        </td>
+                                        <td v-else>
+                                            ${{ row.price_two | currency }}
+                                        </td>
                                         <td>
                                             <button
                                                 type="button"
@@ -253,6 +317,7 @@ export default {
             });
             return subtot;
         },
+
         onViewTot() {
             let sub = this.onViewSub;
             let disc = this.formFacture.disc;
@@ -261,17 +326,26 @@ export default {
                 return tot;
             }
         },
+        onviewTotDetail() {
+            let tot = [];
+            for (let i = 0; i < this.formFacture.dataDetails.length; i++) {
+                tot[i] =
+                    this.formFacture.dataDetails[i].sub - this.discDetail[i];
+            }
+            return tot;
+        },
     },
     data() {
         return {
             actions: "Factureactions",
             submitted: true,
-            send: false,
             totalPages: 1,
             currentPage: 1,
             filters: {
                 name: { value: "", keys: ["name"] },
             },
+            type_sale: 1,
+            discDetail: [],
             formFacture: {
                 id: 0,
                 client_id: 0,
@@ -288,13 +362,21 @@ export default {
     },
     methods: {
         async addFacture() {
+            //agregando valores calculados fuction en el form
             this.formFacture.sub = this.onViewSub;
             this.formFacture.tot = this.onViewTot;
-
             let response = await axios.post(this.urlfactures, this.formFacture);
             try {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: `${response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                this.$store.dispatch("Factureactions");
                 console.log(this.formFacture);
-                console.log(response);
+                this.clear();
             } catch (error) {
                 console.log(error.response);
             }
@@ -304,19 +386,64 @@ export default {
             this.$store.dispatch("Productactions");
         },
         addRow(row) {
+            let price = 0;
+            if (this.type_sale == 1) {
+                price = row.price;
+            } else {
+                price = row.price_two;
+            }
             this.formFacture.dataDetails.push({
                 product_id: row.id,
                 name: row.name,
-                price: row.price_two,
+                price: price,
                 quantity: 1,
                 sub: 0,
+                disc: 0,
+                tot: 0,
             });
             this.filters.name.value = "";
+            //para cuandro se agregue a la lista del detalle el descuento tome valor 0
+            for (let i = 0; i < this.formFacture.dataDetails.length; i++) {
+                this.discDetail[i] = 0;
+            }
+        },
+        calculateDisc() {
+            let totDisc = 0;
+            for (let i = 0; i < this.formFacture.dataDetails.length; i++) {
+                totDisc = parseInt(totDisc + this.discDetail[i]);
+                this.formFacture.dataDetails[i].disc = this.discDetail[i];
+            }
+
+            this.formFacture.disc = totDisc;
         },
         show(row) {},
         clear() {
-            this.$validator.reset();
-            this.send = false;
+            this.formFacture.id = 0;
+            this.formFacture.client_id = 0;
+            this.formFacture.sub = 0;
+            this.formFacture.disc = 0;
+            this.formFacture.tot = 0;
+            this.formFacture.state = 0;
+            this.formFacture.dataDetails = [];
+        },
+        typeSale() {
+            if (this.type_sale == 1) {
+                this.type_sale = 1;
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Usted ha escogido venta mayorista",
+                    showConfirmButton: true,
+                });
+            } else {
+                this.type_sale = 0;
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Usted ha escogido venta al detal",
+                    showConfirmButton: true,
+                });
+            }
         },
         incrementDetail(index) {
             this.formFacture.dataDetails[index].quantity++;
