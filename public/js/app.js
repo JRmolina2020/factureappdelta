@@ -4709,6 +4709,8 @@ module.exports = {
                   $("#model").modal("hide");
 
                   _this2.$store.dispatch(actions);
+
+                  console.log(_this2.form);
                 } catch (error) {
                   console.log(error.response);
                 }
