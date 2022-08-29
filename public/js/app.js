@@ -57895,7 +57895,7 @@ var render = function () {
                 },
                 [
                   _vm._v(
-                    "\n                Cargando información del usuario12\n            "
+                    "\n                Cargando información del usuario\n            "
                   ),
                 ]
               ),
