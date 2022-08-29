@@ -49,7 +49,7 @@
                 </button>
             </div>
             <div class="col-12" v-else>
-                <div class="alert alert-success" role="alert"></div>
+                <div class="alert alert-success" role="alert">Ingresando</div>
             </div>
         </div>
     </form>

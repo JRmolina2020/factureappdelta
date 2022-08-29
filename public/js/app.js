@@ -57885,10 +57885,14 @@ var render = function () {
               ),
             ])
           : _c("div", { staticClass: "col-12" }, [
-              _c("div", {
-                staticClass: "alert alert-success",
-                attrs: { role: "alert" },
-              }),
+              _c(
+                "div",
+                {
+                  staticClass: "alert alert-success",
+                  attrs: { role: "alert" },
+                },
+                [_vm._v("Ingresando")]
+              ),
             ]),
       ]),
     ]
