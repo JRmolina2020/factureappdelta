@@ -96,7 +96,7 @@ export default {
         },
         async theState(row) {
             if (row.status == 1) {
-                let url = this.urlusers + "locked/" + row.id;
+                let url = this.urlusers + "/locked/" + row.id;
                 let response = await axios.put(url);
                 try {
                     Swal.fire({
@@ -108,7 +108,7 @@ export default {
                     console.log(error);
                 }
             } else {
-                let url = this.urlusers + "available/" + row.id;
+                let url = this.urlusers + "/available/" + row.id;
                 let response = await axios.put(url);
                 try {
                     Swal.fire({

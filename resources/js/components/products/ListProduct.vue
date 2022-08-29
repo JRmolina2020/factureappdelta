@@ -82,7 +82,7 @@ export default {
             this.$store.dispatch("Productactions");
         },
         async destroy(id) {
-            let url = this.urlproducts + id;
+            let url = this.urlproducts + "/" + id;
             let response = await axios.delete(url);
             try {
                 this.getList();

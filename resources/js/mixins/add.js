@@ -11,7 +11,7 @@ module.exports = {
         },
         async route(id, actions, url) {
             if (id) {
-                let response = await axios.put(url + id, this.form);
+                let response = await axios.put(url + "/" + id, this.form);
                 try {
                     this.$store.dispatch(actions);
                     Swal.fire({

@@ -2211,7 +2211,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = _this.urlclients + id;
+                url = _this.urlclients + "/" + id;
                 _context.next = 3;
                 return axios["delete"](url);
 
@@ -2645,7 +2645,7 @@ Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_1__["default"], options);
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = _this.urlfactures + id;
+                url = _this.urlfactures + "/" + id;
                 _context.next = 3;
                 return axios["delete"](url);
 
@@ -3421,7 +3421,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = _this.urlproducts + id;
+                url = _this.urlproducts + "/" + id;
                 _context.next = 3;
                 return axios["delete"](url);
 
@@ -3833,7 +3833,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   break;
                 }
 
-                url = _this.urlusers + "locked/" + row.id;
+                url = _this.urlusers + "/locked/" + row.id;
                 _context.next = 4;
                 return axios.put(url);
 
@@ -3855,7 +3855,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 break;
 
               case 8:
-                _url = _this.urlusers + "available/" + row.id;
+                _url = _this.urlusers + "/available/" + row.id;
                 _context.next = 11;
                 return axios.put(_url);
 
@@ -4663,7 +4663,7 @@ module.exports = {
                 }
 
                 _context.next = 3;
-                return axios.put(url + id, _this2.form);
+                return axios.put(url + "/" + id, _this2.form);
 
               case 3:
                 response = _context.sent;
@@ -4760,10 +4760,10 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     details: [],
     facUnique: [],
     status: false,
-    urlusers: "/api/users/",
+    urlusers: "/api/users",
     urlproducts: "/api/products",
-    urlclients: "/api/clients/",
-    urlfactures: "/api/factures/",
+    urlclients: "/api/clients",
+    urlfactures: "/api/factures",
     urldetails: "/api/details",
     urlfactureUnique: "/api/factureUnique"
   },

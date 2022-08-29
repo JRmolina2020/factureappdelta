@@ -115,7 +115,7 @@ export default {
         },
 
         async destroy(id) {
-            let url = this.urlfactures + id;
+            let url = this.urlfactures + "/" + id;
             let response = await axios.delete(url);
             try {
                 this.getList();

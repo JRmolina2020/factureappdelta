@@ -84,7 +84,7 @@ export default {
             this.$store.dispatch("Clientactions");
         },
         async destroy(id) {
-            let url = this.urlclients + id;
+            let url = this.urlclients + "/" + id;
             let response = await axios.delete(url);
             try {
                 this.getList();
