@@ -50,7 +50,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 //products
 Route::get('/products', [ProductController::class, 'index']);
 Route::post('products', [ProductController::class, 'store']);
-Route::put('products/{id}', [ProductController::class, 'update'])->where('id', '[0-9]+');
+Route::put('/products/{id}', [ProductController::class, 'update'])->where('id', '[0-9]+');
 Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 //end
 //clients
