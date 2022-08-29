@@ -28,6 +28,7 @@ module.exports = {
                 }
             } else {
                 let response = await axios.post(url, this.form);
+
                 try {
                     Swal.fire({
                         position: "center",
