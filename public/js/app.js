@@ -4703,7 +4703,7 @@ module.exports = {
                     icon: "success",
                     title: "".concat(_response.data.message),
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1600
                   });
                   _this2.send = true;
                   $("#model").modal("hide");
