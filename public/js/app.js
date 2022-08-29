@@ -3262,8 +3262,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   $_veeValidate: {
     validator: "new"
@@ -57887,18 +57885,10 @@ var render = function () {
               ),
             ])
           : _c("div", { staticClass: "col-12" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "alert alert-success",
-                  attrs: { role: "alert" },
-                },
-                [
-                  _vm._v(
-                    "\n                Cargando información del usuario\n            "
-                  ),
-                ]
-              ),
+              _c("div", {
+                staticClass: "alert alert-success",
+                attrs: { role: "alert" },
+              }),
             ]),
       ]),
     ]
