@@ -4761,7 +4761,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     facUnique: [],
     status: false,
     urlusers: "/api/users/",
-    urlproducts: "/api/products/",
+    urlproducts: "/api/products",
     urlclients: "/api/clients/",
     urlfactures: "/api/factures/",
     urldetails: "/api/details",
