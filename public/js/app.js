@@ -58635,7 +58635,7 @@ var render = function () {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-lg-12" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "" } }, [_vm._v("password")]),
+              _c("label", { attrs: { for: "" } }, [_vm._v("password new")]),
               _vm._v(" "),
               _c("input", {
                 directives: [

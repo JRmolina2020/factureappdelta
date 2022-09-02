@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
-                        <label for>password</label>
+                        <label for>password new</label>
                         <input
                             type="password"
                             v-validate="'required|max:15|min:3'"
