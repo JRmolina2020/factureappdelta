@@ -35,19 +35,16 @@
                         <td>{{ row.fullname }}</td>
                         <td>${{ row.tot | currency }}</td>
                         <th v-if="row.state == 1">
-                            <span class="badge badge-primary">Pagó</span>
+                            <button type="button" class="btn bg-danger btn-sm">
+                                <i class="fi fi-trash"></i>
+                            </button>
                         </th>
                         <th v-else>
-                            <span class="badge badge-danger">No pagó</span>
+                            <button type="button" class="btn bg-danger btn-sm">
+                                <i class="fi fi-trash"></i>
+                            </button>
                         </th>
                         <td>
-                            <button
-                                type="button"
-                                @click="$emit('show', row)"
-                                class="btn bg-warning btn-sm"
-                            >
-                                <i class="fi fi-eye"></i>
-                            </button>
                             <button
                                 type="button"
                                 @click="destroy(row.id)"

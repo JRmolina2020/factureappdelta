@@ -24,15 +24,15 @@
                     <div class="modal-body">
                         <div id="facture">
                             <div class="text-center">
-                                <strong>{{ company }}</strong>
                                 <p>
-                                    <strong>NIT: {{ nit }}</strong>
+                                    <strong>{{ company }}</strong>
                                 </p>
 
-                                <p>
-                                    <em>{{ phone }}</em>
-                                </p>
-                                <p>{{ direction }}</p>
+                                NIT: <strong>{{ nit }}</strong>
+
+                                TEL: <strong>{{ phone }}</strong>
+
+                                <p class="text-monospace">{{ direction }}</p>
                             </div>
 
                             <div class="table-responsive">
@@ -70,7 +70,7 @@
                                             <th>Cant.</th>
                                             <th>Sub</th>
                                             <th>Des</th>
-                                            <th>Total</th>
+                                            <!-- <th>Total</th> -->
                                         </tr>
                                     </template>
                                     <template #body="{ rows }">
@@ -81,7 +81,7 @@
 
                                             <td>${{ row.sub | currency }}</td>
                                             <td>${{ row.disc | currency }}</td>
-                                            <td>${{ row.tot | currency }}</td>
+                                            <!-- <td>${{ row.tot | currency }}</td> -->
                                         </tr>
                                     </template>
                                 </VTable>

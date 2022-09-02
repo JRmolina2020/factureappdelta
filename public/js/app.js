@@ -2597,9 +2597,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 
 
@@ -4013,7 +4010,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 url = "".concat(_this.url).concat(id);
                 _context.next = 3;
-                return axios.put(url);
+                return axios.put(url, _this.form);
 
               case 3:
                 response = _context.sent;
@@ -56979,31 +56976,27 @@ var render = function () {
                     _vm._v(" "),
                     row.state == 1
                       ? _c("th", [
-                          _c("span", { staticClass: "badge badge-primary" }, [
-                            _vm._v("Pagó"),
-                          ]),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn bg-danger btn-sm",
+                              attrs: { type: "button" },
+                            },
+                            [_c("i", { staticClass: "fi fi-trash" })]
+                          ),
                         ])
                       : _c("th", [
-                          _c("span", { staticClass: "badge badge-danger" }, [
-                            _vm._v("No pagó"),
-                          ]),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn bg-danger btn-sm",
+                              attrs: { type: "button" },
+                            },
+                            [_c("i", { staticClass: "fi fi-trash" })]
+                          ),
                         ]),
                     _vm._v(" "),
                     _c("td", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn bg-warning btn-sm",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.$emit("show", row)
-                            },
-                          },
-                        },
-                        [_c("i", { staticClass: "fi fi-eye" })]
-                      ),
-                      _vm._v(" "),
                       _c(
                         "button",
                         {
@@ -59161,15 +59154,15 @@ var render = function () {
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { attrs: { id: "facture" } }, [
                   _c("div", { staticClass: "text-center" }, [
-                    _c("strong", [_vm._v(_vm._s(_vm.company))]),
+                    _c("p", [_c("strong", [_vm._v(_vm._s(_vm.company))])]),
+                    _vm._v("\n\n                            NIT: "),
+                    _c("strong", [_vm._v(_vm._s(_vm.nit))]),
+                    _vm._v("\n\n                            TEL: "),
+                    _c("strong", [_vm._v(_vm._s(_vm.phone))]),
                     _vm._v(" "),
-                    _c("p", [
-                      _c("strong", [_vm._v("NIT: " + _vm._s(_vm.nit))]),
+                    _c("p", { staticClass: "text-monospace" }, [
+                      _vm._v(_vm._s(_vm.direction)),
                     ]),
-                    _vm._v(" "),
-                    _c("p", [_c("em", [_vm._v(_vm._s(_vm.phone))])]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(_vm.direction))]),
                   ]),
                   _vm._v(" "),
                   _c(
@@ -59242,8 +59235,6 @@ var render = function () {
                                   _c("th", [_vm._v("Sub")]),
                                   _vm._v(" "),
                                   _c("th", [_vm._v("Des")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Total")]),
                                 ]),
                               ]
                             },
@@ -59275,12 +59266,6 @@ var render = function () {
                                   _c("td", [
                                     _vm._v(
                                       "$" + _vm._s(_vm._f("currency")(row.disc))
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      "$" + _vm._s(_vm._f("currency")(row.tot))
                                     ),
                                   ]),
                                 ])

@@ -14,7 +14,7 @@ Route::get('/', function () {
     return view('login');
 })->name('login');;
 //route login functions 
-Route::post('/login',[AuthController::class, 'login']);
+Route::post('login',[AuthController::class, 'login']);
 Route::group(['middleware' => 'auth'], function () {
 //route view two
 Route::get('/home', function () {

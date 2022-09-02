@@ -98,7 +98,7 @@ export default {
     methods: {
         async updatePassword(id) {
             let url = `${this.url}${id}`;
-            let response = await axios.put(url);
+            let response = await axios.put(url, this.form);
             try {
                 Swal.fire({
                     position: "center",
