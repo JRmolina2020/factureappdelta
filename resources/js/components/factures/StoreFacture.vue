@@ -3,7 +3,7 @@
         <!-- detailsx -->
         <div class="row">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-striped table-borderless">
                     <thead>
                         <tr>
                             <th scope="col">Producto</th>
@@ -255,7 +255,7 @@
                                 :page-size="5"
                                 :currentPage.sync="currentPage"
                                 @totalPagesChanged="totalPages = $event"
-                                class="table"
+                                class="table table-striped table-borderless"
                             >
                                 <template #head>
                                     <tr>
@@ -301,7 +301,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
-
+import date_facture from "../../mixins/dateFacture";
 export default {
     $_veeValidate: {
         validator: "new",
@@ -357,6 +357,7 @@ export default {
             },
         };
     },
+    mixins: [date_facture],
     created() {
         this.getData();
     },
@@ -374,8 +375,8 @@ export default {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                this.$store.dispatch("Factureactions");
-                console.log(this.formFacture);
+
+                this.getList();
                 this.clear();
             } catch (error) {
                 console.log(error.response);
@@ -416,7 +417,7 @@ export default {
 
             this.formFacture.disc = totDisc;
         },
-        show(row) {},
+
         clear() {
             this.formFacture.id = 0;
             this.formFacture.client_id = 0;

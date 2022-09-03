@@ -66,9 +66,9 @@ export default new Vuex.Store({
                 console.log(error);
             }
         },
-        async Factureactions({ commit, state }) {
+        async Factureactions({ commit, state }, date) {
             try {
-                let response = await axios.get(state.urlfactures);
+                let response = await axios.get(`${state.urlfactures}/${date}`);
                 commit("Facturemutations", response.data);
                 state.status = true;
             } catch (error) {

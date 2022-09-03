@@ -90,7 +90,7 @@
                                     <strong>Totalizable de factura</strong>
                                     <VTable
                                         :data="facUnique"
-                                        class="table table-borderless"
+                                        class="table table-bordered"
                                     >
                                         <template #head>
                                             <tr>

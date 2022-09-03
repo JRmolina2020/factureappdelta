@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Facture;
 use App\Models\FactureDetail;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -17,10 +18,11 @@ class FactureController extends Controller
         if (!$request->ajax()) return redirect('/');
 
         try {
+            $mytime=Carbon::now('America/Bogota');
             DB::beginTransaction();
             $facture = new Facture();
             $facture->client_id = $request->client_id;
-            $facture->date_facture ='2022/01/02' ;
+            $facture->date_facture =$mytime->toDateString();
             $facture->sub = $request->sub;
             $facture->disc = $request->disc;
             $facture->tot = $request->tot;
@@ -44,7 +46,7 @@ class FactureController extends Controller
             DB::rollBack();
         }
     }
-  public function index(Request $request)
+  public function index(Request $request,$date)
   {
     if (!$request->ajax()) return redirect('/');
     $facture = DB::table('factures as f')
@@ -57,6 +59,7 @@ class FactureController extends Controller
         'c.fullname',
         'f.state',
     )
+    ->where('f.date_facture',$date)
     ->orderBy('f.id', 'desc')->get();
 return $facture;
   }
@@ -93,5 +96,6 @@ return $facture;
       $facture->delete();
       return response()->json(["message" => "Factura eliminada"]);
   }
+ 
 
 }

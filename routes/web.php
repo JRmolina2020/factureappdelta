@@ -21,6 +21,7 @@ Route::get('/home', function () {
     return view('home');
 });
 
+
 Route::get('/usuarios', function () {
     return view('users.index');
 });
@@ -61,7 +62,7 @@ Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->where('id'
 //end
 //facture
 Route::post('factures', [FactureController::class, 'store']);
-Route::get('/factures', [FactureController::class, 'index']);
+Route::get('/factures/{date}', [FactureController::class, 'index']);
 Route::get('/factureUnique/{id}', [FactureController::class, 'factureUnique'])->where('id', '[0-9]+');
 Route::delete('/factures/{id}', [FactureController::class, 'destroy'])->where('id', '[0-9]+');
 //
