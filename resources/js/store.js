@@ -8,6 +8,7 @@ export default new Vuex.Store({
         products: [],
         clients: [],
         factures: [],
+        typeSale: [],
         details: [],
         facUnique: [],
         status: false,
@@ -15,6 +16,7 @@ export default new Vuex.Store({
         urlproducts: "/api/products",
         urlclients: "/api/clients",
         urlfactures: "/api/factures",
+        urltype_sale: "/api/type_sale",
         urldetails: "/api/details",
         urlfactureUnique: "/api/factureUnique",
     },
@@ -30,6 +32,9 @@ export default new Vuex.Store({
         },
         Facturemutations(state, item) {
             state.factures = item;
+        },
+        TypeSalemutations(state, item) {
+            state.typeSale = item;
         },
         FactureDetailmutations(state, item) {
             state.details = item;
@@ -70,6 +75,16 @@ export default new Vuex.Store({
             try {
                 let response = await axios.get(`${state.urlfactures}/${date}`);
                 commit("Facturemutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async TypeSaleactions({ commit, state }, date) {
+            try {
+                let response = await axios.get(`${state.urltype_sale}/${date}`);
+                commit("TypeSalemutations", response.data);
+
                 state.status = true;
             } catch (error) {
                 console.log(error);

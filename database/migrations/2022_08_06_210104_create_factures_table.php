@@ -21,7 +21,9 @@ class CreateFacturesTable extends Migration
             $table->decimal('sub', 11, 0);
             $table->decimal('disc', 11, 0);
             $table->decimal('tot', 11, 0);
-            $table->boolean('state')->default(1);
+            $table->decimal('efecty', 11, 0);
+            $table->decimal('other', 11, 0);
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

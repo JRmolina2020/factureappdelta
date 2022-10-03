@@ -19,110 +19,51 @@
             aria-labelledby="modelTitleId"
             aria-hidden="true"
         >
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog " style="width:300px;" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div id="facture">
-                            <div class="text-center">
-                                <p>
-                                    <strong>{{ company }}</strong>
+                            <div>
+                                <p class="text-center">
+                               <strong>{{company}}</strong><br>{{direction}}<br>
+                               nit.{{nit}}
                                 </p>
-
-                                NIT: <strong>{{ nit }}</strong>
-
-                                TEL: <strong>{{ phone }}</strong>
-
-                                <p class="text-monospace">{{ direction }}</p>
+                              
                             </div>
-
-                            <div class="table-responsive">
-                                <strong>Datos cliente</strong>
-                                <VTable
-                                    :data="facUnique"
-                                    class="table table-borderless"
-                                >
-                                    <template #head>
-                                        <tr>
-                                            <th>Nit</th>
-                                            <th>Nombre</th>
-                                            <th>Teléfono</th>
-                                        </tr>
-                                    </template>
-                                    <template #body="{ rows }">
-                                        <tr v-for="row in rows" :key="row.id">
-                                            <td>{{ row.nit }}</td>
-                                            <td>{{ row.fullname }}</td>
-                                            <td>{{ row.phone }}</td>
-                                        </tr>
-                                    </template>
-                                </VTable>
+                            <div
+                                v-for="(item, index) in facUnique"
+                                :key="'g'+index"
+                            >
+                            ***********************************
+                                <p>
+                                    <i class="fi fi-male"></i>
+                                    {{ item.fullname }}<br />
+                                    <i class="fi fi-phone"></i>
+                                    {{ item.phone }}<br>
+                                    Fac:#{{item.id}}
+                                </p>
+                                  ***********************************
                             </div>
-                            <div class="table-responsive">
-                                <strong>Detalle factura</strong>
-                                <VTable
-                                    :data="details"
-                                    class="table table-borderless table-striped"
-                                >
-                                    <template #head>
-                                        <tr>
-                                            <th>Ref</th>
-                                            <th>Precio</th>
-                                            <th>Cant.</th>
-                                            <th>Sub</th>
-                                            <th>Des</th>
-                                            <!-- <th>Total</th> -->
-                                        </tr>
-                                    </template>
-                                    <template #body="{ rows }">
-                                        <tr v-for="row in rows" :key="row.idd">
-                                            <td>{{ row.name }}</td>
-                                            <td>${{ row.price | currency }}</td>
-                                            <td>{{ row.quantity }}</td>
-
-                                            <td>${{ row.sub | currency }}</td>
-                                            <td>${{ row.disc | currency }}</td>
-                                            <!-- <td>${{ row.tot | currency }}</td> -->
-                                        </tr>
-                                    </template>
-                                </VTable>
-
-                                <div class="table-responsive">
-                                    <strong>Totalizable de factura</strong>
-                                    <VTable
-                                        :data="facUnique"
-                                        class="table table-bordered"
-                                    >
-                                        <template #head>
-                                            <tr>
-                                                <th>Cant</th>
-                                                <th>Desc</th>
-                                                <th>Sub</th>
-                                                <th>Tot</th>
-                                                <th>Estado</th>
-                                            </tr>
-                                        </template>
-
-                                        <template #body="{ rows }">
-                                            <tr
-                                                v-for="row in rows"
-                                                :key="row.id"
-                                            >
-                                                <td>{{ sumProducts }}</td>
-                                                <td>
-                                                    ${{ row.disc | currency }}
-                                                </td>
-                                                <td>
-                                                    ${{ row.sub | currency }}
-                                                </td>
-                                                <td>
-                                                    ${{ row.tot | currency }}
-                                                </td>
-                                                <td v-if="row.state">Pagado</td>
-                                                <td v-else>Pendiente</td>
-                                            </tr>
-                                        </template>
-                                    </VTable>
-                                </div>
+                            <div v-for="(item, index) in details" :key="index">
+                                <p>
+                                    {{ item.quantity }}X {{ item.name }} *{{
+                                        item.price | currency
+                                    }}<br />
+                                    <strong>{{ item.sub | currency }}</strong>
+                              
+                                </p>
+                            </div>
+                            ***********************************
+                            <div  v-for="(item, index) in facUnique" :key="'f'+index">
+                                <p>
+                                   <strong>Sub</strong> {{ item.sub | currency }}<br>
+                                <strong>Disc</strong> {{item.disc| currency }}<br>
+                                <strong>Tot</strong> {{item.tot| currency }}<br>
+                                </p>
+                                
+                            </div>
+                            ***********************************
+                       
                             </div>
                         </div>
                         <div>
@@ -157,7 +98,7 @@ export default {
             totalPages: 0,
             company: "BOLSOSVALLEDUPAR23",
             nit: "1003242515",
-            direction: "CENTRO COMERCIAL LOS PAISAS LOCAL #22",
+            direction: "Centro comercial los paisas local #22",
             phone: "3012074828",
         };
     },

@@ -13,7 +13,6 @@
             class="modal fade"
             data-backdrop="static"
             data-keyboard="false"
-            d
             tabindex="-1"
             id="model"
         >

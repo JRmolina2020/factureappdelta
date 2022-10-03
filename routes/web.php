@@ -64,6 +64,7 @@ Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->where('id'
 Route::post('factures', [FactureController::class, 'store']);
 Route::get('/factures/{date}', [FactureController::class, 'index']);
 Route::get('/factureUnique/{id}', [FactureController::class, 'factureUnique'])->where('id', '[0-9]+');
+Route::get('/type_sale/{date}', [FactureController::class, 'type_sale']);
 Route::delete('/factures/{id}', [FactureController::class, 'destroy'])->where('id', '[0-9]+');
 //
 //facture details

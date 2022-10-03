@@ -33,31 +33,21 @@
             >
                 <template #head>
                     <tr>
-                        <VTh sortKey="date_facture">Fecha</VTh>
                         <VTh sortKey="nit">Nit</VTh>
-                        <VTh sortKey="fullname">Nombre</VTh>
                         <th>Total</th>
-                        <th>Estado</th>
+                        <th>E</th>
+                        <th>O</th>
                         <th>Op</th>
                         <th>D</th>
                     </tr>
                 </template>
                 <template #body="{ rows }">
                     <tr v-for="row in rows" :key="row.id">
-                        <td>{{ row.date_facture }}</td>
                         <td>{{ row.nit }}</td>
-                        <td>{{ row.fullname }}</td>
-                        <td>${{ row.tot | currency }}</td>
-                        <th v-if="row.state == 1">
-                            <button type="button" class="btn bg-success btn-sm">
-                                <i class="fi fi-toggle-on"></i>
-                            </button>
-                        </th>
-                        <th v-else>
-                            <button type="button" class="btn bg-danger btn-sm">
-                                <i class="fi fi-toggle-off"></i>
-                            </button>
-                        </th>
+                        <td>{{ row.tot | currency }}</td>
+                        <td>{{ row.efecty | currency }}</td>
+                        <td>{{ row.other | currency }}</td>
+
                         <td>
                             <button
                                 type="button"
@@ -81,6 +71,26 @@
                 :boundary-links="true"
             />
         </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>Monto</td>
+                            <td>Efectivo</td>
+                            <td>Otros</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr v-for="(item, index) in typeSale" :key="index">
+                            <th>{{ item.tot | currency }}</th>
+                            <th>{{ item.efecty | currency }}</th>
+                            <th>{{ item.other | currency }}</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
         <div v-if="factures.length == 0">
             <div class="alert alert-danger" role="alert">
                 No existe información de venta para este dia
@@ -88,6 +98,7 @@
         </div>
     </div>
 </template>
+
 <script>
 import { mapState } from "vuex";
 import ModalDetails from "../utilities/modaldetails";
@@ -121,7 +132,13 @@ export default {
         ModalDetails,
     },
     computed: {
-        ...mapState(["factures", "status", "urlfactures"]),
+        ...mapState([
+            "factures",
+            "typeSale",
+            "status",
+            "urlfactures",
+            "status",
+        ]),
     },
 
     created() {
@@ -131,6 +148,7 @@ export default {
         getDate() {
             let date = this.date;
             this.$store.dispatch("Factureactions", date);
+            this.$store.dispatch("TypeSaleactions", date);
         },
 
         async destroy(id) {

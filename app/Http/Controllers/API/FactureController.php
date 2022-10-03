@@ -15,7 +15,7 @@ class FactureController extends Controller
 
     public function store(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+       
 
         try {
             $mytime=Carbon::now('America/Bogota');
@@ -26,7 +26,9 @@ class FactureController extends Controller
             $facture->sub = $request->sub;
             $facture->disc = $request->disc;
             $facture->tot = $request->tot;
-            $facture->state = $request->state;
+            $facture->efecty = $request->efecty;
+            $facture->other = $request->other;
+            $facture->note = 'nota';
             $facture->save();
             $details = $request-> dataDetails;
             foreach ($details as $ep => $det) {
@@ -55,9 +57,10 @@ class FactureController extends Controller
         'f.id',
         'f.date_facture',
         'f.tot',
+        'f.efecty',
+        'f.other',
         'c.nit',
         'c.fullname',
-        'f.state',
     )
     ->where('f.date_facture',$date)
     ->orderBy('f.id', 'desc')->get();
@@ -74,7 +77,6 @@ return $facture;
           'f.sub',
           'f.disc', 
           'f.tot',
-          'f.state',
           'c.nit',
           'c.fullname',
           'c.phone',
@@ -85,8 +87,18 @@ return $facture;
       ->orderBy('f.id', 'desc')->get();
   return $facture;
     }
+    
 
-
+public function type_sale (Request $request,$date){
+    if (!$request->ajax()) return redirect('/');
+    $facture_tot = DB::table('factures')
+    ->select(
+    DB::raw('SUM(tot) as tot'),
+    DB::raw('SUM(efecty) as efecty'),
+    DB::raw('SUM(other) as other'),
+    )->where('date_facture',$date)->get();
+    return $facture_tot;
+}
   public function destroy(Request $request, $id)
   {   if (!$request->ajax()) return redirect('/');
       $facture = Facture::find($id);

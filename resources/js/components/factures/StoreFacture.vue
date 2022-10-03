@@ -2,15 +2,27 @@
     <div>
         <!-- detailsx -->
         <div class="row">
-            <div class="table-responsive">
-                <table class="table table-striped table-borderless">
+            <div class="">
+                <button
+                    type="button"
+                    class="btn btn-outline-primary btn-sm"
+                    data-toggle="modal"
+                    data-target="#exampleDetail"
+                >
+                    Productos
+                </button>
+                <span class="badge badge-primary">C= {{ sumProducts }}</span>
+            </div>
+
+            <div class="table-responsive mt-3">
+                <table class="table table-striped table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Producto</th>
+                            <th scope="col">Item</th>
                             <th scope="col">Precio</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Subtotal</th>
-                            <th scope="col">Descuento</th>
+                            <th scope="col">Cant</th>
+                            <th scope="col">Sub</th>
+                            <th scope="col"><i class="fi fi-dollar"></i></th>
                             <th scope="col">Total</th>
                             <th>Op</th>
                         </tr>
@@ -18,11 +30,12 @@
                     <tbody>
                         <tr
                             v-for="(item, index) in formFacture.dataDetails"
-                            :value="item.id"
                             :key="index"
                         >
-                            <td>{{ item.name }}</td>
-                            <td>${{ item.price | currency }}</td>
+                            <td>
+                                {{ item.name }}
+                            </td>
+                            <td>{{ item.price | currency }}</td>
                             <td>
                                 <button
                                     type="button"
@@ -47,38 +60,23 @@
                                 }}
                             </td>
                             <td>
-                                <div class="form-group row">
-                                    <div class="form-group row">
-                                        <currency-input
-                                            name="descuento"
-                                            id="descuento"
-                                            v-validate="{
-                                                required: true,
-                                                min_value: 0,
-                                                max_value:
-                                                    formFacture.dataDetails[
-                                                        index
-                                                    ].sub,
-                                            }"
-                                            :class="{
-                                                'is-invalid':
-                                                    submitted &&
-                                                    errors.has('descuento'),
-                                            }"
-                                            v-model="discDetail[index]"
-                                            v-on:keyup="calculateDisc()"
-                                            class="form-control form-control-sm col-xs-2"
-                                            v-currency="{
-                                                currency: 'USD',
-                                                precision: 0,
-                                                locale: 'en',
-                                            }"
-                                        />
-                                    </div>
-                                </div>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    data-toggle="modal"
+                                    :data-target="'#exampleModal' + index"
+                                >
+                                    <i class="fi fi-dollar"></i>
+                                </button>
                             </td>
-                            <td>
-                                ${{
+                            <td v-if="formFacture.dataDetails[index].disc == 0">
+                                {{
+                                    (formFacture.dataDetails[index].tot =
+                                        onviewTotDetail[index]) | currency
+                                }}
+                            </td>
+                            <td class="bg-info" v-else>
+                                {{
                                     (formFacture.dataDetails[index].tot =
                                         onviewTotDetail[index]) | currency
                                 }}
@@ -86,12 +84,95 @@
                             <td>
                                 <button
                                     type="button"
-                                    @click="removeDetail()"
-                                    class="btn bg-danger btn-xs"
+                                    @click="removeDetail(index)"
+                                    class="btn bg-danger"
                                 >
                                     <i class="fi fi-close-a"></i>
                                 </button>
                             </td>
+                            <!-- edit price and add discount details products -->
+                            <div
+                                class="modal fade"
+                                :id="'exampleModal' + index"
+                                tabindex="-1"
+                                role="dialog"
+                                data-backdrop="static"
+                                data-keyboard="false"
+                                aria-labelledby="exampleModalLabel"
+                                aria-hidden="true"
+                            >
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <label>Añadir</label>
+                                            <currency-input
+                                                name="precio"
+                                                id="precio"
+                                                v-validate="{
+                                                    required: true,
+                                                    min_value: 0,
+                                                }"
+                                                :class="{
+                                                    'is-invalid':
+                                                        submitted &&
+                                                        errors.has('precio'),
+                                                }"
+                                                v-currency="{
+                                                    currency: 'USD',
+                                                    precision: 0,
+                                                    locale: 'en',
+                                                }"
+                                                v-model="price[index]"
+                                                @change="updatePrice(index)"
+                                                class="form-control form-control-sm col-lg-6 col-sm-12 col-xs-12"
+                                            />
+                                            <!-- add discount -->
+                                            <div class="form-group">
+                                                <currency-input
+                                                    name="descuento"
+                                                    id="descuento"
+                                                    v-validate="{
+                                                        required: true,
+                                                        min_value: 0,
+                                                        max_value:
+                                                            formFacture
+                                                                .dataDetails[
+                                                                index
+                                                            ].sub,
+                                                    }"
+                                                    :class="{
+                                                        'is-invalid':
+                                                            submitted &&
+                                                            errors.has(
+                                                                'descuento'
+                                                            ),
+                                                    }"
+                                                    v-model="discDetail[index]"
+                                                    v-on:keyup="calculateDisc()"
+                                                    class="form-control form-control-sm col-lg-6 col-sm-12 col-xs-12"
+                                                    v-currency="{
+                                                        currency: 'USD',
+                                                        precision: 0,
+                                                        locale: 'en',
+                                                    }"
+                                                />
+                                            </div>
+                                            <!-- end input discount -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button
+                                                type="button"
+                                                class="btn btn-danger"
+                                                data-dismiss="modal"
+                                                @click="calculateEfecty()"
+                                            >
+                                                <i class="fi fi-caret-left"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end  -->
                         </tr>
                     </tbody>
                 </table>
@@ -164,6 +245,7 @@
                                 precision: 0,
                                 locale: 'en',
                             }"
+                            @keyup="equalsTot()"
                         />
                     </div>
                 </div>
@@ -182,31 +264,46 @@
                         />
                     </div>
                 </div>
-                <div class="col-lg-2">
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-xs-6 col-sm-6">
                     <div class="form-group">
-                        <label>Estado</label>
-                        <select
-                            v-model="formFacture.state"
+                        <label for>Efectivo</label>
+                        <currency-input
+                            name="efectivo"
+                            id="efectivo"
+                            required
+                            v-validate="{
+                                required: true,
+                                min_value: 0,
+                                max_value: onViewTot,
+                            }"
+                            :class="{
+                                'is-invalid':
+                                    submitted && errors.has('efectivo'),
+                            }"
+                            v-model="formFacture.efecty"
+                            @keyup="equalsTot()"
                             class="form-control form-control-sm"
-                        >
-                            <option value="0">No pago</option>
-                            <option value="1">Pagado</option>
-                        </select>
+                            v-currency="{
+                                currency: 'USD',
+                                precision: 0,
+                                locale: 'en',
+                            }"
+                        />
                     </div>
+                </div>
+                <div class="col-lg-2 col-xs-6 col-sm-6">
+                    <label for>Otros</label>
+                    <input
+                        class="form-control form-control-sm"
+                        type="number"
+                        v-model.number="formFacture.other"
+                        disabled
+                    />
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-2">
-                    <button
-                        type="button"
-                        class="btn btn-outline-primary btn-sm"
-                        data-toggle="modal"
-                        data-target="#exampleDetail"
-                    >
-                        Productos
-                    </button>
-                </div>
-
                 <div
                     v-if="
                         formFacture.dataDetails.length != 0 &&
@@ -227,6 +324,8 @@
         <!-- modal details -->
         <div
             class="modal fade"
+            data-backdrop="static"
+            data-keyboard="false"
             id="exampleDetail"
             tabindex="-1"
             aria-labelledby="exampleModalLabel"
@@ -294,6 +393,16 @@
                             />
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button
+                            @click="calculateEfecty()"
+                            type="button"
+                            class="btn btn-danger"
+                            data-dismiss="modal"
+                        >
+                            <i class="fi fi-caret-left"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -308,6 +417,37 @@ export default {
     },
     name: "add",
     components: {},
+
+    data() {
+        return {
+            actions: "Factureactions",
+            submitted: true,
+            totalPages: 1,
+            currentPage: 1,
+            filters: {
+                name: { value: "", keys: ["name"] },
+            },
+            type_sale: 1,
+            discDetail: [],
+            //fictyUpdate
+            price: [],
+            //
+            formFacture: {
+                id: 0,
+                client_id: 0,
+                sub: 0,
+                disc: 0,
+                tot: 0,
+                efecty: null,
+                other: 0,
+                dataDetails: [],
+            },
+        };
+    },
+    mixins: [date_facture],
+    created() {
+        this.getData();
+    },
     computed: {
         ...mapState(["urlfactures", "clients", "products"]),
         onViewSub() {
@@ -317,7 +457,13 @@ export default {
             });
             return subtot;
         },
-
+        sumProducts() {
+            let tot = 0;
+            this.formFacture.dataDetails.map((data) => {
+                tot = parseInt(tot) + parseInt(data.quantity);
+            });
+            return tot;
+        },
         onViewTot() {
             let sub = this.onViewSub;
             let disc = this.formFacture.disc;
@@ -335,37 +481,12 @@ export default {
             return tot;
         },
     },
-    data() {
-        return {
-            actions: "Factureactions",
-            submitted: true,
-            totalPages: 1,
-            currentPage: 1,
-            filters: {
-                name: { value: "", keys: ["name"] },
-            },
-            type_sale: 1,
-            discDetail: [],
-            formFacture: {
-                id: 0,
-                client_id: 0,
-                sub: 0,
-                disc: 0,
-                tot: 0,
-                state: 0,
-                dataDetails: [],
-            },
-        };
-    },
-    mixins: [date_facture],
-    created() {
-        this.getData();
-    },
     methods: {
         async addFacture() {
             //agregando valores calculados fuction en el form
             this.formFacture.sub = this.onViewSub;
             this.formFacture.tot = this.onViewTot;
+
             let response = await axios.post(this.urlfactures, this.formFacture);
             try {
                 Swal.fire({
@@ -393,6 +514,7 @@ export default {
             } else {
                 price = row.price_two;
             }
+            price = parseFloat(price);
             this.formFacture.dataDetails.push({
                 product_id: row.id,
                 name: row.name,
@@ -424,8 +546,10 @@ export default {
             this.formFacture.sub = 0;
             this.formFacture.disc = 0;
             this.formFacture.tot = 0;
-            this.formFacture.state = 0;
+            this.formFacture.efecty = 0;
+            this.formFacture.other = 0;
             this.formFacture.dataDetails = [];
+            this.price = 0;
         },
         typeSale() {
             if (this.type_sale == 1) {
@@ -448,15 +572,29 @@ export default {
         },
         incrementDetail(index) {
             this.formFacture.dataDetails[index].quantity++;
+            this.calculateEfecty();
         },
         decrementDetail(index) {
             let num = this.formFacture.dataDetails[index].quantity;
             if (num != 1) {
                 this.formFacture.dataDetails[index].quantity--;
             }
+            this.calculateEfecty();
         },
+        updatePrice(index) {
+            this.formFacture.dataDetails[index].price = this.price[index];
+        },
+
         removeDetail(index) {
             this.formFacture.dataDetails.splice(index, 1);
+            this.calculateEfecty();
+        },
+        equalsTot() {
+            this.formFacture.other = this.onViewTot - this.formFacture.efecty;
+        },
+        calculateEfecty() {
+            this.formFacture.efecty = this.onViewTot;
+            this.formFacture.other = 0;
         },
     },
 };
