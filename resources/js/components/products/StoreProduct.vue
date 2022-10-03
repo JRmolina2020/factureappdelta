@@ -5,7 +5,7 @@
             <section v-if="!form.id" slot="title">
                 Registro de productis
             </section>
-            <section v-else slot="title">Editar productos</section>
+            <section v-else slot="title">Editar producto</section>
             <section slot="closebtn">
                 <button
                     type="button"

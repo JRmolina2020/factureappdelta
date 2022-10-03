@@ -58591,7 +58591,7 @@ var render = function () {
                 _vm._v("\n            Registro de productis\n        "),
               ])
             : _c("section", { attrs: { slot: "title" }, slot: "title" }, [
-                _vm._v("Editar productos"),
+                _vm._v("Editar producto"),
               ]),
           _vm._v(" "),
           _c("section", { attrs: { slot: "closebtn" }, slot: "closebtn" }, [
