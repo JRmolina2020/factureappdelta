@@ -4699,6 +4699,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "modaldetails",
@@ -60336,7 +60343,7 @@ var render = function () {
                     _vm._l(_vm.facUnique, function (item, index) {
                       return _c("div", { key: "g" + index }, [
                         _vm._v(
-                          "\n                        *************************************\n                            "
+                          "\n                        ***************************************\n                            "
                         ),
                         _c("p", [
                           _c("i", { staticClass: "fi fi-male" }),
@@ -60361,7 +60368,7 @@ var render = function () {
                       ])
                     }),
                     _vm._v(
-                      "\n                        _______________________________________\n                        "
+                      "\n                        -----------------------------------------\n                        "
                     ),
                     _vm._l(_vm.facUnique, function (item, index) {
                       return _c(
@@ -60379,7 +60386,7 @@ var render = function () {
                                   _vm._v(_vm._s(item.note)),
                                 ]),
                                 _vm._v(
-                                  "\n                        _______________________________________\n                        "
+                                  "\n\n                        -----------------------------------------\n                       \n                        "
                                 ),
                               ])
                             : _vm._e(),
@@ -60407,13 +60414,17 @@ var render = function () {
                       ])
                     }),
                     _vm._v(
-                      "\n                        **************************************\n                        "
+                      "\n                        ***************************************\n                        "
                     ),
                     _vm._l(_vm.facUnique, function (item, index) {
                       return _c("div", { key: "f" + index }, [
                         _c("p", { staticClass: "mix2" }, [
                           _c("strong", [_vm._v("Sub")]),
                           _vm._v(" $" + _vm._s(_vm._f("currency")(item.sub))),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("strong", [_vm._v("%Iva")]),
+                          _vm._v(" $ 0.00"),
                           _c("br"),
                           _vm._v(" "),
                           _c("strong", [_vm._v("Desc")]),
@@ -60423,17 +60434,21 @@ var render = function () {
                           _c("strong", [_vm._v("Tot")]),
                           _vm._v(" $" + _vm._s(_vm._f("currency")(item.tot))),
                           _c("br"),
+                          _vm._v(" "),
+                          _c("strong", [_vm._v("Cant:")]),
+                          _vm._v(
+                            _vm._s(_vm.sumProducts) +
+                              "\n                            "
+                          ),
                         ]),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("Cant: " + _vm._s(_vm.sumProducts))]),
                       ])
                     }),
                     _vm._v(
-                      "\n                        _______________________________________\n                        "
+                      "\n                        -----------------------------------------\n                       \n                        "
                     ),
                     _vm._m(0),
                     _vm._v(
-                      "\n                        ________________________________________\n                        "
+                      "\n                        -----------------------------------------\n                        "
                     ),
                     _c("center", [
                       _c("img", {
@@ -60446,6 +60461,10 @@ var render = function () {
                       }),
                       _vm._v(" "),
                       _c("p", [_vm._v("whatsapp")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _c("strong", [_vm._v("Gracias por tu compra")]),
+                      ]),
                     ]),
                   ],
                   2
@@ -60485,7 +60504,7 @@ var staticRenderFns = [
     return _c("div", [
       _c("p", { staticClass: "text-center mix" }, [
         _vm._v(
-          "\n                                Verificar el estado del producto o pedido, los cambios se hacen con previo aviso dentro las 24 hrs despúes de la compra, se responde por costure o mal estado de la tela.gracias.\n                            "
+          "\n                                Verificar el estado del producto o pedido, los cambios se hacen con previo aviso dentro de las 24 hrs despúes de la compra.\n                                \n                            "
         ),
       ]),
     ])
