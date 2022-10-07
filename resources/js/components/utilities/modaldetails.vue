@@ -71,7 +71,7 @@
                             <div  v-for="(item, index) in facUnique" :key="'f'+index">
                                 <p class="mix2">
                                <strong>Sub</strong> ${{ item.sub | currency }}<br>
-                                <strong>%Iva</strong> $ 0.00<br>
+                                <strong>Iva%</strong> $ 0.00<br>
                                 <strong>Desc</strong> ${{item.disc| currency }}<br>
                                 <strong>Tot</strong> ${{item.tot| currency }}<br>
                                 <strong>Cant:</strong>{{sumProducts}}

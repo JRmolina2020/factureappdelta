@@ -60423,7 +60423,7 @@ var render = function () {
                           _vm._v(" $" + _vm._s(_vm._f("currency")(item.sub))),
                           _c("br"),
                           _vm._v(" "),
-                          _c("strong", [_vm._v("%Iva")]),
+                          _c("strong", [_vm._v("Iva%")]),
                           _vm._v(" $ 0.00"),
                           _c("br"),
                           _vm._v(" "),
