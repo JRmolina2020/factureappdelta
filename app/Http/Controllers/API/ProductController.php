@@ -13,7 +13,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
-        $products = DB::table('products')->select('id', 'name','price','price_two')->orderBy('id', 'desc')->get();
+        $products = DB::table('products')->select('id', 'name','price','price_two','cost')->orderBy('id', 'desc')->get();
         return $products;
     }
  
@@ -25,6 +25,7 @@ class ProductController extends Controller
             'name' => $request['name'],
             'price' => $request['price'],
             'price_two' => $request['price_two'],
+            'cost' => $request['cost'],
 
 
         ]);
@@ -39,6 +40,7 @@ class ProductController extends Controller
             'name' => request('name'),
             'price' => request('price'),
             'price_two' => request('price_two'),
+            'cost' => request('cost'),
            
         ])->save();
         return response()->json(['message' => 'El producto ha sido modificado'], 201);

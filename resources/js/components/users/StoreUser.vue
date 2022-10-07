@@ -72,6 +72,19 @@
 
                     <button
                         v-if="!send"
+                        class="btn btn-primary"
+                        type="button"
+                        disabled
+                    >
+                        <span
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                        ></span>
+                        Loading...
+                    </button>
+                    <button
+                        v-if="send"
                         :hidden="errors.any()"
                         type="submit"
                         v-bind:class="{
@@ -112,7 +125,7 @@ export default {
         return {
             actions: "Useractions",
             submitted: true,
-            send: false,
+            send: true,
             form: {
                 id: null,
                 name: "",
@@ -127,14 +140,14 @@ export default {
             this.form.name = row.name;
             this.form.email = row.email;
             $("#model").modal("show");
-            this.send = false;
+            this.send = true;
         },
         clear() {
             this.form.id = null;
             this.form.name = null;
             this.form.email = null;
             this.$validator.reset();
-            this.send = false;
+            this.send = true;
         },
     },
 };

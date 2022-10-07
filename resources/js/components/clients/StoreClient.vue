@@ -94,35 +94,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label for>Entrega</label>
-                                <input
-                                    type="text"
-                                    v-validate="'required|max:30|min:3'"
-                                    class="form-control form-control-sm"
-                                    value="Por defecto"
-                                    :class="{
-                                        'is-invalid':
-                                            submitted && errors.has('ciudad'),
-                                    }"
-                                    placeholder="Lugar de entregas"
-                                    v-model="form.city"
-                                    name="ciudad"
-                                />
-                                <div
-                                    v-if="submitted && errors.has('ciudad')"
-                                    class="invalid-feedback"
-                                >
-                                    {{ errors.first("ciudad") }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <button
                         v-if="!send"
+                        class="btn btn-primary"
+                        type="button"
+                        disabled
+                    >
+                        <span
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                        ></span>
+                        Loading...
+                    </button>
+                    <button
+                        v-if="send"
                         :hidden="errors.any()"
                         type="submit"
                         v-bind:class="{
@@ -163,14 +150,13 @@ export default {
         return {
             actions: "Clientactions",
             submitted: true,
-            send: false,
+            send: true,
             price_default: 1000,
             form: {
                 id: null,
                 nit: null,
                 fullname: "",
                 phone: 0,
-                city: "",
             },
         };
     },
@@ -181,18 +167,18 @@ export default {
             this.form.nit = row.nit;
             this.form.fullname = row.fullname;
             this.form.phone = row.phone;
-            this.form.city = row.city;
+
             $("#model").modal("show");
-            this.send = false;
+            this.send = true;
         },
         clear() {
             this.form.id = null;
             this.form.nit = null;
             this.form.fullname = null;
             this.form.phone = 0;
-            this.form.city = "Por defecto";
+
             this.$validator.reset();
-            this.send = false;
+            this.send = true;
         },
     },
 };

@@ -104,7 +104,9 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-body">
-                                            <label>Añadir</label>
+                                            <label style="color: black"
+                                                >Otro precio</label
+                                            >
                                             <currency-input
                                                 name="precio"
                                                 id="precio"
@@ -128,6 +130,9 @@
                                             />
                                             <!-- add discount -->
                                             <div class="form-group">
+                                                <label style="color: black"
+                                                    >Descuento</label
+                                                >
                                                 <currency-input
                                                     name="descuento"
                                                     id="descuento"
@@ -304,10 +309,36 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-lg-12">
+                    <label for>Observación</label>
+                    <textarea
+                        class="form-control"
+                        v-model="formFacture.note"
+                        id="observación"
+                        name="observación"
+                        rows="3"
+                    ></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <button
+                    v-if="!send"
+                    class="btn btn-primary"
+                    type="button"
+                    disabled
+                >
+                    <span
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                    ></span>
+                    Loading...
+                </button>
                 <div
                     v-if="
+                        (send,
                         formFacture.dataDetails.length != 0 &&
-                        onViewSub >= formFacture.disc
+                            onViewSub >= formFacture.disc)
                     "
                     class="col-lg-2"
                 >
@@ -422,6 +453,7 @@ export default {
         return {
             actions: "Factureactions",
             submitted: true,
+            send: true,
             totalPages: 1,
             currentPage: 1,
             filters: {
@@ -434,12 +466,13 @@ export default {
             //
             formFacture: {
                 id: 0,
-                client_id: 0,
+                client_id: 1,
                 sub: 0,
                 disc: 0,
                 tot: 0,
                 efecty: null,
                 other: 0,
+                note: "",
                 dataDetails: [],
             },
         };
@@ -486,6 +519,7 @@ export default {
             //agregando valores calculados fuction en el form
             this.formFacture.sub = this.onViewSub;
             this.formFacture.tot = this.onViewTot;
+            this.send = false;
 
             let response = await axios.post(this.urlfactures, this.formFacture);
             try {
@@ -499,6 +533,7 @@ export default {
 
                 this.getList();
                 this.clear();
+                this.send = true;
             } catch (error) {
                 console.log(error.response);
             }
@@ -508,6 +543,13 @@ export default {
             this.$store.dispatch("Productactions");
         },
         addRow(row) {
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: `el producto ${row.name} se agregó`,
+                showConfirmButton: false,
+                timer: 900,
+            });
             let price = 0;
             if (this.type_sale == 1) {
                 price = row.price;
@@ -542,14 +584,15 @@ export default {
 
         clear() {
             this.formFacture.id = 0;
-            this.formFacture.client_id = 0;
+            this.formFacture.client_id = 1;
             this.formFacture.sub = 0;
             this.formFacture.disc = 0;
             this.formFacture.tot = 0;
             this.formFacture.efecty = 0;
             this.formFacture.other = 0;
+            this.formFacture.note = 0;
             this.formFacture.dataDetails = [];
-            this.price = 0;
+            this.price = [];
         },
         typeSale() {
             if (this.type_sale == 1) {

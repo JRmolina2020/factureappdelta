@@ -31,7 +31,7 @@
                         <td>{{ row.nit }}</td>
                         <td>{{ row.fullname }}</td>
                         <td>{{ row.phone }}</td>
-                        <td>{{ row.city }}</td>
+
                         <td>
                             <button
                                 type="button"

@@ -11,7 +11,7 @@ class ClientController extends Controller
        public function index(Request $request)
        {
            if (!$request->ajax()) return redirect('/');
-           $clients= DB::table('clients')->select('id', 'nit','fullname','phone','city')->orderBy('id', 'desc')->get();
+           $clients= DB::table('clients')->select('id', 'nit','fullname','phone',)->orderBy('id', 'desc')->get();
            return $clients;
        }
     
@@ -23,7 +23,7 @@ class ClientController extends Controller
                 'nit' => $request['nit'],
                'fullname' => $request['fullname'],
                'phone' => $request['phone'],
-               'city' => $request['city'],
+              
            ]);
            return response()->json(['message' => 'Cliente registrado'], 200);
        }
@@ -36,7 +36,7 @@ class ClientController extends Controller
                'nit' => request('nit'),
                'fullname' => request('fullname'),
                'phone' => request('phone'),
-               'city' => request('city'),
+     
            ])->save();
            return response()->json(['message' => 'El cliente ha sido modificado'], 201);
        }

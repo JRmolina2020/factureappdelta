@@ -9,7 +9,7 @@ class Client extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nit', 'fullname','phone','city'
+        'nit', 'fullname','phone'
     ];
 
     function factures()

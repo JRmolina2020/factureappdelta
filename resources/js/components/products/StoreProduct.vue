@@ -50,6 +50,34 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
+                                <label for>Costo</label>
+                                <currency-input
+                                    v-validate="{
+                                        required: true,
+                                    }"
+                                    class="form-control form-control-sm"
+                                    v-currency="{
+                                        currency: 'USD',
+                                        precision: 0,
+                                        locale: 'en',
+                                    }"
+                                    :class="{
+                                        'is-invalid':
+                                            submitted && errors.has('costo'),
+                                    }"
+                                    v-model.number="form.cost"
+                                    name="costo"
+                                />
+                                <div
+                                    v-if="submitted && errors.has('costo')"
+                                    class="invalid-feedback"
+                                >
+                                    {{ errors.first("costo") }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
                                 <label for>Precio mayorista</label>
                                 <currency-input
                                     v-validate="'|required|min_value:0'"
@@ -78,6 +106,8 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for>Precio de venta</label>
@@ -115,6 +145,19 @@
 
                     <button
                         v-if="!send"
+                        class="btn btn-primary"
+                        type="button"
+                        disabled
+                    >
+                        <span
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                        ></span>
+                        Loading...
+                    </button>
+                    <button
+                        v-if="send"
                         :hidden="errors.any()"
                         type="submit"
                         v-bind:class="{
@@ -155,13 +198,14 @@ export default {
         return {
             actions: "Productactions",
             submitted: true,
-            send: false,
+            send: 1,
             price_default: 1000,
             form: {
                 id: null,
                 name: "",
                 price: 0,
                 price_two: 0,
+                cost: 0,
             },
         };
     },
@@ -172,16 +216,18 @@ export default {
             this.form.name = row.name;
             this.form.price = parseFloat(row.price);
             this.form.price_two = parseFloat(row.price_two);
+            this.form.cost = parseFloat(row.cost);
             $("#model").modal("show");
-            this.send = false;
+            this.send = true;
         },
         clear() {
             this.form.id = null;
             this.form.name = null;
             this.form.price = 0;
             this.form.price_two = 0;
+            this.form.cost = 0;
             this.$validator.reset();
-            this.send = false;
+            this.send = true;
         },
     },
 };

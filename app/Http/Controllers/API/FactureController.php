@@ -28,7 +28,7 @@ class FactureController extends Controller
             $facture->tot = $request->tot;
             $facture->efecty = $request->efecty;
             $facture->other = $request->other;
-            $facture->note = 'nota';
+            $facture->note = $request->note;
             $facture->save();
             $details = $request-> dataDetails;
             foreach ($details as $ep => $det) {
@@ -59,6 +59,7 @@ class FactureController extends Controller
         'f.tot',
         'f.efecty',
         'f.other',
+        'f.note',
         'c.nit',
         'c.fullname',
     )
@@ -77,6 +78,7 @@ return $facture;
           'f.sub',
           'f.disc', 
           'f.tot',
+          'f.note',
           'c.nit',
           'c.fullname',
           'c.phone',

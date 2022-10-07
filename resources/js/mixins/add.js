@@ -10,6 +10,8 @@ module.exports = {
             });
         },
         async route(id, actions, url) {
+            this.send = false;
+            console.log(this.send);
             if (id) {
                 let response = await axios.put(url + "/" + id, this.form);
                 try {
@@ -37,7 +39,7 @@ module.exports = {
                         showConfirmButton: false,
                         timer: 1600,
                     });
-                    this.send = true;
+
                     $("#model").modal("hide");
                     this.$store.dispatch(actions);
                 } catch (error) {

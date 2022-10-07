@@ -20,16 +20,34 @@
                 <template #head>
                     <tr>
                         <VTh sortKey="name">Nombre</VTh>
+                        <th>Costo</th>
                         <th>Precio M</th>
                         <th>Precio D</th>
+                        <th>%GM</th>
+                        <th>%GD</th>
+
                         <th>Op</th>
                     </tr>
                 </template>
                 <template #body="{ rows }">
                     <tr v-for="row in rows" :key="row.id">
-                        <td>{{ row.name }}</td>
-                        <td>${{ row.price | currency }}</td>
-                        <td>${{ row.price_two | currency }}</td>
+                        <td class="bg-danger" v-if="row.cost == 0">
+                            {{ row.name }}
+                        </td>
+                        <td v-else>{{ row.name }}</td>
+                        <td>{{ row.cost | currency }}</td>
+                        <td>
+                            {{ row.price | currency }}
+                        </td>
+
+                        <td>{{ row.price_two | currency }}</td>
+                        <td class="bg-warning">
+                            {{ (row.price - row.cost) | currency }}
+                        </td>
+                        <td class="bg-info">
+                            {{ (row.price_two - row.cost) | currency }}
+                        </td>
+
                         <td>
                             <button
                                 type="button"

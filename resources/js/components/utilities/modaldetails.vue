@@ -1,4 +1,5 @@
 <template>
+
     <div>
         <!-- Button trigger modal -->
         <button
@@ -26,10 +27,13 @@
                             <div>
                                 <p class="text-center">
                                <strong>{{company}}</strong><br>{{direction}}<br>
-                               nit.{{nit}}
+                               nit.{{nit}}<br>
+                               {{phone}}
+
                                 </p>
                               
                             </div>
+                            
                             <div
                                 v-for="(item, index) in facUnique"
                                 :key="'g'+index"
@@ -44,6 +48,11 @@
                                 </p>
                                   ***********************************
                             </div>
+                            <div class="text-center"   v-for="(item, index) in facUnique"
+                            :key="'r'+index">
+                              <p class="mix">{{item.note}}</p>
+
+                            </div>
                             <div v-for="(item, index) in details" :key="index">
                                 <p>
                                     {{ item.quantity }}X {{ item.name }} *{{
@@ -55,7 +64,7 @@
                             </div>
                             ***********************************
                             <div  v-for="(item, index) in facUnique" :key="'f'+index">
-                                <p>
+                                <p class="mix2">
                                    <strong>Sub</strong> {{ item.sub | currency }}<br>
                                 <strong>Disc</strong> {{item.disc| currency }}<br>
                                 <strong>Tot</strong> {{item.tot| currency }}<br>
@@ -63,6 +72,11 @@
                                 
                             </div>
                             ***********************************
+                            <div>
+                                <p class="text-center mix">
+                                    Verificar el estado del producto o pedido, los cambios se hacen con previo aviso dentro las 24 hrs despúes de la compra, se responde por costure o mal estado de la tela.gracias.
+                                </p>
+                            </div>
                        
                             </div>
                         </div>
@@ -98,7 +112,7 @@ export default {
             totalPages: 0,
             company: "BOLSOSVALLEDUPAR23",
             nit: "1003242515",
-            direction: "Centro comercial los paisas local #22",
+            direction: "Pasaje comercial los paisas local #22",
             phone: "3012074828",
         };
     },
@@ -124,3 +138,11 @@ export default {
     },
 };
 </script>
+<style>
+   
+    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100&family=Manrope:wght@200;600&display=swap');
+
+        
+    p.mix {border-style: dotted dashed solid double; font-size: 12px;}
+    p.mix2 { font-size: 18px;}
+</style>

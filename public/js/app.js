@@ -2395,19 +2395,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2424,14 +2411,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       actions: "Clientactions",
       submitted: true,
-      send: false,
+      send: true,
       price_default: 1000,
       form: {
         id: null,
         nit: null,
         fullname: "",
-        phone: 0,
-        city: ""
+        phone: 0
       }
     };
   },
@@ -2442,18 +2428,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.nit = row.nit;
       this.form.fullname = row.fullname;
       this.form.phone = row.phone;
-      this.form.city = row.city;
       $("#model").modal("show");
-      this.send = false;
+      this.send = true;
     },
     clear: function clear() {
       this.form.id = null;
       this.form.nit = null;
       this.form.fullname = null;
       this.form.phone = 0;
-      this.form.city = "Por defecto";
       this.$validator.reset();
-      this.send = false;
+      this.send = true;
     }
   }
 });
@@ -3148,6 +3132,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3160,6 +3175,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       actions: "Factureactions",
       submitted: true,
+      send: true,
       totalPages: 1,
       currentPage: 1,
       filters: {
@@ -3175,12 +3191,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       //
       formFacture: {
         id: 0,
-        client_id: 0,
+        client_id: 1,
         sub: 0,
         disc: 0,
         tot: 0,
         efecty: null,
         other: 0,
+        note: "",
         dataDetails: []
       }
     };
@@ -3236,10 +3253,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 //agregando valores calculados fuction en el form
                 _this.formFacture.sub = _this.onViewSub;
                 _this.formFacture.tot = _this.onViewTot;
-                _context.next = 4;
+                _this.send = false;
+                _context.next = 5;
                 return axios.post(_this.urlfactures, _this.formFacture);
 
-              case 4:
+              case 5:
                 response = _context.sent;
 
                 try {
@@ -3254,11 +3272,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   _this.getList();
 
                   _this.clear();
+
+                  _this.send = true;
                 } catch (error) {
                   console.log(error.response);
                 }
 
-              case 6:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -3271,6 +3291,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch("Productactions");
     },
     addRow: function addRow(row) {
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "el producto ".concat(row.name, " se agreg\xF3"),
+        showConfirmButton: false,
+        timer: 900
+      });
       var price = 0;
 
       if (this.type_sale == 1) {
@@ -3307,14 +3334,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     clear: function clear() {
       this.formFacture.id = 0;
-      this.formFacture.client_id = 0;
+      this.formFacture.client_id = 1;
       this.formFacture.sub = 0;
       this.formFacture.disc = 0;
       this.formFacture.tot = 0;
       this.formFacture.efecty = 0;
       this.formFacture.other = 0;
+      this.formFacture.note = 0;
       this.formFacture.dataDetails = [];
-      this.price = 0;
+      this.price = [];
     },
     typeSale: function typeSale() {
       if (this.type_sale == 1) {
@@ -3501,6 +3529,24 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3819,6 +3865,49 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3835,13 +3924,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       actions: "Productactions",
       submitted: true,
-      send: false,
+      send: 1,
       price_default: 1000,
       form: {
         id: null,
         name: "",
         price: 0,
-        price_two: 0
+        price_two: 0,
+        cost: 0
       }
     };
   },
@@ -3852,16 +3942,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.name = row.name;
       this.form.price = parseFloat(row.price);
       this.form.price_two = parseFloat(row.price_two);
+      this.form.cost = parseFloat(row.cost);
       $("#model").modal("show");
-      this.send = false;
+      this.send = true;
     },
     clear: function clear() {
       this.form.id = null;
       this.form.name = null;
       this.form.price = 0;
       this.form.price_two = 0;
+      this.form.cost = 0;
       this.$validator.reset();
-      this.send = false;
+      this.send = true;
     }
   }
 });
@@ -4334,6 +4426,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4351,7 +4456,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       actions: "Useractions",
       submitted: true,
-      send: false,
+      send: true,
       form: {
         id: null,
         name: "",
@@ -4366,14 +4471,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.name = row.name;
       this.form.email = row.email;
       $("#model").modal("show");
-      this.send = false;
+      this.send = true;
     },
     clear: function clear() {
       this.form.id = null;
       this.form.name = null;
       this.form.email = null;
       this.$validator.reset();
-      this.send = false;
+      this.send = true;
     }
   }
 });
@@ -4570,6 +4675,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "modaldetails",
@@ -4585,7 +4704,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       totalPages: 0,
       company: "BOLSOSVALLEDUPAR23",
       nit: "1003242515",
-      direction: "Centro comercial los paisas local #22",
+      direction: "Pasaje comercial los paisas local #22",
       phone: "3012074828"
     };
   },
@@ -4769,15 +4888,18 @@ module.exports = {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _this2.send = false;
+                console.log(_this2.send);
+
                 if (!id) {
-                  _context.next = 7;
+                  _context.next = 9;
                   break;
                 }
 
-                _context.next = 3;
+                _context.next = 5;
                 return axios.put(url + "/" + id, _this2.form);
 
-              case 3:
+              case 5:
                 response = _context.sent;
 
                 try {
@@ -4797,14 +4919,14 @@ module.exports = {
                   console.log(error.response);
                 }
 
-                _context.next = 11;
+                _context.next = 13;
                 break;
 
-              case 7:
-                _context.next = 9;
+              case 9:
+                _context.next = 11;
                 return axios.post(url, _this2.form);
 
-              case 9:
+              case 11:
                 _response = _context.sent;
 
                 try {
@@ -4815,7 +4937,6 @@ module.exports = {
                     showConfirmButton: false,
                     timer: 1600
                   });
-                  _this2.send = true;
                   $("#model").modal("hide");
 
                   _this2.$store.dispatch(actions);
@@ -4823,7 +4944,7 @@ module.exports = {
                   console.log(error.response);
                 }
 
-              case 11:
+              case 13:
               case "end":
                 return _context.stop();
             }
@@ -19331,6 +19452,107 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100&family=Manrope:wght@200;600&display=swap);"]);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\np.mix {border-style: dotted dashed solid double; font-size: 12px;}\np.mix2 { font-size: 18px;}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js ***!
+  \******************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (cssWithMappingToString) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join("");
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === "string") {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, ""]];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
 
 /***/ }),
 
@@ -39384,6 +39606,315 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_modaldetails_vue_vue_type_style_index_0_id_6171d4e5_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css& */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_modaldetails_vue_vue_type_style_index_0_id_6171d4e5_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_modaldetails_vue_vue_type_style_index_0_id_6171d4e5_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+var isOldIE = function isOldIE() {
+  var memo;
+  return function memorize() {
+    if (typeof memo === 'undefined') {
+      // Test for IE <= 9 as proposed by Browserhacks
+      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+      // Tests for existence of standard globals is to allow style-loader
+      // to operate correctly into non-standard environments
+      // @see https://github.com/webpack-contrib/style-loader/issues/177
+      memo = Boolean(window && document && document.all && !window.atob);
+    }
+
+    return memo;
+  };
+}();
+
+var getTarget = function getTarget() {
+  var memo = {};
+  return function memorize(target) {
+    if (typeof memo[target] === 'undefined') {
+      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+
+      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+        try {
+          // This will throw an exception if access to iframe is blocked
+          // due to cross-origin restrictions
+          styleTarget = styleTarget.contentDocument.head;
+        } catch (e) {
+          // istanbul ignore next
+          styleTarget = null;
+        }
+      }
+
+      memo[target] = styleTarget;
+    }
+
+    return memo[target];
+  };
+}();
+
+var stylesInDom = [];
+
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+
+  for (var i = 0; i < stylesInDom.length; i++) {
+    if (stylesInDom[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+
+  return result;
+}
+
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var index = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3]
+    };
+
+    if (index !== -1) {
+      stylesInDom[index].references++;
+      stylesInDom[index].updater(obj);
+    } else {
+      stylesInDom.push({
+        identifier: identifier,
+        updater: addStyle(obj, options),
+        references: 1
+      });
+    }
+
+    identifiers.push(identifier);
+  }
+
+  return identifiers;
+}
+
+function insertStyleElement(options) {
+  var style = document.createElement('style');
+  var attributes = options.attributes || {};
+
+  if (typeof attributes.nonce === 'undefined') {
+    var nonce =  true ? __webpack_require__.nc : 0;
+
+    if (nonce) {
+      attributes.nonce = nonce;
+    }
+  }
+
+  Object.keys(attributes).forEach(function (key) {
+    style.setAttribute(key, attributes[key]);
+  });
+
+  if (typeof options.insert === 'function') {
+    options.insert(style);
+  } else {
+    var target = getTarget(options.insert || 'head');
+
+    if (!target) {
+      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+    }
+
+    target.appendChild(style);
+  }
+
+  return style;
+}
+
+function removeStyleElement(style) {
+  // istanbul ignore if
+  if (style.parentNode === null) {
+    return false;
+  }
+
+  style.parentNode.removeChild(style);
+}
+/* istanbul ignore next  */
+
+
+var replaceText = function replaceText() {
+  var textStore = [];
+  return function replace(index, replacement) {
+    textStore[index] = replacement;
+    return textStore.filter(Boolean).join('\n');
+  };
+}();
+
+function applyToSingletonTag(style, index, remove, obj) {
+  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
+
+  /* istanbul ignore if  */
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = replaceText(index, css);
+  } else {
+    var cssNode = document.createTextNode(css);
+    var childNodes = style.childNodes;
+
+    if (childNodes[index]) {
+      style.removeChild(childNodes[index]);
+    }
+
+    if (childNodes.length) {
+      style.insertBefore(cssNode, childNodes[index]);
+    } else {
+      style.appendChild(cssNode);
+    }
+  }
+}
+
+function applyToTag(style, options, obj) {
+  var css = obj.css;
+  var media = obj.media;
+  var sourceMap = obj.sourceMap;
+
+  if (media) {
+    style.setAttribute('media', media);
+  } else {
+    style.removeAttribute('media');
+  }
+
+  if (sourceMap && typeof btoa !== 'undefined') {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  } // For old IE
+
+  /* istanbul ignore if  */
+
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    while (style.firstChild) {
+      style.removeChild(style.firstChild);
+    }
+
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var singleton = null;
+var singletonCounter = 0;
+
+function addStyle(obj, options) {
+  var style;
+  var update;
+  var remove;
+
+  if (options.singleton) {
+    var styleIndex = singletonCounter++;
+    style = singleton || (singleton = insertStyleElement(options));
+    update = applyToSingletonTag.bind(null, style, styleIndex, false);
+    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+  } else {
+    style = insertStyleElement(options);
+    update = applyToTag.bind(null, style, options);
+
+    remove = function remove() {
+      removeStyleElement(style);
+    };
+  }
+
+  update(obj);
+  return function updateStyle(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
+        return;
+      }
+
+      update(obj = newObj);
+    } else {
+      remove();
+    }
+  };
+}
+
+module.exports = function (list, options) {
+  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+  // tags it will allow on a page
+
+  if (!options.singleton && typeof options.singleton !== 'boolean') {
+    options.singleton = isOldIE();
+  }
+
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+
+    if (Object.prototype.toString.call(newList) !== '[object Array]') {
+      return;
+    }
+
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDom[index].references--;
+    }
+
+    var newLastIdentifiers = modulesToDom(newList, options);
+
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+
+      var _index = getIndexByIdentifier(_identifier);
+
+      if (stylesInDom[_index].references === 0) {
+        stylesInDom[_index].updater();
+
+        stylesInDom.splice(_index, 1);
+      }
+    }
+
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
+
+/***/ }),
+
 /***/ "./node_modules/sweetalert2/dist/sweetalert2.all.js":
 /*!**********************************************************!*\
   !*** ./node_modules/sweetalert2/dist/sweetalert2.all.js ***!
@@ -55908,15 +56439,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _modaldetails_vue_vue_type_template_id_6171d4e5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modaldetails.vue?vue&type=template&id=6171d4e5& */ "./resources/js/components/utilities/modaldetails.vue?vue&type=template&id=6171d4e5&");
 /* harmony import */ var _modaldetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modaldetails.vue?vue&type=script&lang=js& */ "./resources/js/components/utilities/modaldetails.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _modaldetails_vue_vue_type_style_index_0_id_6171d4e5_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css& */ "./resources/js/components/utilities/modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _modaldetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _modaldetails_vue_vue_type_template_id_6171d4e5___WEBPACK_IMPORTED_MODULE_0__.render,
   _modaldetails_vue_vue_type_template_id_6171d4e5___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -56187,6 +56720,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modaldetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./modaldetails.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modaldetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/utilities/modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/utilities/modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css& ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_modaldetails_vue_vue_type_style_index_0_id_6171d4e5_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css&");
+
 
 /***/ }),
 
@@ -56600,8 +57146,6 @@ var render = function () {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(row.phone))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(row.city))]),
-                    _vm._v(" "),
                     _c("td", [
                       _c(
                         "button",
@@ -56919,62 +57463,26 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-lg-4" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Entrega")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "validate",
-                            rawName: "v-validate",
-                            value: "required|max:30|min:3",
-                            expression: "'required|max:30|min:3'",
-                          },
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.city,
-                            expression: "form.city",
-                          },
-                        ],
-                        staticClass: "form-control form-control-sm",
-                        class: {
-                          "is-invalid":
-                            _vm.submitted && _vm.errors.has("ciudad"),
-                        },
-                        attrs: {
-                          type: "text",
-                          value: "Por defecto",
-                          placeholder: "Lugar de entregas",
-                          name: "ciudad",
-                        },
-                        domProps: { value: _vm.form.city },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "city", $event.target.value)
-                          },
-                        },
-                      }),
-                      _vm._v(" "),
-                      _vm.submitted && _vm.errors.has("ciudad")
-                        ? _c("div", { staticClass: "invalid-feedback" }, [
-                            _vm._v(
-                              "\n                                " +
-                                _vm._s(_vm.errors.first("ciudad")) +
-                                "\n                            "
-                            ),
-                          ])
-                        : _vm._e(),
-                    ]),
-                  ]),
-                ]),
-                _vm._v(" "),
                 !_vm.send
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button", disabled: "" },
+                      },
+                      [
+                        _c("span", {
+                          staticClass: "spinner-border spinner-border-sm",
+                          attrs: { role: "status", "aria-hidden": "true" },
+                        }),
+                        _vm._v(
+                          "\n                    Loading...\n                "
+                        ),
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.send
                   ? _c(
                       "button",
                       {
@@ -57489,7 +57997,9 @@ var render = function () {
                             "div",
                             { staticClass: "modal-body" },
                             [
-                              _c("label", [_vm._v("Añadir")]),
+                              _c("label", { staticStyle: { color: "black" } }, [
+                                _vm._v("Otro precio"),
+                              ]),
                               _vm._v(" "),
                               _c("currency-input", {
                                 directives: [
@@ -57540,6 +58050,12 @@ var render = function () {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
+                                  _c(
+                                    "label",
+                                    { staticStyle: { color: "black" } },
+                                    [_vm._v("Descuento")]
+                                  ),
+                                  _vm._v(" "),
                                   _c("currency-input", {
                                     directives: [
                                       {
@@ -57947,8 +58463,54 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Observación")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.formFacture.note,
+                  expression: "formFacture.note",
+                },
+              ],
+              staticClass: "form-control",
+              attrs: { id: "observación", name: "observación", rows: "3" },
+              domProps: { value: _vm.formFacture.note },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.formFacture, "note", $event.target.value)
+                },
+              },
+            }),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          !_vm.send
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", disabled: "" },
+                },
+                [
+                  _c("span", {
+                    staticClass: "spinner-border spinner-border-sm",
+                    attrs: { role: "status", "aria-hidden": "true" },
+                  }),
+                  _vm._v("\n                Loading...\n            "),
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          (_vm.send,
           _vm.formFacture.dataDetails.length != 0 &&
-          _vm.onViewSub >= _vm.formFacture.disc
+            _vm.onViewSub >= _vm.formFacture.disc)
             ? _c("div", { staticClass: "col-lg-2" }, [
                 _c(
                   "button",
@@ -58423,9 +58985,15 @@ var render = function () {
                         _vm._v("Nombre"),
                       ]),
                       _vm._v(" "),
+                      _c("th", [_vm._v("Costo")]),
+                      _vm._v(" "),
                       _c("th", [_vm._v("Precio M")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("Precio D")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("%GM")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("%GD")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("Op")]),
                     ],
@@ -58441,14 +59009,44 @@ var render = function () {
                 var rows = ref.rows
                 return _vm._l(rows, function (row) {
                   return _c("tr", { key: row.id }, [
-                    _c("td", [_vm._v(_vm._s(row.name))]),
+                    row.cost == 0
+                      ? _c("td", { staticClass: "bg-danger" }, [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(row.name) +
+                              "\n                    "
+                          ),
+                        ])
+                      : _c("td", [_vm._v(_vm._s(row.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm._f("currency")(row.cost)))]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v("$" + _vm._s(_vm._f("currency")(row.price))),
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm._f("currency")(row.price)) +
+                          "\n                    "
+                      ),
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v("$" + _vm._s(_vm._f("currency")(row.price_two))),
+                      _vm._v(_vm._s(_vm._f("currency")(row.price_two))),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "bg-warning" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm._f("currency")(row.price - row.cost)) +
+                          "\n                    "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "bg-info" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm._f("currency")(row.price_two - row.cost)) +
+                          "\n                    "
+                      ),
                     ]),
                     _vm._v(" "),
                     _c("td", [
@@ -58692,6 +59290,65 @@ var render = function () {
                       "div",
                       { staticClass: "form-group" },
                       [
+                        _c("label", { attrs: { for: "" } }, [_vm._v("Costo")]),
+                        _vm._v(" "),
+                        _c("currency-input", {
+                          directives: [
+                            {
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: {
+                                required: true,
+                              },
+                              expression:
+                                "{\n                                    required: true,\n                                }",
+                            },
+                            {
+                              name: "currency",
+                              rawName: "v-currency",
+                              value: {
+                                currency: "USD",
+                                precision: 0,
+                                locale: "en",
+                              },
+                              expression:
+                                "{\n                                    currency: 'USD',\n                                    precision: 0,\n                                    locale: 'en',\n                                }",
+                            },
+                          ],
+                          staticClass: "form-control form-control-sm",
+                          class: {
+                            "is-invalid":
+                              _vm.submitted && _vm.errors.has("costo"),
+                          },
+                          attrs: { name: "costo" },
+                          model: {
+                            value: _vm.form.cost,
+                            callback: function ($$v) {
+                              _vm.$set(_vm.form, "cost", _vm._n($$v))
+                            },
+                            expression: "form.cost",
+                          },
+                        }),
+                        _vm._v(" "),
+                        _vm.submitted && _vm.errors.has("costo")
+                          ? _c("div", { staticClass: "invalid-feedback" }, [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.errors.first("costo")) +
+                                  "\n                            "
+                              ),
+                            ])
+                          : _vm._e(),
+                      ],
+                      1
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-lg-4" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
                         _c("label", { attrs: { for: "" } }, [
                           _vm._v("Precio mayorista"),
                         ]),
@@ -58745,7 +59402,9 @@ var render = function () {
                       1
                     ),
                   ]),
-                  _vm._v(" "),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-lg-4" }, [
                     _c(
                       "div",
@@ -58811,6 +59470,25 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 !_vm.send
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button", disabled: "" },
+                      },
+                      [
+                        _c("span", {
+                          staticClass: "spinner-border spinner-border-sm",
+                          attrs: { role: "status", "aria-hidden": "true" },
+                        }),
+                        _vm._v(
+                          "\n                    Loading...\n                "
+                        ),
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.send
                   ? _c(
                       "button",
                       {
@@ -59399,6 +60077,25 @@ var render = function () {
                   ? _c(
                       "button",
                       {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button", disabled: "" },
+                      },
+                      [
+                        _c("span", {
+                          staticClass: "spinner-border spinner-border-sm",
+                          attrs: { role: "status", "aria-hidden": "true" },
+                        }),
+                        _vm._v(
+                          "\n                    Loading...\n                "
+                        ),
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.send
+                  ? _c(
+                      "button",
+                      {
                         class: {
                           "btn btn-outline-primary ": !this.form.id,
                           "btn btn-outline-danger ": this.form.id,
@@ -59615,9 +60312,13 @@ var render = function () {
                         _vm._v(_vm._s(_vm.direction)),
                         _c("br"),
                         _vm._v(
-                          "\n                           nit." +
-                            _vm._s(_vm.nit) +
-                            "\n                            "
+                          "\n                           nit." + _vm._s(_vm.nit)
+                        ),
+                        _c("br"),
+                        _vm._v(
+                          "\n                           " +
+                            _vm._s(_vm.phone) +
+                            "\n\n                            "
                         ),
                       ]),
                     ]),
@@ -59653,6 +60354,18 @@ var render = function () {
                       ])
                     }),
                     _vm._v(" "),
+                    _vm._l(_vm.facUnique, function (item, index) {
+                      return _c(
+                        "div",
+                        { key: "r" + index, staticClass: "text-center" },
+                        [
+                          _c("p", { staticClass: "mix" }, [
+                            _vm._v(_vm._s(item.note)),
+                          ]),
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
                     _vm._l(_vm.details, function (item, index) {
                       return _c("div", { key: index }, [
                         _c("p", [
@@ -59677,7 +60390,7 @@ var render = function () {
                     ),
                     _vm._l(_vm.facUnique, function (item, index) {
                       return _c("div", { key: "f" + index }, [
-                        _c("p", [
+                        _c("p", { staticClass: "mix2" }, [
                           _c("strong", [_vm._v("Sub")]),
                           _vm._v(" " + _vm._s(_vm._f("currency")(item.sub))),
                           _c("br"),
@@ -59693,8 +60406,9 @@ var render = function () {
                       ])
                     }),
                     _vm._v(
-                      "\n                        ***********************************\n                   \n                        "
+                      "\n                        ***********************************\n                        "
                     ),
+                    _vm._m(0),
                   ],
                   2
                 ),
@@ -59725,7 +60439,20 @@ var render = function () {
     ),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("p", { staticClass: "text-center mix" }, [
+        _vm._v(
+          "\n                                Verificar el estado del producto o pedido, los cambios se hacen con previo aviso dentro las 24 hrs despúes de la compra, se responde por costure o mal estado de la tela.gracias.\n                            "
+        ),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -75679,6 +76406,11 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/nonce */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nc = undefined;
 /******/ 	})();
 /******/ 	
 /************************************************************************/
