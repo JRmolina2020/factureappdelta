@@ -4706,6 +4706,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "modaldetails",
@@ -60367,9 +60370,13 @@ var render = function () {
                         ]),
                       ])
                     }),
-                    _vm._v(
-                      "\n                        ---------------------------------------------------------\n                        "
-                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "\n                        ---------------------------------------------------------\n                        "
+                      ),
+                    ]),
+                    _vm._v(" "),
                     _vm._l(_vm.facUnique, function (item, index) {
                       return _c(
                         "div",
@@ -60383,7 +60390,7 @@ var render = function () {
                             ? _c("div", [
                                 _c("p", { staticClass: "mix" }, [
                                   _c("strong", [_vm._v("Nota:")]),
-                                  _vm._v(_vm._s(item.note)),
+                                  _vm._v(" " + _vm._s(item.note)),
                                 ]),
                                 _vm._v(
                                   "\n\n                        ---------------------------------------------------------\n                       \n                        "

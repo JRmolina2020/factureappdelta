@@ -47,12 +47,15 @@
                                     Fac:#{{item.id}}
                                 </p>
                             </div>
+                            <div class="text-center">
                             ---------------------------------------------------------
+                            </div>
+                        
                             <div v class="text-center"   v-for="(item, index) in facUnique"
                             :key="'r'+index">
                             <div v-if="item.note">
                            
-                                <p class="mix"><strong>Nota:</strong>{{item.note}}</p>
+                                <p class="mix"><strong>Nota:</strong> {{item.note}}</p>
 
                             ---------------------------------------------------------
                            
