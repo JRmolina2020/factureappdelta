@@ -4853,6 +4853,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "modaldetails",
@@ -60692,21 +60695,24 @@ var render = function () {
                   "div",
                   { attrs: { id: "facture" } },
                   [
-                    _c("div", [
-                      _c("p", { staticClass: "text-center textf" }, [
-                        _c("strong", [_vm._v(_vm._s(_vm.company))]),
-                        _c("br"),
-                        _vm._v(_vm._s(_vm.direction)),
-                        _c("br"),
-                        _vm._v(
-                          "\n                           nit." + _vm._s(_vm.nit)
-                        ),
-                        _c("br"),
-                        _vm._v(
-                          "\n                           " +
-                            _vm._s(_vm.phone) +
-                            "\n\n                            "
-                        ),
+                    _c("center", [
+                      _c("div", [
+                        _c("p", { staticClass: "text-center textf" }, [
+                          _c("strong", [_vm._v(_vm._s(_vm.company))]),
+                          _c("br"),
+                          _vm._v(_vm._s(_vm.direction)),
+                          _c("br"),
+                          _vm._v(
+                            "\n                           nit." +
+                              _vm._s(_vm.nit)
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n                           " +
+                              _vm._s(_vm.phone) +
+                              "\n\n                            "
+                          ),
+                        ]),
                       ]),
                     ]),
                     _vm._v(" "),
@@ -60747,11 +60753,7 @@ var render = function () {
                     _vm._l(_vm.facUnique, function (item, index) {
                       return _c(
                         "div",
-                        {
-                          key: "r" + index,
-                          staticClass: "text-center",
-                          attrs: { v: "" },
-                        },
+                        { key: "r" + index, staticClass: "text-center" },
                         [
                           item.note
                             ? _c("div", [
@@ -60818,9 +60820,17 @@ var render = function () {
                       ])
                     }),
                     _vm._v(
-                      "\n                        ---------------------------------------------------------\n                       \n                        "
+                      "\n                        ---------------------------------------------------------\n                    "
                     ),
-                    _vm._m(0),
+                    _c("center", [
+                      _c("div", [
+                        _c("p", { staticClass: "text-center mix textf" }, [
+                          _vm._v(
+                            "\n                                Verificar el estado del producto o pedido, los cambios se hacen con previo aviso dentro de las 24 hrs despúes de la compra.\n                                \n                            "
+                          ),
+                        ]),
+                      ]),
+                    ]),
                     _vm._v(
                       "\n                        ----------------------------------------------------------\n                        "
                     ),
@@ -60870,20 +60880,7 @@ var render = function () {
     ),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("p", { staticClass: "text-center mix textf" }, [
-        _vm._v(
-          "\n                                Verificar el estado del producto o pedido, los cambios se hacen con previo aviso dentro de las 24 hrs despúes de la compra.\n                                \n                            "
-        ),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
