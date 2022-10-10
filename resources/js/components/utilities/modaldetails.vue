@@ -165,4 +165,7 @@ export default {
         
     p.mix {font-size: 12px;}
     p.mix2 { font-size: 18px;}
+    p{
+        color: black;
+    }
 </style>
