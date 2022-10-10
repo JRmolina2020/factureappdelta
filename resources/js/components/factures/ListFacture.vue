@@ -56,8 +56,8 @@
                         <th>Total</th>
                         <th>E</th>
                         <th>O</th>
-                        <th>Op</th>
                         <th>D</th>
+                        <th>E</th>
                     </tr>
                 </template>
                 <template #body="{ rows }">
@@ -66,7 +66,9 @@
                         <td>{{ row.tot | currency }}</td>
                         <td>{{ row.efecty | currency }}</td>
                         <td>{{ row.other | currency }}</td>
-
+                        <td>
+                            <Modal-Details v-bind:cod="row.id"></Modal-Details>
+                        </td>
                         <td>
                             <button
                                 type="button"
@@ -75,9 +77,6 @@
                             >
                                 <i class="fi fi-trash"></i>
                             </button>
-                        </td>
-                        <td>
-                            <Modal-Details v-bind:cod="row.id"></Modal-Details>
                         </td>
                     </tr>
                 </template>

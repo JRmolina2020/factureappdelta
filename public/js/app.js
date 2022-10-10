@@ -2631,7 +2631,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -19638,7 +19637,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100&family=Manrope:wght@200;600&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\np.mix {font-size: 12px;}\np.mix2 { font-size: 18px;}\np{\n    color: black;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\np.mix {font-size: 12px;}\np.mix2 { font-size: 18px;}\np.textf{\n    color:black\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -57831,9 +57830,9 @@ var render = function () {
                             _vm._v(" "),
                             _c("th", [_vm._v("O")]),
                             _vm._v(" "),
-                            _c("th", [_vm._v("Op")]),
-                            _vm._v(" "),
                             _c("th", [_vm._v("D")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("E")]),
                           ],
                           1
                         ),
@@ -57861,6 +57860,12 @@ var render = function () {
                             _vm._v(_vm._s(_vm._f("currency")(row.other))),
                           ]),
                           _vm._v(" "),
+                          _c(
+                            "td",
+                            [_c("Modal-Details", { attrs: { cod: row.id } })],
+                            1
+                          ),
+                          _vm._v(" "),
                           _c("td", [
                             _c(
                               "button",
@@ -57876,12 +57881,6 @@ var render = function () {
                               [_c("i", { staticClass: "fi fi-trash" })]
                             ),
                           ]),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [_c("Modal-Details", { attrs: { cod: row.id } })],
-                            1
-                          ),
                         ])
                       })
                     },
@@ -57889,7 +57888,7 @@ var render = function () {
                 ],
                 null,
                 false,
-                1891210335
+                233366117
               ),
             }),
           ],
@@ -58680,8 +58679,7 @@ var render = function () {
                 id: "observación",
                 name: "observación",
                 rows: "2",
-                placeholder:
-                  "Añade una observación, algo que quieres que tengan en cuenta. (No es obligatorio).",
+                placeholder: "Añade una observación.",
               },
               domProps: { value: _vm.formFacture.note },
               on: {
@@ -60695,7 +60693,7 @@ var render = function () {
                   { attrs: { id: "facture" } },
                   [
                     _c("div", [
-                      _c("p", { staticClass: "text-center" }, [
+                      _c("p", { staticClass: "text-center textf" }, [
                         _c("strong", [_vm._v(_vm._s(_vm.company))]),
                         _c("br"),
                         _vm._v(_vm._s(_vm.direction)),
@@ -60717,7 +60715,7 @@ var render = function () {
                         _vm._v(
                           "\n                        ***************************************\n                            "
                         ),
-                        _c("p", [
+                        _c("p", { staticClass: "textf" }, [
                           _c("i", { staticClass: "fi fi-male" }),
                           _vm._v(
                             "\n                                " +
@@ -60757,7 +60755,7 @@ var render = function () {
                         [
                           item.note
                             ? _c("div", [
-                                _c("p", { staticClass: "mix" }, [
+                                _c("p", { staticClass: "mix textf" }, [
                                   _c("strong", [_vm._v("Nota:")]),
                                   _vm._v(" " + _vm._s(item.note)),
                                 ]),
@@ -60772,7 +60770,7 @@ var render = function () {
                     _vm._v(" "),
                     _vm._l(_vm.details, function (item, index) {
                       return _c("div", { key: index }, [
-                        _c("p", [
+                        _c("p", { staticClass: "textf" }, [
                           _vm._v(
                             "\n                                " +
                               _vm._s(item.quantity) +
@@ -60794,7 +60792,7 @@ var render = function () {
                     ),
                     _vm._l(_vm.facUnique, function (item, index) {
                       return _c("div", { key: "f" + index }, [
-                        _c("p", { staticClass: "mix2" }, [
+                        _c("p", { staticClass: "mix2 textf" }, [
                           _c("strong", [_vm._v("Sub")]),
                           _vm._v(" $" + _vm._s(_vm._f("currency")(item.sub))),
                           _c("br"),
@@ -60836,9 +60834,9 @@ var render = function () {
                         },
                       }),
                       _vm._v(" "),
-                      _c("p", [_vm._v("whatsapp")]),
+                      _c("p", { staticClass: "textf" }, [_vm._v("whatsapp")]),
                       _vm._v(" "),
-                      _c("p", [
+                      _c("p", { staticClass: "textf" }, [
                         _c("strong", [_vm._v("Gracias por tu compra")]),
                       ]),
                     ]),
@@ -60878,7 +60876,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("p", { staticClass: "text-center mix" }, [
+      _c("p", { staticClass: "text-center mix textf" }, [
         _vm._v(
           "\n                                Verificar el estado del producto o pedido, los cambios se hacen con previo aviso dentro de las 24 hrs despúes de la compra.\n                                \n                            "
         ),

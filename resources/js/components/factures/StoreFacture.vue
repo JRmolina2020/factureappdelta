@@ -317,7 +317,7 @@
                         id="observación"
                         name="observación"
                         rows="2"
-                        placeholder="Añade una observación, algo que quieres que tengan en cuenta. (No es obligatorio)."
+                        placeholder="Añade una observación."
                     ></textarea>
                 </div>
             </div>
