@@ -1,6 +1,25 @@
 <template>
     <div v-if="status">
         <div class="row">
+            <div class="col-lg-4 col-xs-12 col-sm-12 col-md-12">
+                <div
+                    class="alert alert-success alert-dismissible fade show"
+                    role="alert"
+                >
+                    <strong>Hola :)</strong> Estas son las ventas del dia
+                    <button
+                        type="button"
+                        class="close"
+                        data-dismiss="alert"
+                        aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-lg-3">
                 <div class="input-group">
                     <input
@@ -29,7 +48,7 @@
                 :page-size="5"
                 :currentPage.sync="currentPage"
                 @totalPagesChanged="totalPages = $event"
-                class="table mt-3"
+                class="table table-striped table-borderless table-dark mt-3"
             >
                 <template #head>
                     <tr>

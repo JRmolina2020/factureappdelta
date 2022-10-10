@@ -5,13 +5,13 @@
             <div class="">
                 <button
                     type="button"
-                    class="btn btn-outline-primary btn-sm"
+                    class="btn btn-primary prod"
                     data-toggle="modal"
                     data-target="#exampleDetail"
                 >
                     Productos
                 </button>
-                <span class="badge badge-primary">C= {{ sumProducts }}</span>
+                <span class="badge badge-warning">PF {{ sumProducts }}</span>
             </div>
 
             <div class="table-responsive mt-3">
@@ -191,7 +191,7 @@
             onKeyPress="if(event.keyCode == 13) event.returnValue = false;"
         >
             <div class="row">
-                <div class="col-lg-2">
+                <div class="col-6 col-lg-2">
                     <div class="form-group">
                         <label for>Venta</label>
                         <select
@@ -205,7 +205,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-6 col-lg-2">
                     <div class="form-group">
                         <label for>Clientes</label>
                         <select
@@ -223,7 +223,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-6 col-lg-2">
                     <div class="form-group">
                         <label for>Subtotal</label>
                         <currency-input
@@ -239,7 +239,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2">
+                <div class="col-6 col-lg-2">
                     <div class="form-group">
                         <label for>Descuento</label>
                         <currency-input
@@ -254,7 +254,7 @@
                         />
                     </div>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-6 col-lg-2">
                     <div class="form-group">
                         <label for>Total</label>
                         <currency-input
@@ -271,7 +271,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-2 col-xs-6 col-sm-6">
+                <div class="col-6 col-lg-2">
                     <div class="form-group">
                         <label for>Efectivo</label>
                         <currency-input
@@ -298,7 +298,7 @@
                         />
                     </div>
                 </div>
-                <div class="col-lg-2 col-xs-6 col-sm-6">
+                <div class="col-6 col-lg-2">
                     <label for>Otros</label>
                     <input
                         class="form-control form-control-sm"
@@ -316,7 +316,8 @@
                         v-model="formFacture.note"
                         id="observación"
                         name="observación"
-                        rows="3"
+                        rows="2"
+                        placeholder="Añade una observación, algo que quieres que tengan en cuenta. (No es obligatorio)."
                     ></textarea>
                 </div>
             </div>
@@ -345,14 +346,14 @@
                     <button
                         type="submit"
                         :disabled="errors.any()"
-                        class="btn btn btn-primary btn-sm"
+                        class="btn btn btn-primary btn-sm mt-3"
                     >
-                        Guardar
+                        Guardar venta
                     </button>
                 </div>
             </div>
         </form>
-        <!-- modal details -->
+        <!-- modal details products-->
         <div
             class="modal fade"
             data-backdrop="static"
@@ -368,6 +369,13 @@
                         <h5 class="modal-title" id="exampleModalLabel">
                             Detalle de factura
                         </h5>
+                        <button
+                            type="button"
+                            @click="(divproduct = true), (sendproduct = true)"
+                            class="btn bg-black btn-sm"
+                        >
+                            <i class="fi fi-flash"></i>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
@@ -378,14 +386,81 @@
                                 placeholder="Buscar productos"
                             />
                         </div>
-                        <div class="table-responsive">
+                        <div v-if="divproduct">
+                            <form
+                                method="POST"
+                                @submit.enter.prevent="addProduct()"
+                                autocomplete="off"
+                                onKeyPress="if(event.keyCode == 13) event.returnValue = false;"
+                            >
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="form-group">
+                                            <label for>Nombre</label>
+                                            <input
+                                                required
+                                                type="text"
+                                                class="form-control form-control-sm"
+                                                v-model="product.name"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="form-group">
+                                            <label for>Precio mayorista</label>
+                                            <currency-input
+                                                required
+                                                class="form-control form-control-sm"
+                                                v-currency="{
+                                                    currency: 'USD',
+                                                    precision: 0,
+                                                    locale: 'en',
+                                                }"
+                                                v-model.number="product.price"
+                                                name="precio de compra"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <button
+                                    v-if="!sendproduct"
+                                    class="btn btn-dark btn-sm"
+                                    type="button"
+                                    disabled
+                                >
+                                    <span
+                                        class="spinner-border spinner-border-sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    ></span>
+                                    Loading...
+                                </button>
+                                <button
+                                    v-if="sendproduct"
+                                    :disabled="errors.any()"
+                                    type="submit"
+                                    class="btn btn-dark btn-sm"
+                                >
+                                    <i class="fi fi-check"></i>
+                                </button>
+                                <button
+                                    type="button"
+                                    @click="divproduct = false"
+                                    class="btn btn-danger btn-sm"
+                                >
+                                    <i class="fi fi-close-a"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="table-responsive mt-3">
                             <VTable
                                 :data="products"
                                 :filters="filters"
                                 :page-size="5"
                                 :currentPage.sync="currentPage"
                                 @totalPagesChanged="totalPages = $event"
-                                class="table table-striped table-borderless"
+                                class="table table-striped table-borderless table-dark"
                             >
                                 <template #head>
                                     <tr>
@@ -431,7 +506,7 @@
                             class="btn btn-danger"
                             data-dismiss="modal"
                         >
-                            <i class="fi fi-caret-left"></i>
+                            <i class="fi fi-close-a"></i>
                         </button>
                     </div>
                 </div>
@@ -451,9 +526,11 @@ export default {
 
     data() {
         return {
+            divproduct: false,
             actions: "Factureactions",
             submitted: true,
             send: true,
+            sendproduct: true,
             totalPages: 1,
             currentPage: 1,
             filters: {
@@ -464,6 +541,12 @@ export default {
             //fictyUpdate
             price: [],
             //
+            product: {
+                name: "",
+                price: 0,
+                price_two: 0,
+                cost: 0,
+            },
             formFacture: {
                 id: 0,
                 client_id: 1,
@@ -482,7 +565,7 @@ export default {
         this.getData();
     },
     computed: {
-        ...mapState(["urlfactures", "clients", "products"]),
+        ...mapState(["urlfactures", "urlproducts", "clients", "products"]),
         onViewSub() {
             let subtot = 0;
             this.formFacture.dataDetails.map((data) => {
@@ -524,7 +607,7 @@ export default {
             let response = await axios.post(this.urlfactures, this.formFacture);
             try {
                 Swal.fire({
-                    position: "center",
+                    position: "center-start",
                     icon: "success",
                     title: `${response.data.message}`,
                     showConfirmButton: false,
@@ -542,13 +625,33 @@ export default {
             this.$store.dispatch("Clientactions");
             this.$store.dispatch("Productactions");
         },
+        async addProduct() {
+            this.sendproduct = false;
+            this.product.price_two = this.product.price + 10000;
+            let response = await axios.post(this.urlproducts, this.product);
+            try {
+                Swal.fire({
+                    position: "center-start",
+                    title: `${response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 1000,
+                });
+                this.$store.dispatch("Productactions");
+                this.product.name = "";
+                this.product.price = 0;
+                this.divproduct = false;
+                this.sendproduct = true;
+            } catch (error) {
+                console.log(error.response);
+            }
+        },
         addRow(row) {
             Swal.fire({
-                position: "top-center",
+                position: "center-start",
                 icon: "success",
                 title: `el producto ${row.name} se agregó`,
                 showConfirmButton: false,
-                timer: 900,
+                timer: 400,
             });
             let price = 0;
             if (this.type_sale == 1) {
