@@ -26,7 +26,7 @@ class FactureDetailController extends Controller
           'fd.tot'
       )
       ->where('f.id', '=', $id)
-      ->orderBy('fd.id', 'desc')->get();
+      ->orderBy('p.name', 'ASC')->get();
   return $income;
     }
   

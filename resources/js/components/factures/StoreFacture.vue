@@ -382,7 +382,7 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                v-model="filters.name.value"
+                                v-model="filters"
                                 placeholder="Buscar productos"
                             />
                         </div>
@@ -452,51 +452,27 @@
                                 </button>
                             </form>
                         </div>
-
-                        <div class="table-responsive mt-3">
-                            <VTable
-                                :data="products"
-                                :filters="filters"
-                                :page-size="5"
-                                :currentPage.sync="currentPage"
-                                @totalPagesChanged="totalPages = $event"
-                                class="table table-striped table-borderless table-dark"
+                        <div class="row mt-3">
+                            <div
+                                v-for="(item, index) in filteredList"
+                                :key="'t' + index"
+                                class="col-4"
                             >
-                                <template #head>
-                                    <tr>
-                                        <VTh sortKey="name">Nombre</VTh>
-                                        <th>Precio</th>
-                                        <th>Op</th>
-                                    </tr>
-                                </template>
-                                <template #body="{ rows }">
-                                    <tr v-for="row in rows" :key="row.id">
-                                        <td>{{ row.name }}</td>
-                                        <td v-if="type_sale">
-                                            ${{ row.price | currency }}
-                                        </td>
-                                        <td v-else>
-                                            ${{ row.price_two | currency }}
-                                        </td>
-                                        <td>
-                                            <button
-                                                type="button"
-                                                @click="addRow(row)"
-                                                class="btn bg-success btn-sm"
-                                            >
-                                                <i class="fi fi-heart"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </template>
-                            </VTable>
-                        </div>
-                        <div class="text-xs-center">
-                            <VTPagination
-                                :currentPage.sync="currentPage"
-                                :total-pages="totalPages"
-                                :boundary-links="true"
-                            />
+                                <div
+                                    class="card text-white bg-dark mb-3"
+                                    style="max-width"
+                                    @click="addRow(item)"
+                                >
+                                    <div class="card-body">
+                                        <p>
+                                            {{ item.name }}
+                                        </p>
+                                        <p class="card-text">
+                                            {{ item.price | currency }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -533,9 +509,7 @@ export default {
             sendproduct: true,
             totalPages: 1,
             currentPage: 1,
-            filters: {
-                name: { value: "", keys: ["name"] },
-            },
+            filters: "",
             type_sale: 1,
             discDetail: [],
             //fictyUpdate
@@ -566,6 +540,14 @@ export default {
     },
     computed: {
         ...mapState(["urlfactures", "urlproducts", "clients", "products"]),
+
+        filteredList() {
+            return this.products.filter((products) => {
+                return products.name
+                    .toLowerCase()
+                    .includes(this.filters.toLowerCase());
+            });
+        },
         onViewSub() {
             let subtot = 0;
             this.formFacture.dataDetails.map((data) => {
@@ -669,7 +651,7 @@ export default {
                 disc: 0,
                 tot: 0,
             });
-            this.filters.name.value = "";
+            this.filters = "";
             //para cuandro se agregue a la lista del detalle el descuento tome valor 0
             for (let i = 0; i < this.formFacture.dataDetails.length; i++) {
                 this.discDetail[i] = 0;

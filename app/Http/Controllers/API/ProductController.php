@@ -13,7 +13,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
-        $products = DB::table('products')->select('id', 'name','price','price_two','cost')->orderBy('id', 'desc')->get();
+        $products = DB::table('products')->select('id', 'name','price','price_two','cost')->orderBy('name', 'ASC')->get();
         return $products;
     }
  

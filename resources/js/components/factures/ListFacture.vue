@@ -56,7 +56,8 @@
                         <th>Total</th>
                         <th>E</th>
                         <th>O</th>
-                        <th>D</th>
+                        <th>FP</th>
+                        <th>FO</th>
                         <th>E</th>
                     </tr>
                 </template>
@@ -68,6 +69,11 @@
                         <td>{{ row.other | currency }}</td>
                         <td>
                             <Modal-Details v-bind:cod="row.id"></Modal-Details>
+                        </td>
+                        <td>
+                            <Modal-Details2
+                                v-bind:cod="row.id"
+                            ></Modal-Details2>
                         </td>
                         <td>
                             <button
@@ -120,6 +126,7 @@
 <script>
 import { mapState } from "vuex";
 import ModalDetails from "../utilities/modaldetails";
+import ModalDetails2 from "../utilities/modaldetails2";
 import VueHtmlToPaper from "vue-html-to-paper";
 
 const options = {
@@ -148,6 +155,7 @@ export default {
     mixins: [MgetList],
     components: {
         ModalDetails,
+        ModalDetails2,
     },
     computed: {
         ...mapState([
