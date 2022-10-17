@@ -23,9 +23,11 @@
             <div class="modal-dialog modal-lg "  role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <div id="facture2">
+                          <div>
+                            <img  ref="outputImage" :src="output">
+                          </div>
+                        <div  id="facture2" ref="pdf">
                             <center>
-
                             <h3 class="text">{{company}}</h3>
                              <p class="text">Nit.<strong>{{nit}}</strong></p>
                              <p class="text">{{direction}}<br>{{phone}}</p>
@@ -103,14 +105,22 @@
                             </center>
                             </div>
                         </div>
-                        <div>
+                        <div class="mt-3">
                             <button
                                 type="button"
                                 @click="print()"
                                 class="btn btn-primary"
                             >
-                                Factura <i class="fi fi-table-2"></i>
+                              Imprimir <i class="fi fi-table-2"></i>
                             </button>
+                            <button
+                            type="button"
+                            @click="imageCap()"
+                            class="btn btn-primary"
+                        >
+                            Imagen <i class="fi fi-table-2"></i>
+                        </button>
+                        <br></br>
                         </div>
                     </div>
                 </div>
@@ -120,6 +130,10 @@
     </template>
 <script>
 import { mapState } from "vuex";
+
+import VueHtml2Canvas from 'vue-html2canvas';
+Vue.use(VueHtml2Canvas);
+
 export default {
     name: "modaldetails",
     props: {
@@ -131,6 +145,7 @@ export default {
 
     data() {
         return {
+            output: null,
             currentPage: 1,
             totalPages: 0,
             company: "BOLSOSVALLEDUPAR23",
@@ -157,7 +172,19 @@ export default {
         getlistProducts() {
             this.$store.dispatch("FactureDetailactions", this.cod);
             this.$store.dispatch("FactureUniquections", this.cod);
+           
+
         },
+      imageCap(){
+      const el = this.$refs.pdf;
+      const options = {
+        type: "dataURL"
+      };
+      (async () => {
+        this.output = await this.$html2canvas(el, options);
+      })();
+        }
+   
     },
 };
 </script>

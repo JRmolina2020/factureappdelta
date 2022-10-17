@@ -461,7 +461,7 @@
                                 <div
                                     class="card text-white bg-dark mb-3"
                                     style="max-width"
-                                    @click="addRow(item)"
+                                    @click="addRow(item, index)"
                                 >
                                     <div class="card-body">
                                         <p>
@@ -627,7 +627,7 @@ export default {
                 console.log(error.response);
             }
         },
-        addRow(row) {
+        addRow(row, index) {
             Swal.fire({
                 position: "center-start",
                 icon: "success",
@@ -656,7 +656,40 @@ export default {
             for (let i = 0; i < this.formFacture.dataDetails.length; i++) {
                 this.discDetail[i] = 0;
             }
+            //evitar valores duplicados en el carrito
+            this.ProductRowUnique();
         },
+        ProductRowUnique() {
+            const cartProduct = this.formFacture.dataDetails.reduce(
+                (acum, valueActuality) => {
+                    const elementTrue = acum.find(
+                        (element) =>
+                            element.product_id === valueActuality.product_id
+                    );
+                    if (elementTrue) {
+                        return acum.map((element) => {
+                            if (
+                                element.product_id === valueActuality.product_id
+                            ) {
+                                return {
+                                    ...element,
+                                    quantity:
+                                        element.quantity +
+                                        valueActuality.quantity,
+                                };
+                            }
+
+                            return element;
+                        });
+                    }
+
+                    return [...acum, valueActuality];
+                },
+                []
+            );
+            this.formFacture.dataDetails = cartProduct;
+        },
+
         calculateDisc() {
             let totDisc = 0;
             for (let i = 0; i < this.formFacture.dataDetails.length; i++) {
@@ -675,7 +708,7 @@ export default {
             this.formFacture.tot = 0;
             this.formFacture.efecty = 0;
             this.formFacture.other = 0;
-            this.formFacture.note = 0;
+            this.formFacture.note = "";
             this.formFacture.dataDetails = [];
             this.price = [];
         },
