@@ -81335,7 +81335,11 @@ var render = function () {
             _c("div", { staticClass: "modal-content" }, [
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", [
-                  _c("img", { ref: "outputImage", attrs: { src: _vm.output } }),
+                  _c("img", {
+                    ref: "outputImage",
+                    staticClass: "rounded mx-auto d-block",
+                    attrs: { src: _vm.output },
+                  }),
                 ]),
                 _vm._v(" "),
                 _c(
