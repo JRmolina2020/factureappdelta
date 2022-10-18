@@ -81337,7 +81337,7 @@ var render = function () {
                 _c("div", [
                   _c("img", {
                     ref: "outputImage",
-                    staticClass: "rounded mx-auto d-block",
+                    staticClass: "img-fluid rounded mx-auto d-block",
                     attrs: { src: _vm.output },
                   }),
                 ]),

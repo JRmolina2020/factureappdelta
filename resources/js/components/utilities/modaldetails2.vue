@@ -24,7 +24,7 @@
                 <div class="modal-content">
                     <div class="modal-body">
                           <div>
-                            <img  ref="outputImage" class="rounded mx-auto d-block"  :src="output">
+                            <img  ref="outputImage" class="img-fluid rounded mx-auto d-block"  :src="output">
                           </div>
                         <div  id="facture2" ref="pdf">
                             <center>
