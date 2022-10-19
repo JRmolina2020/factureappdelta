@@ -44,14 +44,13 @@
         <div class="table-responsive">
             <VTable
                 :data="factures"
-                :filters="filters"
                 :page-size="5"
                 :currentPage.sync="currentPage"
                 @totalPagesChanged="totalPages = $event"
-                class="table table-striped table-borderless table-dark mt-3"
+                class="table table-striped table-borderless mt-3"
             >
                 <template #head>
-                    <tr>
+                    <tr style="color: #fff; background: black">
                         <VTh sortKey="nit">Nit</VTh>
                         <th>Total</th>
                         <th>E</th>
@@ -147,9 +146,6 @@ export default {
             date: "",
             totalPages: 1,
             currentPage: 1,
-            filters: {
-                name: { value: "", keys: ["name"] },
-            },
         };
     },
     mixins: [MgetList],

@@ -2179,7 +2179,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2637,7 +2636,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -2657,13 +2655,7 @@ Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_2__["default"], options);
     return {
       date: "",
       totalPages: 1,
-      currentPage: 1,
-      filters: {
-        name: {
-          value: "",
-          keys: ["name"]
-        }
-      }
+      currentPage: 1
     };
   },
   mixins: [(_mixins_dateFacture__WEBPACK_IMPORTED_MODULE_3___default())],
@@ -4880,6 +4872,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "modaldetails",
@@ -4949,6 +4953,26 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39172,32 +39196,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100&family=Manrope:wght@200;600&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\np.mix {font-size: 12px;}\np.mix2 { font-size: 18px;}\np.textf{\n    color:black\n}\n\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails2.vue?vue&type=style&index=0&id=663f1dc6&lang=css&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails2.vue?vue&type=style&index=0&id=663f1dc6&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100&family=Manrope:wght@200;600&display=swap);"]);
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\np.text{\n    color:black\n}\nh3.text{\n    color:black\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\np.mix {\r\n    font-size: 12px;\n}\np.mix2 {\r\n    font-size: 18px;\n}\np.textf {\r\n    color: black;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -60130,36 +60129,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails2.vue?vue&type=style&index=0&id=663f1dc6&lang=css&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails2.vue?vue&type=style&index=0&id=663f1dc6&lang=css& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_modaldetails2_vue_vue_type_style_index_0_id_663f1dc6_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./modaldetails2.vue?vue&type=style&index=0&id=663f1dc6&lang=css& */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails2.vue?vue&type=style&index=0&id=663f1dc6&lang=css&");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_modaldetails2_vue_vue_type_style_index_0_id_663f1dc6_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_modaldetails2_vue_vue_type_style_index_0_id_663f1dc6_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -77025,17 +76994,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _modaldetails2_vue_vue_type_template_id_663f1dc6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modaldetails2.vue?vue&type=template&id=663f1dc6& */ "./resources/js/components/utilities/modaldetails2.vue?vue&type=template&id=663f1dc6&");
 /* harmony import */ var _modaldetails2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modaldetails2.vue?vue&type=script&lang=js& */ "./resources/js/components/utilities/modaldetails2.vue?vue&type=script&lang=js&");
-/* harmony import */ var _modaldetails2_vue_vue_type_style_index_0_id_663f1dc6_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modaldetails2.vue?vue&type=style&index=0&id=663f1dc6&lang=css& */ "./resources/js/components/utilities/modaldetails2.vue?vue&type=style&index=0&id=663f1dc6&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
-;
 
 
 /* normalize component */
-
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _modaldetails2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _modaldetails2_vue_vue_type_template_id_663f1dc6___WEBPACK_IMPORTED_MODULE_0__.render,
   _modaldetails2_vue_vue_type_template_id_663f1dc6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -77334,19 +77301,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_modaldetails_vue_vue_type_style_index_0_id_6171d4e5_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails.vue?vue&type=style&index=0&id=6171d4e5&lang=css&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/utilities/modaldetails2.vue?vue&type=style&index=0&id=663f1dc6&lang=css&":
-/*!**********************************************************************************************************!*\
-  !*** ./resources/js/components/utilities/modaldetails2.vue?vue&type=style&index=0&id=663f1dc6&lang=css& ***!
-  \**********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_modaldetails2_vue_vue_type_style_index_0_id_663f1dc6_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./modaldetails2.vue?vue&type=style&index=0&id=663f1dc6&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/utilities/modaldetails2.vue?vue&type=style&index=0&id=663f1dc6&lang=css&");
 
 
 /***/ }),
@@ -77754,9 +77708,7 @@ var render = function () {
                         _vm._v("Nombre"),
                       ]),
                       _vm._v(" "),
-                      _c("th", [_vm._v("Teléfono")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Ciudad")]),
+                      _c("th", [_vm._v("Tel")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("Op")]),
                     ],
@@ -78260,11 +78212,9 @@ var render = function () {
           { staticClass: "table-responsive" },
           [
             _c("VTable", {
-              staticClass:
-                "table table-striped table-borderless table-dark mt-3",
+              staticClass: "table table-striped table-borderless mt-3",
               attrs: {
                 data: _vm.factures,
-                filters: _vm.filters,
                 "page-size": 5,
                 currentPage: _vm.currentPage,
               },
@@ -78287,6 +78237,9 @@ var render = function () {
                       return [
                         _c(
                           "tr",
+                          {
+                            staticStyle: { color: "#fff", background: "black" },
+                          },
                           [
                             _c("VTh", { attrs: { sortKey: "nit" } }, [
                               _vm._v("Nit"),
@@ -78364,7 +78317,7 @@ var render = function () {
                 ],
                 null,
                 false,
-                1056532737
+                2460051141
               ),
             }),
           ],
@@ -81078,7 +81031,7 @@ var render = function () {
         _c(
           "div",
           {
-            staticClass: "modal-dialog ",
+            staticClass: "modal-dialog",
             staticStyle: { width: "300px" },
             attrs: { role: "document" },
           },
@@ -81097,14 +81050,14 @@ var render = function () {
                           _vm._v(_vm._s(_vm.direction)),
                           _c("br"),
                           _vm._v(
-                            "\n                           nit." +
+                            "\n                                    nit." +
                               _vm._s(_vm.nit)
                           ),
                           _c("br"),
                           _vm._v(
-                            "\n                           " +
+                            "\n                                    " +
                               _vm._s(_vm.phone) +
-                              "\n\n                            "
+                              "\n                                "
                           ),
                         ]),
                       ]),
@@ -81113,7 +81066,7 @@ var render = function () {
                     _vm._l(_vm.facUnique, function (item, index) {
                       return _c("div", { key: "g" + index }, [
                         _vm._v(
-                          "\n                        ***************************************\n                            "
+                          "\n                            ***************************************\n                            "
                         ),
                         _c("p", { staticClass: "textf" }, [
                           _c("i", { staticClass: "fi fi-male" }),
@@ -81140,7 +81093,7 @@ var render = function () {
                     _vm._v(" "),
                     _c("div", { staticClass: "text-center" }, [
                       _vm._v(
-                        "\n                        ---------------------------------------------------------\n                        "
+                        "\n                            ---------------------------------------------------------\n                        "
                       ),
                     ]),
                     _vm._v(" "),
@@ -81153,10 +81106,14 @@ var render = function () {
                             ? _c("div", [
                                 _c("p", { staticClass: "mix textf" }, [
                                   _c("strong", [_vm._v("Nota:")]),
-                                  _vm._v(" " + _vm._s(item.note)),
+                                  _vm._v(
+                                    " " +
+                                      _vm._s(item.note) +
+                                      "\n                                "
+                                  ),
                                 ]),
                                 _vm._v(
-                                  "\n\n                        ---------------------------------------------------------\n                       \n                        "
+                                  "\n\n                                ---------------------------------------------------------\n                            "
                                 ),
                               ])
                             : _vm._e(),
@@ -81214,13 +81171,13 @@ var render = function () {
                       ])
                     }),
                     _vm._v(
-                      "\n                        ---------------------------------------------------------\n                    "
+                      "\n                        ---------------------------------------------------------\n                        "
                     ),
                     _c("center", [
                       _c("div", [
                         _c("p", { staticClass: "text-center mix textf" }, [
                           _vm._v(
-                            "\n                                Verificar el estado del producto o pedido, los cambios se hacen con previo aviso dentro de las 24 hrs despúes de la compra.\n                                \n                            "
+                            "\n                                    Verificar el estado del producto o\n                                    pedido, los cambios se hacen con previo\n                                    aviso dentro de las 24 hrs despúes de la\n                                    compra.\n                                "
                           ),
                         ]),
                       ]),
@@ -81233,8 +81190,7 @@ var render = function () {
                         attrs: {
                           height: "80",
                           width: "80",
-                          src: "data:image/png;base64,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",
-                          alt: "",
+                          src: "/img/whatsapp.png",
                         },
                       }),
                       _vm._v(" "),
@@ -81262,7 +81218,7 @@ var render = function () {
                     },
                   },
                   [
-                    _vm._v("\n                            Factura "),
+                    _vm._v("\n                        Factura "),
                     _c("i", { staticClass: "fi fi-table-2" }),
                   ]
                 ),
@@ -81327,17 +81283,14 @@ var render = function () {
       [
         _c(
           "div",
-          {
-            staticClass: "modal-dialog modal-lg ",
-            attrs: { role: "document" },
-          },
+          { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", [
                   _c("img", {
                     ref: "outputImage",
-                    staticClass: "img-fluid rounded mx-auto d-block",
+                    staticClass: "img-fluid",
                     attrs: { src: _vm.output },
                   }),
                 ]),
@@ -81352,18 +81305,23 @@ var render = function () {
                       ]),
                       _vm._v(" "),
                       _c("p", { staticClass: "text" }, [
-                        _vm._v("Nit."),
+                        _vm._v("\n                                Nit."),
                         _c("strong", [_vm._v(_vm._s(_vm.nit))]),
                       ]),
                       _vm._v(" "),
                       _c("p", { staticClass: "text" }, [
-                        _vm._v(_vm._s(_vm.direction)),
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(_vm.direction)
+                        ),
                         _c("br"),
-                        _vm._v(_vm._s(_vm.phone)),
+                        _vm._v(
+                          _vm._s(_vm.phone) + "\n                            "
+                        ),
                       ]),
                     ]),
                     _vm._v(" "),
-                    _c("table", { staticClass: "table table-dark" }, [
+                    _c("table", { staticClass: "table" }, [
                       _vm._m(0),
                       _vm._v(" "),
                       _c(
@@ -81385,50 +81343,47 @@ var render = function () {
                       ),
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "table",
-                      {
-                        staticClass:
-                          "table table-borderless table-dark table-striped",
-                      },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "tbody",
-                          _vm._l(_vm.details, function (item, index) {
-                            return _c("tr", { key: "d" + index }, [
-                              _c("th", { attrs: { scope: "row" } }, [
-                                _vm._v(_vm._s(item.name)),
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  "$" + _vm._s(_vm._f("currency")(item.price))
-                                ),
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.quantity))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  "$" + _vm._s(_vm._f("currency")(item.sub))
-                                ),
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  "$" + _vm._s(_vm._f("currency")(item.disc))
-                                ),
-                              ]),
-                            ])
-                          }),
-                          0
-                        ),
-                      ]
-                    ),
+                    _c("div", { staticClass: "table-responsive" }, [
+                      _c(
+                        "table",
+                        { staticClass: "table table-borderless table-striped" },
+                        [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(_vm.details, function (item, index) {
+                              return _c("tr", { key: "d" + index }, [
+                                _c("th", { attrs: { scope: "row" } }, [
+                                  _vm._v(_vm._s(item.name)),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(_vm._f("currency")(item.price)) +
+                                      "\n                                        "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.quantity))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(_vm._f("currency")(item.sub))),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(_vm._f("currency")(item.disc))),
+                                ]),
+                              ])
+                            }),
+                            0
+                          ),
+                        ]
+                      ),
+                    ]),
                     _vm._v(" "),
-                    _c("table", { staticClass: "table table-dark" }, [
+                    _c("table", { staticClass: "table" }, [
                       _vm._m(2),
                       _vm._v(" "),
                       _c(
@@ -81436,20 +81391,18 @@ var render = function () {
                         _vm._l(_vm.facUnique, function (item, index) {
                           return _c("tr", { key: "g2" + index }, [
                             _c("th", [
-                              _vm._v(
-                                "$" + _vm._s(_vm._f("currency")(item.sub))
-                              ),
+                              _vm._v(_vm._s(_vm._f("currency")(item.sub))),
                             ]),
                             _vm._v(" "),
                             _c("td", [
-                              _vm._v(
-                                "$" + _vm._s(_vm._f("currency")(item.disc))
-                              ),
+                              _vm._v(_vm._s(_vm._f("currency")(item.disc))),
                             ]),
                             _vm._v(" "),
                             _c("td", { attrs: { scope: "row" } }, [
                               _vm._v(
-                                "$" + _vm._s(_vm._f("currency")(item.tot))
+                                "\n                                        " +
+                                  _vm._s(_vm._f("currency")(item.tot)) +
+                                  "\n                                    "
                               ),
                             ]),
                             _vm._v(" "),
@@ -81460,17 +81413,23 @@ var render = function () {
                       ),
                     ]),
                     _vm._v(" "),
-                    _c("center", [
-                      _c("div", [
-                        _c("p", { staticClass: "text-center mix textf" }, [
-                          _vm._v(
-                            "\n                                    Verificar el estado del producto o pedido, los cambios se hacen con previo aviso dentro de las 24 hrs despúes de la compra.\n                                    \n                                "
-                          ),
-                        ]),
-                      ]),
-                    ]),
+                    _vm._l(_vm.facUnique, function (item, index) {
+                      return _c(
+                        "div",
+                        { key: "cn" + index, staticClass: "text-justify" },
+                        [
+                          _c("p", [
+                            _c("strong", [_vm._v("Observación: ")]),
+                            _vm._v(
+                              _vm._s(item.note) +
+                                "\n                            "
+                            ),
+                          ]),
+                        ]
+                      )
+                    }),
                   ],
-                  1
+                  2
                 ),
               ]),
               _vm._v(" "),
@@ -81487,7 +81446,7 @@ var render = function () {
                     },
                   },
                   [
-                    _vm._v("\n                          Imprimir "),
+                    _vm._v("\n                        Imprimir "),
                     _c("i", { staticClass: "fi fi-table-2" }),
                   ]
                 ),
@@ -81510,7 +81469,6 @@ var render = function () {
                 ),
                 _vm._v(" "),
                 _c("br"),
-                _c("br"),
               ]),
             ]),
           ]
@@ -81524,7 +81482,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
@@ -81558,7 +81516,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Sub.")]),
         _vm._v(" "),

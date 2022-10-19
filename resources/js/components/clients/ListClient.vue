@@ -21,8 +21,7 @@
                     <tr>
                         <VTh sortKey="nit">Nit</VTh>
                         <VTh sortKey="fullname">Nombre</VTh>
-                        <th>Teléfono</th>
-                        <th>Ciudad</th>
+                        <th>Tel</th>
                         <th>Op</th>
                     </tr>
                 </template>
