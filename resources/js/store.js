@@ -5,6 +5,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         users: [],
+        roles: [],
+        permissions: [],
         products: [],
         clients: [],
         factures: [],
@@ -13,6 +15,8 @@ export default new Vuex.Store({
         facUnique: [],
         status: false,
         urlusers: "/api/users",
+        urlroles: "/api/roles",
+        urlpermissions: "/api/permissions",
         urlproducts: "/api/products",
         urlclients: "/api/clients",
         urlfactures: "/api/factures",
@@ -23,6 +27,12 @@ export default new Vuex.Store({
     mutations: {
         Usermutations(state, item) {
             state.users = item;
+        },
+        Rolemutations(state, item) {
+            state.roles = item;
+        },
+        Permissionmutations(state, item) {
+            state.permissions = item;
         },
         Productmutations(state, item) {
             state.products = item;
@@ -53,6 +63,25 @@ export default new Vuex.Store({
                 console.log(error);
             }
         },
+        async Roleactions({ commit, state }) {
+            try {
+                let response = await axios.get(state.urlroles);
+                commit("Rolemutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async Permissionactions({ commit, state }) {
+            try {
+                let response = await axios.get(state.urlpermissions);
+                commit("Permissionmutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
         async Productactions({ commit, state }) {
             try {
                 let response = await axios.get(state.urlproducts);

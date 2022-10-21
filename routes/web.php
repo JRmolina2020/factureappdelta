@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\PermissionController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ClientController;
 use App\Http\Controllers\API\FactureController;
@@ -25,6 +27,12 @@ Route::get('/home', function () {
 Route::get('/usuarios', function () {
     return view('users.index');
 });
+Route::get('/roles', function () {
+    return view('roles.index');
+});
+Route::get('/permisos', function () {
+    return view('permissions.index');
+});
 Route::get('/perfil', function () {
     return view('users.profile');
 });
@@ -47,6 +55,18 @@ Route::put('/users/{id}', [UserController::class, 'update']);
 Route::put('/users/available/{id}', [UserController::class, 'available']);
 Route::put('/users/locked/{id}', [UserController::class, 'locked']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+//end
+//roles
+Route::get('/roles', [RoleController::class, 'index']);
+Route::post('roles', [RoleController::class, 'store']);
+Route::put('/roles/{id}', [RoleController::class, 'update']);
+Route::delete('/roles/{id}', [RoleController::class, 'destroy']);
+//end
+//permissions
+Route::get('/permissions', [PermissionController::class, 'index']);
+Route::post('permissions', [PermissionController::class, 'store']);
+Route::put('/permissions/{id}', [PermissionController::class, 'update']);
+Route::delete('/permissions/{id}', [PermissionController::class, 'destroy']);
 //end
 //products
 Route::get('/products', [ProductController::class, 'index']);

@@ -50,6 +50,11 @@ Vue.component(
     "facture_example",
     require("./components/factures/FactureExample.vue").default
 );
+Vue.component("Role", require("./components/roles/RoleExample.vue").default);
+Vue.component(
+    "permission_example",
+    require("./components/permissions/PermissionExample.vue").default
+);
 
 import auth from "./mixins/Auth.js";
 Vue.mixin(auth);
