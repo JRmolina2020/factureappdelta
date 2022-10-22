@@ -57,6 +57,7 @@
                                 <i class="fi fi-eye"></i>
                             </button>
                             <button
+                                v-can="'eliminar producto'"
                                 type="button"
                                 @click="destroy(row.id)"
                                 class="btn bg-danger btn-sm"

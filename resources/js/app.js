@@ -25,8 +25,14 @@ import es from "vee-validate/dist/locale/es";
 import VeeValidate, { Validator } from "vee-validate";
 Vue.use(VeeValidate);
 Validator.localize("es", es);
-//end validate
-
+//end
+Vue.directive("can", function (el, binding, vnode) {
+    if (Permissions.indexOf(binding.value) !== -1) {
+        return (vnode.elm.hidden = false);
+    } else {
+        return (vnode.elm.hidden = true);
+    }
+});
 //end utils
 //components
 Vue.component(

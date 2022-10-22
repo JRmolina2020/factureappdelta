@@ -5,16 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="user" content="{{Auth::user()}}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <script>
+        <script type="text/javascript">
           @auth
-           window.Laravel = {
-               jsPermissions: {!! auth()->check()?auth()->user()->jsPermissions():null !!}
-           }
-            @else
-           window.Laravel = [];
-           @endauth
-         </script> 
-    
+             window.Permissions = {!! json_encode(Auth::user()->allPermissions, true) !!};
+          @else
+             window.Permissions = [];
+          @endauth
+       </script>
         <title>app</title>
         <link rel="stylesheet" href="{{ asset('css/lte.min.css') }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontisto@v3.0.4/css/fontisto/fontisto.min.css"></i>

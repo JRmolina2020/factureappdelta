@@ -4104,6 +4104,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5986,8 +5987,15 @@ Vue.use(vue_currency_filter__WEBPACK_IMPORTED_MODULE_6__["default"]); //end
 
 
 Vue.use(vee_validate__WEBPACK_IMPORTED_MODULE_8__["default"]);
-vee_validate__WEBPACK_IMPORTED_MODULE_8__.Validator.localize("es", (vee_validate_dist_locale_es__WEBPACK_IMPORTED_MODULE_7___default())); //end validate
-//end utils
+vee_validate__WEBPACK_IMPORTED_MODULE_8__.Validator.localize("es", (vee_validate_dist_locale_es__WEBPACK_IMPORTED_MODULE_7___default())); //end
+
+Vue.directive("can", function (el, binding, vnode) {
+  if (Permissions.indexOf(binding.value) !== -1) {
+    return vnode.elm.hidden = false;
+  } else {
+    return vnode.elm.hidden = true;
+  }
+}); //end utils
 //components
 
 Vue.component("user_example", (__webpack_require__(/*! ./components/users/UserExample.vue */ "./resources/js/components/users/UserExample.vue")["default"]));
@@ -81466,6 +81474,14 @@ var render = function () {
                       _c(
                         "button",
                         {
+                          directives: [
+                            {
+                              name: "can",
+                              rawName: "v-can",
+                              value: "eliminar producto",
+                              expression: "'eliminar producto'",
+                            },
+                          ],
                           staticClass: "btn bg-danger btn-sm",
                           attrs: { type: "button" },
                           on: {
