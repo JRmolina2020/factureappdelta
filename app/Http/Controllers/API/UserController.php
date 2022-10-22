@@ -12,9 +12,9 @@ class UserController extends Controller
     // all posts
     public function index(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
-        $users = DB::table('users')->select('id', 'name','email','status')->orderBy('id', 'desc')->get();
-        return $users;
+    
+        $users = User::with('roles:id,name')->orderBy('id', 'desc')->get();
+        return response()->json($users);
     }
  
     // add post
@@ -27,6 +27,7 @@ class UserController extends Controller
             'password'=> bcrypt('password')
 
         ]);
+        $user->assignRole($request['rol']);
         return response()->json(['message' => 'El usuario ha sido creado'], 200);
     }
 
@@ -38,6 +39,7 @@ class UserController extends Controller
             'name' => request('name'),
             'email' => request('email'),
         ])->save();
+        $user->syncRoles($request['rol']);
         return response()->json(['message' => 'El usuario ha sido modificado'], 201);
     }
     public function available($id)

@@ -21,6 +21,7 @@
                     <tr>
                         <VTh sortKey="name">Nombre</VTh>
                         <th>Correo</th>
+                        <th>Rol</th>
                         <th>Estado</th>
                         <th>Op</th>
                     </tr>
@@ -29,6 +30,7 @@
                     <tr v-for="row in rows" :key="row.id">
                         <td>{{ row.name }}</td>
                         <td>{{ row.email }}</td>
+                        <td>{{ row.roles[0].name }}</td>
                         <td>
                             <button
                                 type="button"

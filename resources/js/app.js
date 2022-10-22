@@ -26,6 +26,7 @@ import VeeValidate, { Validator } from "vee-validate";
 Vue.use(VeeValidate);
 Validator.localize("es", es);
 //end validate
+
 //end utils
 //components
 Vue.component(

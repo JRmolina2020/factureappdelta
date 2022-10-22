@@ -8,6 +8,7 @@
                 <button
                     type="button"
                     class="close"
+                    @click="clearrolesitem"
                     data-dismiss="modal"
                     aria-label="Close"
                 >
@@ -22,7 +23,7 @@
                     onKeyPress="if(event.keyCode == 13) event.returnValue = false;"
                 >
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label for>Nombre</label>
                                 <input
@@ -46,6 +47,37 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div v-if="form.id">
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Permiso</th>
+                                    <th>
+                                        <i class="fi fi-wink"></i>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    v-for="(item, index) in permissions"
+                                    :key="index"
+                                >
+                                    <td>{{ item.name }}</td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    v-model="form.permissions"
+                                                    :value="item.name"
+                                                />
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <button
@@ -96,33 +128,52 @@ export default {
     components: {
         ModalResource,
     },
-    computed: {
-        ...mapState(["urlroles"]),
-    },
+
     data() {
         return {
             actions: "Roleactions",
             submitted: true,
             send: 1,
             price_default: 1000,
+            rolesitem: [],
             form: {
                 id: null,
                 name: "",
+                permissions: [],
             },
         };
     },
     mixins: [add],
+    computed: {
+        ...mapState(["urlroles", "permissions"]),
+    },
+    created() {
+        this.getlist();
+    },
     methods: {
+        getlist() {
+            this.$store.dispatch("Permissionactions");
+        },
         show(row) {
             this.form.id = row.id;
             this.form.name = row.name;
+            row.permissions.forEach((element) => {
+                this.rolesitem.push(element.name);
+            });
+            this.form.permissions = this.rolesitem;
             $("#model").modal("show");
             this.send = true;
+        },
+        clearrolesitem() {
+            this.rolesitem = [];
+            $("#model").modal("hide");
         },
         clear() {
             this.form.id = null;
             this.form.name = null;
             this.$validator.reset();
+            this.rolesitem = [];
+            this.form.permissions = [];
             this.send = true;
         },
     },

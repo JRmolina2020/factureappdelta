@@ -22,7 +22,7 @@
                     onKeyPress="if(event.keyCode == 13) event.returnValue = false;"
                 >
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="form-group">
                                 <label for>Nombre</label>
                                 <input
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="form-group">
                                 <label for>Email</label>
                                 <input
@@ -65,6 +65,37 @@
                                     class="invalid-feedback"
                                 >
                                     {{ errors.first("email") }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div>
+                                <div class="form-group">
+                                    <label>Rol</label>
+                                    <select
+                                        v-model="form.rol"
+                                        v-validate="'required'"
+                                        class="form-control form-control-sm"
+                                        name="rol"
+                                        :class="{
+                                            'is-invalid':
+                                                submitted && errors.has('rol'),
+                                        }"
+                                    >
+                                        <option
+                                            v-for="(item, index) in roles"
+                                            :value="item.name"
+                                            :key="index"
+                                        >
+                                            {{ item.name }}
+                                        </option>
+                                    </select>
+                                    <div
+                                        v-if="submitted && errors.has('rol')"
+                                        class="invalid-feedback"
+                                    >
+                                        {{ errors.first("rol") }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -117,10 +148,7 @@ export default {
     components: {
         ModalResource,
     },
-    mounted() {},
-    computed: {
-        ...mapState(["urlusers"]),
-    },
+
     data() {
         return {
             actions: "Useractions",
@@ -130,15 +158,26 @@ export default {
                 id: null,
                 name: "",
                 email: "",
+                rol: [],
             },
         };
     },
     mixins: [add],
+    created() {
+        this.getlist();
+    },
+    computed: {
+        ...mapState(["urlusers", "roles"]),
+    },
     methods: {
+        getlist() {
+            this.$store.dispatch("Roleactions");
+        },
         show(row) {
             this.form.id = row.id;
             this.form.name = row.name;
             this.form.email = row.email;
+            this.form.rol = row.roles[0].name;
             $("#model").modal("show");
             this.send = true;
         },
@@ -146,6 +185,7 @@ export default {
             this.form.id = null;
             this.form.name = null;
             this.form.email = null;
+            this.form.rol = null;
             this.$validator.reset();
             this.send = true;
         },

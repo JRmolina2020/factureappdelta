@@ -30,7 +30,7 @@ class RoleController extends Controller
         $roles->fill([
             'name' => request('name'),
         ])->save();
-       // $roles->syncPermissions($request['permissions']);
+       $roles->syncPermissions($request['permissions']);
         return response()->json(['message' => 'El rol ha sido modificado'], 201);
     }
     public function destroy(Request $request, $id)

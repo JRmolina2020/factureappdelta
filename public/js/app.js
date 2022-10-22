@@ -4747,6 +4747,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4758,31 +4790,51 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     ModalResource: _utilities_modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)(["urlroles"])),
   data: function data() {
     return {
       actions: "Roleactions",
       submitted: true,
       send: 1,
       price_default: 1000,
+      rolesitem: [],
       form: {
         id: null,
-        name: ""
+        name: "",
+        permissions: []
       }
     };
   },
   mixins: [(_mixins_add__WEBPACK_IMPORTED_MODULE_1___default())],
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)(["urlroles", "permissions"])),
+  created: function created() {
+    this.getlist();
+  },
   methods: {
+    getlist: function getlist() {
+      this.$store.dispatch("Permissionactions");
+    },
     show: function show(row) {
+      var _this = this;
+
       this.form.id = row.id;
       this.form.name = row.name;
+      row.permissions.forEach(function (element) {
+        _this.rolesitem.push(element.name);
+      });
+      this.form.permissions = this.rolesitem;
       $("#model").modal("show");
       this.send = true;
+    },
+    clearrolesitem: function clearrolesitem() {
+      this.rolesitem = [];
+      $("#model").modal("hide");
     },
     clear: function clear() {
       this.form.id = null;
       this.form.name = null;
       this.$validator.reset();
+      this.rolesitem = [];
+      this.form.permissions = [];
       this.send = true;
     }
   }
@@ -4816,6 +4868,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -5269,6 +5323,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5280,8 +5365,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     ModalResource: _utilities_modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mounted: function mounted() {},
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)(["urlusers"])),
   data: function data() {
     return {
       actions: "Useractions",
@@ -5290,16 +5373,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       form: {
         id: null,
         name: "",
-        email: ""
+        email: "",
+        rol: []
       }
     };
   },
   mixins: [(_mixins_add__WEBPACK_IMPORTED_MODULE_1___default())],
+  created: function created() {
+    this.getlist();
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)(["urlusers", "roles"])),
   methods: {
+    getlist: function getlist() {
+      this.$store.dispatch("Roleactions");
+    },
     show: function show(row) {
       this.form.id = row.id;
       this.form.name = row.name;
       this.form.email = row.email;
+      this.form.rol = row.roles[0].name;
       $("#model").modal("show");
       this.send = true;
     },
@@ -5307,6 +5399,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.id = null;
       this.form.name = null;
       this.form.email = null;
+      this.form.rol = null;
       this.$validator.reset();
       this.send = true;
     }
@@ -82082,6 +82175,7 @@ var render = function () {
                   "data-dismiss": "modal",
                   "aria-label": "Close",
                 },
+                on: { click: _vm.clearrolesitem },
               },
               [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
             ),
@@ -82112,7 +82206,7 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-6" }, [
+                  _c("div", { staticClass: "col-12" }, [
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { attrs: { for: "" } }, [_vm._v("Nombre")]),
                       _vm._v(" "),
@@ -82165,6 +82259,101 @@ var render = function () {
                     ]),
                   ]),
                 ]),
+                _vm._v(" "),
+                _vm.form.id
+                  ? _c("div", [
+                      _c(
+                        "table",
+                        { staticClass: "table table-dark table-striped" },
+                        [
+                          _c("thead", [
+                            _c("tr", [
+                              _c("th", [_vm._v("Permiso")]),
+                              _vm._v(" "),
+                              _c("th", [
+                                _c("i", { staticClass: "fi fi-wink" }),
+                              ]),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(_vm.permissions, function (item, index) {
+                              return _c("tr", { key: index }, [
+                                _c("td", [_vm._v(_vm._s(item.name))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c("div", { staticClass: "checkbox" }, [
+                                    _c("label", [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.permissions,
+                                            expression: "form.permissions",
+                                          },
+                                        ],
+                                        attrs: { type: "checkbox" },
+                                        domProps: {
+                                          value: item.name,
+                                          checked: Array.isArray(
+                                            _vm.form.permissions
+                                          )
+                                            ? _vm._i(
+                                                _vm.form.permissions,
+                                                item.name
+                                              ) > -1
+                                            : _vm.form.permissions,
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            var $$a = _vm.form.permissions,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = item.name,
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "permissions",
+                                                    $$a.concat([$$v])
+                                                  )
+                                              } else {
+                                                $$i > -1 &&
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "permissions",
+                                                    $$a
+                                                      .slice(0, $$i)
+                                                      .concat(
+                                                        $$a.slice($$i + 1)
+                                                      )
+                                                  )
+                                              }
+                                            } else {
+                                              _vm.$set(
+                                                _vm.form,
+                                                "permissions",
+                                                $$c
+                                              )
+                                            }
+                                          },
+                                        },
+                                      }),
+                                    ]),
+                                  ]),
+                                ]),
+                              ])
+                            }),
+                            0
+                          ),
+                        ]
+                      ),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 !_vm.send
                   ? _c(
@@ -82300,6 +82489,8 @@ var render = function () {
                       _vm._v(" "),
                       _c("th", [_vm._v("Correo")]),
                       _vm._v(" "),
+                      _c("th", [_vm._v("Rol")]),
+                      _vm._v(" "),
                       _c("th", [_vm._v("Estado")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("Op")]),
@@ -82319,6 +82510,8 @@ var render = function () {
                     _c("td", [_vm._v(_vm._s(row.name))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(row.email))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(row.roles[0].name))]),
                     _vm._v(" "),
                     _c("td", [
                       _c(
@@ -82665,7 +82858,7 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-lg-6" }, [
+                  _c("div", { staticClass: "col-lg-4" }, [
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { attrs: { for: "" } }, [_vm._v("Nombre")]),
                       _vm._v(" "),
@@ -82717,7 +82910,7 @@ var render = function () {
                     ]),
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-lg-6" }, [
+                  _c("div", { staticClass: "col-lg-4" }, [
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { attrs: { for: "" } }, [_vm._v("Email")]),
                       _vm._v(" "),
@@ -82766,6 +82959,83 @@ var render = function () {
                             ),
                           ])
                         : _vm._e(),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-lg-4" }, [
+                    _c("div", [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", [_vm._v("Rol")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.rol,
+                                expression: "form.rol",
+                              },
+                              {
+                                name: "validate",
+                                rawName: "v-validate",
+                                value: "required",
+                                expression: "'required'",
+                              },
+                            ],
+                            staticClass: "form-control form-control-sm",
+                            class: {
+                              "is-invalid":
+                                _vm.submitted && _vm.errors.has("rol"),
+                            },
+                            attrs: { name: "rol" },
+                            on: {
+                              change: function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.form,
+                                  "rol",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              },
+                            },
+                          },
+                          _vm._l(_vm.roles, function (item, index) {
+                            return _c(
+                              "option",
+                              { key: index, domProps: { value: item.name } },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(item.name) +
+                                    "\n                                    "
+                                ),
+                              ]
+                            )
+                          }),
+                          0
+                        ),
+                        _vm._v(" "),
+                        _vm.submitted && _vm.errors.has("rol")
+                          ? _c("div", { staticClass: "invalid-feedback" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(_vm.errors.first("rol")) +
+                                  "\n                                "
+                              ),
+                            ])
+                          : _vm._e(),
+                      ]),
                     ]),
                   ]),
                 ]),

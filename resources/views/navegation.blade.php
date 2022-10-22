@@ -38,6 +38,7 @@
             <i class="right fi fi-more-v-a"></i>
           </p>
         </a>
+        @can('Agregar usuarios')
         <ul class="nav nav-treeview">
           <li class="nav-item">
               <a href="{{ url('usuarios') }}" class="nav-link">
@@ -48,6 +49,7 @@
               </a>
             </li>
         </ul>
+        @endcan
         <ul class="nav nav-treeview">
           <li class="nav-item">
               <a href="{{ url('roles') }}" class="nav-link">
