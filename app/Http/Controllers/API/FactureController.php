@@ -165,7 +165,7 @@ public function pos_facture($idf){
     $printer->barcode($id,Printer::BARCODE_CODE39);
     $printer->setJustification(Printer::JUSTIFY_LEFT);
     $printer -> cut();
-   
+    $printer -> close();
 }
   public function destroy(Request $request, $id)
   {   if (!$request->ajax()) return redirect('/');
