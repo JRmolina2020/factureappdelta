@@ -105,11 +105,11 @@ public function type_sale (Request $request,$date){
     )->where('date_facture',$date)->get();
     return $facture_tot;
 }
-public function pos_facture(){
+public function pos_facture($idf){
     $connector = new WindowsPrintConnector("POS58");
     $printer = new Printer($connector);
     //DATA
-    $facture=Facture::find(16);
+    $facture=Facture::find($idf);
     $client = Client::where('id', $facture->client_id)->first();
     $income = DB::table('facture_details as fd')
     ->join('products as p', 'p.id', '=', 'fd.product_id')
@@ -124,7 +124,7 @@ public function pos_facture(){
         'fd.disc',
         'fd.tot'
     )
-    ->where('f.id', '=', 16)
+    ->where('f.id', '=', $idf)
     ->orderBy('p.name', 'ASC')->get();
     //END
     $printer->setJustification(Printer::JUSTIFY_CENTER);
