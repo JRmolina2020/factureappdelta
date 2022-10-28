@@ -6,10 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Facture;
 use App\Models\FactureDetail;
+use App\Models\Client;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
-
+use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\EscposImage;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 class FactureController extends Controller
 {
 
@@ -100,6 +104,68 @@ public function type_sale (Request $request,$date){
     DB::raw('SUM(other) as other'),
     )->where('date_facture',$date)->get();
     return $facture_tot;
+}
+public function pos_facture(){
+    $connector = new WindowsPrintConnector("POS58");
+    $printer = new Printer($connector);
+    //DATA
+    $facture=Facture::find(16);
+    $client = Client::where('id', $facture->client_id)->first();
+    $income = DB::table('facture_details as fd')
+    ->join('products as p', 'p.id', '=', 'fd.product_id')
+    ->join('factures as f', 'f.id', '=', 'fd.facture_id')
+    ->select(
+        'f.id',
+        'fd.id AS idd',
+        'p.name', 
+        'fd.quantity',
+        'fd.price',
+        'fd.sub',
+        'fd.disc',
+        'fd.tot'
+    )
+    ->where('f.id', '=', 16)
+    ->orderBy('p.name', 'ASC')->get();
+    //END
+    $printer->setJustification(Printer::JUSTIFY_CENTER);
+    $printer->setTextSize(2,2);
+    $printer->text(strtoupper('BOLSOSVALLEDUPAR'));
+    $printer->setTextSize(1,1);
+    $id= str_pad($facture->id,7,"0",STR_PAD_LEFT);
+    $printer -> text("Recibo de cotizacion#"."00000".$facture->id."\n");
+    $printer->setJustification(Printer::JUSTIFY_LEFT);
+    $printer -> text("============================\n");
+    $printer->text('fecha:' . Carbon::parse($facture->created_at)->format('d/m/Y h:m:s'). "\n");
+    $printer -> text("============================\n");
+    $printer -> text("CLIENTE:"." ".$client->fullname."\n");
+    $printer -> text($facture->note."\n\n");
+    $printer -> text("============================\n");
+    $printer -> text("PRODUCTOS:\n");
+    $printer -> text("============================\n");
+    $products=json_decode($income);
+    for($i=0;$i<count($products);$i++){
+        $product= new FactureDetail();
+        $name=$product->name=$products[$i]->name;
+        $quantity=$product->quantity=$products[$i]->quantity;
+        $price=$product->price=$products[$i]->price;
+        $sub=$product->sub=$products[$i]->sub;
+        $printer -> text($quantity."X"." ".$name."*".number_format($price,2). "\n");
+        $printer -> text(number_format($sub,2). "\n\n");
+       
+    } 
+    $printer -> text("*****************************\n");
+    $printer -> text("SUB:"." ".number_format($facture->sub,2)."\n");
+    $printer -> text("DES:"." ".number_format($facture->disc,2)."\n");
+    $printer -> text("TOT:"." ".number_format($facture->tot,2)."\n");
+    $printer -> text("*****************************\n\n");
+    $printer -> text("Gracias por tu compra, recuerda verificar tus productos o pedido, los cambios se realizan antes de las 24hrs de la compra."."\n\n");
+    $printer->setJustification(Printer::JUSTIFY_CENTER);
+    $printer->selectPrintMode();
+    $printer->setBarcodeHeight(80);
+    $printer->barcode($id,Printer::BARCODE_CODE39);
+    $printer->setJustification(Printer::JUSTIFY_LEFT);
+    $printer -> cut();
+    $printer -> close();
 }
   public function destroy(Request $request, $id)
   {   if (!$request->ajax()) return redirect('/');

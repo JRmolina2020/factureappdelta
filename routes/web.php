@@ -86,6 +86,7 @@ Route::get('/factures/{date}', [FactureController::class, 'index']);
 Route::get('/factureUnique/{id}', [FactureController::class, 'factureUnique'])->where('id', '[0-9]+');
 Route::get('/type_sale/{date}', [FactureController::class, 'type_sale']);
 Route::delete('/factures/{id}', [FactureController::class, 'destroy'])->where('id', '[0-9]+');
+Route::get('/pos', [FactureController::class, 'pos_facture']);
 //
 //facture details
 Route::get('/details/{id}', [FactureDetailController::class, 'index'])->where('id', '[0-9]+');
