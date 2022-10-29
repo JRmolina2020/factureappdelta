@@ -67,13 +67,7 @@
                         <td>{{ row.efecty | currency }}</td>
                         <td>{{ row.other | currency }}</td>
                         <td>
-                            <button
-                                type="button"
-                                @click="facpos(row.id)"
-                                class="btn bg-danger btn-sm"
-                            >
-                                <i class="fi fi-file-1"></i>
-                            </button>
+                            <Modal-Ticket v-bind:cod="row.id"></Modal-Ticket>
                         </td>
                         <td>
                             <Modal-Details2
@@ -131,6 +125,7 @@
 <script>
 import { mapState } from "vuex";
 import ModalDetails2 from "../utilities/modaldetails2";
+import ModalTicket from "../utilities/modalticket";
 import VueHtmlToPaper from "vue-html-to-paper";
 
 const options = {
@@ -156,6 +151,7 @@ export default {
     mixins: [MgetList],
     components: {
         ModalDetails2,
+        ModalTicket,
     },
     computed: {
         ...mapState([
@@ -176,14 +172,7 @@ export default {
             this.$store.dispatch("Factureactions", date);
             this.$store.dispatch("TypeSaleactions", date);
         },
-        async facpos(id) {
-            try {
-                let urlticket = "http://127.0.0.1:8000/api/pos";
-                let response = await axios.get(`${urlticket}/${id}`);
-            } catch (error) {
-                console.log(error);
-            }
-        },
+
         async destroy(id) {
             let url = this.urlfactures + "/" + id;
             let response = await axios.delete(url);
