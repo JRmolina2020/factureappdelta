@@ -45,9 +45,7 @@ wwww
                         item.price | currency
                     }}<br />
                     ${{ item.sub | currency }}<br />
-                    .......................................
                 </p>
-
                 ********************
                 <div v-for="(item, index) in facUnique" :key="'f' + index">
                     <p class="bodyText">

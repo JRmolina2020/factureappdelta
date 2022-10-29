@@ -5828,8 +5828,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -83590,12 +83588,9 @@ var render = function () {
                   "\n                $" + _vm._s(_vm._f("currency")(item.sub))
                 ),
                 _c("br"),
-                _vm._v(
-                  "\n                .......................................\n            "
-                ),
               ])
             }),
-            _vm._v("\n\n            ********************\n            "),
+            _vm._v("\n            ********************\n            "),
             _vm._l(_vm.facUnique, function (item, index) {
               return _c("div", { key: "f" + index }, [
                 _c("p", { staticClass: "bodyText" }, [
