@@ -178,7 +178,7 @@ export default {
         },
         async facpos(id) {
             try {
-                let urlticket = "api/pos";
+                let urlticket = "http://127.0.0.1:8000/api/pos";
                 let response = await axios.get(`${urlticket}/${id}`);
             } catch (error) {
                 console.log(error);

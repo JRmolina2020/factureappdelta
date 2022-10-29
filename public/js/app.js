@@ -2684,7 +2684,7 @@ Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_1__["default"], options);
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                urlticket = "api/pos";
+                urlticket = "http://127.0.0.1:8000/api/pos";
                 _context.next = 4;
                 return axios.get("".concat(urlticket, "/").concat(id));
 
