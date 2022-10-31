@@ -5,6 +5,8 @@ wwww
         <button
             type="button"
             class="btn bg-success btn-sm"
+            data-toggle="modal"
+            :data-target="'#model' + cod"
             @click="getlistProducts"
         >
             <i class="fi fi-file-1"></i>
@@ -18,45 +20,77 @@ wwww
             aria-labelledby="modelTitleId"
             aria-hidden="true"
         >
-            <div id="facture">
-                <div>
-                    <br />
+            <div class="modal-dialog" style="width: 300px" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div id="facture">
+                            <div>
+                                <center>
+                                    <br /><br />
+                                    <h5>
+                                        {{ company
+                                        }}<br />NIT.1003242515-1<br />
+                                        Gina marcela Molina<br />
+                                        Pasaje los paisas local#22
+                                        <br />
+                                        3012074828<br />
+                                        Valledupar-Cesar<br />
+                                    </h5>
+                                </center>
 
-                    <strong class="text-center">{{ company }}</strong>
+                                <p
+                                    id="estilo"
+                                    v-for="(item, index) in facUnique"
+                                    :key="'a' + index"
+                                >
+                                    fecha: {{ item.created_at }}<br />
+                                    fac: #000000{{ item.id }}<br />
+                                    ------------------------------<br />
+                                    {{ item.fullname }}<br />
+                                    {{ item.phone }}<br />
+                                    ------------------------------<br />
+                                    {{ item.note }}
+                                </p>
+                            </div>
+                            <strong>Productos:</strong>
 
-                    <p
-                        id="estilo"
-                        v-for="(item, index) in facUnique"
-                        :key="'a' + index"
-                    >
-                        fecha: {{ item.created_at }}<br />
-                        fac: #000000{{ item.id }}<br />
-                        ------------------------------<br />
-                        {{ item.fullname }}<br />
-                        {{ item.phone }}<br />
-                        ------------------------------<br />
-                        {{ item.note }}
-                    </p>
+                            <p v-for="(item, index) in details" :key="index">
+                                {{ item.quantity }}X {{ item.name }} *{{
+                                    item.price | currency
+                                }}<br />
+                                ${{ item.sub | currency }}<br />
+                            </p>
+                            ********************
+                            <div
+                                v-for="(item, index) in facUnique"
+                                :key="'f' + index"
+                            >
+                                <p class="bodyText">
+                                    <strong>Sub</strong> ${{
+                                        item.sub | currency
+                                    }}<br />
+                                    <strong>Iva%</strong> $ 0.00<br />
+                                    <strong>Desc</strong> ${{
+                                        item.disc | currency
+                                    }}<br />
+                                    <strong>Tot</strong> ${{
+                                        item.tot | currency
+                                    }}<br />
+                                    <strong>Cant:</strong>{{ sumProducts }}
+                                </p>
+                            </div>
+                            ********************
+                            <center>
+                                <h5>
+                                    Gracias por tu compra, los cambios se hacen
+                                    dentro de las 24hrs despúes del pedido
+                                    emitido.
+                                </h5>
+                            </center>
+                        </div>
+                        <button @click="print('facture')">Inprimir</button>
+                    </div>
                 </div>
-                <strong>Productos:</strong>
-
-                <p v-for="(item, index) in details" :key="index">
-                    {{ item.quantity }}X {{ item.name }} *{{
-                        item.price | currency
-                    }}<br />
-                    ${{ item.sub | currency }}<br />
-                </p>
-                ********************
-                <div v-for="(item, index) in facUnique" :key="'f' + index">
-                    <p class="bodyText">
-                        <strong>Sub</strong> ${{ item.sub | currency }}<br />
-                        <strong>Iva%</strong> $ 0.00<br />
-                        <strong>Desc</strong> ${{ item.disc | currency }}<br />
-                        <strong>Tot</strong> ${{ item.tot | currency }}<br />
-                        <strong>Cant:</strong>{{ sumProducts }}
-                    </p>
-                </div>
-                ********************
             </div>
         </div>
     </div>
@@ -90,51 +124,38 @@ export default {
     },
     methods: {
         print(areaID) {
-            var printContent = document.getElementById(areaID);
-            var WinPrint = window.open("", "", "width=900,height=750");
-            WinPrint.document.write(printContent.innerHTML);
-            WinPrint.document.close();
-            WinPrint.focus();
-            WinPrint.print();
-            WinPrint.close();
+            setTimeout(function () {
+                var printContent = document.getElementById(areaID);
+                var WinPrint = window.open("", "", "width=500,height=750");
+                WinPrint.document.write(printContent.innerHTML);
+                WinPrint.document.close();
+                WinPrint.focus();
+                WinPrint.print();
+            }, 300);
         },
         getlistProducts() {
-            Swal.fire({
-                html: "Por favor espera un momento",
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: () => {
-                    Swal.showLoading();
-                    const b = Swal.getHtmlContainer().querySelector("b");
-                    timerInterval = setInterval(() => {
-                        b.textContent = Swal.getTimerLeft();
-                    }, 100);
-                },
-                willClose: () => {
-                    this.$store.dispatch("FactureDetailactions", this.cod);
-                    this.$store.dispatch("FactureUniquections", this.cod);
-                    this.print("facture");
-                },
-            });
+            this.$store.dispatch("FactureDetailactions", this.cod);
+            this.$store.dispatch("FactureUniquections", this.cod);
         },
     },
 };
 </script>
 <style type="text/css">
-<!-- @media screen {
-    p.bodyText {
-        font-family: verdana, arial, sans-serif;
-    }
-}
-
 @media print {
     p.bodyText {
-        font-family: verdana, arial, sans-serif;
+        font-family: georgia, serif;
+        font-size: 14px;
+        color: blue;
+    }
+    @page {
+        margin: 2cm;
     }
 }
-@media screen, print {
+@media screen {
     p.bodyText {
-        font-size: 10pt;
+        font-family: georgia, serif;
+        font-size: 14px;
+        color: blue;
     }
 }
 </style>

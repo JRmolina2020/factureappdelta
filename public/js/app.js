@@ -2635,7 +2635,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -5828,6 +5827,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -5855,36 +5888,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: {
     print: function print(areaID) {
-      var printContent = document.getElementById(areaID);
-      var WinPrint = window.open("", "", "width=900,height=750");
-      WinPrint.document.write(printContent.innerHTML);
-      WinPrint.document.close();
-      WinPrint.focus();
-      WinPrint.print();
-      WinPrint.close();
+      setTimeout(function () {
+        var printContent = document.getElementById(areaID);
+        var WinPrint = window.open("", "", "width=500,height=750");
+        WinPrint.document.write(printContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+      }, 300);
     },
     getlistProducts: function getlistProducts() {
-      var _this = this;
-
-      Swal.fire({
-        html: "Por favor espera un momento",
-        timer: 2000,
-        timerProgressBar: true,
-        didOpen: function didOpen() {
-          Swal.showLoading();
-          var b = Swal.getHtmlContainer().querySelector("b");
-          timerInterval = setInterval(function () {
-            b.textContent = Swal.getTimerLeft();
-          }, 100);
-        },
-        willClose: function willClose() {
-          _this.$store.dispatch("FactureDetailactions", _this.cod);
-
-          _this.$store.dispatch("FactureUniquections", _this.cod);
-
-          _this.print("facture");
-        }
-      });
+      this.$store.dispatch("FactureDetailactions", this.cod);
+      this.$store.dispatch("FactureUniquections", this.cod);
     }
   }
 });
@@ -39995,7 +40010,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n<!-- @media screen {\np.bodyText {\r\n        font-family: verdana, arial, sans-serif;\n}\n}\n@media print {\np.bodyText {\r\n        font-family: verdana, arial, sans-serif;\n}\n}\n@media screen, print {\np.bodyText {\r\n        font-size: 10pt;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n@media print {\np.bodyText {\r\n        font-family: georgia, serif;\r\n        font-size: 14px;\r\n        color: blue;\n}\n@page {\r\n        margin: 2cm;\n}\n}\n@media screen {\np.bodyText {\r\n        font-family: georgia, serif;\r\n        font-size: 14px;\r\n        color: blue;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -83501,7 +83516,11 @@ var render = function () {
       "button",
       {
         staticClass: "btn bg-success btn-sm",
-        attrs: { type: "button" },
+        attrs: {
+          type: "button",
+          "data-toggle": "modal",
+          "data-target": "#model" + _vm.cod,
+        },
         on: { click: _vm.getlistProducts },
       },
       [_c("i", { staticClass: "fi fi-file-1" })]
@@ -83522,102 +83541,175 @@ var render = function () {
       [
         _c(
           "div",
-          { attrs: { id: "facture" } },
+          {
+            staticClass: "modal-dialog",
+            staticStyle: { width: "300px" },
+            attrs: { role: "document" },
+          },
           [
-            _c(
-              "div",
-              [
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", { staticClass: "text-center" }, [
-                  _vm._v(_vm._s(_vm.company)),
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.facUnique, function (item, index) {
-                  return _c(
-                    "p",
-                    { key: "a" + index, attrs: { id: "estilo" } },
-                    [
-                      _vm._v(
-                        "\n                    fecha: " +
-                          _vm._s(item.created_at)
-                      ),
-                      _c("br"),
-                      _vm._v(
-                        "\n                    fac: #000000" + _vm._s(item.id)
-                      ),
-                      _c("br"),
-                      _vm._v(
-                        "\n                    ------------------------------"
-                      ),
-                      _c("br"),
-                      _vm._v("\n                    " + _vm._s(item.fullname)),
-                      _c("br"),
-                      _vm._v("\n                    " + _vm._s(item.phone)),
-                      _c("br"),
-                      _vm._v(
-                        "\n                    ------------------------------"
-                      ),
-                      _c("br"),
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(item.note) +
-                          "\n                "
-                      ),
-                    ]
-                  )
-                }),
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c("strong", [_vm._v("Productos:")]),
-            _vm._v(" "),
-            _vm._l(_vm.details, function (item, index) {
-              return _c("p", { key: index }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(item.quantity) +
-                    "X " +
-                    _vm._s(item.name) +
-                    " *" +
-                    _vm._s(_vm._f("currency")(item.price))
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "div",
+                  { attrs: { id: "facture" } },
+                  [
+                    _c(
+                      "div",
+                      [
+                        _c("center", [
+                          _c("br"),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("h5", [
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(_vm.company)
+                            ),
+                            _c("br"),
+                            _vm._v("NIT.1003242515-1"),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                    Gina marcela Molina"
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                    Pasaje los paisas local#22\n                                    "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                    3012074828"
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                    Valledupar-Cesar"
+                            ),
+                            _c("br"),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.facUnique, function (item, index) {
+                          return _c(
+                            "p",
+                            { key: "a" + index, attrs: { id: "estilo" } },
+                            [
+                              _vm._v(
+                                "\n                                fecha: " +
+                                  _vm._s(item.created_at)
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\n                                fac: #000000" +
+                                  _vm._s(item.id)
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\n                                ------------------------------"
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(item.fullname)
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(item.phone)
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\n                                ------------------------------"
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(item.note) +
+                                  "\n                            "
+                              ),
+                            ]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Productos:")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.details, function (item, index) {
+                      return _c("p", { key: index }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(item.quantity) +
+                            "X " +
+                            _vm._s(item.name) +
+                            " *" +
+                            _vm._s(_vm._f("currency")(item.price))
+                        ),
+                        _c("br"),
+                        _vm._v(
+                          "\n                            $" +
+                            _vm._s(_vm._f("currency")(item.sub))
+                        ),
+                        _c("br"),
+                      ])
+                    }),
+                    _vm._v(
+                      "\n                        ********************\n                        "
+                    ),
+                    _vm._l(_vm.facUnique, function (item, index) {
+                      return _c("div", { key: "f" + index }, [
+                        _c("p", { staticClass: "bodyText" }, [
+                          _c("strong", [_vm._v("Sub")]),
+                          _vm._v(" $" + _vm._s(_vm._f("currency")(item.sub))),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("strong", [_vm._v("Iva%")]),
+                          _vm._v(" $ 0.00"),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("strong", [_vm._v("Desc")]),
+                          _vm._v(" $" + _vm._s(_vm._f("currency")(item.disc))),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("strong", [_vm._v("Tot")]),
+                          _vm._v(" $" + _vm._s(_vm._f("currency")(item.tot))),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("strong", [_vm._v("Cant:")]),
+                          _vm._v(
+                            _vm._s(_vm.sumProducts) +
+                              "\n                            "
+                          ),
+                        ]),
+                      ])
+                    }),
+                    _vm._v(
+                      "\n                        ********************\n                        "
+                    ),
+                    _c("center", [
+                      _c("h5", [
+                        _vm._v(
+                          "\n                                Gracias por tu compra, los cambios se hacen\n                                dentro de las 24hrs despúes del pedido\n                                emitido.\n                            "
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
                 ),
-                _c("br"),
-                _vm._v(
-                  "\n                $" + _vm._s(_vm._f("currency")(item.sub))
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.print("facture")
+                      },
+                    },
+                  },
+                  [_vm._v("Inprimir")]
                 ),
-                _c("br"),
-              ])
-            }),
-            _vm._v("\n            ********************\n            "),
-            _vm._l(_vm.facUnique, function (item, index) {
-              return _c("div", { key: "f" + index }, [
-                _c("p", { staticClass: "bodyText" }, [
-                  _c("strong", [_vm._v("Sub")]),
-                  _vm._v(" $" + _vm._s(_vm._f("currency")(item.sub))),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("strong", [_vm._v("Iva%")]),
-                  _vm._v(" $ 0.00"),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("strong", [_vm._v("Desc")]),
-                  _vm._v(" $" + _vm._s(_vm._f("currency")(item.disc))),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("strong", [_vm._v("Tot")]),
-                  _vm._v(" $" + _vm._s(_vm._f("currency")(item.tot))),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("strong", [_vm._v("Cant:")]),
-                  _vm._v(_vm._s(_vm.sumProducts) + "\n                "),
-                ]),
-              ])
-            }),
-            _vm._v("\n            ********************\n        "),
-          ],
-          2
+              ]),
+            ]),
+          ]
         ),
       ]
     ),

@@ -121,7 +121,6 @@
         </div>
     </div>
 </template>
-
 <script>
 import { mapState } from "vuex";
 import ModalDetails2 from "../utilities/modaldetails2";
@@ -140,6 +139,7 @@ const options = {
 
 Vue.use(VueHtmlToPaper, options);
 import MgetList from "../../mixins/dateFacture";
+
 export default {
     data() {
         return {
