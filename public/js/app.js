@@ -2635,6 +2635,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2672,7 +2684,7 @@ Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_2__["default"], options);
       this.$store.dispatch("Factureactions", date);
       this.$store.dispatch("TypeSaleactions", date);
     },
-    destroy: function destroy(id) {
+    statusModified: function statusModified(id) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -2683,7 +2695,7 @@ Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_2__["default"], options);
               case 0:
                 url = _this.urlfactures + "/" + id;
                 _context.next = 3;
-                return axios["delete"](url);
+                return axios.put(url);
 
               case 3:
                 response = _context.sent;
@@ -2705,6 +2717,41 @@ Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_2__["default"], options);
             }
           }
         }, _callee);
+      }))();
+    },
+    destroy: function destroy(id) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var url, response;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                url = _this2.urlfactures + "/" + id;
+                _context2.next = 3;
+                return axios["delete"](url);
+
+              case 3:
+                response = _context2.sent;
+
+                try {
+                  _this2.getList();
+
+                  Swal.fire({
+                    title: "".concat(response.data.message),
+                    icon: "success"
+                  });
+                } catch (error) {
+                  console.log(error);
+                }
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   }
@@ -3244,6 +3291,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3282,6 +3341,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         efecty: null,
         other: 0,
         note: "",
+        status: 1,
         dataDetails: []
       }
     };
@@ -3500,6 +3560,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.formFacture.efecty = 0;
       this.formFacture.other = 0;
       this.formFacture.note = "";
+      this.formFacture.status = 1;
       this.formFacture.dataDetails = [];
       this.price = [];
     },
@@ -79501,6 +79562,8 @@ var render = function () {
                             _vm._v(" "),
                             _c("th", [_vm._v("FO")]),
                             _vm._v(" "),
+                            _c("th", [_vm._v("P")]),
+                            _vm._v(" "),
                             _c("th", [_vm._v("E")]),
                           ],
                           1
@@ -79528,6 +79591,29 @@ var render = function () {
                           _c("td", [
                             _vm._v(_vm._s(_vm._f("currency")(row.other))),
                           ]),
+                          _vm._v(" "),
+                          row.status
+                            ? _c("td", [
+                                _c(
+                                  "span",
+                                  { staticClass: "badge badge-success" },
+                                  [_vm._v("Pagado")]
+                                ),
+                              ])
+                            : _c("td", [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "badge badge-danger",
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.statusModified(row.id)
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("Deuda")]
+                                ),
+                              ]),
                           _vm._v(" "),
                           _c(
                             "td",
@@ -79563,7 +79649,7 @@ var render = function () {
                 ],
                 null,
                 false,
-                4234457763
+                4022550990
               ),
             }),
           ],
@@ -80242,6 +80328,53 @@ var render = function () {
               ],
               1
             ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6 col-lg-2" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "status" } }, [_vm._v("Estado")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formFacture.status,
+                      expression: "formFacture.status",
+                    },
+                  ],
+                  staticClass: "form-control form-control-sm",
+                  on: {
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.formFacture,
+                        "status",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                  },
+                },
+                [
+                  _c("option", { attrs: { value: "1" } }, [_vm._v("Pagado")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "0" } }, [
+                    _vm._v("Pendiente"),
+                  ]),
+                ]
+              ),
+            ]),
           ]),
         ]),
         _vm._v(" "),

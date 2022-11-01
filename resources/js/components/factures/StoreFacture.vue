@@ -269,6 +269,18 @@
                         />
                     </div>
                 </div>
+                <div class="col-6 col-lg-2">
+                    <div class="form-group">
+                        <label for="status">Estado</label>
+                        <select
+                            class="form-control form-control-sm"
+                            v-model="formFacture.status"
+                        >
+                            <option value="1">Pagado</option>
+                            <option value="0">Pendiente</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-6 col-lg-2">
@@ -530,6 +542,7 @@ export default {
                 efecty: null,
                 other: 0,
                 note: "",
+                status: 1,
                 dataDetails: [],
             },
         };
@@ -709,6 +722,7 @@ export default {
             this.formFacture.efecty = 0;
             this.formFacture.other = 0;
             this.formFacture.note = "";
+            this.formFacture.status = 1;
             this.formFacture.dataDetails = [];
             this.price = [];
         },

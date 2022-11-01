@@ -57,6 +57,7 @@
                         <th>O</th>
                         <th>FP</th>
                         <th>FO</th>
+                        <th>P</th>
                         <th>E</th>
                     </tr>
                 </template>
@@ -64,8 +65,19 @@
                     <tr v-for="row in rows" :key="row.id">
                         <td>{{ row.nit }}</td>
                         <td>{{ row.tot | currency }}</td>
+
                         <td>{{ row.efecty | currency }}</td>
                         <td>{{ row.other | currency }}</td>
+                        <td v-if="row.status">
+                            <span class="badge badge-success">Pagado</span>
+                        </td>
+                        <td v-else>
+                            <span
+                                @click="statusModified(row.id)"
+                                class="badge badge-danger"
+                                >Deuda</span
+                            >
+                        </td>
                         <td>
                             <Modal-Ticket v-bind:cod="row.id"></Modal-Ticket>
                         </td>
@@ -171,6 +183,19 @@ export default {
             let date = this.date;
             this.$store.dispatch("Factureactions", date);
             this.$store.dispatch("TypeSaleactions", date);
+        },
+        async statusModified(id) {
+            let url = this.urlfactures + "/" + id;
+            let response = await axios.put(url);
+            try {
+                this.getList();
+                Swal.fire({
+                    title: `${response.data.message}`,
+                    icon: "success",
+                });
+            } catch (error) {
+                console.log(error);
+            }
         },
 
         async destroy(id) {

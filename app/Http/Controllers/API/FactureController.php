@@ -33,6 +33,7 @@ class FactureController extends Controller
             $facture->efecty = $request->efecty;
             $facture->other = $request->other;
             $facture->note = $request->note;
+            $facture->status = $request->status;
             $facture->save();
             $details = $request-> dataDetails;
             foreach ($details as $ep => $det) {
@@ -64,6 +65,7 @@ class FactureController extends Controller
         'f.efecty',
         'f.other',
         'f.note',
+        'f.status',
         'c.nit',
         'c.fullname',
     )
@@ -83,6 +85,7 @@ return $facture;
           'f.disc', 
           'f.tot',
           'f.note',
+          'f.status',
           'c.nit',
           'c.fullname',
           'c.phone',
@@ -102,10 +105,20 @@ public function type_sale (Request $request,$date){
     DB::raw('SUM(tot) as tot'),
     DB::raw('SUM(efecty) as efecty'),
     DB::raw('SUM(other) as other'),
-    )->where('date_facture',$date)->get();
+    )->where('date_facture',$date)
+    ->where('status',1)
+    ->get();
     return $facture_tot;
 }
 
+public function updateStatus($id)
+{
+    
+    $facture = Facture::findOrFail($id, ['id']);
+    $facture->status = '1';
+    $facture->save();
+    return response()->json(["message" => "El estado ha cambiado a pagado"]);
+}
   public function destroy(Request $request, $id)
   {   if (!$request->ajax()) return redirect('/');
       $facture = Facture::find($id);
