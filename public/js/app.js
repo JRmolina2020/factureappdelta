@@ -5922,6 +5922,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -79558,11 +79560,11 @@ var render = function () {
                             _vm._v(" "),
                             _c("th", [_vm._v("O")]),
                             _vm._v(" "),
-                            _c("th", [_vm._v("FP")]),
+                            _c("th", [_vm._v("Estado")]),
                             _vm._v(" "),
-                            _c("th", [_vm._v("FO")]),
+                            _c("th", [_vm._v("POS")]),
                             _vm._v(" "),
-                            _c("th", [_vm._v("P")]),
+                            _c("th", [_vm._v("D")]),
                             _vm._v(" "),
                             _c("th", [_vm._v("E")]),
                           ],
@@ -79649,7 +79651,7 @@ var render = function () {
                 ],
                 null,
                 false,
-                4022550990
+                1822379841
               ),
             }),
           ],
@@ -83731,7 +83733,7 @@ var render = function () {
                               ),
                               _c("br"),
                               _vm._v(
-                                "\n                                fac: #000000" +
+                                "\n                                fac: POS #00" +
                                   _vm._s(item.id)
                               ),
                               _c("br"),
@@ -83780,7 +83782,8 @@ var render = function () {
                         _c("br"),
                         _vm._v(
                           "\n                            $" +
-                            _vm._s(_vm._f("currency")(item.sub))
+                            _vm._s(_vm._f("currency")(item.sub)) +
+                            "...................."
                         ),
                         _c("br"),
                       ])

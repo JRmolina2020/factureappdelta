@@ -44,7 +44,7 @@ wwww
                                     :key="'a' + index"
                                 >
                                     fecha: {{ item.created_at }}<br />
-                                    fac: #000000{{ item.id }}<br />
+                                    fac: POS #00{{ item.id }}<br />
                                     ------------------------------<br />
                                     {{ item.fullname }}<br />
                                     {{ item.phone }}<br />
@@ -58,7 +58,9 @@ wwww
                                 {{ item.quantity }}X {{ item.name }} *{{
                                     item.price | currency
                                 }}<br />
-                                ${{ item.sub | currency }}<br />
+                                ${{
+                                    item.sub | currency
+                                }}....................<br />
                             </p>
                             ********************
                             <div

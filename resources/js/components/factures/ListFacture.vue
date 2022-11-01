@@ -55,9 +55,9 @@
                         <th>Total</th>
                         <th>E</th>
                         <th>O</th>
-                        <th>FP</th>
-                        <th>FO</th>
-                        <th>P</th>
+                        <th>Estado</th>
+                        <th>POS</th>
+                        <th>D</th>
                         <th>E</th>
                     </tr>
                 </template>
