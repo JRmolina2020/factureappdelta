@@ -39,6 +39,19 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <select
+                        v-model="search_sale"
+                        class="form-control form-control-sm"
+                        @change="getTypeSale"
+                    >
+                        <option value="Bancolombia">Bancolombia</option>
+                        <option value="Nequi">Nequi</option>
+                        <option value="Daviplata">Daviplata</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
         <div class="table-responsive">
@@ -51,10 +64,10 @@
             >
                 <template #head>
                     <tr style="color: #fff; background: black">
-                        <VTh sortKey="nit">Nit</VTh>
                         <th>Total</th>
                         <th>E</th>
                         <th>O</th>
+                        <th>Banco</th>
                         <th>Estado</th>
                         <th>POS</th>
                         <th>D</th>
@@ -63,11 +76,13 @@
                 </template>
                 <template #body="{ rows }">
                     <tr v-for="row in rows" :key="row.id">
-                        <td>{{ row.nit }}</td>
                         <td>{{ row.tot | currency }}</td>
-
                         <td>{{ row.efecty | currency }}</td>
                         <td>{{ row.other | currency }}</td>
+                        <td v-if="row.type_sale == 1">
+                            <i class="fi fi-dollar"></i>
+                        </td>
+                        <td v-else>{{ row.type_sale }}</td>
                         <td v-if="row.status">
                             <span class="badge badge-success">Pagado</span>
                         </td>
@@ -125,6 +140,20 @@
                     </tfoot>
                 </table>
             </div>
+            <div class="col-lg-2">
+                <table class="table table-bordered table-dark">
+                    <tbody>
+                        <tr>
+                            <td>Banco total</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr v-for="(item, index) in typeSale_one" :key="index">
+                            <th>{{ item.other | currency }}</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
         <div v-if="factures.length == 0">
             <div class="alert alert-danger" role="alert">
@@ -158,6 +187,7 @@ export default {
             date: "",
             totalPages: 1,
             currentPage: 1,
+            search_sale: "",
         };
     },
     mixins: [MgetList],
@@ -169,6 +199,7 @@ export default {
         ...mapState([
             "factures",
             "typeSale",
+            "typeSale_one",
             "status",
             "urlfactures",
             "status",
@@ -183,6 +214,23 @@ export default {
             let date = this.date;
             this.$store.dispatch("Factureactions", date);
             this.$store.dispatch("TypeSaleactions", date);
+        },
+        getTypeSale() {
+            let date = new Date();
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            if (month < 10) {
+                var date_now = `${year}-0${month}-${day}`;
+            } else {
+                var date_now = `${year}-${month}-${day}`;
+            }
+            let obj = {
+                prop1: date_now,
+                prop2: this.search_sale,
+            };
+
+            this.$store.dispatch("TypeSale_one_actions", obj);
         },
         async statusModified(id) {
             let url = this.urlfactures + "/" + id;

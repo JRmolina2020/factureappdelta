@@ -319,6 +319,20 @@
                         disabled
                     />
                 </div>
+                <div v-if="formFacture.other > 0" class="col-6 col-lg-2">
+                    <div class="form-group">
+                        <label for="my-select">Banco</label>
+                        <select
+                            v-model="formFacture.type_sale"
+                            class="form-control form-control-sm"
+                        >
+                            <option value="Bancolombia">Bancolombia</option>
+                            <option value="Nequi">Nequi</option>
+                            <option value="Daviplata">Daviplata</option>
+                        </select>
+                    </div>
+                </div>
+                <div v-else></div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -543,6 +557,7 @@ export default {
                 other: 0,
                 note: "",
                 status: 1,
+                type_sale: 1,
                 dataDetails: [],
             },
         };
@@ -550,6 +565,7 @@ export default {
     mixins: [date_facture],
     created() {
         this.getData();
+        this.formFacture.type_sale = "Bancolombia";
     },
     computed: {
         ...mapState(["urlfactures", "urlproducts", "clients", "products"]),
@@ -598,6 +614,9 @@ export default {
             this.formFacture.sub = this.onViewSub;
             this.formFacture.tot = this.onViewTot;
             this.send = false;
+            if (this.formFacture.other == 0) {
+                this.formFacture.type_sale = 1;
+            }
 
             let response = await axios.post(this.urlfactures, this.formFacture);
             try {
@@ -723,6 +742,7 @@ export default {
             this.formFacture.other = 0;
             this.formFacture.note = "";
             this.formFacture.status = 1;
+            this.formFacture.type_sale = "Bancolombia";
             this.formFacture.dataDetails = [];
             this.price = [];
         },

@@ -34,6 +34,7 @@ class FactureController extends Controller
             $facture->other = $request->other;
             $facture->note = $request->note;
             $facture->status = $request->status;
+            $facture->type_sale = $request->type_sale;
             $facture->save();
             $details = $request-> dataDetails;
             foreach ($details as $ep => $det) {
@@ -66,6 +67,7 @@ class FactureController extends Controller
         'f.other',
         'f.note',
         'f.status',
+        'f.type_sale',
         'c.nit',
         'c.fullname',
     )
@@ -86,6 +88,7 @@ return $facture;
           'f.tot',
           'f.note',
           'f.status',
+          'f.type_sale',
           'c.nit',
           'c.fullname',
           'c.phone',
@@ -106,6 +109,19 @@ public function type_sale (Request $request,$date){
     DB::raw('SUM(efecty) as efecty'),
     DB::raw('SUM(other) as other'),
     )->where('date_facture',$date)
+    ->where('status',1)
+    ->get();
+    return $facture_tot;
+}
+//nequi
+public function type_sale_one (Request $request,$date,$type){
+    if (!$request->ajax()) return redirect('/');
+    $facture_tot = DB::table('factures')
+    ->select(
+    DB::raw('SUM(other) as other'),
+    )
+    ->where('date_facture',$date)
+    ->where('type_sale',$type)
     ->where('status',1)
     ->get();
     return $facture_tot;

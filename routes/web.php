@@ -85,6 +85,7 @@ Route::post('factures', [FactureController::class, 'store']);
 Route::get('/factures/{date}', [FactureController::class, 'index']);
 Route::get('/factureUnique/{id}', [FactureController::class, 'factureUnique'])->where('id', '[0-9]+');
 Route::get('/type_sale/{date}', [FactureController::class, 'type_sale']);
+Route::get('/type_sale_one/{date}/{type}', [FactureController::class, 'type_sale_one']);
 Route::delete('/factures/{id}', [FactureController::class, 'destroy'])->where('id', '[0-9]+');
 Route::put('/factures/{id}', [FactureController::class, 'updateStatus'])->where('id', '[0-9]+');
 

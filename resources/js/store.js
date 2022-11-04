@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import { type } from "jquery";
 Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
@@ -11,6 +12,7 @@ export default new Vuex.Store({
         clients: [],
         factures: [],
         typeSale: [],
+        typeSale_one: [],
         details: [],
         facUnique: [],
         status: false,
@@ -21,6 +23,7 @@ export default new Vuex.Store({
         urlclients: "/api/clients",
         urlfactures: "/api/factures",
         urltype_sale: "/api/type_sale",
+        urltype_sale_one: "/api/type_sale_one",
         urldetails: "/api/details",
         urlfactureUnique: "/api/factureUnique",
     },
@@ -45,6 +48,9 @@ export default new Vuex.Store({
         },
         TypeSalemutations(state, item) {
             state.typeSale = item;
+        },
+        TypeSale_one_mutations(state, item) {
+            state.typeSale_one = item;
         },
         FactureDetailmutations(state, item) {
             state.details = item;
@@ -113,6 +119,19 @@ export default new Vuex.Store({
             try {
                 let response = await axios.get(`${state.urltype_sale}/${date}`);
                 commit("TypeSalemutations", response.data);
+
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        //type banca
+        async TypeSale_one_actions({ commit, state }, obj) {
+            try {
+                let response = await axios.get(
+                    `${state.urltype_sale_one}/${obj.prop1}/${obj.prop2}`
+                );
+                commit("TypeSale_one_mutations", response.data);
 
                 state.status = true;
             } catch (error) {

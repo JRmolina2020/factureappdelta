@@ -78,7 +78,14 @@ wwww
                                     <strong>Tot</strong> ${{
                                         item.tot | currency
                                     }}<br />
-                                    <strong>Cant:</strong>{{ sumProducts }}
+                                    <strong>Cant:</strong>{{ sumProducts
+                                    }}<br />
+                                    <strong v-if="item.type_sale == 1"
+                                        >Pago: Efectivo</strong
+                                    >
+                                    <strong v-else
+                                        >Pago: {{ item.type_sale }}</strong
+                                    >
                                 </p>
                             </div>
                             ********************

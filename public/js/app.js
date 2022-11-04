@@ -2647,6 +2647,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2666,7 +2695,8 @@ Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_2__["default"], options);
     return {
       date: "",
       totalPages: 1,
-      currentPage: 1
+      currentPage: 1,
+      search_sale: ""
     };
   },
   mixins: [(_mixins_dateFacture__WEBPACK_IMPORTED_MODULE_3___default())],
@@ -2674,7 +2704,7 @@ Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_2__["default"], options);
     ModalDetails2: _utilities_modaldetails2__WEBPACK_IMPORTED_MODULE_0__["default"],
     ModalTicket: _utilities_modalticket__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)(["factures", "typeSale", "status", "urlfactures", "status"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)(["factures", "typeSale", "typeSale_one", "status", "urlfactures", "status"])),
   created: function created() {
     this.getList();
   },
@@ -2683,6 +2713,24 @@ Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_2__["default"], options);
       var date = this.date;
       this.$store.dispatch("Factureactions", date);
       this.$store.dispatch("TypeSaleactions", date);
+    },
+    getTypeSale: function getTypeSale() {
+      var date = new Date();
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+
+      if (month < 10) {
+        var date_now = "".concat(year, "-0").concat(month, "-").concat(day);
+      } else {
+        var date_now = "".concat(year, "-").concat(month, "-").concat(day);
+      }
+
+      var obj = {
+        prop1: date_now,
+        prop2: this.search_sale
+      };
+      this.$store.dispatch("TypeSale_one_actions", obj);
     },
     statusModified: function statusModified(id) {
       var _this = this;
@@ -3303,6 +3351,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3342,6 +3404,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         other: 0,
         note: "",
         status: 1,
+        type_sale: 1,
         dataDetails: []
       }
     };
@@ -3349,6 +3412,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mixins: [(_mixins_dateFacture__WEBPACK_IMPORTED_MODULE_0___default())],
   created: function created() {
     this.getData();
+    this.formFacture.type_sale = "Bancolombia";
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["urlfactures", "urlproducts", "clients", "products"])), {}, {
     filteredList: function filteredList() {
@@ -3405,10 +3469,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this2.formFacture.sub = _this2.onViewSub;
                 _this2.formFacture.tot = _this2.onViewTot;
                 _this2.send = false;
-                _context.next = 5;
+
+                if (_this2.formFacture.other == 0) {
+                  _this2.formFacture.type_sale = 1;
+                }
+
+                _context.next = 6;
                 return axios.post(_this2.urlfactures, _this2.formFacture);
 
-              case 5:
+              case 6:
                 response = _context.sent;
 
                 try {
@@ -3429,7 +3498,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   console.log(error.response);
                 }
 
-              case 7:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -3561,6 +3630,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.formFacture.other = 0;
       this.formFacture.note = "";
       this.formFacture.status = 1;
+      this.formFacture.type_sale = "Bancolombia";
       this.formFacture.dataDetails = [];
       this.price = [];
     },
@@ -5924,6 +5994,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -6255,10 +6332,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -6270,8 +6349,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2__["default"]);
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
+
+vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_3__["default"]);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vuex__WEBPACK_IMPORTED_MODULE_3__["default"].Store({
   state: {
     users: [],
     roles: [],
@@ -6280,6 +6360,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     clients: [],
     factures: [],
     typeSale: [],
+    typeSale_one: [],
     details: [],
     facUnique: [],
     status: false,
@@ -6290,6 +6371,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     urlclients: "/api/clients",
     urlfactures: "/api/factures",
     urltype_sale: "/api/type_sale",
+    urltype_sale_one: "/api/type_sale_one",
     urldetails: "/api/details",
     urlfactureUnique: "/api/factureUnique"
   },
@@ -6314,6 +6396,9 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     },
     TypeSalemutations: function TypeSalemutations(state, item) {
       state.typeSale = item;
+    },
+    TypeSale_one_mutations: function TypeSale_one_mutations(state, item) {
+      state.typeSale_one = item;
     },
     FactureDetailmutations: function FactureDetailmutations(state, item) {
       state.details = item;
@@ -6547,7 +6632,8 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee7, null, [[1, 9]]);
       }))();
     },
-    FactureDetailactions: function FactureDetailactions(_ref8, id) {
+    //type banca
+    TypeSale_one_actions: function TypeSale_one_actions(_ref8, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee8$(_context8) {
@@ -6557,11 +6643,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref8.commit, state = _ref8.state;
                 _context8.prev = 1;
                 _context8.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urldetails, "/").concat(id));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urltype_sale_one, "/").concat(obj.prop1, "/").concat(obj.prop2));
 
               case 4:
                 response = _context8.sent;
-                commit("FactureDetailmutations", response.data);
+                commit("TypeSale_one_mutations", response.data);
                 state.status = true;
                 _context8.next = 12;
                 break;
@@ -6579,7 +6665,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee8, null, [[1, 9]]);
       }))();
     },
-    FactureUniquections: function FactureUniquections(_ref9, id) {
+    FactureDetailactions: function FactureDetailactions(_ref9, id) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee9$(_context9) {
@@ -6589,11 +6675,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref9.commit, state = _ref9.state;
                 _context9.prev = 1;
                 _context9.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlfactureUnique, "/").concat(id));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urldetails, "/").concat(id));
 
               case 4:
                 response = _context9.sent;
-                commit("FactureUniquemutations", response.data);
+                commit("FactureDetailmutations", response.data);
                 state.status = true;
                 _context9.next = 12;
                 break;
@@ -6609,6 +6695,38 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
             }
           }
         }, _callee9, null, [[1, 9]]);
+      }))();
+    },
+    FactureUniquections: function FactureUniquections(_ref10, id) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
+        var commit, state, response;
+        return _regeneratorRuntime().wrap(function _callee10$(_context10) {
+          while (1) {
+            switch (_context10.prev = _context10.next) {
+              case 0:
+                commit = _ref10.commit, state = _ref10.state;
+                _context10.prev = 1;
+                _context10.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlfactureUnique, "/").concat(id));
+
+              case 4:
+                response = _context10.sent;
+                commit("FactureUniquemutations", response.data);
+                state.status = true;
+                _context10.next = 12;
+                break;
+
+              case 9:
+                _context10.prev = 9;
+                _context10.t0 = _context10["catch"](1);
+                console.log(_context10.t0);
+
+              case 12:
+              case "end":
+                return _context10.stop();
+            }
+          }
+        }, _callee10, null, [[1, 9]]);
       }))();
     }
   }
@@ -79514,6 +79632,56 @@ var render = function () {
               ]),
             ]),
           ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-3" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search_sale,
+                      expression: "search_sale",
+                    },
+                  ],
+                  staticClass: "form-control form-control-sm",
+                  on: {
+                    change: [
+                      function ($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function (o) {
+                            return o.selected
+                          })
+                          .map(function (o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.search_sale = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      _vm.getTypeSale,
+                    ],
+                  },
+                },
+                [
+                  _c("option", { attrs: { value: "Bancolombia" } }, [
+                    _vm._v("Bancolombia"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Nequi" } }, [
+                    _vm._v("Nequi"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Daviplata" } }, [
+                    _vm._v("Daviplata"),
+                  ]),
+                ]
+              ),
+            ]),
+          ]),
         ]),
         _vm._v(" "),
         _c(
@@ -79550,15 +79718,13 @@ var render = function () {
                             staticStyle: { color: "#fff", background: "black" },
                           },
                           [
-                            _c("VTh", { attrs: { sortKey: "nit" } }, [
-                              _vm._v("Nit"),
-                            ]),
-                            _vm._v(" "),
                             _c("th", [_vm._v("Total")]),
                             _vm._v(" "),
                             _c("th", [_vm._v("E")]),
                             _vm._v(" "),
                             _c("th", [_vm._v("O")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Banco")]),
                             _vm._v(" "),
                             _c("th", [_vm._v("Estado")]),
                             _vm._v(" "),
@@ -79567,8 +79733,7 @@ var render = function () {
                             _c("th", [_vm._v("D")]),
                             _vm._v(" "),
                             _c("th", [_vm._v("E")]),
-                          ],
-                          1
+                          ]
                         ),
                       ]
                     },
@@ -79580,8 +79745,6 @@ var render = function () {
                       var rows = ref.rows
                       return _vm._l(rows, function (row) {
                         return _c("tr", { key: row.id }, [
-                          _c("td", [_vm._v(_vm._s(row.nit))]),
-                          _vm._v(" "),
                           _c("td", [
                             _vm._v(_vm._s(_vm._f("currency")(row.tot))),
                           ]),
@@ -79593,6 +79756,12 @@ var render = function () {
                           _c("td", [
                             _vm._v(_vm._s(_vm._f("currency")(row.other))),
                           ]),
+                          _vm._v(" "),
+                          row.type_sale == 1
+                            ? _c("td", [
+                                _c("i", { staticClass: "fi fi-dollar" }),
+                              ])
+                            : _c("td", [_vm._v(_vm._s(row.type_sale))]),
                           _vm._v(" "),
                           row.status
                             ? _c("td", [
@@ -79651,7 +79820,7 @@ var render = function () {
                 ],
                 null,
                 false,
-                1822379841
+                3315204584
               ),
             }),
           ],
@@ -79694,6 +79863,22 @@ var render = function () {
                     _vm._v(" "),
                     _c("th", [_vm._v(_vm._s(_vm._f("currency")(item.efecty)))]),
                     _vm._v(" "),
+                    _c("th", [_vm._v(_vm._s(_vm._f("currency")(item.other)))]),
+                  ])
+                }),
+                0
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-2" }, [
+            _c("table", { staticClass: "table table-bordered table-dark" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "tfoot",
+                _vm._l(_vm.typeSale_one, function (item, index) {
+                  return _c("tr", { key: index }, [
                     _c("th", [_vm._v(_vm._s(_vm._f("currency")(item.other)))]),
                   ])
                 }),
@@ -79765,6 +79950,12 @@ var staticRenderFns = [
         _c("td", [_vm._v("Otros")]),
       ]),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tbody", [_c("tr", [_c("td", [_vm._v("Banco total")])])])
   },
 ]
 render._withStripped = true
@@ -80469,6 +80660,63 @@ var render = function () {
               },
             }),
           ]),
+          _vm._v(" "),
+          _vm.formFacture.other > 0
+            ? _c("div", { staticClass: "col-6 col-lg-2" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "my-select" } }, [
+                    _vm._v("Banco"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formFacture.type_sale,
+                          expression: "formFacture.type_sale",
+                        },
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.formFacture,
+                            "type_sale",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                      },
+                    },
+                    [
+                      _c("option", { attrs: { value: "Bancolombia" } }, [
+                        _vm._v("Bancolombia"),
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Nequi" } }, [
+                        _vm._v("Nequi"),
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Daviplata" } }, [
+                        _vm._v("Daviplata"),
+                      ]),
+                    ]
+                  ),
+                ]),
+              ])
+            : _c("div"),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
@@ -81601,29 +81849,29 @@ var render = function () {
             },
           ]),
         }),
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "text-xs-center" },
-      [
-        _c("VTPagination", {
-          attrs: {
-            currentPage: _vm.currentPage,
-            "total-pages": _vm.totalPages,
-            "boundary-links": true,
-          },
-          on: {
-            "update:currentPage": function ($event) {
-              _vm.currentPage = $event
-            },
-            "update:current-page": function ($event) {
-              _vm.currentPage = $event
-            },
-          },
-        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "text-xs-center" },
+          [
+            _c("VTPagination", {
+              attrs: {
+                currentPage: _vm.currentPage,
+                "total-pages": _vm.totalPages,
+                "boundary-links": true,
+              },
+              on: {
+                "update:currentPage": function ($event) {
+                  _vm.currentPage = $event
+                },
+                "update:current-page": function ($event) {
+                  _vm.currentPage = $event
+                },
+              },
+            }),
+          ],
+          1
+        ),
       ],
       1
     ),
@@ -83811,10 +84059,14 @@ var render = function () {
                           _c("br"),
                           _vm._v(" "),
                           _c("strong", [_vm._v("Cant:")]),
-                          _vm._v(
-                            _vm._s(_vm.sumProducts) +
-                              "\n                            "
-                          ),
+                          _vm._v(_vm._s(_vm.sumProducts)),
+                          _c("br"),
+                          _vm._v(" "),
+                          item.type_sale == 1
+                            ? _c("strong", [_vm._v("Pago: Efectivo")])
+                            : _c("strong", [
+                                _vm._v("Pago: " + _vm._s(item.type_sale)),
+                              ]),
                         ]),
                       ])
                     }),
