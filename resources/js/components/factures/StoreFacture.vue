@@ -395,13 +395,26 @@
                         <h5 class="modal-title" id="exampleModalLabel">
                             Detalle de factura
                         </h5>
-                        <button
-                            type="button"
-                            @click="(divproduct = true), (sendproduct = true)"
-                            class="btn bg-black btn-sm"
-                        >
-                            <i class="fi fi-flash"></i>
-                        </button>
+                        <div>
+                            <button
+                                type="button"
+                                @click="
+                                    (divproduct = true), (sendproduct = true)
+                                "
+                                class="btn bg-black btn-sm"
+                            >
+                                <i class="fi fi-flash"></i>
+                            </button>
+
+                            <button
+                                @click="calculateEfecty()"
+                                type="button"
+                                class="btn btn-danger btn-sm"
+                                data-dismiss="modal"
+                            >
+                                <i class="fi fi-close-a"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
@@ -683,7 +696,7 @@ export default {
                 disc: 0,
                 tot: 0,
             });
-            this.filters = "";
+
             //para cuandro se agregue a la lista del detalle el descuento tome valor 0
             for (let i = 0; i < this.formFacture.dataDetails.length; i++) {
                 this.discDetail[i] = 0;
@@ -790,6 +803,7 @@ export default {
         calculateEfecty() {
             this.formFacture.efecty = this.onViewTot;
             this.formFacture.other = 0;
+            this.filters = "";
         },
     },
 };

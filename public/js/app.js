@@ -3365,6 +3365,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3578,8 +3591,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sub: 0,
         disc: 0,
         tot: 0
-      });
-      this.filters = ""; //para cuandro se agregue a la lista del detalle el descuento tome valor 0
+      }); //para cuandro se agregue a la lista del detalle el descuento tome valor 0
 
       for (var i = 0; i < this.formFacture.dataDetails.length; i++) {
         this.discDetail[i] = 0;
@@ -3679,6 +3691,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     calculateEfecty: function calculateEfecty() {
       this.formFacture.efecty = this.onViewTot;
       this.formFacture.other = 0;
+      this.filters = "";
     }
   }
 });
@@ -80822,19 +80835,35 @@ var render = function () {
                 ]
               ),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn bg-black btn-sm",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function ($event) {
-                      ;(_vm.divproduct = true), (_vm.sendproduct = true)
+              _c("div", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn bg-black btn-sm",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function ($event) {
+                        ;(_vm.divproduct = true), (_vm.sendproduct = true)
+                      },
                     },
                   },
-                },
-                [_c("i", { staticClass: "fi fi-flash" })]
-              ),
+                  [_c("i", { staticClass: "fi fi-flash" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-sm",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.calculateEfecty()
+                      },
+                    },
+                  },
+                  [_c("i", { staticClass: "fi fi-close-a" })]
+                ),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
