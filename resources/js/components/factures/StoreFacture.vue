@@ -327,7 +327,8 @@
                             class="form-control form-control-sm"
                         >
                             <option value="Bancolombia">Bancolombia</option>
-                            <option value="Nequi">Nequi</option>
+                            <option value="Nequi R">Nequi R</option>
+                            <option value="Nequi M">Nequi M</option>
                             <option value="Daviplata">Daviplata</option>
                         </select>
                     </div>

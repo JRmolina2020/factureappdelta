@@ -2676,6 +2676,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2847,6 +2850,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -4168,7 +4172,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -79684,8 +79687,12 @@ var render = function () {
                     _vm._v("Bancolombia"),
                   ]),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "Nequi" } }, [
-                    _vm._v("Nequi"),
+                  _c("option", { attrs: { value: "Nequi R" } }, [
+                    _vm._v("Nequi R"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Nequi M" } }, [
+                    _vm._v("Nequi M"),
                   ]),
                   _vm._v(" "),
                   _c("option", { attrs: { value: "Daviplata" } }, [
@@ -79739,6 +79746,8 @@ var render = function () {
                             _vm._v(" "),
                             _c("th", [_vm._v("Banco")]),
                             _vm._v(" "),
+                            _c("th", [_vm._v("Vendedor")]),
+                            _vm._v(" "),
                             _c("th", [_vm._v("Estado")]),
                             _vm._v(" "),
                             _c("th", [_vm._v("POS")]),
@@ -79776,6 +79785,8 @@ var render = function () {
                               ])
                             : _c("td", [_vm._v(_vm._s(row.type_sale))]),
                           _vm._v(" "),
+                          _c("th", [_vm._v(_vm._s(row.name))]),
+                          _vm._v(" "),
                           row.status
                             ? _c("td", [
                                 _c(
@@ -79811,21 +79822,34 @@ var render = function () {
                             1
                           ),
                           _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn bg-danger btn-sm",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.destroy(row.id)
+                          _c(
+                            "td",
+                            {
+                              directives: [
+                                {
+                                  name: "can",
+                                  rawName: "v-can",
+                                  value: "eliminar factura",
+                                  expression: "'eliminar factura'",
+                                },
+                              ],
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn bg-danger btn-sm",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.destroy(row.id)
+                                    },
                                   },
                                 },
-                              },
-                              [_c("i", { staticClass: "fi fi-trash" })]
-                            ),
-                          ]),
+                                [_c("i", { staticClass: "fi fi-trash" })]
+                              ),
+                            ]
+                          ),
                         ])
                       })
                     },
@@ -79833,7 +79857,7 @@ var render = function () {
                 ],
                 null,
                 false,
-                3315204584
+                1863358044
               ),
             }),
           ],
@@ -80718,8 +80742,12 @@ var render = function () {
                         _vm._v("Bancolombia"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Nequi" } }, [
-                        _vm._v("Nequi"),
+                      _c("option", { attrs: { value: "Nequi R" } }, [
+                        _vm._v("Nequi R"),
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Nequi M" } }, [
+                        _vm._v("Nequi M"),
                       ]),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "Daviplata" } }, [
@@ -81853,14 +81881,6 @@ var render = function () {
                       _c(
                         "button",
                         {
-                          directives: [
-                            {
-                              name: "can",
-                              rawName: "v-can",
-                              value: "eliminar producto",
-                              expression: "'eliminar producto'",
-                            },
-                          ],
                           staticClass: "btn bg-danger btn-sm",
                           attrs: { type: "button" },
                           on: {

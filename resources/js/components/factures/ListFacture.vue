@@ -47,7 +47,8 @@
                         @change="getTypeSale"
                     >
                         <option value="Bancolombia">Bancolombia</option>
-                        <option value="Nequi">Nequi</option>
+                        <option value="Nequi R">Nequi R</option>
+                        <option value="Nequi M">Nequi M</option>
                         <option value="Daviplata">Daviplata</option>
                     </select>
                 </div>
@@ -68,6 +69,7 @@
                         <th>E</th>
                         <th>O</th>
                         <th>Banco</th>
+                        <th>Vendedor</th>
                         <th>Estado</th>
                         <th>POS</th>
                         <th>D</th>
@@ -83,6 +85,7 @@
                             <i class="fi fi-dollar"></i>
                         </td>
                         <td v-else>{{ row.type_sale }}</td>
+                        <th>{{ row.name }}</th>
                         <td v-if="row.status">
                             <span class="badge badge-success">Pagado</span>
                         </td>
@@ -101,7 +104,7 @@
                                 v-bind:cod="row.id"
                             ></Modal-Details2>
                         </td>
-                        <td>
+                        <td v-can="'eliminar factura'">
                             <button
                                 type="button"
                                 @click="destroy(row.id)"

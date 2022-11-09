@@ -10,10 +10,8 @@ use App\Models\Client;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
-use Mike42\Escpos\Printer;
-use Mike42\Escpos\EscposImage;
-use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+
+
 class FactureController extends Controller
 {
 
@@ -35,6 +33,7 @@ class FactureController extends Controller
             $facture->note = $request->note;
             $facture->status = $request->status;
             $facture->type_sale = $request->type_sale;
+            $facture->user_id=auth()->id();
             $facture->save();
             $details = $request-> dataDetails;
             foreach ($details as $ep => $det) {
@@ -59,6 +58,7 @@ class FactureController extends Controller
     if (!$request->ajax()) return redirect('/');
     $facture = DB::table('factures as f')
     ->join('clients as c', 'c.id', '=', 'f.client_id')
+    ->join('users as u', 'u.id', '=', 'f.user_id')
     ->select(
         'f.id',
         'f.date_facture',
@@ -68,6 +68,7 @@ class FactureController extends Controller
         'f.note',
         'f.status',
         'f.type_sale',
+        'u.name',
         'c.nit',
         'c.fullname',
     )
