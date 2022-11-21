@@ -12,10 +12,12 @@ module.exports = {
                 let date_now = `${year}-0${month}-${day}`;
                 this.$store.dispatch("Factureactions", date_now);
                 this.$store.dispatch("TypeSaleactions", date_now);
+                this.$store.dispatch("Billtotactions", date_now);
             } else {
                 let date_now = `${year}-${month}-${day}`;
                 this.$store.dispatch("Factureactions", date_now);
                 this.$store.dispatch("TypeSaleactions", date_now);
+                this.$store.dispatch("Billtotactions", date_now);
             }
         },
     },

@@ -3172,6 +3172,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3200,7 +3214,7 @@ Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_2__["default"], options);
     ModalDetails2: _utilities_modaldetails2__WEBPACK_IMPORTED_MODULE_0__["default"],
     ModalTicket: _utilities_modalticket__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)(["factures", "typeSale", "typeSale_one", "status", "urlfactures", "status"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)(["factures", "typeSale", "typeSale_one", "status", "urlfactures", "status", "billstot"])),
   created: function created() {
     this.getList();
   },
@@ -3209,6 +3223,7 @@ Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_2__["default"], options);
       var date = this.date;
       this.$store.dispatch("Factureactions", date);
       this.$store.dispatch("TypeSaleactions", date);
+      this.$store.dispatch("Billtotactions", date);
     },
     getTypeSale: function getTypeSale() {
       var date = new Date();
@@ -6849,11 +6864,13 @@ module.exports = {
         var date_now = "".concat(year, "-0").concat(month, "-").concat(day);
         this.$store.dispatch("Factureactions", date_now);
         this.$store.dispatch("TypeSaleactions", date_now);
+        this.$store.dispatch("Billtotactions", date_now);
       } else {
         var _date_now = "".concat(year, "-").concat(month, "-").concat(day);
 
         this.$store.dispatch("Factureactions", _date_now);
         this.$store.dispatch("TypeSaleactions", _date_now);
+        this.$store.dispatch("Billtotactions", _date_now);
       }
     }
   }
@@ -81236,8 +81253,24 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-lg-2" }, [
-            _c("table", { staticClass: "table table-bordered table-dark" }, [
+            _c("table", { staticClass: "table table-bordered" }, [
               _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "tfoot",
+                _vm._l(_vm.billstot, function (item, index) {
+                  return _c("tr", { key: index }, [
+                    _c("th", [_vm._v(_vm._s(_vm._f("currency")(item.price)))]),
+                  ])
+                }),
+                0
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-2" }, [
+            _c("table", { staticClass: "table table-bordered table-dark" }, [
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "tfoot",
@@ -81314,6 +81347,12 @@ var staticRenderFns = [
         _c("td", [_vm._v("Otros")]),
       ]),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tbody", [_c("tr", [_c("td", [_vm._v("Gasto total")])])])
   },
   function () {
     var _vm = this

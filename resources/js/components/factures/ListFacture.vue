@@ -144,6 +144,20 @@
                 </table>
             </div>
             <div class="col-lg-2">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>Gasto total</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr v-for="(item, index) in billstot" :key="index">
+                            <th>{{ item.price | currency }}</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="col-lg-2">
                 <table class="table table-bordered table-dark">
                     <tbody>
                         <tr>
@@ -206,6 +220,7 @@ export default {
             "status",
             "urlfactures",
             "status",
+            "billstot",
         ]),
     },
 
@@ -217,6 +232,7 @@ export default {
             let date = this.date;
             this.$store.dispatch("Factureactions", date);
             this.$store.dispatch("TypeSaleactions", date);
+            this.$store.dispatch("Billtotactions", date);
         },
         getTypeSale() {
             let date = new Date();
