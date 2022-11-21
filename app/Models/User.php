@@ -25,6 +25,10 @@ class User extends Authenticatable
       return $permissions;
    }
  
+   function facture_bills()
+   {
+       return $this->hasMany('App\Model\Bill');
+   }
 
     /**
      * The attributes that are mass assignable.

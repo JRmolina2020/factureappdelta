@@ -7,7 +7,7 @@ use App\Models\Client;
 use Illuminate\Support\Facades\DB;
 class ClientController extends Controller
 {
-       // all posts
+      
        public function index(Request $request)
        {
            if (!$request->ajax()) return redirect('/');
@@ -15,7 +15,7 @@ class ClientController extends Controller
            return $clients;
        }
     
-       // add post
+
        public function store(Request $request)
        {
            if (!$request->ajax()) return redirect('/');

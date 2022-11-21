@@ -8,8 +8,9 @@ use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ClientController;
 use App\Http\Controllers\API\FactureController;
 use App\Http\Controllers\API\FactureDetailController;
+use App\Http\Controllers\API\BillController;
 use App\Http\Controllers\AuthController;
-use App\Models\Models\FactureDetail;
+
 
 //routes view one
 Route::get('/', function () {
@@ -44,6 +45,9 @@ Route::get('/clientes', function () {
 });
 Route::get('/facturas', function () {
     return view('factures.index');
+});
+Route::get('/gastos', function () {
+    return view('bills.index');
 });
 Route::prefix('api')->group(function () {
 //routes app fuctions
@@ -92,6 +96,13 @@ Route::put('/factures/{id}', [FactureController::class, 'updateStatus'])->where(
 //
 //facture details
 Route::get('/details/{id}', [FactureDetailController::class, 'index'])->where('id', '[0-9]+');
+//end
+//bills
+Route::post('bills', [BillController::class, 'store']);
+Route::get('/bills/{date}', [BillController::class, 'index']);
+Route::get('/billsTot/{date}', [BillController::class, 'sumTot']);
+Route::put('/bills/{id}', [BillController::class, 'update']);
+Route::delete('/bills/{id}', [BillController::class, 'destroy'])->where('id', '[0-9]+');
 //end
 });
 });

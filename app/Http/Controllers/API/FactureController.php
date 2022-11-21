@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Facture;
 use App\Models\FactureDetail;
-use App\Models\Client;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;

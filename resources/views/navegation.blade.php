@@ -7,6 +7,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a href="{{ url('gastos') }}" class="nav-link">
+          <i class="fi fi-male"></i>
+          <p>Gastos</p>
+        </a>
+      </li>
+      <li class="nav-item">
         <a href="{{ url('perfil') }}" class="nav-link">
           <i class="fi fi-user-secret"></i>
           <p>Perfil</p>

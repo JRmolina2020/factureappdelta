@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import { type } from "jquery";
+
 Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
@@ -14,6 +14,8 @@ export default new Vuex.Store({
         typeSale: [],
         typeSale_one: [],
         details: [],
+        bills: [],
+        billstot: [],
         facUnique: [],
         status: false,
         urlusers: "/api/users",
@@ -26,6 +28,8 @@ export default new Vuex.Store({
         urltype_sale_one: "/api/type_sale_one",
         urldetails: "/api/details",
         urlfactureUnique: "/api/factureUnique",
+        urlbills: "/api/bills",
+        urlbillstot: "/api/billsTot",
     },
     mutations: {
         Usermutations(state, item) {
@@ -58,7 +62,14 @@ export default new Vuex.Store({
         FactureUniquemutations(state, item) {
             state.facUnique = item;
         },
+        Billmutations(state, item) {
+            state.bills = item;
+        },
+        Billtotmutations(state, item) {
+            state.billstot = item;
+        },
     },
+
     actions: {
         async Useractions({ commit, state }) {
             try {
@@ -119,7 +130,6 @@ export default new Vuex.Store({
             try {
                 let response = await axios.get(`${state.urltype_sale}/${date}`);
                 commit("TypeSalemutations", response.data);
-
                 state.status = true;
             } catch (error) {
                 console.log(error);
@@ -153,6 +163,24 @@ export default new Vuex.Store({
                     `${state.urlfactureUnique}/${id}`
                 );
                 commit("FactureUniquemutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async Billactions({ commit, state }, date) {
+            try {
+                let response = await axios.get(`${state.urlbills}/${date}`);
+                commit("Billmutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async Billtotactions({ commit, state }, date) {
+            try {
+                let response = await axios.get(`${state.urlbillstot}/${date}`);
+                commit("Billtotmutations", response.data);
                 state.status = true;
             } catch (error) {
                 console.log(error);

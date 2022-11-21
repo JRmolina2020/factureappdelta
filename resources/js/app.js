@@ -63,6 +63,11 @@ Vue.component(
     require("./components/permissions/PermissionExample.vue").default
 );
 
+Vue.component(
+    "bill_example",
+    require("./components/bills/BillExample.vue").default
+);
+
 import auth from "./mixins/Auth.js";
 Vue.mixin(auth);
 const app = new Vue({
