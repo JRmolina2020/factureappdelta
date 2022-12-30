@@ -137,7 +137,7 @@ public function gain (Request $request,$date,$datetwo){
     DB::raw('SUM(fd.quantity) as quantity'),
     DB::raw('SUM(fd.tot) as tot'),
     DB::raw('p.cost as cost'),
-    DB::raw('SUM(fd.tot)-SUM(p.cost)*SUM(fd.quantity) as gain'),
+    DB::raw('SUM(fd.tot)-SUM(p.cost*fd.quantity) as gain'),
     )
     ->groupBy('p.name','p.cost')
     ->whereBetween('f.date_facture', [$date, $datetwo])
