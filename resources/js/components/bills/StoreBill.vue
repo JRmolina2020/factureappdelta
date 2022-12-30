@@ -112,7 +112,7 @@
 <script>
 import { mapState } from "vuex";
 import ModalResource from "../utilities/modal.vue";
-import billList from "../../mixins/billList";
+import date_now from "../../mixins/date";
 
 export default {
     $_veeValidate: {
@@ -122,7 +122,6 @@ export default {
     components: {
         ModalResource,
     },
-    mixins: [billList],
     computed: {
         ...mapState(["urlbills"]),
     },
@@ -180,7 +179,8 @@ export default {
                     });
 
                     $("#model").modal("hide");
-                    this.getList();
+                    this.$store.dispatch("Billactions", date_now);
+                    this.$store.dispatch("Billtotactions", date_now);
                 } catch (error) {
                     console.log(error.response);
                 }

@@ -2103,8 +2103,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _mixins_billList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/billList */ "./resources/js/mixins/billList.js");
-/* harmony import */ var _mixins_billList__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_mixins_billList__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mixins_date__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/date */ "./resources/js/mixins/date.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -2234,8 +2233,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.getList();
   },
-  mixins: [(_mixins_billList__WEBPACK_IMPORTED_MODULE_0___default())],
   methods: {
+    getList: function getList() {
+      this.$store.dispatch("Billactions", _mixins_date__WEBPACK_IMPORTED_MODULE_0__["default"]);
+      this.$store.dispatch("Billtotactions", _mixins_date__WEBPACK_IMPORTED_MODULE_0__["default"]);
+    },
     getDate: function getDate() {
       var date = this.date;
       this.$store.dispatch("Billactions", date);
@@ -2294,8 +2296,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _utilities_modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utilities/modal.vue */ "./resources/js/components/utilities/modal.vue");
-/* harmony import */ var _mixins_billList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/billList */ "./resources/js/mixins/billList.js");
-/* harmony import */ var _mixins_billList__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_mixins_billList__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _mixins_date__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/date */ "./resources/js/mixins/date.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -2432,7 +2433,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     ModalResource: _utilities_modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mixins: [(_mixins_billList__WEBPACK_IMPORTED_MODULE_1___default())],
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)(["urlbills"])),
   data: function data() {
     return {
@@ -2516,7 +2516,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   });
                   $("#model").modal("hide");
 
-                  _this2.getList();
+                  _this2.$store.dispatch("Billactions", _mixins_date__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+                  _this2.$store.dispatch("Billtotactions", _mixins_date__WEBPACK_IMPORTED_MODULE_1__["default"]);
                 } catch (error) {
                   console.log(error.response);
                 }
@@ -3186,6 +3188,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3226,19 +3236,8 @@ Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_2__["default"], options);
       this.$store.dispatch("Billtotactions", date);
     },
     getTypeSale: function getTypeSale() {
-      var date = new Date();
-      var day = date.getDate();
-      var month = date.getMonth() + 1;
-      var year = date.getFullYear();
-
-      if (month < 10) {
-        var date_now = "".concat(year, "-0").concat(month, "-").concat(day);
-      } else {
-        var date_now = "".concat(year, "-").concat(month, "-").concat(day);
-      }
-
       var obj = {
-        prop1: date_now,
+        prop1: this.date,
         prop2: this.search_sale
       };
       this.$store.dispatch("TypeSale_one_actions", obj);
@@ -4204,6 +4203,154 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.formFacture.efecty = this.onViewTot;
       this.formFacture.other = 0;
       this.filters = "";
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/gain.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/gain.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_date__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/date */ "./resources/js/mixins/date.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      totalPages: 1,
+      currentPage: 1,
+      date: "",
+      datetwo: "",
+      filters: {
+        name: {
+          value: "",
+          keys: ["name"]
+        }
+      }
+    };
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["gain", "gaintot"])),
+  created: function created() {
+    this.getList();
+  },
+  methods: {
+    getList: function getList() {
+      var obj = {
+        prop1: _mixins_date__WEBPACK_IMPORTED_MODULE_0__["default"],
+        prop2: _mixins_date__WEBPACK_IMPORTED_MODULE_0__["default"]
+      };
+      this.$store.dispatch("Gainactions", obj);
+      this.$store.dispatch("Gaintotactions", obj);
+    },
+    getDate: function getDate() {
+      var obj = {
+        prop1: this.date,
+        prop2: this.datetwo
+      };
+      this.$store.dispatch("Gainactions", obj);
+      this.$store.dispatch("Gaintotactions", obj);
     }
   }
 });
@@ -6639,6 +6786,7 @@ Vue.component("facture_example", (__webpack_require__(/*! ./components/factures/
 Vue.component("Role", (__webpack_require__(/*! ./components/roles/RoleExample.vue */ "./resources/js/components/roles/RoleExample.vue")["default"]));
 Vue.component("permission_example", (__webpack_require__(/*! ./components/permissions/PermissionExample.vue */ "./resources/js/components/permissions/PermissionExample.vue")["default"]));
 Vue.component("bill_example", (__webpack_require__(/*! ./components/bills/BillExample.vue */ "./resources/js/components/bills/BillExample.vue")["default"]));
+Vue.component("gain_example", (__webpack_require__(/*! ./components/gain.vue */ "./resources/js/components/gain.vue")["default"]));
 
 Vue.mixin((_mixins_Auth_js__WEBPACK_IMPORTED_MODULE_9___default()));
 var app = new Vue({
@@ -6812,15 +6960,17 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/js/mixins/billList.js":
-/*!*****************************************!*\
-  !*** ./resources/js/mixins/billList.js ***!
-  \*****************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ "./resources/js/mixins/date.js":
+/*!*************************************!*\
+  !*** ./resources/js/mixins/date.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
-    billList = _require.billList;
-
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 var date = new Date();
 var day = date.getDate();
 var month = date.getMonth() + 1;
@@ -6832,14 +6982,7 @@ if (month < 10) {
   var date_now = "".concat(year, "-").concat(month, "-").concat(day);
 }
 
-module.exports = {
-  methods: {
-    getList: function getList() {
-      this.$store.dispatch("Billactions", date_now);
-      this.$store.dispatch("Billtotactions", date_now);
-    }
-  }
-};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (date_now);
 
 /***/ }),
 
@@ -6918,6 +7061,8 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     details: [],
     bills: [],
     billstot: [],
+    gain: [],
+    gaintot: [],
     facUnique: [],
     status: false,
     urlusers: "/api/users",
@@ -6931,7 +7076,9 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     urldetails: "/api/details",
     urlfactureUnique: "/api/factureUnique",
     urlbills: "/api/bills",
-    urlbillstot: "/api/billsTot"
+    urlbillstot: "/api/billsTot",
+    urlgain: "/api/gain",
+    urlgaintot: "/api/gainTot"
   },
   mutations: {
     Usermutations: function Usermutations(state, item) {
@@ -6969,6 +7116,12 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     },
     Billtotmutations: function Billtotmutations(state, item) {
       state.billstot = item;
+    },
+    Gainmutations: function Gainmutations(state, item) {
+      state.gain = item;
+    },
+    Gaintotmutations: function Gaintotmutations(state, item) {
+      state.gaintot = item;
     }
   },
   actions: {
@@ -7355,6 +7508,70 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
             }
           }
         }, _callee12, null, [[1, 9]]);
+      }))();
+    },
+    Gainactions: function Gainactions(_ref13, obj) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
+        var commit, state, response;
+        return _regeneratorRuntime().wrap(function _callee13$(_context13) {
+          while (1) {
+            switch (_context13.prev = _context13.next) {
+              case 0:
+                commit = _ref13.commit, state = _ref13.state;
+                _context13.prev = 1;
+                _context13.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgain, "/").concat(obj.prop1, "/").concat(obj.prop2));
+
+              case 4:
+                response = _context13.sent;
+                commit("Gainmutations", response.data);
+                state.status = true;
+                _context13.next = 12;
+                break;
+
+              case 9:
+                _context13.prev = 9;
+                _context13.t0 = _context13["catch"](1);
+                console.log(_context13.t0);
+
+              case 12:
+              case "end":
+                return _context13.stop();
+            }
+          }
+        }, _callee13, null, [[1, 9]]);
+      }))();
+    },
+    Gaintotactions: function Gaintotactions(_ref14, obj) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
+        var commit, state, response;
+        return _regeneratorRuntime().wrap(function _callee14$(_context14) {
+          while (1) {
+            switch (_context14.prev = _context14.next) {
+              case 0:
+                commit = _ref14.commit, state = _ref14.state;
+                _context14.prev = 1;
+                _context14.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgaintot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+
+              case 4:
+                response = _context14.sent;
+                commit("Gaintotmutations", response.data);
+                state.status = true;
+                _context14.next = 12;
+                break;
+
+              case 9:
+                _context14.prev = 9;
+                _context14.t0 = _context14["catch"](1);
+                console.log(_context14.t0);
+
+              case 12:
+              case "end":
+                return _context14.stop();
+            }
+          }
+        }, _callee14, null, [[1, 9]]);
       }))();
     }
   }
@@ -78329,6 +78546,45 @@ component.options.__file = "resources/js/components/factures/StoreFacture.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/gain.vue":
+/*!******************************************!*\
+  !*** ./resources/js/components/gain.vue ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _gain_vue_vue_type_template_id_2ffd86ca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gain.vue?vue&type=template&id=2ffd86ca& */ "./resources/js/components/gain.vue?vue&type=template&id=2ffd86ca&");
+/* harmony import */ var _gain_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gain.vue?vue&type=script&lang=js& */ "./resources/js/components/gain.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _gain_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _gain_vue_vue_type_template_id_2ffd86ca___WEBPACK_IMPORTED_MODULE_0__.render,
+  _gain_vue_vue_type_template_id_2ffd86ca___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/gain.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/login.vue":
 /*!*******************************************!*\
   !*** ./resources/js/components/login.vue ***!
@@ -79138,6 +79394,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/gain.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/gain.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_gain_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./gain.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/gain.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_gain_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/login.vue?vue&type=script&lang=js&":
 /*!********************************************************************!*\
   !*** ./resources/js/components/login.vue?vue&type=script&lang=js& ***!
@@ -79572,6 +79844,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreFacture_vue_vue_type_template_id_703de950___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreFacture_vue_vue_type_template_id_703de950___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./StoreFacture.vue?vue&type=template&id=703de950& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/factures/StoreFacture.vue?vue&type=template&id=703de950&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/gain.vue?vue&type=template&id=2ffd86ca&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/gain.vue?vue&type=template&id=2ffd86ca& ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_gain_vue_vue_type_template_id_2ffd86ca___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_gain_vue_vue_type_template_id_2ffd86ca___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_gain_vue_vue_type_template_id_2ffd86ca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./gain.vue?vue&type=template&id=2ffd86ca& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/gain.vue?vue&type=template&id=2ffd86ca&");
 
 
 /***/ }),
@@ -80994,7 +81283,7 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-lg-3" }, [
-            _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "input-group" }, [
               _c(
                 "select",
                 {
@@ -81008,22 +81297,19 @@ var render = function () {
                   ],
                   staticClass: "form-control form-control-sm",
                   on: {
-                    change: [
-                      function ($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function (o) {
-                            return o.selected
-                          })
-                          .map(function (o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.search_sale = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      _vm.getTypeSale,
-                    ],
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.search_sale = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
                   },
                 },
                 [
@@ -81044,6 +81330,26 @@ var render = function () {
                   ]),
                 ]
               ),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group-append" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-sm",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.getTypeSale()
+                      },
+                    },
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Buscar\n                    "
+                    ),
+                  ]
+                ),
+              ]),
             ]),
           ]),
         ]),
@@ -82541,6 +82847,225 @@ var staticRenderFns = [
     ])
   },
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/gain.vue?vue&type=template&id=2ffd86ca&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/gain.vue?vue&type=template&id=2ffd86ca& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-6 col-xs-12 col-sm-12" }, [
+        _c("div", { staticClass: "input-group" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.date,
+                expression: "date",
+              },
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: { type: "date", placeholder: ".form-control-sm" },
+            domProps: { value: _vm.date },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.date = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.datetwo,
+                expression: "datetwo",
+              },
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: { type: "date", min: "", placeholder: ".form-control-sm" },
+            domProps: { value: _vm.datetwo },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.datetwo = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          this.datetwo != ""
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-secondary btn-sm",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.getDate()
+                    },
+                  },
+                },
+                [_vm._v("\n                    Buscar\n                ")]
+              )
+            : _vm._e(),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-6 col-xs-12 col-sm-12" }, [
+        _c(
+          "div",
+          { staticClass: "table-responsive mt-3" },
+          [
+            _c("VTable", {
+              staticClass: "table table-dark",
+              attrs: {
+                data: _vm.gain,
+                filters: _vm.filters,
+                "page-size": 5,
+                currentPage: _vm.currentPage,
+              },
+              on: {
+                "update:currentPage": function ($event) {
+                  _vm.currentPage = $event
+                },
+                "update:current-page": function ($event) {
+                  _vm.currentPage = $event
+                },
+                totalPagesChanged: function ($event) {
+                  _vm.totalPages = $event
+                },
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "head",
+                  fn: function () {
+                    return [
+                      _c(
+                        "tr",
+                        [
+                          _c("VTh", { attrs: { sortKey: "name" } }, [
+                            _vm._v("Nombre"),
+                          ]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Cant")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Total")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Costo")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Ganancia")]),
+                        ],
+                        1
+                      ),
+                    ]
+                  },
+                  proxy: true,
+                },
+                {
+                  key: "body",
+                  fn: function (ref) {
+                    var rows = ref.rows
+                    return _vm._l(rows, function (row) {
+                      return _c("tr", { key: row.name }, [
+                        _c("td", [_vm._v(_vm._s(row.name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(row.quantity))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(_vm._f("currency")(row.tot)))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm._f("currency")(row.cost))),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm._f("currency")(row.gain))),
+                        ]),
+                      ])
+                    })
+                  },
+                },
+              ]),
+            }),
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "text-xs-center" },
+          [
+            _c("VTPagination", {
+              attrs: {
+                currentPage: _vm.currentPage,
+                "total-pages": _vm.totalPages,
+                "boundary-links": true,
+              },
+              on: {
+                "update:currentPage": function ($event) {
+                  _vm.currentPage = $event
+                },
+                "update:current-page": function ($event) {
+                  _vm.currentPage = $event
+                },
+              },
+            }),
+          ],
+          1
+        ),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-lg-6" },
+        _vm._l(_vm.gaintot, function (item, index) {
+          return _c(
+            "div",
+            {
+              key: "b" + index,
+              staticClass: "alert alert-dark",
+              attrs: { role: "alert" },
+            },
+            [
+              _c("p", [
+                _vm._v("TOT HOY $" + _vm._s(_vm._f("currency")(item.gaintot))),
+              ]),
+            ]
+          )
+        }),
+        0
+      ),
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

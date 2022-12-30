@@ -39,7 +39,7 @@ class BillController extends Controller
 
           
        ]);
-       return response()->json(['message' => 'Cliente registrado'], 200);
+       return response()->json(['message' => 'Gasto registrado'], 200);
     }
     public function update(Request $request, $id)
     {

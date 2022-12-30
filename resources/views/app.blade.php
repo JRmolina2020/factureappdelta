@@ -15,7 +15,7 @@
      
     </div>
     <div class="info">
-      <a href="{{ url('/') }}" class="d-block">Jose</a>
+      <a href="{{ url('/') }}" class="d-block">{{ Auth::user()->name}}</a>
     </div>
   </div>
   {{--  navegation  --}}

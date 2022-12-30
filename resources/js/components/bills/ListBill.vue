@@ -95,7 +95,8 @@
 </template>
 <script>
 import { mapState } from "vuex";
-import billList from "../../mixins/billList";
+import date_now from "../../mixins/date";
+
 export default {
     data() {
         return {
@@ -113,8 +114,11 @@ export default {
     created() {
         this.getList();
     },
-    mixins: [billList],
     methods: {
+        getList() {
+            this.$store.dispatch("Billactions", date_now);
+            this.$store.dispatch("Billtotactions", date_now);
+        },
         getDate() {
             let date = this.date;
             this.$store.dispatch("Billactions", date);

@@ -113,9 +113,9 @@ public function type_sale (Request $request,$date){
     ->get();
     return $facture_tot;
 }
-//nequi
+
 public function type_sale_one (Request $request,$date,$type){
-    if (!$request->ajax()) return redirect('/');
+
     $facture_tot = DB::table('factures')
     ->select(
     DB::raw('SUM(other) as other'),
@@ -125,6 +125,38 @@ public function type_sale_one (Request $request,$date,$type){
     ->where('status',1)
     ->get();
     return $facture_tot;
+}
+
+public function gain (Request $request,$date,$datetwo){
+    if (!$request->ajax()) return redirect('/');
+    $gain = DB::table('facture_details as fd')
+    ->join('factures as f', 'f.id', '=', 'fd.facture_id')
+    ->join('products as p', 'p.id', '=', 'fd.product_id')
+    ->select(
+    'p.name',
+    DB::raw('SUM(fd.quantity) as quantity'),
+    DB::raw('SUM(fd.tot) as tot'),
+    DB::raw('p.cost as cost'),
+    DB::raw('SUM(fd.tot)-SUM(p.cost) as gain'),
+    )
+    ->groupBy('p.name','p.cost')
+    ->whereBetween('f.date_facture', [$date, $datetwo])
+    ->where('status',1)
+    ->get();
+    return $gain;
+}
+public function gainTot (Request $request,$date,$datetwo){
+    if (!$request->ajax()) return redirect('/');
+    $gain_tot = DB::table('facture_details as fd')
+    ->join('factures as f', 'f.id', '=', 'fd.facture_id')
+    ->join('products as p', 'p.id', '=', 'fd.product_id')
+    ->select(
+    DB::raw('SUM(fd.tot)-SUM(p.cost) as gaintot'),
+    )
+    ->whereBetween('f.date_facture', [$date, $datetwo])
+    ->where('status',1)
+    ->get();
+    return $gain_tot;
 }
 
 public function updateStatus($id)

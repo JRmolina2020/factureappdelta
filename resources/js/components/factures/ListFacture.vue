@@ -40,17 +40,25 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="form-group">
+                <div class="input-group">
                     <select
                         v-model="search_sale"
                         class="form-control form-control-sm"
-                        @change="getTypeSale"
                     >
                         <option value="Bancolombia">Bancolombia</option>
                         <option value="Nequi R">Nequi R</option>
                         <option value="Nequi M">Nequi M</option>
                         <option value="Daviplata">Daviplata</option>
                     </select>
+                    <div class="input-group-append">
+                        <button
+                            class="btn btn-success btn-sm"
+                            @click="getTypeSale()"
+                            type="button"
+                        >
+                            Buscar
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -202,6 +210,7 @@ export default {
     data() {
         return {
             date: "",
+
             totalPages: 1,
             currentPage: 1,
             search_sale: "",
@@ -235,20 +244,10 @@ export default {
             this.$store.dispatch("Billtotactions", date);
         },
         getTypeSale() {
-            let date = new Date();
-            let day = date.getDate();
-            let month = date.getMonth() + 1;
-            let year = date.getFullYear();
-            if (month < 10) {
-                var date_now = `${year}-0${month}-${day}`;
-            } else {
-                var date_now = `${year}-${month}-${day}`;
-            }
             let obj = {
-                prop1: date_now,
+                prop1: this.date,
                 prop2: this.search_sale,
             };
-
             this.$store.dispatch("TypeSale_one_actions", obj);
         },
         async statusModified(id) {

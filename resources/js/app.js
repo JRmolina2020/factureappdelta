@@ -68,6 +68,8 @@ Vue.component(
     require("./components/bills/BillExample.vue").default
 );
 
+Vue.component("gain_example", require("./components/gain.vue").default);
+
 import auth from "./mixins/Auth.js";
 Vue.mixin(auth);
 const app = new Vue({

@@ -16,6 +16,8 @@ export default new Vuex.Store({
         details: [],
         bills: [],
         billstot: [],
+        gain: [],
+        gaintot: [],
         facUnique: [],
         status: false,
         urlusers: "/api/users",
@@ -30,6 +32,8 @@ export default new Vuex.Store({
         urlfactureUnique: "/api/factureUnique",
         urlbills: "/api/bills",
         urlbillstot: "/api/billsTot",
+        urlgain: "/api/gain",
+        urlgaintot: "/api/gainTot",
     },
     mutations: {
         Usermutations(state, item) {
@@ -67,6 +71,12 @@ export default new Vuex.Store({
         },
         Billtotmutations(state, item) {
             state.billstot = item;
+        },
+        Gainmutations(state, item) {
+            state.gain = item;
+        },
+        Gaintotmutations(state, item) {
+            state.gaintot = item;
         },
     },
 
@@ -181,6 +191,28 @@ export default new Vuex.Store({
             try {
                 let response = await axios.get(`${state.urlbillstot}/${date}`);
                 commit("Billtotmutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async Gainactions({ commit, state }, obj) {
+            try {
+                let response = await axios.get(
+                    `${state.urlgain}/${obj.prop1}/${obj.prop2}`
+                );
+                commit("Gainmutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async Gaintotactions({ commit, state }, obj) {
+            try {
+                let response = await axios.get(
+                    `${state.urlgaintot}/${obj.prop1}/${obj.prop2}`
+                );
+                commit("Gaintotmutations", response.data);
                 state.status = true;
             } catch (error) {
                 console.log(error);
