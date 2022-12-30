@@ -124,14 +124,15 @@
                     </tr>
                 </template>
             </VTable>
+            <div class="text-xs-center">
+                <VTPagination
+                    :currentPage.sync="currentPage"
+                    :total-pages="totalPages"
+                    :boundary-links="true"
+                />
+            </div>
         </div>
-        <div class="text-xs-center">
-            <VTPagination
-                :currentPage.sync="currentPage"
-                :total-pages="totalPages"
-                :boundary-links="true"
-            />
-        </div>
+
         <div class="row">
             <div class="col-lg-4">
                 <table class="table table-bordered">
