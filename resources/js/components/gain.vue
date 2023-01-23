@@ -44,7 +44,7 @@
                     <input
                         class="form-control form-control-sm"
                         type="date"
-                        v-model="datetwo"
+                        v-model="datetwouser"
                         min=""
                         placeholder=".form-control-sm"
                     />

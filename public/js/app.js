@@ -83164,19 +83164,19 @@ var render = function () {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.datetwo,
-                expression: "datetwo",
+                value: _vm.datetwouser,
+                expression: "datetwouser",
               },
             ],
             staticClass: "form-control form-control-sm",
             attrs: { type: "date", min: "", placeholder: ".form-control-sm" },
-            domProps: { value: _vm.datetwo },
+            domProps: { value: _vm.datetwouser },
             on: {
               input: function ($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.datetwo = $event.target.value
+                _vm.datetwouser = $event.target.value
               },
             },
           }),
