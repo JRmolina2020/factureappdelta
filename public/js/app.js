@@ -3890,6 +3890,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3929,6 +3947,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         other: 0,
         note: "",
         status: 1,
+        user: 0,
         type_sale: 1,
         dataDetails: []
       }
@@ -3938,8 +3957,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.getData();
     this.formFacture.type_sale = "Bancolombia";
+    this.$store.dispatch("Useractions");
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["urlfactures", "urlproducts", "clients", "products"])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["urlfactures", "urlproducts", "users", "clients", "products"])), {}, {
     filteredList: function filteredList() {
       var _this = this;
 
@@ -4154,6 +4174,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.formFacture.other = 0;
       this.formFacture.note = "";
       this.formFacture.status = 1;
+      this.formFacture.user = "";
       this.formFacture.type_sale = "Bancolombia";
       this.formFacture.dataDetails = [];
       this.price = [];
@@ -4315,6 +4336,54 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4324,6 +4393,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       currentPage: 1,
       date: "",
       datetwo: "",
+      dateuser: "",
+      datetwouser: "",
       filters: {
         name: {
           value: "",
@@ -4332,9 +4403,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["gain", "gaintot"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["gain", "gaintot", "usertot"])),
   created: function created() {
     this.getList();
+    this.getListUser();
   },
   methods: {
     getList: function getList() {
@@ -4345,6 +4417,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch("Gainactions", obj);
       this.$store.dispatch("Gaintotactions", obj);
     },
+    getListUser: function getListUser() {
+      var obj = {
+        prop1: _mixins_date__WEBPACK_IMPORTED_MODULE_0__["default"],
+        prop2: _mixins_date__WEBPACK_IMPORTED_MODULE_0__["default"]
+      };
+      this.$store.dispatch("Usertotactions", obj);
+    },
     getDate: function getDate() {
       var obj = {
         prop1: this.date,
@@ -4352,6 +4431,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
       this.$store.dispatch("Gainactions", obj);
       this.$store.dispatch("Gaintotactions", obj);
+    },
+    getDateUser: function getDateUser() {
+      var obj = {
+        prop1: this.dateuser,
+        prop2: this.datetwouser
+      };
+      this.$store.dispatch("Useractions", obj);
+      this.$store.dispatch("Usertotactions", obj);
     }
   }
 });
@@ -7064,6 +7151,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     billstot: [],
     gain: [],
     gaintot: [],
+    usertot: [],
     facUnique: [],
     status: false,
     urlusers: "/api/users",
@@ -7079,7 +7167,8 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     urlbills: "/api/bills",
     urlbillstot: "/api/billsTot",
     urlgain: "/api/gain",
-    urlgaintot: "/api/gainTot"
+    urlgaintot: "/api/gainTot",
+    urlusertot: "/api/userTot"
   },
   mutations: {
     Usermutations: function Usermutations(state, item) {
@@ -7123,6 +7212,9 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     },
     Gaintotmutations: function Gaintotmutations(state, item) {
       state.gaintot = item;
+    },
+    Usertotmutations: function Usertotmutations(state, item) {
+      state.usertot = item;
     }
   },
   actions: {
@@ -7573,6 +7665,38 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
             }
           }
         }, _callee14, null, [[1, 9]]);
+      }))();
+    },
+    Usertotactions: function Usertotactions(_ref15, obj) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
+        var commit, state, response;
+        return _regeneratorRuntime().wrap(function _callee15$(_context15) {
+          while (1) {
+            switch (_context15.prev = _context15.next) {
+              case 0:
+                commit = _ref15.commit, state = _ref15.state;
+                _context15.prev = 1;
+                _context15.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlusertot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+
+              case 4:
+                response = _context15.sent;
+                commit("Usertotmutations", response.data);
+                state.status = true;
+                _context15.next = 12;
+                break;
+
+              case 9:
+                _context15.prev = 9;
+                _context15.t0 = _context15["catch"](1);
+                console.log(_context15.t0);
+
+              case 12:
+              case "end":
+                return _context15.stop();
+            }
+          }
+        }, _callee15, null, [[1, 9]]);
       }))();
     }
   }
@@ -82371,6 +82495,61 @@ var render = function () {
             }),
           ]),
           _vm._v(" "),
+          _c("div", { staticClass: "col-6 col-lg-2" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Vendedor")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formFacture.user,
+                      expression: "formFacture.user",
+                    },
+                  ],
+                  staticClass: "form-control form-control-sm",
+                  attrs: { required: "" },
+                  on: {
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.formFacture,
+                        "user",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                  },
+                },
+                _vm._l(_vm.users, function (item, index) {
+                  return _c(
+                    "option",
+                    { key: index, domProps: { value: item.id } },
+                    [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(item.name) +
+                          "\n                        "
+                      ),
+                    ]
+                  )
+                }),
+                0
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
           _vm.formFacture.other > 0
             ? _c("div", { staticClass: "col-6 col-lg-2" }, [
                 _c("div", { staticClass: "form-group" }, [
@@ -82873,6 +83052,16 @@ var render = function () {
   return _c("div", [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-lg-6 col-xs-12 col-sm-12" }, [
+        _c(
+          "div",
+          { staticClass: "alert alert-primary", attrs: { role: "alert" } },
+          [
+            _vm._v(
+              "\n                Resultado de ventas, ganancias y total\n            "
+            ),
+          ]
+        ),
+        _vm._v(" "),
         _c("div", { staticClass: "input-group" }, [
           _c("input", {
             directives: [
@@ -82927,6 +83116,80 @@ var render = function () {
                   on: {
                     click: function ($event) {
                       return _vm.getDate()
+                    },
+                  },
+                },
+                [_vm._v("\n                    Buscar\n                ")]
+              )
+            : _vm._e(),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-6 col-xs-12 col-sm-12" }, [
+        _c(
+          "div",
+          { staticClass: "alert alert-warning", attrs: { role: "alert" } },
+          [
+            _vm._v(
+              "\n                Resultado de ventas por vendedor\n            "
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.dateuser,
+                expression: "dateuser",
+              },
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: { type: "date", placeholder: ".form-control-sm" },
+            domProps: { value: _vm.dateuser },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.dateuser = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.datetwo,
+                expression: "datetwo",
+              },
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: { type: "date", min: "", placeholder: ".form-control-sm" },
+            domProps: { value: _vm.datetwo },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.datetwo = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          this.datetwouser != ""
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-secondary btn-sm",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.getDateUser()
                     },
                   },
                 },
@@ -83040,6 +83303,24 @@ var render = function () {
           1
         ),
       ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-6 col-xs-12 col-sm-12" }, [
+        _c("table", { staticClass: "table table-dark mt-3" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.usertot, function (item, index) {
+              return _c("tr", { key: "u" + index }, [
+                _c("td", [_vm._v(_vm._s(item.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm._f("currency")(item.tot)))]),
+              ])
+            }),
+            0
+          ),
+        ]),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
@@ -83066,7 +83347,20 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Vendedor")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("total")]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

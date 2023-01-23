@@ -94,6 +94,7 @@ Route::delete('/factures/{id}', [FactureController::class, 'destroy'])->where('i
 Route::put('/factures/{id}', [FactureController::class, 'updateStatus'])->where('id', '[0-9]+');
 Route::get('/gain/{date}/{datetwo}', [FactureController::class, 'gain']);
 Route::get('/gainTot/{date}/{datetwo}', [FactureController::class, 'gainTot']);
+Route::get('/userTot/{date}/{datetwo}', [FactureController::class, 'userTot']);
 
 //
 //facture details

@@ -9,15 +9,17 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    // all posts
+    // all users
     public function index(Request $request)
     {
     
-        $users = User::with('roles:id,name')->orderBy('id', 'desc')->get();
+        $users = User::with('roles:id,name')
+        ->orderBy('id', 'desc')
+        ->get();
         return response()->json($users);
     }
  
-    // add post
+    // add users
     public function store(Request $request)
     {
         if (!$request->ajax()) return redirect('/');

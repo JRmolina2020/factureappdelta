@@ -319,6 +319,24 @@
                         disabled
                     />
                 </div>
+                <div class="col-6 col-lg-2">
+                    <div class="form-group">
+                        <label>Vendedor</label>
+                        <select
+                            v-model="formFacture.user"
+                            class="form-control form-control-sm"
+                            required
+                        >
+                            <option
+                                v-for="(item, index) in users"
+                                :value="item.id"
+                                :key="index"
+                            >
+                                {{ item.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
                 <div v-if="formFacture.other > 0" class="col-6 col-lg-2">
                     <div class="form-group">
                         <label for="my-select">Banco</label>
@@ -571,6 +589,7 @@ export default {
                 other: 0,
                 note: "",
                 status: 1,
+                user: 0,
                 type_sale: 1,
                 dataDetails: [],
             },
@@ -580,9 +599,16 @@ export default {
     created() {
         this.getData();
         this.formFacture.type_sale = "Bancolombia";
+        this.$store.dispatch("Useractions");
     },
     computed: {
-        ...mapState(["urlfactures", "urlproducts", "clients", "products"]),
+        ...mapState([
+            "urlfactures",
+            "urlproducts",
+            "users",
+            "clients",
+            "products",
+        ]),
 
         filteredList() {
             return this.products.filter((products) => {
@@ -756,6 +782,7 @@ export default {
             this.formFacture.other = 0;
             this.formFacture.note = "";
             this.formFacture.status = 1;
+            this.formFacture.user = "";
             this.formFacture.type_sale = "Bancolombia";
             this.formFacture.dataDetails = [];
             this.price = [];

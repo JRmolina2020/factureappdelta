@@ -32,7 +32,7 @@ class FactureController extends Controller
             $facture->note = $request->note;
             $facture->status = $request->status;
             $facture->type_sale = $request->type_sale;
-            $facture->user_id=auth()->id();
+            $facture->user_id=$request->user;
             $facture->save();
             $details = $request-> dataDetails;
             foreach ($details as $ep => $det) {
@@ -157,6 +157,18 @@ public function gainTot (Request $request,$date,$datetwo){
     ->where('status',1)
     ->get();
     return $gain_tot;
+}
+public function userTot (Request $request,$date,$datetwo){
+    if (!$request->ajax()) return redirect('/');
+    $user_tot = DB::table('factures as f')
+    ->join('users as u', 'f.user_id', '=', 'u.id')
+    ->select(
+    DB::raw('u.name,SUM(f.tot) as tot'),
+    )
+    ->groupBy('u.name')
+    ->whereBetween('f.date_facture', [$date, $datetwo])
+    ->get();
+    return $user_tot;
 }
 
 public function updateStatus($id)
