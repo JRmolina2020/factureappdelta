@@ -9,6 +9,7 @@ use App\Http\Controllers\API\ClientController;
 use App\Http\Controllers\API\FactureController;
 use App\Http\Controllers\API\FactureDetailController;
 use App\Http\Controllers\API\BillController;
+use App\Http\Controllers\API\CompanyController;
 use App\Http\Controllers\AuthController;
 
 
@@ -48,6 +49,9 @@ Route::get('/facturas', function () {
 });
 Route::get('/gastos', function () {
     return view('bills.index');
+});
+Route::get('/empresa', function () {
+    return view('companies.index');
 });
 Route::prefix('api')->group(function () {
 //routes app fuctions
@@ -106,6 +110,13 @@ Route::get('/bills/{date}', [BillController::class, 'index']);
 Route::get('/billsTot/{date}', [BillController::class, 'sumTot']);
 Route::put('/bills/{id}', [BillController::class, 'update']);
 Route::delete('/bills/{id}', [BillController::class, 'destroy'])->where('id', '[0-9]+');
+//end
+//companies
+Route::get('/companies', [CompanyController::class, 'index_two']);
+Route::get('/company', [CompanyController::class, 'index']);
+Route::post('company', [CompanyController::class, 'store']);
+Route::put('/company/{id}', [CompanyController::class, 'update'])->where('id', '[0-9]+');
+Route::delete('/companies/{id}', [CompanyController::class, 'destroy'])->where('id', '[0-9]+');
 //end
 });
 });

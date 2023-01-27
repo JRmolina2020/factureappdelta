@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-lg-6 col-xs-12 col-sm-12">
+            <div class="col-lg-6 col-xs-12 col-sm-12 mt-3">
                 <div class="alert alert-primary" role="alert">
                     Resultado de ventas, ganancias y total
                 </div>
@@ -30,7 +30,7 @@
                     </button>
                 </div>
             </div>
-            <div class="col-lg-6 col-xs-12 col-sm-12">
+            <div class="col-lg-6 col-xs-12 col-sm-12 mt-3">
                 <div class="alert alert-warning" role="alert">
                     Resultado de ventas por vendedor
                 </div>

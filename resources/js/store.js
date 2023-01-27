@@ -20,6 +20,7 @@ export default new Vuex.Store({
         gaintot: [],
         usertot: [],
         facUnique: [],
+        company: [],
         status: false,
         urlusers: "/api/users",
         urlroles: "/api/roles",
@@ -36,6 +37,8 @@ export default new Vuex.Store({
         urlgain: "/api/gain",
         urlgaintot: "/api/gainTot",
         urlusertot: "/api/userTot",
+        urlcompany: "/api/company",
+        urlcompanies: "/api/companies",
     },
     mutations: {
         Usermutations(state, item) {
@@ -82,6 +85,9 @@ export default new Vuex.Store({
         },
         Usertotmutations(state, item) {
             state.usertot = item;
+        },
+        Companymutations(state, item) {
+            state.company = item;
         },
     },
 
@@ -229,6 +235,15 @@ export default new Vuex.Store({
                     `${state.urlusertot}/${obj.prop1}/${obj.prop2}`
                 );
                 commit("Usertotmutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async Companyactions({ commit, state }) {
+            try {
+                let response = await axios.get(state.urlcompany);
+                commit("Companymutations", response.data);
                 state.status = true;
             } catch (error) {
                 console.log(error);

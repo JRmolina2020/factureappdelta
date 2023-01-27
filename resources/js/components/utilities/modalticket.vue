@@ -27,14 +27,17 @@ wwww
                             <div>
                                 <center>
                                     <br /><br />
-                                    <h5>
-                                        {{ company
-                                        }}<br />NIT.1003242515-1<br />
-                                        Gina marcela Molina<br />
-                                        Pasaje los paisas local#22
+                                    <h5
+                                        v-for="(item, index) in company"
+                                        :key="index"
+                                    >
+                                        {{ item.name }}<br />{{ item.nit
+                                        }}<br />
+                                        {{ item.representative }}<br />
+                                        {{ item.direction }}
                                         <br />
-                                        3012074828<br />
-                                        Valledupar-Cesar<br />
+                                        {{ item.phone }}<br />
+                                        {{ item.city }}<br />
                                     </h5>
                                 </center>
 
@@ -90,10 +93,11 @@ wwww
                             </div>
                             ********************
                             <center>
-                                <h5>
-                                    Gracias por tu compra, los cambios se hacen
-                                    dentro de las 24hrs despúes del pedido
-                                    emitido.
+                                <h5
+                                    v-for="(item, index) in company"
+                                    :key="index"
+                                >
+                                    {{ item.note }}
                                 </h5>
                             </center>
                         </div>
@@ -118,11 +122,10 @@ export default {
         return {
             currentPage: 1,
             totalPages: 0,
-            company: "BOLSOSVALLEDUPAR",
         };
     },
     computed: {
-        ...mapState(["details", "facUnique"]),
+        ...mapState(["details", "facUnique", "company"]),
         sumProducts() {
             let tot = 0;
             this.details.map((data) => {
@@ -145,6 +148,7 @@ export default {
         getlistProducts() {
             this.$store.dispatch("FactureDetailactions", this.cod);
             this.$store.dispatch("FactureUniquections", this.cod);
+            this.$store.dispatch("Companyactions");
         },
     },
 };

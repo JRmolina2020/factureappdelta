@@ -3,7 +3,13 @@
       <li class="nav-item">
         <a href="{{ url('home') }}" class="nav-link">
           <i class="fi fi-microsoft"></i>
-          <p>Inicio</p>
+          <p>Indicadores</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ url('empresa') }}" class="nav-link">
+          <i class="fi fi-microsoft"></i>
+          <p>Empresa</p>
         </a>
       </li>
       <li class="nav-item">

@@ -70,6 +70,11 @@ Vue.component(
 
 Vue.component("gain_example", require("./components/gain.vue").default);
 
+Vue.component(
+    "company_example",
+    require("./components/companies/CompanyExample.vue").default
+);
+
 import auth from "./mixins/Auth.js";
 Vue.mixin(auth);
 const app = new Vue({
