@@ -39,7 +39,7 @@ class CompanyController extends Controller
     {
         if (!$request->ajax()) return redirect('/');
          Company::create([
-            'user_id' =>6,
+            'user_id' =>auth()->id(),
             'nit' => $request['nit'],
             'name' => $request['name'],
             'representative' => $request['representative'],
