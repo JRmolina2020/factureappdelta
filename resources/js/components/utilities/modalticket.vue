@@ -31,7 +31,7 @@ wwww
                                         v-for="(item, index) in company"
                                         :key="index"
                                     >
-                                        {{ item.name }}<br />{{ item.nit
+                                        {{ item.name }}<br />Nit.{{ item.nit
                                         }}<br />
                                         {{ item.representative }}<br />
                                         {{ item.direction }}

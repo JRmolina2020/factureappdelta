@@ -87549,7 +87549,7 @@ var render = function () {
                                     _vm._s(item.name)
                                 ),
                                 _c("br"),
-                                _vm._v(_vm._s(item.nit)),
+                                _vm._v("Nit." + _vm._s(item.nit)),
                                 _c("br"),
                                 _vm._v(
                                   "\n                                    " +
