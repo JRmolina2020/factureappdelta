@@ -1,45 +1,36 @@
 <template>
     <div>
-        <div class="table-responsive">
-            <VTable :data="company" class="table">
-                <template #head>
-                    <tr>
-                        <VTh sortKey="nit">Nit</VTh>
-                        <th>Empresa</th>
-                        <th>R</th>
-                        <th>Tel</th>
-                        <th>Dirección</th>
-                        <th>Ciudad</th>
-                        <th>Op</th>
-                    </tr>
-                </template>
-                <template #body="{ rows }">
-                    <tr v-for="row in rows" :key="row.id">
-                        <td>{{ row.nit }}</td>
-                        <td>{{ row.name }}</td>
-                        <td>{{ row.representative }}</td>
-                        <td>{{ row.phone }}</td>
-                        <td>{{ row.direction }}</td>
-                        <td>{{ row.city }}</td>
-                        <td>
-                            <button
-                                type="button"
-                                @click="$emit('show', row)"
-                                class="btn bg-warning btn-sm"
-                            >
-                                <i class="fi fi-eye"></i>
-                            </button>
-                            <button
-                                type="button"
-                                @click="destroy(row.id)"
-                                class="btn bg-danger btn-sm"
-                            >
-                                <i class="fi fi-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </template>
-            </VTable>
+        <div
+            class="card text-center"
+            v-for="(item, index) in company"
+            :key="index"
+        >
+            <div class="card-header">Nit: {{ item.nit }}</div>
+            <div class="card-footer text-muted">
+                <strong>Empresa: </strong>{{ item.name }}
+            </div>
+            <div class="card-footer text-muted">
+                <strong>Representante: </strong> {{ item.representative }}
+            </div>
+            <div class="card-footer text-muted">
+                <strong>Tel: </strong>{{ item.phone }}
+            </div>
+            <div class="card-footer text-muted">
+                <strong>Dirección: </strong>{{ item.direction }}
+            </div>
+            <div class="card-footer text-muted">
+                <strong>Ciudad: </strong>{{ item.city }}
+            </div>
+            <div class="mt-3">
+                <button
+                    type="button"
+                    @click="$emit('show', item)"
+                    class="btn bg-warning btn-sm"
+                >
+                    <i class="fi fi-eye"></i>
+                </button>
+                <div class="mt-3"></div>
+            </div>
         </div>
     </div>
 </template>
@@ -61,19 +52,6 @@ export default {
     methods: {
         getList() {
             this.$store.dispatch("Companyactions");
-        },
-        async destroy(id) {
-            let url = this.urlcompanies + "/" + id;
-            let response = await axios.delete(url);
-            try {
-                this.getList();
-                Swal.fire({
-                    title: `${response.data.message}`,
-                    icon: "success",
-                });
-            } catch (error) {
-                console.log(error);
-            }
         },
     },
 };

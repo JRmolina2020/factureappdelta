@@ -337,6 +337,7 @@
                         </select>
                     </div>
                 </div>
+
                 <div v-if="formFacture.other > 0" class="col-6 col-lg-2">
                     <div class="form-group">
                         <label for="my-select">Banco</label>
@@ -352,6 +353,36 @@
                     </div>
                 </div>
                 <div v-else></div>
+                <div class="col-lg-2 col-6">
+                    <div class="form-group">
+                        <label>Recibido</label>
+                        <currency-input
+                            class="form-control form-control-sm"
+                            v-model="received"
+                            @blur="moneyChange()"
+                            v-currency="{
+                                currency: 'USD',
+                                precision: 0,
+                                locale: 'en',
+                            }"
+                        />
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <div class="form-group">
+                        <label>Vueltos</label>
+                        <currency-input
+                            class="form-control form-control-sm"
+                            v-model.number="changeEfecty"
+                            disabled
+                            v-currency="{
+                                currency: 'USD',
+                                precision: 0,
+                                locale: 'en',
+                            }"
+                        />
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -395,6 +426,21 @@
                     >
                         Guardar venta
                     </button>
+                </div>
+                <div
+                    class="col-lg-2"
+                    v-if="formFacture.dataDetails.length != 0"
+                >
+                    <button
+                        type="button"
+                        class="btn btn btn-danger btn-sm mt-3"
+                        data-toggle="modal"
+                        data-target="#examplechange"
+                        @click="clearChangeEfecty()"
+                    >
+                        <i class="fi fi-smiley"></i>
+                    </button>
+                    <main></main>
                 </div>
             </div>
         </form>
@@ -525,8 +571,14 @@
                                         <p>
                                             {{ item.name }}
                                         </p>
-                                        <p class="card-text">
+                                        <p
+                                            v-if="type_sale === 1"
+                                            class="card-text"
+                                        >
                                             {{ item.price | currency }}
+                                        </p>
+                                        <p v-else class="card-text">
+                                            {{ item.price_two | currency }}
                                         </p>
                                     </div>
                                 </div>
@@ -573,6 +625,9 @@ export default {
             //fictyUpdate
             price: [],
             //
+            //
+            received: 0,
+            changeEfecty: 0,
             product: {
                 name: "",
                 price: 0,
@@ -700,6 +755,7 @@ export default {
             }
         },
         addRow(row, index) {
+            console.log(this.type_sale);
             Swal.fire({
                 position: "center-start",
                 icon: "success",
@@ -832,6 +888,27 @@ export default {
             this.formFacture.efecty = this.onViewTot;
             this.formFacture.other = 0;
             this.filters = "";
+            this.received = "";
+            this.changeEfecty = "";
+        },
+        moneyChange() {
+            if (this.received < this.formFacture.efecty) {
+                let money = 0;
+                money = this.formFacture.efecty - this.received;
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Falta dinero, falta $" + money,
+                });
+            } else {
+                let money = 0;
+                money = this.received - this.formFacture.efecty;
+                this.changeEfecty = money;
+            }
+        },
+        clearChangeEfecty() {
+            this.received = "";
+            this.changeEfecty = "";
         },
     },
 };

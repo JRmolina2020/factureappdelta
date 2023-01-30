@@ -91,14 +91,13 @@
                             </tr>
                         </template>
                     </VTable>
-                </div>
-
-                <div class="text-xs-center">
-                    <VTPagination
-                        :currentPage.sync="currentPage"
-                        :total-pages="totalPages"
-                        :boundary-links="true"
-                    />
+                    <div class="text-xs-center">
+                        <VTPagination
+                            :currentPage.sync="currentPage"
+                            :total-pages="totalPages"
+                            :boundary-links="true"
+                        />
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6 col-xs-12 col-sm-12">
