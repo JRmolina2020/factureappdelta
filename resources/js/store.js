@@ -21,6 +21,8 @@ export default new Vuex.Store({
         usertot: [],
         facUnique: [],
         company: [],
+        money: [],
+        moneySingle: [],
         status: false,
         urlusers: "/api/users",
         urlroles: "/api/roles",
@@ -39,6 +41,8 @@ export default new Vuex.Store({
         urlusertot: "/api/userTot",
         urlcompany: "/api/company",
         urlcompanies: "/api/companies",
+        urlmoney: "/api/money",
+        urlmoneySingle: "api/moneySingle",
     },
     mutations: {
         Usermutations(state, item) {
@@ -88,6 +92,13 @@ export default new Vuex.Store({
         },
         Companymutations(state, item) {
             state.company = item;
+        },
+        Moneymutations(state, item) {
+            state.money = item;
+        },
+
+        MoneySinglemutations(state, item) {
+            state.moneySingle = item;
         },
     },
 
@@ -244,6 +255,24 @@ export default new Vuex.Store({
             try {
                 let response = await axios.get(state.urlcompany);
                 commit("Companymutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async Moneyactions({ commit, state }) {
+            try {
+                let response = await axios.get(state.urlmoney);
+                commit("Moneymutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async MoneySigleactions({ commit, state }) {
+            try {
+                let response = await axios.get(state.urlmoneySingle);
+                commit("MoneySinglemutations", response.data);
                 state.status = true;
             } catch (error) {
                 console.log(error);

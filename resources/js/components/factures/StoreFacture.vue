@@ -344,11 +344,15 @@
                         <select
                             v-model="formFacture.type_sale"
                             class="form-control form-control-sm"
+                            required
                         >
-                            <option value="Bancolombia">Bancolombia</option>
-                            <option value="Nequi R">Nequi R</option>
-                            <option value="Nequi M">Nequi M</option>
-                            <option value="Daviplata">Daviplata</option>
+                            <option
+                                v-for="(item, index) in moneySingle"
+                                :key="index"
+                                :value="item.name"
+                            >
+                                {{ item.name }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -655,6 +659,7 @@ export default {
         this.getData();
         this.formFacture.type_sale = "Bancolombia";
         this.$store.dispatch("Useractions");
+        this.$store.dispatch("MoneySigleactions");
     },
     computed: {
         ...mapState([
@@ -663,6 +668,7 @@ export default {
             "users",
             "clients",
             "products",
+            "moneySingle",
         ]),
 
         filteredList() {

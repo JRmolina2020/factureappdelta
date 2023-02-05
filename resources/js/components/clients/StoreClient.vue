@@ -22,7 +22,7 @@
                     onKeyPress="if(event.keyCode == 13) event.returnValue = false;"
                 >
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label for>Nit</label>
                                 <input
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label for>Nombre</label>
                                 <input
@@ -69,9 +69,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
                             <div class="form-group">
-                                <label for>Whatsapp</label>
+                                <label for>Tel</label>
                                 <input
                                     type="number"
                                     v-validate="

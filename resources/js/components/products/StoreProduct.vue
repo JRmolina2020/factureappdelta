@@ -3,7 +3,7 @@
         <Modal-Resource v-on:clear="clear" title="Registro de productos">
             <section slot="titlebutton">Registrar productos</section>
             <section v-if="!form.id" slot="title">
-                Registro de productis
+                Registro de productos
             </section>
             <section v-else slot="title">Editar producto</section>
             <section slot="closebtn">
@@ -24,7 +24,7 @@
                     onKeyPress="if(event.keyCode == 13) event.returnValue = false;"
                 >
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label for>Nombre</label>
                                 <input
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label for>Costo</label>
                                 <currency-input
@@ -76,7 +76,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label for>Precio mayorista</label>
                                 <currency-input
@@ -106,9 +108,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label for>Precio de venta</label>
                                 <currency-input

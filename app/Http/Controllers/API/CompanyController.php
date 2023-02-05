@@ -11,7 +11,7 @@ class CompanyController extends Controller
 {
     public function index(Request $request)
     {
-     
+        if (!$request->ajax()) return redirect('/');
         $company= DB::table('companies')
         ->select('id','nit','name','representative','phone','direction','city','note')
         ->where('user_id',auth()->id())

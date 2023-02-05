@@ -74,6 +74,10 @@ Vue.component(
     "company_example",
     require("./components/companies/CompanyExample.vue").default
 );
+Vue.component(
+    "money_example",
+    require("./components/money/MoneyExample.vue").default
+);
 
 import auth from "./mixins/Auth.js";
 Vue.mixin(auth);

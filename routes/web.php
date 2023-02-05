@@ -10,6 +10,7 @@ use App\Http\Controllers\API\FactureController;
 use App\Http\Controllers\API\FactureDetailController;
 use App\Http\Controllers\API\BillController;
 use App\Http\Controllers\API\CompanyController;
+use App\Http\Controllers\API\MoneyController;
 use App\Http\Controllers\AuthController;
 
 
@@ -52,6 +53,9 @@ Route::get('/gastos', function () {
 });
 Route::get('/empresa', function () {
     return view('companies.index');
+});
+Route::get('/cuentas', function () {
+    return view('money.index');
 });
 Route::prefix('api')->group(function () {
 //routes app fuctions
@@ -118,6 +122,13 @@ Route::post('company', [CompanyController::class, 'store']);
 Route::put('/company/{id}', [CompanyController::class, 'update'])->where('id', '[0-9]+');
 Route::delete('/companies/{id}', [CompanyController::class, 'destroy'])->where('id', '[0-9]+');
 //end
+//acounts
+Route::get('/money', [MoneyController::class, 'index']);
+Route::get('/moneySingle', [MoneyController::class, 'index_two']);
+Route::post('money', [MoneyController::class, 'store']);
+Route::put('/money/{id}', [MoneyController::class, 'update'])->where('id', '[0-9]+');
+Route::delete('/money/{id}', [MoneyController::class, 'destroy'])->where('id', '[0-9]+');
+
 });
 });
 

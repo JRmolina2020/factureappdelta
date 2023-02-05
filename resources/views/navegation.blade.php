@@ -8,13 +8,13 @@
       </li>
       <li class="nav-item">
         <a href="{{ url('empresa') }}" class="nav-link">
-          <i class="fi fi-microsoft"></i>
+          <i class="fi fi-shopping-basket-add"></i>
           <p>Empresa</p>
         </a>
       </li>
       <li class="nav-item">
         <a href="{{ url('gastos') }}" class="nav-link">
-          <i class="fi fi-male"></i>
+          <i class="fi fi-credit-card"></i>
           <p>Gastos</p>
         </a>
       </li>
@@ -32,8 +32,20 @@
       </li>
       <li class="nav-item">
         <a href="{{ url('clientes') }}" class="nav-link">
+          <i class="fi fi-wink"></i>
+          <p>Proveedores</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ url('clientes') }}" class="nav-link">
           <i class="fi fi-male"></i>
           <p>Clientes</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ url('cuentas') }}" class="nav-link">
+          <i class="fi fi-credit-card"></i>
+          <p>Cuentas</p>
         </a>
       </li>
       <li class="nav-item">

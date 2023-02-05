@@ -44,11 +44,15 @@
                     <select
                         v-model="search_sale"
                         class="form-control form-control-sm"
+                        required
                     >
-                        <option value="Bancolombia">Bancolombia</option>
-                        <option value="Nequi R">Nequi R</option>
-                        <option value="Nequi M">Nequi M</option>
-                        <option value="Daviplata">Daviplata</option>
+                        <option
+                            v-for="(item, index) in moneySingle"
+                            :key="index"
+                            :value="item.name"
+                        >
+                            {{ item.name }}
+                        </option>
                     </select>
                     <div class="input-group-append">
                         <button
@@ -206,6 +210,7 @@ const options = {
 
 Vue.use(VueHtmlToPaper, options);
 import MgetList from "../../mixins/dateFacture";
+import { inferredPredicate } from "@babel/types";
 
 export default {
     data() {
@@ -231,6 +236,7 @@ export default {
             "urlfactures",
             "status",
             "billstot",
+            "moneySingle",
         ]),
     },
 
@@ -239,17 +245,34 @@ export default {
     },
     methods: {
         getDate() {
-            let date = this.date;
-            this.$store.dispatch("Factureactions", date);
-            this.$store.dispatch("TypeSaleactions", date);
-            this.$store.dispatch("Billtotactions", date);
+            if (this.date == "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Te falta digitar la fecha!",
+                });
+            } else {
+                let date = this.date;
+                this.$store.dispatch("Factureactions", date);
+                this.$store.dispatch("TypeSaleactions", date);
+                this.$store.dispatch("Billtotactions", date);
+                this.$store.dispatch("MoneySigleactions");
+            }
         },
         getTypeSale() {
-            let obj = {
-                prop1: this.date,
-                prop2: this.search_sale,
-            };
-            this.$store.dispatch("TypeSale_one_actions", obj);
+            if (this.date == "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Te falta digitar la fecha!",
+                });
+            } else {
+                let obj = {
+                    prop1: this.date,
+                    prop2: this.search_sale,
+                };
+                this.$store.dispatch("TypeSale_one_actions", obj);
+            }
         },
         async statusModified(id) {
             let url = this.urlfactures + "/" + id;
