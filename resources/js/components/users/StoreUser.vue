@@ -1,6 +1,10 @@
 <template>
     <div>
-        <Modal-Resource v-on:clear="clear" title="Registro de usuarios">
+        <Modal-Resource
+            v-on:clear="clear"
+            title="Registro de usuarios"
+            sone="modal-dialog modal-sm"
+        >
             <section slot="titlebutton">Registrar usuarios</section>
             <section v-if="!form.id" slot="title">Registro de usuarios</section>
             <section v-else slot="title">Editar usuarios</section>
@@ -22,7 +26,7 @@
                     onKeyPress="if(event.keyCode == 13) event.returnValue = false;"
                 >
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label for>Nombre</label>
                                 <input
@@ -45,7 +49,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label for>Email</label>
                                 <input
@@ -68,7 +72,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-12">
                             <div>
                                 <div class="form-group">
                                     <label>Rol</label>

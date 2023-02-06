@@ -9,6 +9,7 @@
         >
             <slot name="titlebutton"></slot>
         </button>
+
         <div
             class="modal fade"
             data-backdrop="static"
@@ -16,7 +17,7 @@
             tabindex="-1"
             id="model"
         >
-            <div class="modal-dialog">
+            <div :class="[sone]">
                 <div class="modal-content">
                     <div class="modal-header">
                         <p class="modal-title">
@@ -36,5 +37,9 @@
 <script>
 export default {
     name: "modalresource",
+    props: { sone: String },
+    data() {
+        return {};
+    },
 };
 </script>

@@ -31,7 +31,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="{{ url('clientes') }}" class="nav-link">
+        <a href="{{ url('proveedores') }}" class="nav-link">
           <i class="fi fi-wink"></i>
           <p>Proveedores</p>
         </a>

@@ -1,6 +1,10 @@
 <template>
     <div>
-        <Modal-Resource v-on:clear="clear" title="Registro de gastos">
+        <Modal-Resource
+            v-on:clear="clear"
+            title="Registro de gastos"
+            sone="modal-dialog modal-sm"
+        >
             <section slot="titlebutton">Registrar gastos</section>
             <section v-if="!form.id" slot="title">Registro de gasto</section>
             <section v-else slot="title">Editar gasto</section>
@@ -22,7 +26,7 @@
                     onKeyPress="if(event.keyCode == 13) event.returnValue = false;"
                 >
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label for>Concepto</label>
                                 <input
@@ -44,7 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label for>Monto</label>
                                 <currency-input

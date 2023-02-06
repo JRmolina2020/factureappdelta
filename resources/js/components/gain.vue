@@ -62,7 +62,15 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-6 col-xs-12 col-sm-12">
+            <div class="col-lg-6 col-12">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        v-model="filters.name.value"
+                        placeholder="Buscar referencia"
+                    />
+                </div>
                 <div class="table-responsive mt-3">
                     <VTable
                         :data="gain"

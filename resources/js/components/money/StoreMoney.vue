@@ -1,6 +1,10 @@
 <template>
     <div>
-        <Modal-Resource v-on:clear="clear" title="Registro de clientes">
+        <Modal-Resource
+            v-on:clear="clear"
+            sone="modal-dialog modal-sm"
+            title="Registro de clientes"
+        >
             <section slot="titlebutton">Registrar cuentas</section>
             <section v-if="!form.id" slot="title">Registro de cuentas</section>
             <section v-else slot="title">Editar cuentas</section>
@@ -22,7 +26,7 @@
                     onKeyPress="if(event.keyCode == 13) event.returnValue = false;"
                 >
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label for>Cuenta</label>
                                 <input
@@ -44,7 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label for="my-select">Estado</label>
                                 <select

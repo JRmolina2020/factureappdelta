@@ -5,7 +5,7 @@
                 <div class="form-group">
                     <input
                         type="text"
-                        class="form-control form-control-xs"
+                        class="form-control form-control-sm"
                         v-model="filters.name.value"
                         placeholder="Buscar gastos"
                     />

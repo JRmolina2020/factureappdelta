@@ -1,6 +1,10 @@
 <template>
     <div>
-        <Modal-Resource v-on:clear="clear" title="Registro de productos">
+        <Modal-Resource
+            v-on:clear="clear"
+            sone="modal-dialog modal-xs"
+            title="Registro de productos"
+        >
             <section slot="titlebutton">Registrar productos</section>
             <section v-if="!form.id" slot="title">
                 Registro de productos

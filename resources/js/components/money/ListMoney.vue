@@ -15,7 +15,7 @@
                 :page-size="5"
                 :currentPage.sync="currentPage"
                 @totalPagesChanged="totalPages = $event"
-                class="table"
+                class="table table-dark table-striped"
             >
                 <template #head>
                     <tr>

@@ -22,6 +22,7 @@
                         <VTh sortKey="nit">Nit</VTh>
                         <VTh sortKey="fullname">Nombre</VTh>
                         <th>Tel</th>
+                        <th>Correo</th>
                         <th>Op</th>
                     </tr>
                 </template>
@@ -30,6 +31,7 @@
                         <td>{{ row.nit }}</td>
                         <td>{{ row.fullname }}</td>
                         <td>{{ row.phone }}</td>
+                        <td>{{ row.email }}</td>
 
                         <td>
                             <button

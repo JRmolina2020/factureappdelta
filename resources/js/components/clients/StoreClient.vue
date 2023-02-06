@@ -1,7 +1,12 @@
 <template>
     <div>
-        <Modal-Resource v-on:clear="clear" title="Registro de clientes">
+        <Modal-Resource
+            v-on:clear="clear"
+            title="Registro de clientes"
+            sone="modal-dialog modal-sm"
+        >
             <section slot="titlebutton">Registrar clientes</section>
+
             <section v-if="!form.id" slot="title">Registro de clientes</section>
             <section v-else slot="title">Editar clientes</section>
             <section slot="closebtn">
@@ -22,7 +27,7 @@
                     onKeyPress="if(event.keyCode == 13) event.returnValue = false;"
                 >
                     <div class="row">
-                        <div class="col-lg-6 col-12">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label for>Nit</label>
                                 <input
@@ -45,7 +50,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-12">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label for>Nombre</label>
                                 <input
@@ -69,9 +74,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-12">
+
+                        <div class="col-12">
                             <div class="form-group">
                                 <label for>Tel</label>
                                 <input
@@ -92,6 +96,30 @@
                                     class="invalid-feedback"
                                 >
                                     {{ errors.first("teléfono") }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for>Email</label>
+                                <input
+                                    type="email"
+                                    v-validate="'required|max:30|min:3'"
+                                    class="form-control form-control-sm"
+                                    :class="{
+                                        'is-invalid':
+                                            submitted && errors.has('email'),
+                                    }"
+                                    placeholder="Email"
+                                    v-model="form.email"
+                                    name="email"
+                                />
+                                <div
+                                    v-if="submitted && errors.has('email')"
+                                    class="invalid-feedback"
+                                >
+                                    {{ errors.first("email") }}
                                 </div>
                             </div>
                         </div>
@@ -159,6 +187,7 @@ export default {
                 nit: null,
                 fullname: "",
                 phone: 0,
+                email: null,
             },
         };
     },
@@ -169,6 +198,7 @@ export default {
             this.form.nit = row.nit;
             this.form.fullname = row.fullname;
             this.form.phone = row.phone;
+            this.form.email = row.email;
 
             $("#model").modal("show");
             this.send = true;
@@ -177,7 +207,8 @@ export default {
             this.form.id = null;
             this.form.nit = null;
             this.form.fullname = null;
-            this.form.phone = 0;
+            this.form.phone = null;
+            this.form.email = null;
 
             this.$validator.reset();
             this.send = true;

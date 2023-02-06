@@ -45,6 +45,9 @@ Route::get('/productos', function () {
 Route::get('/clientes', function () {
     return view('clients.index');
 });
+Route::get('/proveedores', function () {
+    return view('providers.index');
+});
 Route::get('/facturas', function () {
     return view('factures.index');
 });

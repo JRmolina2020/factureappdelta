@@ -1,6 +1,10 @@
 <template>
     <div>
-        <Modal-Resource v-on:clear="clear" title="Roles de usuarios">
+        <Modal-Resource
+            v-on:clear="clear"
+            title="Roles de usuarios"
+            sone="modal-dialog modal-sm"
+        >
             <section slot="titlebutton">Registrar permiso</section>
             <section v-if="!form.id" slot="title">Registro de permiso</section>
             <section v-else slot="title">Editar permisos</section>
