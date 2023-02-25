@@ -65,7 +65,7 @@ Route::get('/cuentas', function () {
     return view('money.index');
 });
 Route::prefix('api')->group(function () {
-Route::group(['middleware' => ['getAuth']], function () {
+// Route::group(['middleware' => ['getAuth']], function () {
 //routes app fuctions
 //routes users
 Route::get('/users', [UserController::class, 'index']);
@@ -139,7 +139,7 @@ Route::delete('/money/{id}', [MoneyController::class, 'destroy'])->where('id', '
 
 });
 });
-});
+// });
 
 
 
