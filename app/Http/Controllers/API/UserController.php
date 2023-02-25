@@ -10,9 +10,8 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     // all users
-    public function index(Request $request)
+    public function index()
     {
-    
         $users = User::with('roles:id,name')
         ->orderBy('id', 'desc')
         ->get();
@@ -22,7 +21,6 @@ class UserController extends Controller
     // add users
     public function store(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
@@ -35,8 +33,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (!$request->ajax()) return redirect('/');
-        $user = User::find($id, ['id', 'name', 'email']);
+        $user = User::find($id);
         $user->fill([
             'name' => request('name'),
             'email' => request('email'),
@@ -54,14 +51,13 @@ class UserController extends Controller
       
     public function locked($id)
     {
-        
         $users = User::findOrFail($id, ['id']);
         $users->status = '0';
         $users->save();
         return response()->json(["message" => "Ha sido Bloqueado"]);
     }
     
-    public function updatePassword(Request $request, $id)
+    public function updatePassword($id)
     {
         $user = User::find($id, ['id']);
         $user->fill([

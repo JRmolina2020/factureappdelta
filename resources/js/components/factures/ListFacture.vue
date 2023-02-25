@@ -112,9 +112,13 @@
                             <Modal-Ticket v-bind:cod="row.id"></Modal-Ticket>
                         </td>
                         <td>
-                            <Modal-Details2
-                                v-bind:cod="row.id"
-                            ></Modal-Details2>
+                            <button
+                                type="button"
+                                @click="emailFac(row.id)"
+                                class="btn bg-primary btn-sm"
+                            >
+                                <i class="fi fi-skype"></i>
+                            </button>
                         </td>
                         <td v-can="'eliminar factura'">
                             <button
@@ -194,7 +198,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
-import ModalDetails2 from "../utilities/modaldetails2";
+
 import ModalTicket from "../utilities/modalticket";
 import VueHtmlToPaper from "vue-html-to-paper";
 
@@ -210,13 +214,11 @@ const options = {
 
 Vue.use(VueHtmlToPaper, options);
 import MgetList from "../../mixins/dateFacture";
-import { inferredPredicate } from "@babel/types";
 
 export default {
     data() {
         return {
             date: "",
-
             totalPages: 1,
             currentPage: 1,
             search_sale: "",
@@ -224,7 +226,6 @@ export default {
     },
     mixins: [MgetList],
     components: {
-        ModalDetails2,
         ModalTicket,
     },
     computed: {
@@ -297,6 +298,16 @@ export default {
                     title: `${response.data.message}`,
                     icon: "success",
                 });
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async emailFac(id) {
+            Swal.fire("Enviando...");
+            let url = "api/emailfac/" + id;
+            let response = await axios.get(url);
+            try {
+                Swal.fire("Realizado!", "success");
             } catch (error) {
                 console.log(error);
             }

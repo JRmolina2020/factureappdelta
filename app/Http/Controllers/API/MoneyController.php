@@ -9,15 +9,13 @@ use Illuminate\Support\Facades\DB;
 class MoneyController extends Controller
 {
        
-    public function index(Request $request)
+    public function index()
     {
-        if (!$request->ajax()) return redirect('/');
         $money= DB::table('money')->select('id', 'name','status')->orderBy('id', 'desc')->get();
         return $money;
     }
-    public function index_two(Request $request)
+    public function index_two()
     {
-        if (!$request->ajax()) return redirect('/');
         $money= DB::table('money')->select('id', 'name','status')
         ->where('status','1')
         ->orderBy('id', 'desc')
@@ -27,19 +25,16 @@ class MoneyController extends Controller
  
     public function store(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
          Money::create([
             'name' => $request['name'],
             'status' => $request['status'],
-      
            
         ]);
         return response()->json(['message' => 'Cuenta registrada'], 200);
     }
 
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        if (!$request->ajax()) return redirect('/');
         $money = Money::find($id, ['id', 'name','status']);
         $money->fill([
             'name' => request('name'),
@@ -47,8 +42,8 @@ class MoneyController extends Controller
         ])->save();
         return response()->json(['message' => 'Cuenta modificada'], 201);
     }
-    public function destroy(Request $request, $id)
-    {   if (!$request->ajax()) return redirect('/');
+    public function destroy($id)
+    {   
         $money= Money::find($id);
         if (!$money) {
             return response()->json(["message" => "Cuenta no encontrada"], 404);

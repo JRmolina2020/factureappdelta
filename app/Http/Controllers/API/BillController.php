@@ -10,9 +10,8 @@ use Carbon\Carbon;
 
 class BillController extends Controller
 {
-    public function index(Request $request,$date)
+    public function index($date)
     {
-        if (!$request->ajax()) return redirect('/');
         $bills = DB::table('bills as b')
         ->join('users as u', 'u.id', '=', 'b.user_id')
         ->select(
@@ -26,10 +25,8 @@ class BillController extends Controller
         return $bills;
     }
 
-
     public function store(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
         $mytime=Carbon::now('America/Bogota');
         Bill::create([
            'user_id' =>auth()->id(),
@@ -41,9 +38,8 @@ class BillController extends Controller
        ]);
        return response()->json(['message' => 'Gasto registrado'], 200);
     }
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        if (!$request->ajax()) return redirect('/');
         $bill = Bill::find($id, ['id']);
         $bill->fill([
             'name' => request('name'),
@@ -52,8 +48,9 @@ class BillController extends Controller
         ])->save();
         return response()->json(['message' => 'El gasto ha sido modificado'], 201);
     }
-    public function destroy(Request $request, $id)
-    {   if (!$request->ajax()) return redirect('/');
+    public function destroy($id)
+    {   
+        
         $bill = Bill::find($id);
         if (!$bill) {
             return response()->json(["message" => "Gasto no encontrado"], 404);
@@ -61,8 +58,7 @@ class BillController extends Controller
         $bill->delete();
         return response()->json(["message" => "Gasto eliminado"]);
     }
-    public function sumTot (Request $request,$date){
-        if (!$request->ajax()) return redirect('/');
+    public function sumTot ($date){
         $bill_tot = DB::table('bills')
         ->select(
         DB::raw('SUM(price) as price'),

@@ -11,13 +11,17 @@ use App\Http\Controllers\API\FactureDetailController;
 use App\Http\Controllers\API\BillController;
 use App\Http\Controllers\API\CompanyController;
 use App\Http\Controllers\API\MoneyController;
+use App\Http\Controllers\API\EmailFac;
 use App\Http\Controllers\AuthController;
+
+
+
 
 
 //routes view one
 Route::get('/', function () {
     return view('login');
-})->name('login');;
+})->name('login');
 //route login functions 
 Route::post('login',[AuthController::class, 'login']);
 Route::group(['middleware' => 'auth'], function () {
@@ -61,6 +65,7 @@ Route::get('/cuentas', function () {
     return view('money.index');
 });
 Route::prefix('api')->group(function () {
+Route::group(['middleware' => ['getAuth']], function () {
 //routes app fuctions
 //routes users
 Route::get('/users', [UserController::class, 'index']);
@@ -106,7 +111,7 @@ Route::put('/factures/{id}', [FactureController::class, 'updateStatus'])->where(
 Route::get('/gain/{date}/{datetwo}', [FactureController::class, 'gain']);
 Route::get('/gainTot/{date}/{datetwo}', [FactureController::class, 'gainTot']);
 Route::get('/userTot/{date}/{datetwo}', [FactureController::class, 'userTot']);
-
+Route::get('/emailfac/{id}', [ EmailFac::class, 'sendMailWithPDF'])->where('id', '[0-9]+');
 //
 //facture details
 Route::get('/details/{id}', [FactureDetailController::class, 'index'])->where('id', '[0-9]+');
@@ -134,5 +139,7 @@ Route::delete('/money/{id}', [MoneyController::class, 'destroy'])->where('id', '
 
 });
 });
+});
+
 
 

@@ -13,11 +13,8 @@ use Illuminate\Support\Facades\DB;
 
 class FactureController extends Controller
 {
-
     public function store(Request $request)
     {
-       
-
         try {
             $mytime=Carbon::now('America/Bogota');
             DB::beginTransaction();
@@ -52,9 +49,8 @@ class FactureController extends Controller
             DB::rollBack();
         }
     }
-  public function index(Request $request,$date)
+  public function index($date)
   {
-    if (!$request->ajax()) return redirect('/');
     $facture = DB::table('factures as f')
     ->join('clients as c', 'c.id', '=', 'f.client_id')
     ->join('users as u', 'u.id', '=', 'f.user_id')
@@ -75,9 +71,8 @@ class FactureController extends Controller
     ->orderBy('f.id', 'desc')->get();
 return $facture;
   }
-  public function factureUnique(Request $request,$id)
+  public function factureUnique($id)
     {
-        if (!$request->ajax()) return redirect('/');
       $facture = DB::table('factures as f')
       ->join('clients as c', 'c.id', '=', 'f.client_id')
       ->select(
@@ -92,6 +87,7 @@ return $facture;
           'c.nit',
           'c.fullname',
           'c.phone',
+          'c.email',
           'f.created_at'
 
       )
@@ -100,9 +96,7 @@ return $facture;
   return $facture;
     }
     
-
-public function type_sale (Request $request,$date){
-    if (!$request->ajax()) return redirect('/');
+public function type_sale ($date){
     $facture_tot = DB::table('factures')
     ->select(
     DB::raw('SUM(tot) as tot'),
@@ -114,8 +108,7 @@ public function type_sale (Request $request,$date){
     return $facture_tot;
 }
 
-public function type_sale_one (Request $request,$date,$type){
-
+public function type_sale_one ($date,$type){
     $facture_tot = DB::table('factures')
     ->select(
     DB::raw('SUM(other) as other'),
@@ -126,9 +119,7 @@ public function type_sale_one (Request $request,$date,$type){
     ->get();
     return $facture_tot;
 }
-
-public function gain (Request $request,$date,$datetwo){
-    if (!$request->ajax()) return redirect('/');
+public function gain ($date,$datetwo){
     $gain = DB::table('facture_details as fd')
     ->join('factures as f', 'f.id', '=', 'fd.facture_id')
     ->join('products as p', 'p.id', '=', 'fd.product_id')
@@ -145,8 +136,7 @@ public function gain (Request $request,$date,$datetwo){
     ->get();
     return $gain;
 }
-public function gainTot (Request $request,$date,$datetwo){
-    if (!$request->ajax()) return redirect('/');
+public function gainTot ($date,$datetwo){
     $gain_tot = DB::table('facture_details as fd')
     ->join('factures as f', 'f.id', '=', 'fd.facture_id')
     ->join('products as p', 'p.id', '=', 'fd.product_id')
@@ -158,8 +148,7 @@ public function gainTot (Request $request,$date,$datetwo){
     ->get();
     return $gain_tot;
 }
-public function userTot (Request $request,$date,$datetwo){
-    if (!$request->ajax()) return redirect('/');
+public function userTot ($date,$datetwo){
     $user_tot = DB::table('factures as f')
     ->join('users as u', 'f.user_id', '=', 'u.id')
     ->select(
@@ -173,14 +162,13 @@ public function userTot (Request $request,$date,$datetwo){
 
 public function updateStatus($id)
 {
-    
     $facture = Facture::findOrFail($id, ['id']);
     $facture->status = '1';
     $facture->save();
     return response()->json(["message" => "El estado ha cambiado a pagado"]);
 }
-  public function destroy(Request $request, $id)
-  {   if (!$request->ajax()) return redirect('/');
+  public function destroy($id)
+  {  
       $facture = Facture::find($id);
       if (!$facture) {
           return response()->json(["message" => "Facturada no encontrada"], 404);

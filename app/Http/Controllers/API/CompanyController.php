@@ -9,18 +9,16 @@ use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        if (!$request->ajax()) return redirect('/');
         $company= DB::table('companies')
         ->select('id','nit','name','representative','phone','direction','city','note')
         ->where('user_id',auth()->id())
         ->get();
         return $company;
     }
-    public function index_two(Request $request)
+    public function index_two()
     {
-        if (!$request->ajax()) return redirect('/');
         $companies = DB::table('companies as c')
         ->select(
         'id',
@@ -37,7 +35,6 @@ class CompanyController extends Controller
  
     public function store(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
          Company::create([
             'user_id' =>auth()->id(),
             'nit' => $request['nit'],
@@ -54,9 +51,8 @@ class CompanyController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (!$request->ajax()) return redirect('/');
-        $product = Company::find($id, ['id']);
-        $product->fill([
+        $company = Company::find($id, ['id']);
+        $company->fill([
             'nit' => request('nit'),
             'name' => request('name'),
             'representative' => request('representative'),
@@ -69,13 +65,13 @@ class CompanyController extends Controller
         ])->save();
         return response()->json(['message' => 'Información modificada'], 201);
     }
-    public function destroy(Request $request, $id)
-    {   if (!$request->ajax()) return redirect('/');
-        $product = Company::find($id);
-        if (!$product) {
+    public function destroy($id)
+    {  
+        $company = Company::find($id);
+        if (!$company) {
             return response()->json(["message" => "Datos no encontrado"], 404);
         }
-        $product->delete();
+        $company->delete();
         return response()->json(["message" => "Información eliminada"]);
     }
 }
