@@ -5,10 +5,10 @@
  <title>Factura de venta</title>
 </head>
 <body>
- <strong>Factura de venta</strong>
+
  @foreach($company as $company)
  <center>
-<h4>{{$company->name}}<br></h4>
+<strong>{{$company->name}}<br></strong>
 <p><strong>Nit.</strong>{{$company->nit}}<br>
 {{$company->representative}}<br>
 {{$company->direction}}-{{$company->city}}<br>
@@ -88,7 +88,5 @@
      @endforeach
    </tbody>
   </table>
-
-
 </body>
 </html> 

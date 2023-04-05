@@ -23,6 +23,8 @@ export default new Vuex.Store({
         company: [],
         money: [],
         moneySingle: [],
+        income: [],
+        incometot: [],
         status: false,
         urlusers: "/api/users",
         urlroles: "/api/roles",
@@ -43,6 +45,8 @@ export default new Vuex.Store({
         urlcompanies: "/api/companies",
         urlmoney: "/api/money",
         urlmoneySingle: "api/moneySingle",
+        urlincome: "api/income",
+        urlincometot: "api/incometwo",
     },
     mutations: {
         Usermutations(state, item) {
@@ -99,6 +103,12 @@ export default new Vuex.Store({
 
         MoneySinglemutations(state, item) {
             state.moneySingle = item;
+        },
+        Incomemutations(state, item) {
+            state.income = item;
+        },
+        IncomeTwomutations(state, item) {
+            state.incometot = item;
         },
     },
 
@@ -273,6 +283,26 @@ export default new Vuex.Store({
             try {
                 let response = await axios.get(state.urlmoneySingle);
                 commit("MoneySinglemutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async Incomeactions({ commit, state }, date) {
+            try {
+                let response = await axios.get(`${state.urlincome}/${date}`);
+                commit("Incomemutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async IncomeTwoactions({ commit, state }, obj) {
+            try {
+                let response = await axios.get(
+                    `${state.urlincometot}/${obj.prop1}/${obj.prop2}`
+                );
+                commit("IncomeTwomutations", response.data);
                 state.status = true;
             } catch (error) {
                 console.log(error);

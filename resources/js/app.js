@@ -26,6 +26,11 @@ import VeeValidate, { Validator } from "vee-validate";
 Vue.use(VeeValidate);
 Validator.localize("es", es);
 //end
+//start select
+import vSelect from "vue-select";
+Vue.component("v-select", vSelect);
+import "vue-select/dist/vue-select.css";
+//end
 Vue.directive("can", function (el, binding, vnode) {
     if (Permissions.indexOf(binding.value) !== -1) {
         return (vnode.elm.hidden = false);
@@ -77,6 +82,10 @@ Vue.component(
 Vue.component(
     "money_example",
     require("./components/money/MoneyExample.vue").default
+);
+Vue.component(
+    "income_example",
+    require("./components/incomes/Example.vue").default
 );
 
 import auth from "./mixins/Auth.js";

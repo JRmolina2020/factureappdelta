@@ -1,17 +1,20 @@
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      @hasrole('administrador')
       <li class="nav-item">
         <a href="{{ url('home') }}" class="nav-link">
           <i class="fi fi-microsoft"></i>
           <p>Indicadores</p>
         </a>
       </li>
+    
       <li class="nav-item">
         <a href="{{ url('empresa') }}" class="nav-link">
           <i class="fi fi-shopping-basket-add"></i>
           <p>Empresa</p>
         </a>
       </li>
+      @endrole
       <li class="nav-item">
         <a href="{{ url('gastos') }}" class="nav-link">
           <i class="fi fi-credit-card"></i>
@@ -30,18 +33,21 @@
           <p>Productos</p>
         </a>
       </li>
+      @hasrole('administrador')
       <li class="nav-item">
         <a href="{{ url('proveedores') }}" class="nav-link">
           <i class="fi fi-wink"></i>
           <p>Proveedores</p>
         </a>
       </li>
+      @endrole
       <li class="nav-item">
         <a href="{{ url('clientes') }}" class="nav-link">
           <i class="fi fi-male"></i>
           <p>Clientes</p>
         </a>
       </li>
+      @hasrole('administrador')
       <li class="nav-item">
         <a href="{{ url('cuentas') }}" class="nav-link">
           <i class="fi fi-credit-card"></i>
@@ -49,11 +55,19 @@
         </a>
       </li>
       <li class="nav-item">
+        <a href="{{ url('entradas') }}" class="nav-link">
+          <i class="fi fi-male"></i>
+          <p>Entradas</p>
+        </a>
+      </li>
+      @endrole
+      <li class="nav-item">
         <a href="{{ url('facturas') }}" class="nav-link">
           <i class="fi fi-shopify"></i>
           <p>Facturas</p>
         </a>
       </li>
+        @hasrole('administrador')
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="fi fi-world-o"></i>
@@ -94,6 +108,7 @@
             </li>
         </ul>
       </li> 
+       @endrole
       <li class="nav-item has-treeview">
         <a class="nav-link" onclick="event.preventDefault(); 
           document.getElementById('logout-form').submit();" href="{{ route('logout') }}">

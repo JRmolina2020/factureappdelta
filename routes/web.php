@@ -11,6 +11,7 @@ use App\Http\Controllers\API\FactureDetailController;
 use App\Http\Controllers\API\BillController;
 use App\Http\Controllers\API\CompanyController;
 use App\Http\Controllers\API\MoneyController;
+use App\Http\Controllers\API\IncomeController;
 use App\Http\Controllers\API\EmailFac;
 use App\Http\Controllers\AuthController;
 
@@ -63,6 +64,9 @@ Route::get('/empresa', function () {
 });
 Route::get('/cuentas', function () {
     return view('money.index');
+});
+Route::get('/entradas', function () {
+    return view('incomes.index');
 });
 Route::prefix('api')->group(function () {
 // Route::group(['middleware' => ['getAuth']], function () {
@@ -136,10 +140,15 @@ Route::get('/moneySingle', [MoneyController::class, 'index_two']);
 Route::post('money', [MoneyController::class, 'store']);
 Route::put('/money/{id}', [MoneyController::class, 'update'])->where('id', '[0-9]+');
 Route::delete('/money/{id}', [MoneyController::class, 'destroy'])->where('id', '[0-9]+');
-
-});
+//income
+Route::post('income', [IncomeController::class, 'store']);
+Route::put('/income/{id}', [IncomeController::class, 'update'])->where('id', '[0-9]+');
+Route::get('/income/{date}', [IncomeController::class, 'indexData']);
+Route::get('/incometwo/{date}/{datetwo}', [IncomeController::class, 'indexDatatwo']);
+Route::delete('/income/{id}', [IncomeController::class, 'destroy'])->where('id', '[0-9]+');
 });
 // });
+});
 
 
 
