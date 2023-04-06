@@ -1,12 +1,28 @@
 <template>
     <div>
         <div class="table-responsive">
+            <div class="input-group mt-3">
+                <input
+                    class="form-control form-control-sm"
+                    type="date"
+                    v-model="dateList"
+                    placeholder=".form-control-sm"
+                />
+                <button
+                    v-if="this.dateList != ''"
+                    class="btn btn-outline-secondary btn-sm"
+                    @click="getList_two()"
+                    type="button"
+                >
+                    Buscar
+                </button>
+            </div>
             <VTable
                 :data="income"
                 :page-size="5"
                 :currentPage.sync="currentPage"
                 @totalPagesChanged="totalPages = $event"
-                class="table"
+                class="table table-borderless mt-3"
             >
                 <template #head>
                     <tr>
@@ -89,10 +105,7 @@
             </div>
             <VTable
                 :data="incometot"
-                :page-size="5"
                 :filters="filters"
-                :currentPage.sync="currentPage"
-                @totalPagesChanged="totalPages = $event"
                 class="table table-dark mt-3"
             >
                 <template #head>
@@ -109,13 +122,6 @@
                 </template>
             </VTable>
         </div>
-        <div class="text-xs-center">
-            <VTPagination
-                :currentPage.sync="currentPage"
-                :total-pages="totalPages"
-                :boundary-links="true"
-            />
-        </div>
     </div>
 </template>
 <script>
@@ -127,6 +133,7 @@ export default {
             totalPages: 1,
             currentPage: 1,
             date: "",
+            dateList: "",
             datetwo: "",
             filters: {
                 product: { value: "", keys: ["product"] },
@@ -142,6 +149,10 @@ export default {
     methods: {
         getList() {
             this.$store.dispatch("Incomeactions", date_now);
+            this.getDate();
+        },
+        getList_two() {
+            this.$store.dispatch("Incomeactions", this.dateList);
         },
         getDate() {
             let obj = {

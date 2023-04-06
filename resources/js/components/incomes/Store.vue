@@ -29,19 +29,21 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Producto</label>
-                                <select
-                                    class="form-control"
+                                <v-select
+                                    :options="products"
                                     v-model="form.product_id"
-                                    required
+                                    :reduce="(products) => products.id"
+                                    label="name"
                                 >
-                                    <option
-                                        v-for="(item, index) in products"
-                                        :key="index"
-                                        :value="item.id"
-                                    >
-                                        {{ item.name }}
-                                    </option>
-                                </select>
+                                    <template #search="{ attributes, events }">
+                                        <input
+                                            class="vs__search"
+                                            :required="!form.product_id"
+                                            v-bind="attributes"
+                                            v-on="events"
+                                        />
+                                    </template>
+                                </v-select>
                             </div>
                         </div>
                         <div class="col-12">
@@ -141,7 +143,6 @@ export default {
         getList() {
             $("#model").modal("hide");
             this.$store.dispatch(this.actions, date_now);
-            this.$store.dispatch(this.actions, date_now);
             this.clear();
         },
         getProduct() {
@@ -200,6 +201,7 @@ export default {
         },
         clear() {
             this.form.id = "";
+            this.form.date_income = date_now;
             this.form.product_id = "";
             this.form.quantity = 1;
             this.$validator.reset();

@@ -2451,6 +2451,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: {
+    getList: function getList() {
+      $("#model").modal("hide");
+      this.clear();
+      this.$store.dispatch("Billactions", _mixins_date__WEBPACK_IMPORTED_MODULE_1__["default"]);
+      this.$store.dispatch("Billtotactions", _mixins_date__WEBPACK_IMPORTED_MODULE_1__["default"]);
+    },
     add: function add(id) {
       var _this = this;
 
@@ -2491,11 +2497,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     showConfirmButton: false,
                     timer: 1500
                   });
-                  $("#model").modal("hide");
 
                   _this2.getList();
-
-                  _this2.clear();
                 } catch (error) {
                   console.log(error.response);
                 }
@@ -2518,11 +2521,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     showConfirmButton: false,
                     timer: 1600
                   });
-                  $("#model").modal("hide");
 
-                  _this2.$store.dispatch("Billactions", _mixins_date__WEBPACK_IMPORTED_MODULE_1__["default"]);
-
-                  _this2.$store.dispatch("Billtotactions", _mixins_date__WEBPACK_IMPORTED_MODULE_1__["default"]);
+                  _this2.getList();
                 } catch (error) {
                   console.log(error.response);
                 }
@@ -2543,6 +2543,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.send = true;
     },
     clear: function clear() {
+      this.form.id = null;
       this.form.name = null;
       this.form.price = 0;
       this.$validator.reset();
@@ -5213,6 +5214,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5221,6 +5228,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       totalPages: 1,
       currentPage: 1,
       date: "",
+      dateList: "",
       datetwo: "",
       filters: {
         product: {
@@ -5237,6 +5245,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     getList: function getList() {
       this.$store.dispatch("Incomeactions", _mixins_date__WEBPACK_IMPORTED_MODULE_0__["default"]);
+      this.getDate();
+    },
+    getList_two: function getList_two() {
+      this.$store.dispatch("Incomeactions", this.dateList);
     },
     getDate: function getDate() {
       var obj = {
@@ -5419,6 +5431,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -5450,7 +5464,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     getList: function getList() {
       $("#model").modal("hide");
-      this.$store.dispatch(this.actions, _mixins_date__WEBPACK_IMPORTED_MODULE_1__["default"]);
       this.$store.dispatch(this.actions, _mixins_date__WEBPACK_IMPORTED_MODULE_1__["default"]);
       this.clear();
     },
@@ -5545,6 +5558,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     clear: function clear() {
       this.form.id = "";
+      this.form.date_income = _mixins_date__WEBPACK_IMPORTED_MODULE_1__["default"];
       this.form.product_id = "";
       this.form.quantity = 1;
       this.$validator.reset();
@@ -5645,7 +5659,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$validator.validate().then(function (valid) {
         if (valid) {
           axios.post(_this.url, _this.form).then(function (response) {
-            window.location.replace("home");
+            window.location.replace("/facturas");
             _this.status = false;
           })["catch"](function (error) {
             _this.form.password = null;
@@ -8318,7 +8332,7 @@ var month = date.getMonth() + 1;
 var year = date.getFullYear();
 
 if (month < 10) {
-  var date_now = "".concat(year, "-0").concat(month, "-").concat(day);
+  var date_now = "".concat(year, "-0").concat(month, "-0").concat(day);
 } else {
   var date_now = "".concat(year, "-").concat(month, "-").concat(day);
 }
@@ -86227,8 +86241,48 @@ var render = function () {
       "div",
       { staticClass: "table-responsive" },
       [
+        _c("div", { staticClass: "input-group mt-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.dateList,
+                expression: "dateList",
+              },
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: { type: "date", placeholder: ".form-control-sm" },
+            domProps: { value: _vm.dateList },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.dateList = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          this.dateList != ""
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-secondary btn-sm",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.getList_two()
+                    },
+                  },
+                },
+                [_vm._v("\n                Buscar\n            ")]
+              )
+            : _vm._e(),
+        ]),
+        _vm._v(" "),
         _c("VTable", {
-          staticClass: "table",
+          staticClass: "table table-borderless mt-3",
           attrs: {
             data: _vm.income,
             "page-size": 5,
@@ -86445,23 +86499,7 @@ var render = function () {
         _vm._v(" "),
         _c("VTable", {
           staticClass: "table table-dark mt-3",
-          attrs: {
-            data: _vm.incometot,
-            "page-size": 5,
-            filters: _vm.filters,
-            currentPage: _vm.currentPage,
-          },
-          on: {
-            "update:currentPage": function ($event) {
-              _vm.currentPage = $event
-            },
-            "update:current-page": function ($event) {
-              _vm.currentPage = $event
-            },
-            totalPagesChanged: function ($event) {
-              _vm.totalPages = $event
-            },
-          },
+          attrs: { data: _vm.incometot, filters: _vm.filters },
           scopedSlots: _vm._u([
             {
               key: "head",
@@ -86496,29 +86534,6 @@ var render = function () {
               },
             },
           ]),
-        }),
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "text-xs-center" },
-      [
-        _c("VTPagination", {
-          attrs: {
-            currentPage: _vm.currentPage,
-            "total-pages": _vm.totalPages,
-            "boundary-links": true,
-          },
-          on: {
-            "update:currentPage": function ($event) {
-              _vm.currentPage = $event
-            },
-            "update:current-page": function ($event) {
-              _vm.currentPage = $event
-            },
-          },
         }),
       ],
       1
@@ -86616,58 +86631,59 @@ var render = function () {
               [
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-12" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", [_vm._v("Producto")]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.product_id,
-                              expression: "form.product_id",
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("label", [_vm._v("Producto")]),
+                        _vm._v(" "),
+                        _c("v-select", {
+                          attrs: {
+                            options: _vm.products,
+                            reduce: function (products) {
+                              return products.id
                             },
-                          ],
-                          staticClass: "form-control",
-                          attrs: { required: "" },
-                          on: {
-                            change: function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.form,
-                                "product_id",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            },
+                            label: "name",
                           },
-                        },
-                        _vm._l(_vm.products, function (item, index) {
-                          return _c(
-                            "option",
-                            { key: index, domProps: { value: item.id } },
-                            [
-                              _vm._v(
-                                "\n                                    " +
-                                  _vm._s(item.name) +
-                                  "\n                                "
-                              ),
-                            ]
-                          )
+                          scopedSlots: _vm._u([
+                            {
+                              key: "search",
+                              fn: function (ref) {
+                                var attributes = ref.attributes
+                                var events = ref.events
+                                return [
+                                  _c(
+                                    "input",
+                                    _vm._g(
+                                      _vm._b(
+                                        {
+                                          staticClass: "vs__search",
+                                          attrs: {
+                                            required: !_vm.form.product_id,
+                                          },
+                                        },
+                                        "input",
+                                        attributes,
+                                        false
+                                      ),
+                                      events
+                                    )
+                                  ),
+                                ]
+                              },
+                            },
+                          ]),
+                          model: {
+                            value: _vm.form.product_id,
+                            callback: function ($$v) {
+                              _vm.$set(_vm.form, "product_id", $$v)
+                            },
+                            expression: "form.product_id",
+                          },
                         }),
-                        0
-                      ),
-                    ]),
+                      ],
+                      1
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-12" }, [

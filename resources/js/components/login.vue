@@ -78,7 +78,7 @@ export default {
                     axios
                         .post(this.url, this.form)
                         .then((response) => {
-                            window.location.replace("home");
+                            window.location.replace("/facturas");
                             this.status = false;
                         })
                         .catch((error) => {

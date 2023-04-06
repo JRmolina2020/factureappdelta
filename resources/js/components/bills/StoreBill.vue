@@ -143,6 +143,12 @@ export default {
     },
 
     methods: {
+        getList() {
+            $("#model").modal("hide");
+            this.clear();
+            this.$store.dispatch("Billactions", date_now);
+            this.$store.dispatch("Billtotactions", date_now);
+        },
         add(id) {
             this.$validator.validate().then((valid) => {
                 if (valid) {
@@ -165,9 +171,7 @@ export default {
                         showConfirmButton: false,
                         timer: 1500,
                     });
-                    $("#model").modal("hide");
                     this.getList();
-                    this.clear();
                 } catch (error) {
                     console.log(error.response);
                 }
@@ -182,9 +186,7 @@ export default {
                         timer: 1600,
                     });
 
-                    $("#model").modal("hide");
-                    this.$store.dispatch("Billactions", date_now);
-                    this.$store.dispatch("Billtotactions", date_now);
+                    this.getList();
                 } catch (error) {
                     console.log(error.response);
                 }
@@ -198,6 +200,7 @@ export default {
             this.send = true;
         },
         clear() {
+            this.form.id = null;
             this.form.name = null;
             this.form.price = 0;
             this.$validator.reset();
