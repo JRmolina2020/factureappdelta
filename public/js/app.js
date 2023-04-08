@@ -3383,6 +3383,112 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/descriptionF.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/descriptionF.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_date__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/date */ "./resources/js/mixins/date.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      totalPages: 1,
+      currentPage: 1,
+      date: ""
+    };
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["descriptionF"])),
+  created: function created() {
+    this.getList();
+  },
+  methods: {
+    getList: function getList() {
+      this.$store.dispatch("DescriptionFactions", _mixins_date__WEBPACK_IMPORTED_MODULE_0__["default"]);
+    },
+    getListDate: function getListDate() {
+      this.$store.dispatch("DescriptionFactions", this.date);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/factures/FactureExample.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/factures/FactureExample.vue?vue&type=script&lang=js& ***!
@@ -4419,47 +4525,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4484,8 +4549,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       price: [],
       //
       //
-      received: 0,
-      changeEfecty: 0,
       product: {
         name: "",
         price: 0,
@@ -4782,27 +4845,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.formFacture.efecty = this.onViewTot;
       this.formFacture.other = 0;
       this.filters = "";
-      this.received = "";
-      this.changeEfecty = "";
-    },
-    moneyChange: function moneyChange() {
-      if (this.received < this.formFacture.efecty) {
-        var money = 0;
-        money = this.formFacture.efecty - this.received;
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Falta dinero, falta $" + money
-        });
-      } else {
-        var _money = 0;
-        _money = this.received - this.formFacture.efecty;
-        this.changeEfecty = _money;
-      }
-    },
-    clearChangeEfecty: function clearChangeEfecty() {
-      this.received = "";
-      this.changeEfecty = "";
     }
   }
 });
@@ -5094,6 +5136,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -5565,6 +5608,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.send = true;
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventory.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventory.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  methods: {}
 });
 
 /***/ }),
@@ -8142,6 +8209,8 @@ Vue.component("gain_example", (__webpack_require__(/*! ./components/gain.vue */ 
 Vue.component("company_example", (__webpack_require__(/*! ./components/companies/CompanyExample.vue */ "./resources/js/components/companies/CompanyExample.vue")["default"]));
 Vue.component("money_example", (__webpack_require__(/*! ./components/money/MoneyExample.vue */ "./resources/js/components/money/MoneyExample.vue")["default"]));
 Vue.component("income_example", (__webpack_require__(/*! ./components/incomes/Example.vue */ "./resources/js/components/incomes/Example.vue")["default"]));
+Vue.component("inventory_example", (__webpack_require__(/*! ./components/inventory.vue */ "./resources/js/components/inventory.vue")["default"]));
+Vue.component("sales_example", (__webpack_require__(/*! ./components/descriptionF.vue */ "./resources/js/components/descriptionF.vue")["default"]));
 
 Vue.mixin((_mixins_Auth_js__WEBPACK_IMPORTED_MODULE_11___default()));
 var app = new Vue({
@@ -8420,6 +8489,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     gaintot: [],
     usertot: [],
     facUnique: [],
+    descriptionF: [],
     company: [],
     money: [],
     moneySingle: [],
@@ -8436,6 +8506,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     urltype_sale_one: "/api/type_sale_one",
     urldetails: "/api/details",
     urlfactureUnique: "/api/factureUnique",
+    urldescriptionF: "/api/descriptionfac",
     urlbills: "/api/bills",
     urlbillstot: "/api/billsTot",
     urlgain: "/api/gain",
@@ -8478,6 +8549,9 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     },
     FactureUniquemutations: function FactureUniquemutations(state, item) {
       state.facUnique = item;
+    },
+    DescriptitonFmutations: function DescriptitonFmutations(state, item) {
+      state.descriptionF = item;
     },
     Billmutations: function Billmutations(state, item) {
       state.bills = item;
@@ -8703,7 +8777,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee6, null, [[1, 9]]);
       }))();
     },
-    TypeSaleactions: function TypeSaleactions(_ref7, date) {
+    DescriptionFactions: function DescriptionFactions(_ref7, date) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee7$(_context7) {
@@ -8713,11 +8787,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref7.commit, state = _ref7.state;
                 _context7.prev = 1;
                 _context7.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urltype_sale, "/").concat(date));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urldescriptionF, "/").concat(date));
 
               case 4:
                 response = _context7.sent;
-                commit("TypeSalemutations", response.data);
+                commit("DescriptitonFmutations", response.data);
                 state.status = true;
                 _context7.next = 12;
                 break;
@@ -8735,8 +8809,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee7, null, [[1, 9]]);
       }))();
     },
-    //type banca
-    TypeSale_one_actions: function TypeSale_one_actions(_ref8, obj) {
+    TypeSaleactions: function TypeSaleactions(_ref8, date) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee8$(_context8) {
@@ -8746,11 +8819,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref8.commit, state = _ref8.state;
                 _context8.prev = 1;
                 _context8.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urltype_sale_one, "/").concat(obj.prop1, "/").concat(obj.prop2));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urltype_sale, "/").concat(date));
 
               case 4:
                 response = _context8.sent;
-                commit("TypeSale_one_mutations", response.data);
+                commit("TypeSalemutations", response.data);
                 state.status = true;
                 _context8.next = 12;
                 break;
@@ -8768,7 +8841,8 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee8, null, [[1, 9]]);
       }))();
     },
-    FactureDetailactions: function FactureDetailactions(_ref9, id) {
+    //type banca
+    TypeSale_one_actions: function TypeSale_one_actions(_ref9, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee9$(_context9) {
@@ -8778,11 +8852,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref9.commit, state = _ref9.state;
                 _context9.prev = 1;
                 _context9.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urldetails, "/").concat(id));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urltype_sale_one, "/").concat(obj.prop1, "/").concat(obj.prop2));
 
               case 4:
                 response = _context9.sent;
-                commit("FactureDetailmutations", response.data);
+                commit("TypeSale_one_mutations", response.data);
                 state.status = true;
                 _context9.next = 12;
                 break;
@@ -8800,7 +8874,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee9, null, [[1, 9]]);
       }))();
     },
-    FactureUniquections: function FactureUniquections(_ref10, id) {
+    FactureDetailactions: function FactureDetailactions(_ref10, id) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee10$(_context10) {
@@ -8810,11 +8884,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref10.commit, state = _ref10.state;
                 _context10.prev = 1;
                 _context10.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlfactureUnique, "/").concat(id));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urldetails, "/").concat(id));
 
               case 4:
                 response = _context10.sent;
-                commit("FactureUniquemutations", response.data);
+                commit("FactureDetailmutations", response.data);
                 state.status = true;
                 _context10.next = 12;
                 break;
@@ -8832,7 +8906,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee10, null, [[1, 9]]);
       }))();
     },
-    Billactions: function Billactions(_ref11, date) {
+    FactureUniquections: function FactureUniquections(_ref11, id) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee11$(_context11) {
@@ -8842,11 +8916,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref11.commit, state = _ref11.state;
                 _context11.prev = 1;
                 _context11.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlbills, "/").concat(date));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlfactureUnique, "/").concat(id));
 
               case 4:
                 response = _context11.sent;
-                commit("Billmutations", response.data);
+                commit("FactureUniquemutations", response.data);
                 state.status = true;
                 _context11.next = 12;
                 break;
@@ -8864,7 +8938,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee11, null, [[1, 9]]);
       }))();
     },
-    Billtotactions: function Billtotactions(_ref12, date) {
+    Billactions: function Billactions(_ref12, date) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee12$(_context12) {
@@ -8874,11 +8948,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref12.commit, state = _ref12.state;
                 _context12.prev = 1;
                 _context12.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlbillstot, "/").concat(date));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlbills, "/").concat(date));
 
               case 4:
                 response = _context12.sent;
-                commit("Billtotmutations", response.data);
+                commit("Billmutations", response.data);
                 state.status = true;
                 _context12.next = 12;
                 break;
@@ -8896,7 +8970,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee12, null, [[1, 9]]);
       }))();
     },
-    Gainactions: function Gainactions(_ref13, obj) {
+    Billtotactions: function Billtotactions(_ref13, date) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee13$(_context13) {
@@ -8906,11 +8980,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref13.commit, state = _ref13.state;
                 _context13.prev = 1;
                 _context13.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgain, "/").concat(obj.prop1, "/").concat(obj.prop2));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlbillstot, "/").concat(date));
 
               case 4:
                 response = _context13.sent;
-                commit("Gainmutations", response.data);
+                commit("Billtotmutations", response.data);
                 state.status = true;
                 _context13.next = 12;
                 break;
@@ -8928,7 +9002,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee13, null, [[1, 9]]);
       }))();
     },
-    Gaintotactions: function Gaintotactions(_ref14, obj) {
+    Gainactions: function Gainactions(_ref14, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee14$(_context14) {
@@ -8938,11 +9012,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref14.commit, state = _ref14.state;
                 _context14.prev = 1;
                 _context14.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgaintot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgain, "/").concat(obj.prop1, "/").concat(obj.prop2));
 
               case 4:
                 response = _context14.sent;
-                commit("Gaintotmutations", response.data);
+                commit("Gainmutations", response.data);
                 state.status = true;
                 _context14.next = 12;
                 break;
@@ -8960,7 +9034,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee14, null, [[1, 9]]);
       }))();
     },
-    Usertotactions: function Usertotactions(_ref15, obj) {
+    Gaintotactions: function Gaintotactions(_ref15, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee15$(_context15) {
@@ -8970,11 +9044,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref15.commit, state = _ref15.state;
                 _context15.prev = 1;
                 _context15.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlusertot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgaintot, "/").concat(obj.prop1, "/").concat(obj.prop2));
 
               case 4:
                 response = _context15.sent;
-                commit("Usertotmutations", response.data);
+                commit("Gaintotmutations", response.data);
                 state.status = true;
                 _context15.next = 12;
                 break;
@@ -8992,7 +9066,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee15, null, [[1, 9]]);
       }))();
     },
-    Companyactions: function Companyactions(_ref16) {
+    Usertotactions: function Usertotactions(_ref16, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee16$(_context16) {
@@ -9002,11 +9076,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref16.commit, state = _ref16.state;
                 _context16.prev = 1;
                 _context16.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlcompany);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlusertot, "/").concat(obj.prop1, "/").concat(obj.prop2));
 
               case 4:
                 response = _context16.sent;
-                commit("Companymutations", response.data);
+                commit("Usertotmutations", response.data);
                 state.status = true;
                 _context16.next = 12;
                 break;
@@ -9024,7 +9098,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee16, null, [[1, 9]]);
       }))();
     },
-    Moneyactions: function Moneyactions(_ref17) {
+    Companyactions: function Companyactions(_ref17) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee17$(_context17) {
@@ -9034,11 +9108,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref17.commit, state = _ref17.state;
                 _context17.prev = 1;
                 _context17.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlmoney);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlcompany);
 
               case 4:
                 response = _context17.sent;
-                commit("Moneymutations", response.data);
+                commit("Companymutations", response.data);
                 state.status = true;
                 _context17.next = 12;
                 break;
@@ -9056,7 +9130,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee17, null, [[1, 9]]);
       }))();
     },
-    MoneySigleactions: function MoneySigleactions(_ref18) {
+    Moneyactions: function Moneyactions(_ref18) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee18() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee18$(_context18) {
@@ -9066,11 +9140,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref18.commit, state = _ref18.state;
                 _context18.prev = 1;
                 _context18.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlmoneySingle);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlmoney);
 
               case 4:
                 response = _context18.sent;
-                commit("MoneySinglemutations", response.data);
+                commit("Moneymutations", response.data);
                 state.status = true;
                 _context18.next = 12;
                 break;
@@ -9088,7 +9162,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee18, null, [[1, 9]]);
       }))();
     },
-    Incomeactions: function Incomeactions(_ref19, date) {
+    MoneySigleactions: function MoneySigleactions(_ref19) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee19() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee19$(_context19) {
@@ -9098,11 +9172,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref19.commit, state = _ref19.state;
                 _context19.prev = 1;
                 _context19.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlincome, "/").concat(date));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlmoneySingle);
 
               case 4:
                 response = _context19.sent;
-                commit("Incomemutations", response.data);
+                commit("MoneySinglemutations", response.data);
                 state.status = true;
                 _context19.next = 12;
                 break;
@@ -9120,7 +9194,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee19, null, [[1, 9]]);
       }))();
     },
-    IncomeTwoactions: function IncomeTwoactions(_ref20, obj) {
+    Incomeactions: function Incomeactions(_ref20, date) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee20() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee20$(_context20) {
@@ -9130,11 +9204,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref20.commit, state = _ref20.state;
                 _context20.prev = 1;
                 _context20.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlincometot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlincome, "/").concat(date));
 
               case 4:
                 response = _context20.sent;
-                commit("IncomeTwomutations", response.data);
+                commit("Incomemutations", response.data);
                 state.status = true;
                 _context20.next = 12;
                 break;
@@ -9150,6 +9224,38 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
             }
           }
         }, _callee20, null, [[1, 9]]);
+      }))();
+    },
+    IncomeTwoactions: function IncomeTwoactions(_ref21, obj) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee21() {
+        var commit, state, response;
+        return _regeneratorRuntime().wrap(function _callee21$(_context21) {
+          while (1) {
+            switch (_context21.prev = _context21.next) {
+              case 0:
+                commit = _ref21.commit, state = _ref21.state;
+                _context21.prev = 1;
+                _context21.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlincometot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+
+              case 4:
+                response = _context21.sent;
+                commit("IncomeTwomutations", response.data);
+                state.status = true;
+                _context21.next = 12;
+                break;
+
+              case 9:
+                _context21.prev = 9;
+                _context21.t0 = _context21["catch"](1);
+                console.log(_context21.t0);
+
+              case 12:
+              case "end":
+                return _context21.stop();
+            }
+          }
+        }, _callee21, null, [[1, 9]]);
       }))();
     }
   }
@@ -80157,6 +80263,45 @@ component.options.__file = "resources/js/components/companies/StoreCompany.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/descriptionF.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/descriptionF.vue ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _descriptionF_vue_vue_type_template_id_8c5992d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./descriptionF.vue?vue&type=template&id=8c5992d6& */ "./resources/js/components/descriptionF.vue?vue&type=template&id=8c5992d6&");
+/* harmony import */ var _descriptionF_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./descriptionF.vue?vue&type=script&lang=js& */ "./resources/js/components/descriptionF.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _descriptionF_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _descriptionF_vue_vue_type_template_id_8c5992d6___WEBPACK_IMPORTED_MODULE_0__.render,
+  _descriptionF_vue_vue_type_template_id_8c5992d6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/descriptionF.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/factures/FactureExample.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/factures/FactureExample.vue ***!
@@ -80426,6 +80571,45 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/incomes/Store.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/inventory.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/inventory.vue ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _inventory_vue_vue_type_template_id_b9a0f4be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./inventory.vue?vue&type=template&id=b9a0f4be& */ "./resources/js/components/inventory.vue?vue&type=template&id=b9a0f4be&");
+/* harmony import */ var _inventory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./inventory.vue?vue&type=script&lang=js& */ "./resources/js/components/inventory.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _inventory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _inventory_vue_vue_type_template_id_b9a0f4be___WEBPACK_IMPORTED_MODULE_0__.render,
+  _inventory_vue_vue_type_template_id_b9a0f4be___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/inventory.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -81317,6 +81501,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/descriptionF.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/descriptionF.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_descriptionF_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./descriptionF.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/descriptionF.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_descriptionF_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/factures/FactureExample.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************!*\
   !*** ./resources/js/components/factures/FactureExample.vue?vue&type=script&lang=js& ***!
@@ -81426,6 +81626,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Store_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Store.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/incomes/Store.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Store_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/inventory.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/inventory.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_inventory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./inventory.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventory.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_inventory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -81899,6 +82115,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/descriptionF.vue?vue&type=template&id=8c5992d6&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/descriptionF.vue?vue&type=template&id=8c5992d6& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_descriptionF_vue_vue_type_template_id_8c5992d6___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_descriptionF_vue_vue_type_template_id_8c5992d6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_descriptionF_vue_vue_type_template_id_8c5992d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./descriptionF.vue?vue&type=template&id=8c5992d6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/descriptionF.vue?vue&type=template&id=8c5992d6&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/factures/FactureExample.vue?vue&type=template&id=280c1b8b&":
 /*!********************************************************************************************!*\
   !*** ./resources/js/components/factures/FactureExample.vue?vue&type=template&id=280c1b8b& ***!
@@ -82014,6 +82247,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Store_vue_vue_type_template_id_32b0cfbe___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Store_vue_vue_type_template_id_32b0cfbe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Store.vue?vue&type=template&id=32b0cfbe& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/incomes/Store.vue?vue&type=template&id=32b0cfbe&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/inventory.vue?vue&type=template&id=b9a0f4be&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/inventory.vue?vue&type=template&id=b9a0f4be& ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_inventory_vue_vue_type_template_id_b9a0f4be___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_inventory_vue_vue_type_template_id_b9a0f4be___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_inventory_vue_vue_type_template_id_b9a0f4be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./inventory.vue?vue&type=template&id=b9a0f4be& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventory.vue?vue&type=template&id=b9a0f4be&");
 
 
 /***/ }),
@@ -83983,6 +84233,183 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/descriptionF.vue?vue&type=template&id=8c5992d6&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/descriptionF.vue?vue&type=template&id=8c5992d6& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "alert alert-primary", attrs: { role: "alert" } },
+      [_vm._v("\n        Conoce como fue vendido cada producto\n    ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "table-responsive" },
+      [
+        _c("div", { staticClass: "input-group mt-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.date,
+                expression: "date",
+              },
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: { type: "date" },
+            domProps: { value: _vm.date },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.date = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          this.date != ""
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-secondary btn-sm",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.getListDate()
+                    },
+                  },
+                },
+                [_vm._v("\n                Buscar\n            ")]
+              )
+            : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _c("VTable", {
+          staticClass: "table table-borderless mt-3",
+          attrs: {
+            data: _vm.descriptionF,
+            "page-size": 20,
+            currentPage: _vm.currentPage,
+          },
+          on: {
+            "update:currentPage": function ($event) {
+              _vm.currentPage = $event
+            },
+            "update:current-page": function ($event) {
+              _vm.currentPage = $event
+            },
+            totalPagesChanged: function ($event) {
+              _vm.totalPages = $event
+            },
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "head",
+              fn: function () {
+                return [
+                  _c(
+                    "tr",
+                    [
+                      _c("VTh", { attrs: { sortKey: "id" } }, [_vm._v("Fac")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Producto")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Cantidad")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Precio")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Total")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Fecha")]),
+                    ],
+                    1
+                  ),
+                ]
+              },
+              proxy: true,
+            },
+            {
+              key: "body",
+              fn: function (ref) {
+                var rows = ref.rows
+                return _vm._l(rows, function (row, index) {
+                  return _c("tr", { key: index }, [
+                    _c("td", [_vm._v(_vm._s(row.id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(row.product))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(row.quantity))]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "table-primary" }, [
+                      _vm._v(
+                        "\n                        $" +
+                          _vm._s(_vm._f("currency")(row.price)) +
+                          "\n                    "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v("$" + _vm._s(_vm._f("currency")(row.tot))),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(row.created_at))]),
+                  ])
+                })
+              },
+            },
+          ]),
+        }),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "text-xs-center" },
+      [
+        _c("VTPagination", {
+          attrs: {
+            currentPage: _vm.currentPage,
+            "total-pages": _vm.totalPages,
+            "boundary-links": true,
+          },
+          on: {
+            "update:currentPage": function ($event) {
+              _vm.currentPage = $event
+            },
+            "update:current-page": function ($event) {
+              _vm.currentPage = $event
+            },
+          },
+        }),
+      ],
+      1
+    ),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/factures/FactureExample.vue?vue&type=template&id=280c1b8b&":
 /*!***********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/factures/FactureExample.vue?vue&type=template&id=280c1b8b& ***!
@@ -85295,82 +85722,6 @@ var render = function () {
                 ]),
               ])
             : _c("div"),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-2 col-6" }, [
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", [_vm._v("Recibido")]),
-                _vm._v(" "),
-                _c("currency-input", {
-                  directives: [
-                    {
-                      name: "currency",
-                      rawName: "v-currency",
-                      value: {
-                        currency: "USD",
-                        precision: 0,
-                        locale: "en",
-                      },
-                      expression:
-                        "{\n                            currency: 'USD',\n                            precision: 0,\n                            locale: 'en',\n                        }",
-                    },
-                  ],
-                  staticClass: "form-control form-control-sm",
-                  on: {
-                    blur: function ($event) {
-                      return _vm.moneyChange()
-                    },
-                  },
-                  model: {
-                    value: _vm.received,
-                    callback: function ($$v) {
-                      _vm.received = $$v
-                    },
-                    expression: "received",
-                  },
-                }),
-              ],
-              1
-            ),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-2 col-6" }, [
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", [_vm._v("Vueltos")]),
-                _vm._v(" "),
-                _c("currency-input", {
-                  directives: [
-                    {
-                      name: "currency",
-                      rawName: "v-currency",
-                      value: {
-                        currency: "USD",
-                        precision: 0,
-                        locale: "en",
-                      },
-                      expression:
-                        "{\n                            currency: 'USD',\n                            precision: 0,\n                            locale: 'en',\n                        }",
-                    },
-                  ],
-                  staticClass: "form-control form-control-sm",
-                  attrs: { disabled: "" },
-                  model: {
-                    value: _vm.changeEfecty,
-                    callback: function ($$v) {
-                      _vm.changeEfecty = _vm._n($$v)
-                    },
-                    expression: "changeEfecty",
-                  },
-                }),
-              ],
-              1
-            ),
-          ]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
@@ -85444,27 +85795,7 @@ var render = function () {
             : _vm._e(),
           _vm._v(" "),
           _vm.formFacture.dataDetails.length != 0
-            ? _c("div", { staticClass: "col-lg-2" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn btn-danger btn-sm mt-3",
-                    attrs: {
-                      type: "button",
-                      "data-toggle": "modal",
-                      "data-target": "#examplechange",
-                    },
-                    on: {
-                      click: function ($event) {
-                        return _vm.clearChangeEfecty()
-                      },
-                    },
-                  },
-                  [_c("i", { staticClass: "fi fi-smiley" })]
-                ),
-                _vm._v(" "),
-                _c("main"),
-              ])
+            ? _c("div", { staticClass: "col-lg-2" })
             : _vm._e(),
         ]),
       ]
@@ -86337,12 +86668,20 @@ var render = function () {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(row.user))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(row.date_income))]),
+                    _c("td", [_vm._v(_vm._s(row.created_at))]),
                     _vm._v(" "),
                     _c("td", [
                       _c(
                         "button",
                         {
+                          directives: [
+                            {
+                              name: "can",
+                              rawName: "v-can",
+                              value: "modificar entrada",
+                              expression: "'modificar entrada'",
+                            },
+                          ],
                           staticClass: "btn bg-warning btn-sm",
                           attrs: { type: "button" },
                           on: {
@@ -86357,6 +86696,14 @@ var render = function () {
                       _c(
                         "button",
                         {
+                          directives: [
+                            {
+                              name: "can",
+                              rawName: "v-can",
+                              value: "eliminar entrada",
+                              expression: "'eliminar entrada'",
+                            },
+                          ],
                           staticClass: "btn bg-danger btn-sm",
                           attrs: { type: "button" },
                           on: {
@@ -86468,7 +86815,7 @@ var render = function () {
               },
             ],
             staticClass: "form-control form-control-sm",
-            attrs: { type: "date", min: "", placeholder: ".form-control-sm" },
+            attrs: { type: "date", placeholder: ".form-control-sm" },
             domProps: { value: _vm.datetwo },
             on: {
               input: function ($event) {
@@ -86565,6 +86912,16 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    {
+      directives: [
+        {
+          name: "can",
+          rawName: "v-can",
+          value: "registrar entrada",
+          expression: "'registrar entrada'",
+        },
+      ],
+    },
     [
       _c(
         "Modal-Resource",
@@ -86802,6 +87159,31 @@ var render = function () {
     ],
     1
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventory.vue?vue&type=template&id=b9a0f4be&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/inventory.vue?vue&type=template&id=b9a0f4be& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("inventario trabajando")])
 }
 var staticRenderFns = []
 render._withStripped = true

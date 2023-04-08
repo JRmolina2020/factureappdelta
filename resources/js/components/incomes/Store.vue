@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-can="'registrar entrada'">
         <Modal-Resource
             v-on:clear="clear"
             title="Registro de entradas"

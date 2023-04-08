@@ -54,13 +54,26 @@
           <p>Cuentas</p>
         </a>
       </li>
+      @endrole
       <li class="nav-item">
         <a href="{{ url('entradas') }}" class="nav-link">
-          <i class="fi fi-male"></i>
+          <i class="fi fi-curve"></i>
           <p>Entradas</p>
         </a>
       </li>
-      @endrole
+      <li class="nav-item">
+        <a href="{{ url('inventario') }}" class="nav-link">
+          <i class="fi fi-curve"></i>
+          <p>Inventario</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ url('ventas') }}" class="nav-link">
+          <i class="fi fi-curve"></i>
+          <p>Ventas detalladas</p>
+        </a>
+      </li>
+    
       <li class="nav-item">
         <a href="{{ url('facturas') }}" class="nav-link">
           <i class="fi fi-shopify"></i>

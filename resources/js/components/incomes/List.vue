@@ -38,10 +38,11 @@
                         <td>{{ row.product }}</td>
                         <td>{{ row.quantity }}</td>
                         <td>{{ row.user }}</td>
-                        <td>{{ row.date_income }}</td>
+                        <td>{{ row.created_at }}</td>
 
                         <td>
                             <button
+                                v-can="'modificar entrada'"
                                 type="button"
                                 @click="$emit('show', row)"
                                 class="btn bg-warning btn-sm"
@@ -49,6 +50,7 @@
                                 <i class="fi fi-eye"></i>
                             </button>
                             <button
+                                v-can="'eliminar entrada'"
                                 type="button"
                                 @click="destroy(row.id)"
                                 class="btn bg-danger btn-sm"
@@ -90,7 +92,6 @@
                     class="form-control form-control-sm"
                     type="date"
                     v-model="datetwo"
-                    min=""
                     placeholder=".form-control-sm"
                 />
 

@@ -124,13 +124,13 @@ public function gain ($date,$datetwo){
     ->join('factures as f', 'f.id', '=', 'fd.facture_id')
     ->join('products as p', 'p.id', '=', 'fd.product_id')
     ->select(
-    'p.name',
+    'p.name','p.id',
     DB::raw('SUM(fd.quantity) as quantity'),
     DB::raw('SUM(fd.tot) as tot'),
     DB::raw('p.cost as cost'),
     DB::raw('SUM(fd.tot)-SUM(p.cost*fd.quantity) as gain'),
     )
-    ->groupBy('p.name','p.cost')
+    ->groupBy('p.name','p.cost','p.id')
     ->whereBetween('f.date_facture', [$date, $datetwo])
     ->where('status',1)
     ->get();
@@ -166,6 +166,19 @@ public function updateStatus($id)
     $facture->status = '1';
     $facture->save();
     return response()->json(["message" => "El estado ha cambiado a pagado"]);
+}
+public function descriptionFacture($date){
+    $gain = DB::table('factures as f')
+    ->join('facture_details as fd', 'f.id', '=', 'fd.facture_id')
+    ->join('products as p', 'p.id', '=', 'fd.product_id')
+    ->select(
+     'f.id','p.name as product','fd.quantity','fd.tot',
+     DB::raw('fd.tot/fd.quantity as price'),'f.created_at'
+    )
+    ->where('f.date_facture',$date)
+    ->where('f.status',1)
+    ->get();
+    return $gain;
 }
   public function destroy($id)
   {  

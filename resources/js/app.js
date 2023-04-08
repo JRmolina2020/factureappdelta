@@ -87,6 +87,14 @@ Vue.component(
     "income_example",
     require("./components/incomes/Example.vue").default
 );
+Vue.component(
+    "inventory_example",
+    require("./components/inventory.vue").default
+);
+Vue.component(
+    "sales_example",
+    require("./components/descriptionF.vue").default
+);
 
 import auth from "./mixins/Auth.js";
 Vue.mixin(auth);

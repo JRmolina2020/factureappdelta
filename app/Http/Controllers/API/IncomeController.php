@@ -23,7 +23,7 @@ class IncomeController extends Controller
         ->select(
             'i.id',
             'i.quantity',
-            'i.date_income',
+            'i.created_at',
             'p.name as product',
             'p.id as product_id',
             'u.name as user'
@@ -37,10 +37,10 @@ class IncomeController extends Controller
         $income = DB::table('incomes as i')
     ->join('products as p', 'p.id', '=', 'i.product_id')
     ->select(
-    'p.name as product',
+    'p.name as product','p.id',
     DB::raw('SUM(i.quantity) as quantity'),
     )
-    ->groupBy('p.name')
+    ->groupBy('p.name','p.id')
     ->whereBetween('i.date_income', [$date, $datetwo])
     ->get();
     return $income;

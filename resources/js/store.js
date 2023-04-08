@@ -20,6 +20,7 @@ export default new Vuex.Store({
         gaintot: [],
         usertot: [],
         facUnique: [],
+        descriptionF: [],
         company: [],
         money: [],
         moneySingle: [],
@@ -36,6 +37,7 @@ export default new Vuex.Store({
         urltype_sale_one: "/api/type_sale_one",
         urldetails: "/api/details",
         urlfactureUnique: "/api/factureUnique",
+        urldescriptionF: "/api/descriptionfac",
         urlbills: "/api/bills",
         urlbillstot: "/api/billsTot",
         urlgain: "/api/gain",
@@ -78,6 +80,9 @@ export default new Vuex.Store({
         },
         FactureUniquemutations(state, item) {
             state.facUnique = item;
+        },
+        DescriptitonFmutations(state, item) {
+            state.descriptionF = item;
         },
         Billmutations(state, item) {
             state.bills = item;
@@ -163,6 +168,17 @@ export default new Vuex.Store({
             try {
                 let response = await axios.get(`${state.urlfactures}/${date}`);
                 commit("Facturemutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async DescriptionFactions({ commit, state }, date) {
+            try {
+                let response = await axios.get(
+                    `${state.urldescriptionF}/${date}`
+                );
+                commit("DescriptitonFmutations", response.data);
                 state.status = true;
             } catch (error) {
                 console.log(error);

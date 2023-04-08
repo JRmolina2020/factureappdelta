@@ -15,10 +15,6 @@ use App\Http\Controllers\API\IncomeController;
 use App\Http\Controllers\API\EmailFac;
 use App\Http\Controllers\AuthController;
 
-
-
-
-
 //routes view one
 Route::get('/', function () {
     return view('login');
@@ -56,6 +52,9 @@ Route::get('/proveedores', function () {
 Route::get('/facturas', function () {
     return view('factures.index');
 });
+Route::get('/ventas', function () {
+    return view('sales.index');
+});
 Route::get('/gastos', function () {
     return view('bills.index');
 });
@@ -68,8 +67,11 @@ Route::get('/cuentas', function () {
 Route::get('/entradas', function () {
     return view('incomes.index');
 });
+Route::get('/inventario', function () {
+    return view('inventory.index');
+});
 Route::prefix('api')->group(function () {
-// Route::group(['middleware' => ['getAuth']], function () {
+Route::group(['middleware' => ['getAuth']], function () {
 //routes app fuctions
 //routes users
 Route::get('/users', [UserController::class, 'index']);
@@ -107,6 +109,7 @@ Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->where('id'
 //facture
 Route::post('factures', [FactureController::class, 'store']);
 Route::get('/factures/{date}', [FactureController::class, 'index']);
+Route::get('/descriptionfac/{date}', [FactureController::class, 'descriptionFacture']);
 Route::get('/factureUnique/{id}', [FactureController::class, 'factureUnique'])->where('id', '[0-9]+');
 Route::get('/type_sale/{date}', [FactureController::class, 'type_sale']);
 Route::get('/type_sale_one/{date}/{type}', [FactureController::class, 'type_sale_one']);
@@ -147,7 +150,7 @@ Route::get('/income/{date}', [IncomeController::class, 'indexData']);
 Route::get('/incometwo/{date}/{datetwo}', [IncomeController::class, 'indexDatatwo']);
 Route::delete('/income/{id}', [IncomeController::class, 'destroy'])->where('id', '[0-9]+');
 });
-// });
+});
 });
 
 
