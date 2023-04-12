@@ -21,7 +21,7 @@
             <section slot="body">
                 <form
                     method="POST"
-                    @submit.enter.prevent="add(form.id)"
+                    @submit.enter.prevent="add()"
                     autocomplete="off"
                     onKeyPress="if(event.keyCode == 13) event.returnValue = false;"
                 >
@@ -148,57 +148,30 @@ export default {
         getProduct() {
             this.$store.dispatch("Productactions");
         },
-        add(id) {
+        add() {
             this.$validator.validate().then((valid) => {
                 if (valid) {
-                    this.addIncome(id);
+                    this.addIncome();
                 }
             });
         },
-        async addIncome(id) {
+        async addIncome() {
             this.send = false;
-            if (id) {
-                let response = await axios.put(
-                    this.urlincome + "/" + id,
-                    this.form
-                );
-                try {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: `${response.data.message}`,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-
-                    this.getList();
-                } catch (error) {
-                    console.log(error.response);
-                }
-            } else {
-                let response = await axios.post(this.urlincome, this.form);
-                try {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: `${response.data.message}`,
-                        showConfirmButton: false,
-                        timer: 1600,
-                    });
-                    this.getList();
-                } catch (error) {
-                    console.log(error.response);
-                }
+            let response = await axios.post(this.urlincome, this.form);
+            try {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: `${response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 1600,
+                });
+                this.getList();
+            } catch (error) {
+                console.log(error.response);
             }
         },
-        show(row) {
-            this.form.id = row.id;
-            this.form.product_id = row.product_id;
-            this.form.quantity = row.quantity;
-            this.form.date_income = row.date_income;
-            $("#model").modal("show");
-            this.send = true;
-        },
+
         clear() {
             this.form.id = "";
             this.form.date_income = date_now;

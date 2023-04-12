@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Facture;
 use App\Models\FactureDetail;
 use Carbon\Carbon;
+use App\Models\Product;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -42,12 +43,26 @@ class FactureController extends Controller
                 $details->disc = $det['disc'];
                 $details->tot = $det['tot'];
                 $details->save();
+                $id=$details->id;
+                // $this->update_stock($id,'add');
             }
             DB::commit();
+          
             return response()->json(['message' => 'Venta registrada'], 200);
         } catch (Exception $e) {
             DB::rollBack();
         }
+    }
+    public function update_stock($id,$type){
+        $detail = FactureDetail::find($id);
+        $product = Product::find($detail->product_id);
+        if($type=='add'){
+        $stock=DB::raw("stock - $detail->quantity");
+        }else{
+        $stock=DB::raw("stock + $detail->quantity");
+        }
+        $product->stock=$stock;
+        $product->save();
     }
   public function index($date)
   {
@@ -182,10 +197,11 @@ public function descriptionFacture($date){
 }
   public function destroy($id)
   {  
-      $facture = Facture::find($id);
-      if (!$facture) {
-          return response()->json(["message" => "Facturada no encontrada"], 404);
-      }
+        $facture = Facture::find($id);
+        // $details = FactureDetail::where('facture_id', $id)->get();
+        // foreach ($details as $items) {
+        //    $this->update_stock($items->id,'delete');
+        // }
       $facture->delete();
       return response()->json(["message" => "Factura eliminada"]);
   }

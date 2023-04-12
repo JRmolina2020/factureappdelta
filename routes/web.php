@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('login');
 })->name('login');
 //route login functions 
+
 Route::post('login',[AuthController::class, 'login']);
 Route::group(['middleware' => 'auth'], function () {
 //route view two
@@ -71,7 +72,7 @@ Route::get('/inventario', function () {
     return view('inventory.index');
 });
 Route::prefix('api')->group(function () {
-Route::group(['middleware' => ['getAuth']], function () {
+// Route::group(['middleware' => ['getAuth']], function () {
 //routes app fuctions
 //routes users
 Route::get('/users', [UserController::class, 'index']);
@@ -145,13 +146,12 @@ Route::put('/money/{id}', [MoneyController::class, 'update'])->where('id', '[0-9
 Route::delete('/money/{id}', [MoneyController::class, 'destroy'])->where('id', '[0-9]+');
 //income
 Route::post('income', [IncomeController::class, 'store']);
-Route::put('/income/{id}', [IncomeController::class, 'update'])->where('id', '[0-9]+');
 Route::get('/income/{date}', [IncomeController::class, 'indexData']);
 Route::get('/incometwo/{date}/{datetwo}', [IncomeController::class, 'indexDatatwo']);
 Route::delete('/income/{id}', [IncomeController::class, 'destroy'])->where('id', '[0-9]+');
 });
 });
-});
+// });
 
 
 

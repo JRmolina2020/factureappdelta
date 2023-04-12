@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name', 'price','price_two','cost'
+        'name', 'price','price_two','cost','stock'
     ];
     public function facture_detail()
     {

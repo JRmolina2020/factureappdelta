@@ -5099,11 +5099,6 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     StoreIncome: _Store_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     ListIncome: _List_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  methods: {
-    show: function show(row) {
-      this.$refs.form_income.show(row);
-    }
   }
 });
 
@@ -5136,14 +5131,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -5513,36 +5500,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getProduct: function getProduct() {
       this.$store.dispatch("Productactions");
     },
-    add: function add(id) {
+    add: function add() {
       var _this = this;
 
       this.$validator.validate().then(function (valid) {
         if (valid) {
-          _this.addIncome(id);
+          _this.addIncome();
         }
       });
     },
-    addIncome: function addIncome(id) {
+    addIncome: function addIncome() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var response, _response;
-
+        var response;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _this2.send = false;
+                _context.next = 3;
+                return axios.post(_this2.urlincome, _this2.form);
 
-                if (!id) {
-                  _context.next = 8;
-                  break;
-                }
-
-                _context.next = 4;
-                return axios.put(_this2.urlincome + "/" + id, _this2.form);
-
-              case 4:
+              case 3:
                 response = _context.sent;
 
                 try {
@@ -5550,30 +5530,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     position: "center",
                     icon: "success",
                     title: "".concat(response.data.message),
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-
-                  _this2.getList();
-                } catch (error) {
-                  console.log(error.response);
-                }
-
-                _context.next = 12;
-                break;
-
-              case 8:
-                _context.next = 10;
-                return axios.post(_this2.urlincome, _this2.form);
-
-              case 10:
-                _response = _context.sent;
-
-                try {
-                  Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "".concat(_response.data.message),
                     showConfirmButton: false,
                     timer: 1600
                   });
@@ -5583,21 +5539,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   console.log(error.response);
                 }
 
-              case 12:
+              case 5:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
-    },
-    show: function show(row) {
-      this.form.id = row.id;
-      this.form.product_id = row.product_id;
-      this.form.quantity = row.quantity;
-      this.form.date_income = row.date_income;
-      $("#model").modal("show");
-      this.send = true;
     },
     clear: function clear() {
       this.form.id = "";
@@ -86536,9 +86484,9 @@ var render = function () {
       "section",
       { staticClass: "section" },
       [
-        _c("store-income", { ref: "form_income" }),
+        _c("store-income"),
         _vm._v(" "),
-        _c("list-income", { staticClass: "mt-3", on: { show: _vm.show } }),
+        _c("list-income", { staticClass: "mt-3" }),
       ],
       1
     ),
@@ -86671,28 +86619,6 @@ var render = function () {
                     _c("td", [_vm._v(_vm._s(row.created_at))]),
                     _vm._v(" "),
                     _c("td", [
-                      _c(
-                        "button",
-                        {
-                          directives: [
-                            {
-                              name: "can",
-                              rawName: "v-can",
-                              value: "modificar entrada",
-                              expression: "'modificar entrada'",
-                            },
-                          ],
-                          staticClass: "btn bg-warning btn-sm",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.$emit("show", row)
-                            },
-                          },
-                        },
-                        [_c("i", { staticClass: "fi fi-eye" })]
-                      ),
-                      _vm._v(" "),
                       _c(
                         "button",
                         {
@@ -86981,7 +86907,7 @@ var render = function () {
                       return null
                     }
                     $event.preventDefault()
-                    return _vm.add(_vm.form.id)
+                    return _vm.add()
                   },
                 },
               },

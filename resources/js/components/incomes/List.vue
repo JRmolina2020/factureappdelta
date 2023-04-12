@@ -42,14 +42,6 @@
 
                         <td>
                             <button
-                                v-can="'modificar entrada'"
-                                type="button"
-                                @click="$emit('show', row)"
-                                class="btn bg-warning btn-sm"
-                            >
-                                <i class="fi fi-eye"></i>
-                            </button>
-                            <button
                                 v-can="'eliminar entrada'"
                                 type="button"
                                 @click="destroy(row.id)"

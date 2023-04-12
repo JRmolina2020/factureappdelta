@@ -1,8 +1,8 @@
 <template>
     <div>
         <section class="section">
-            <store-income ref="form_income"></store-income>
-            <list-income v-on:show="show" class="mt-3"></list-income>
+            <store-income></store-income>
+            <list-income class="mt-3"></list-income>
         </section>
     </div>
 </template>
@@ -14,11 +14,6 @@ export default {
     components: {
         StoreIncome,
         ListIncome,
-    },
-    methods: {
-        show(row) {
-            this.$refs.form_income.show(row);
-        },
     },
 };
 </script>

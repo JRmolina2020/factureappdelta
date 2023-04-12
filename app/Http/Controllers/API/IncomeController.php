@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Income;
+use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
 class IncomeController extends Controller
@@ -26,6 +27,7 @@ class IncomeController extends Controller
             'i.created_at',
             'p.name as product',
             'p.id as product_id',
+            'p.stock',
             'u.name as user'
         )
         ->where('i.date_income',$date)
@@ -55,35 +57,32 @@ class IncomeController extends Controller
      */
     public function store(Request $request)
     {
-        Income::create([
-            'user_id' =>auth()->id(),
-            'product_id' => $request['product_id'],
-            'quantity' => $request['quantity'],
-            'date_income' => $request['date_income'],
-           
-        ]);
+        $income= new Income;
+        $income->user_id =auth()->id();
+        $income->product_id = $request['product_id'];
+        $income->quantity = $request['quantity'];
+        $income->date_income = $request['date_income'];
+        $income->save();
+        $id=$income->id;
+        // $this->update_stock($id,'add');
         return response()->json(['message' => 'Entrada registrada'], 200);
+       
     }
 
-  
-
-    
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update($id)
+   public function update_stock($id,$type)
     {
         $income = Income::find($id);
-        $income->fill([
-            'product_id' => request('product_id'),
-            'quantity' => request('quantity'),
-            'date_income' => request('date_income'),
-        ])->save();
-        return response()->json(['message' => 'Entrada modificada'], 201);
+        $product = Product::find($income->product_id);
+        if($type=='add'){
+        $stock=DB::raw("stock + $income->quantity");
+        $product->stock=$stock;
+        }else{
+        $stock=DB::raw("stock - $income->quantity");
+        $product->stock=$stock;
+        }
+       
+        $product->save();
+       
     }
 
     /**
@@ -99,6 +98,7 @@ class IncomeController extends Controller
         if (!$income) {
             return response()->json(["message" => "Entrada no encontrado"], 404);
         }
+        // $this->update_stock($id,'delete');
         $income->delete();
         return response()->json(["message" => "Entrada eliminada"]);
     }
