@@ -93,9 +93,15 @@
                             <tr v-for="row in rows" :key="row.name">
                                 <td>{{ row.name }}</td>
                                 <td>{{ row.quantity }}</td>
-                                <td>{{ row.tot | currency }}</td>
-                                <td>{{ row.cost | currency }}</td>
-                                <td>{{ row.gain | currency }}</td>
+                                <td v-can="'ver indicador'">
+                                    {{ row.tot | currency }}
+                                </td>
+                                <td v-can="'ver indicador'">
+                                    {{ row.cost | currency }}
+                                </td>
+                                <td v-can="'ver indicador'">
+                                    {{ row.gain | currency }}
+                                </td>
                             </tr>
                         </template>
                     </VTable>

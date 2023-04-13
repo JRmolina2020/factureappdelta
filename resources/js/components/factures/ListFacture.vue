@@ -110,9 +110,12 @@
                         </td>
                         <td>
                             <Modal-Ticket v-bind:cod="row.id"></Modal-Ticket>
+                            <Modal-Fac v-bind:cod="row.id"></Modal-Fac>
                         </td>
+
                         <td>
                             <button
+                                v-can="'enviar factura'"
                                 type="button"
                                 @click="emailFac(row.id)"
                                 class="btn bg-primary btn-sm"
@@ -200,6 +203,8 @@
 import { mapState } from "vuex";
 
 import ModalTicket from "../utilities/modalticket";
+
+import ModalFac from "../utilities/modalfac";
 import VueHtmlToPaper from "vue-html-to-paper";
 
 const options = {
@@ -227,6 +232,7 @@ export default {
     mixins: [MgetList],
     components: {
         ModalTicket,
+        ModalFac,
     },
     computed: {
         ...mapState([

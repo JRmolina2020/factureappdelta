@@ -117,8 +117,7 @@
                                 <label for>Precio de venta</label>
                                 <currency-input
                                     v-validate="{
-                                        required: true,
-                                        min_value: form.price + price_default,
+                                        min_value: 0,
                                     }"
                                     class="form-control form-control-sm"
                                     v-currency="{

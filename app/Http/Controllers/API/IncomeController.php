@@ -23,6 +23,7 @@ class IncomeController extends Controller
         ->select(
             'i.id',
             'i.quantity',
+            'i.date_income',
             'i.created_at',
             'p.name as product',
             'p.id as product_id',
