@@ -1,6 +1,9 @@
 <template>
     <div>
         <div class="table-responsive">
+            <div class="alert alert-warning" role="alert">
+                Consulta por fecha
+            </div>
             <div class="input-group mt-3">
                 <input
                     class="form-control form-control-sm"
@@ -30,6 +33,7 @@
                         <th>Cantidad</th>
                         <th>Usuario</th>
                         <th>Fecha</th>
+                        <th>Registro</th>
                         <th></th>
                     </tr>
                 </template>
@@ -38,6 +42,7 @@
                         <td>{{ row.product }}</td>
                         <td>{{ row.quantity }}</td>
                         <td>{{ row.user }}</td>
+                        <td>{{ row.date_income }}</td>
                         <td>{{ row.created_at }}</td>
 
                         <td>
@@ -155,18 +160,26 @@ export default {
             this.$store.dispatch("IncomeTwoactions", obj);
         },
 
-        async destroy(id) {
-            let url = this.urlincome + "/" + id;
-            let response = await axios.delete(url);
-            try {
-                this.getList();
-                Swal.fire({
-                    title: `${response.data.message}`,
-                    icon: "success",
-                });
-            } catch (error) {
-                console.log(error);
-            }
+        destroy(id) {
+            Swal.fire({
+                title: "Deseas eliminar la entrada?",
+                showCancelButton: true,
+                confirmButtonText: "Si",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let url = this.urlincome + "/" + id;
+                    let response = axios.delete(url);
+                    try {
+                        this.getList();
+                        Swal.fire({
+                            title: `${response.data.message}`,
+                            icon: "success",
+                        });
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            });
         },
     },
 };

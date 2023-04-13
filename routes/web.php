@@ -31,7 +31,7 @@ Route::get('/home', function () {
 
 Route::get('/usuarios', function () {
     return view('users.index');
-});
+})->middleware('permission:seguridad');
 Route::get('/roles', function () {
     return view('roles.index');
 });

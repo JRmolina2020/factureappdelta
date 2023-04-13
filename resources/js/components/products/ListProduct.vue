@@ -41,14 +41,14 @@
                         </td>
 
                         <td>{{ row.price_two | currency }}</td>
-                        <td class="bg-warning">
+                        <td v-can="'gestion producto'" class="bg-warning">
                             {{ (row.price - row.cost) | currency }}
                         </td>
-                        <td class="bg-info">
+                        <td v-can="'gestion producto'" class="bg-info">
                             {{ (row.price_two - row.cost) | currency }}
                         </td>
 
-                        <td>
+                        <td v-can="'gestion producto'">
                             <button
                                 type="button"
                                 @click="$emit('show', row)"
@@ -99,18 +99,26 @@ export default {
         getList() {
             this.$store.dispatch("Productactions");
         },
-        async destroy(id) {
-            let url = this.urlproducts + "/" + id;
-            let response = await axios.delete(url);
-            try {
-                this.getList();
-                Swal.fire({
-                    title: `${response.data.message}`,
-                    icon: "success",
-                });
-            } catch (error) {
-                console.log(error);
-            }
+        destroy(id) {
+            Swal.fire({
+                title: "Deseas eliminar el producto?",
+                showCancelButton: true,
+                confirmButtonText: "Si",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let url = this.urlproducts + "/" + id;
+                    let response = axios.delete(url);
+                    try {
+                        this.getList();
+                        Swal.fire({
+                            title: `${response.data.message}`,
+                            icon: "success",
+                        });
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            });
         },
     },
 };

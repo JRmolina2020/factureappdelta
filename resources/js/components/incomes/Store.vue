@@ -62,7 +62,8 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="input-group mt-3">
+                            <label>Fecha de entrada</label>
+                            <div class="input-group">
                                 <input
                                     class="form-control"
                                     type="date"

@@ -1,13 +1,13 @@
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-      @hasrole('administrador')
+    
       <li class="nav-item">
         <a href="{{ url('home') }}" class="nav-link">
           <i class="fi fi-microsoft"></i>
           <p>Indicadores</p>
         </a>
       </li>
-    
+      @hasrole('administrador')
       <li class="nav-item">
         <a href="{{ url('empresa') }}" class="nav-link">
           <i class="fi fi-shopping-basket-add"></i>

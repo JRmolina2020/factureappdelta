@@ -5,8 +5,11 @@
     <div class="login-logo">
     </div>
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Ingresa las credenciales para iniciar la sección</p>
-        <div id="app">
+      <div class="alert alert-primary" role="alert">
+        <strong>LAMBDA</strong> V.1.0
+      </div>
+      
+        <div id="app" class="mt-3">
            <login></login>
         </div>
     </div>
