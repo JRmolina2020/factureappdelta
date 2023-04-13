@@ -85,7 +85,7 @@ export default {
                             this.form.password = null;
                             Swal.fire({
                                 icon: "error",
-                                title: "Oops...",
+                                title: "Oopss...",
                                 text: "Verifique las credenciales de ingreso",
                             });
                         });

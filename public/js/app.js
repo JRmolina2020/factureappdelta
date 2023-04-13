@@ -5733,7 +5733,7 @@ __webpack_require__.r(__webpack_exports__);
             _this.form.password = null;
             Swal.fire({
               icon: "error",
-              title: "Oops...",
+              title: "Oopss...",
               text: "Verifique las credenciales de ingreso"
             });
           });
