@@ -43,8 +43,7 @@ class FactureController extends Controller
                 $details->disc = $det['disc'];
                 $details->tot = $det['tot'];
                 $details->save();
-                $id=$details->id;
-                // $this->update_stock($id,'add');
+              
             }
             DB::commit();
           
@@ -53,17 +52,7 @@ class FactureController extends Controller
             DB::rollBack();
         }
     }
-    public function update_stock($id,$type){
-        $detail = FactureDetail::find($id);
-        $product = Product::find($detail->product_id);
-        if($type=='add'){
-        $stock=DB::raw("stock - $detail->quantity");
-        }else{
-        $stock=DB::raw("stock + $detail->quantity");
-        }
-        $product->stock=$stock;
-        $product->save();
-    }
+   
   public function index($date)
   {
     $facture = DB::table('factures as f')
@@ -198,10 +187,6 @@ public function descriptionFacture($date){
   public function destroy($id)
   {  
         $facture = Facture::find($id);
-        // $details = FactureDetail::where('facture_id', $id)->get();
-        // foreach ($details as $items) {
-        //    $this->update_stock($items->id,'delete');
-        // }
       $facture->delete();
       return response()->json(["message" => "Factura eliminada"]);
   }
