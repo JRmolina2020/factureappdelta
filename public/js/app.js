@@ -6519,7 +6519,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           var response = axios["delete"](url);
 
           try {
-            _this.getList();
+            _this.$store.dispatch("Productactions");
 
             Swal.fire({
               title: "".concat(response.data.message),
@@ -8571,7 +8571,7 @@ var month = date.getMonth() + 1;
 var year = date.getFullYear();
 
 if (month < 10) {
-  var date_now = "".concat(year, "-0").concat(month, "-0").concat(day);
+  var date_now = "".concat(year, "-0").concat(month, "-").concat(day);
 } else {
   var date_now = "".concat(year, "-").concat(month, "-").concat(day);
 }

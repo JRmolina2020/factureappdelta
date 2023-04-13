@@ -109,7 +109,7 @@ export default {
                     let url = this.urlproducts + "/" + id;
                     let response = axios.delete(url);
                     try {
-                        this.getList();
+                        this.$store.dispatch("Productactions");
                         Swal.fire({
                             title: `${response.data.message}`,
                             icon: "success",
