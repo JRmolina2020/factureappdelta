@@ -19,7 +19,7 @@
             >
                 <template #head>
                     <tr>
-                        <VTh sortKey="name">Nombre</VTh>
+                        <VTh>Nombre</VTh>
                         <th>Correo</th>
                         <th>Rol</th>
                         <th>Estado</th>

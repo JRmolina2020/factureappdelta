@@ -89735,9 +89735,7 @@ var render = function () {
                   _c(
                     "tr",
                     [
-                      _c("VTh", { attrs: { sortKey: "name" } }, [
-                        _vm._v("Nombre"),
-                      ]),
+                      _c("VTh", [_vm._v("Nombre")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("Correo")]),
                       _vm._v(" "),
