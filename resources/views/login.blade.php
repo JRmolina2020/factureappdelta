@@ -6,7 +6,7 @@
     </div>
     <div class="card-body login-card-body">
       <div class="alert alert-primary" role="alert">
-        <strong>LAMBDA</strong> S.1.0
+        <strong>LAMBDA</strong> V.1.0
       </div>
       
         <div id="app" class="mt-3">
