@@ -19,7 +19,7 @@
             >
                 <template #head>
                     <tr>
-                        <VTh>Nombre</VTh>
+                        <th>Nombre</th>
                         <th>Correo</th>
                         <th>Rol</th>
                         <th>Estado</th>

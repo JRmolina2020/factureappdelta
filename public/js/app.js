@@ -89732,21 +89732,17 @@ var render = function () {
               key: "head",
               fn: function () {
                 return [
-                  _c(
-                    "tr",
-                    [
-                      _c("VTh", [_vm._v("Nombre")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Correo")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Rol")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Estado")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Op")]),
-                    ],
-                    1
-                  ),
+                  _c("tr", [
+                    _c("th", [_vm._v("Nombre")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Correo")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Rol")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Estado")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Op")]),
+                  ]),
                 ]
               },
               proxy: true,
