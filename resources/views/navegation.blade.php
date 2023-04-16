@@ -47,6 +47,18 @@
           <p>Clientes</p>
         </a>
       </li>
+      <li class="nav-item">
+        <a href="{{ url('facturas') }}" class="nav-link">
+          <i class="fi fi-shopify"></i>
+          <p>Facturas</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ url('fupdate') }}" class="nav-link">
+          <i class="fi fi-shopify"></i>
+          <p>Moficar factura</p>
+        </a>
+      </li>
       @hasrole('administrador')
       <li class="nav-item">
         <a href="{{ url('cuentas') }}" class="nav-link">
@@ -61,6 +73,7 @@
           <p>Entradas</p>
         </a>
       </li>
+
       <li class="nav-item">
         <a href="{{ url('inventario') }}" class="nav-link">
           <i class="fi fi-curve"></i>
@@ -74,12 +87,6 @@
         </a>
       </li>
     
-      <li class="nav-item">
-        <a href="{{ url('facturas') }}" class="nav-link">
-          <i class="fi fi-shopify"></i>
-          <p>Facturas</p>
-        </a>
-      </li>
         @hasrole('administrador')
       <li class="nav-item">
         <a href="#" class="nav-link">

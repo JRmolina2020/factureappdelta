@@ -96,6 +96,11 @@ Vue.component(
     require("./components/descriptionF.vue").default
 );
 
+Vue.component(
+    "updatefacture_example",
+    require("./components/factures/UpdateFacture.vue").default
+);
+
 import auth from "./mixins/Auth.js";
 Vue.mixin(auth);
 const app = new Vue({

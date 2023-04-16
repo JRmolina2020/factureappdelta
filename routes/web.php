@@ -34,10 +34,10 @@ Route::get('/usuarios', function () {
 })->middleware('permission:seguridad');
 Route::get('/roles', function () {
     return view('roles.index');
-});
+})->middleware('permission:seguridad');;
 Route::get('/permisos', function () {
     return view('permissions.index');
-});
+})->middleware('permission:seguridad');;
 Route::get('/perfil', function () {
     return view('users.profile');
 });
@@ -53,6 +53,9 @@ Route::get('/proveedores', function () {
 Route::get('/facturas', function () {
     return view('factures.index');
 });
+Route::get('/fupdate', function () {
+    return view('factures.update');
+});
 Route::get('/ventas', function () {
     return view('sales.index');
 });
@@ -61,10 +64,10 @@ Route::get('/gastos', function () {
 });
 Route::get('/empresa', function () {
     return view('companies.index');
-});
+})->middleware('permission:seguridad');;
 Route::get('/cuentas', function () {
     return view('money.index');
-});
+})->middleware('permission:seguridad');;
 Route::get('/entradas', function () {
     return view('incomes.index');
 });
@@ -72,7 +75,7 @@ Route::get('/inventario', function () {
     return view('inventory.index');
 });
 Route::prefix('api')->group(function () {
-// Route::group(['middleware' => ['getAuth']], function () {
+ Route::group(['middleware' => ['getAuth']], function () {
 //routes app fuctions
 //routes users
 Route::get('/users', [UserController::class, 'index']);
@@ -116,6 +119,7 @@ Route::get('/type_sale/{date}', [FactureController::class, 'type_sale']);
 Route::get('/type_sale_one/{date}/{type}', [FactureController::class, 'type_sale_one']);
 Route::delete('/factures/{id}', [FactureController::class, 'destroy'])->where('id', '[0-9]+');
 Route::put('/factures/{id}', [FactureController::class, 'updateStatus'])->where('id', '[0-9]+');
+Route::put('/fupdate/{id}', [FactureController::class, 'fupdate'])->where('id', '[0-9]+');
 Route::get('/gain/{date}/{datetwo}', [FactureController::class, 'gain']);
 Route::get('/gainTot/{date}/{datetwo}', [FactureController::class, 'gainTot']);
 Route::get('/userTot/{date}/{datetwo}', [FactureController::class, 'userTot']);
@@ -151,7 +155,7 @@ Route::get('/incometwo/{date}/{datetwo}', [IncomeController::class, 'indexDatatw
 Route::delete('/income/{id}', [IncomeController::class, 'destroy'])->where('id', '[0-9]+');
 });
 });
-// });
+ });
 
 
 

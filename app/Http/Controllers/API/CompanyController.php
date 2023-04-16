@@ -13,7 +13,6 @@ class CompanyController extends Controller
     {
         $company= DB::table('companies')
         ->select('id','nit','name','representative','phone','direction','city','note')
-        ->where('user_id',auth()->id())
         ->get();
         return $company;
     }

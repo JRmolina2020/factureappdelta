@@ -3,7 +3,7 @@
         <!-- Button trigger modal -->
         <button
             type="button"
-            class="btn bg-warning btn-sm"
+            class="btn bg-dark btn-sm"
             data-toggle="modal"
             :data-target="'#model2' + cod"
             @click="getlistProducts"

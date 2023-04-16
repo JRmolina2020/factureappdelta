@@ -20,13 +20,7 @@
                     Buscar
                 </button>
             </div>
-            <VTable
-                :data="income"
-                :page-size="5"
-                :currentPage.sync="currentPage"
-                @totalPagesChanged="totalPages = $event"
-                class="table table-borderless mt-3"
-            >
+            <VTable :data="income" class="table table-borderless mt-3">
                 <template #head>
                     <tr>
                         <VTh sortKey="product">Producto</VTh>
@@ -59,13 +53,7 @@
                 </template>
             </VTable>
         </div>
-        <div class="text-xs-center">
-            <VTPagination
-                :currentPage.sync="currentPage"
-                :total-pages="totalPages"
-                :boundary-links="true"
-            />
-        </div>
+
         <div class="alert alert-primary" role="alert">
             Consulta en rango de fecha
         </div>
@@ -104,7 +92,10 @@
             <VTable
                 :data="incometot"
                 :filters="filters"
-                class="table table-dark mt-3"
+                :page-size="10"
+                :currentPage.sync="currentPage"
+                @totalPagesChanged="totalPages = $event"
+                class="table table-borderless mt-3"
             >
                 <template #head>
                     <tr>
@@ -119,6 +110,13 @@
                     </tr>
                 </template>
             </VTable>
+        </div>
+        <div class="text-xs-center">
+            <VTPagination
+                :currentPage.sync="currentPage"
+                :total-pages="totalPages"
+                :boundary-links="true"
+            />
         </div>
     </div>
 </template>

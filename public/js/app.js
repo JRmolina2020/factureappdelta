@@ -3517,12 +3517,6 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     ListFacture: _ListFacture_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     StoreFacture: _StoreFacture_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  methods: {
-    show: function show(row) {
-      // this.$refs.form_client.show(row);
-      console.log(row);
-    }
   }
 });
 
@@ -3559,6 +3553,11 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4858,6 +4857,326 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/factures/UpdateFacture.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/factures/UpdateFacture.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_date__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/date */ "./resources/js/mixins/date.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  $_veeValidate: {
+    validator: "new"
+  },
+  data: function data() {
+    return {
+      update: false,
+      submitted: true,
+      send: 1,
+      url: "api/fupdate",
+      form: {
+        id: null,
+        other: 0,
+        efecty: 0,
+        type_sale: 0,
+        user_id: null,
+        tot: 0
+      },
+      filters: {
+        id: {
+          value: "",
+          keys: ["id"]
+        }
+      }
+    };
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["factures", "moneySingle", "users"])),
+  created: function created() {
+    this.getList();
+  },
+  methods: {
+    show: function show(row) {
+      this.form.id = row.id;
+      this.form.efecty = parseFloat(row.efecty);
+      this.form.other = parseFloat(row.other);
+      this.form.tot = parseFloat(row.tot);
+      this.form.user_id = row.idu;
+      this.form.type_sale = row.type_sale;
+      this.send = true;
+      this.update = true;
+      this.filters.id = "";
+    },
+    route: function route() {
+      var _this = this;
+
+      this.$validator.validate().then(function (valid) {
+        if (valid) {
+          _this.updateFacture();
+        }
+      });
+    },
+    updateFacture: function updateFacture() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this2.send = false;
+                _this2.update = false;
+
+                if (_this2.form.other == 0) {
+                  _this2.form.type_sale = 1;
+                }
+
+                _context.next = 5;
+                return axios.put(_this2.url + "/" + _this2.form.id, _this2.form);
+
+              case 5:
+                response = _context.sent;
+
+                try {
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "".concat(response.data.message),
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+
+                  _this2.getList();
+
+                  _this2.clear();
+                } catch (error) {
+                  console.log(error.response);
+                }
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    getList: function getList() {
+      this.$store.dispatch("Factureactions", _mixins_date__WEBPACK_IMPORTED_MODULE_0__["default"]);
+      this.$store.dispatch("MoneySigleactions");
+      this.$store.dispatch("Useractions");
+    },
+    equalsTot: function equalsTot() {
+      this.form.other = this.form.tot - this.form.efecty;
+    },
+    clear: function clear() {
+      this.form.id = null;
+      this.form.other = 0;
+      this.form.efecty = 0;
+      this.form.user_id = null;
+      this.send = true;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/gain.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/gain.vue?vue&type=script&lang=js& ***!
@@ -5136,8 +5455,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
 //
 //
 //
@@ -8381,6 +8698,7 @@ Vue.component("money_example", (__webpack_require__(/*! ./components/money/Money
 Vue.component("income_example", (__webpack_require__(/*! ./components/incomes/Example.vue */ "./resources/js/components/incomes/Example.vue")["default"]));
 Vue.component("inventory_example", (__webpack_require__(/*! ./components/inventory.vue */ "./resources/js/components/inventory.vue")["default"]));
 Vue.component("sales_example", (__webpack_require__(/*! ./components/descriptionF.vue */ "./resources/js/components/descriptionF.vue")["default"]));
+Vue.component("updatefacture_example", (__webpack_require__(/*! ./components/factures/UpdateFacture.vue */ "./resources/js/components/factures/UpdateFacture.vue")["default"]));
 
 Vue.mixin((_mixins_Auth_js__WEBPACK_IMPORTED_MODULE_11___default()));
 var app = new Vue({
@@ -80610,6 +80928,45 @@ component.options.__file = "resources/js/components/factures/StoreFacture.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/factures/UpdateFacture.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/factures/UpdateFacture.vue ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _UpdateFacture_vue_vue_type_template_id_35fed946___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateFacture.vue?vue&type=template&id=35fed946& */ "./resources/js/components/factures/UpdateFacture.vue?vue&type=template&id=35fed946&");
+/* harmony import */ var _UpdateFacture_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdateFacture.vue?vue&type=script&lang=js& */ "./resources/js/components/factures/UpdateFacture.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UpdateFacture_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UpdateFacture_vue_vue_type_template_id_35fed946___WEBPACK_IMPORTED_MODULE_0__.render,
+  _UpdateFacture_vue_vue_type_template_id_35fed946___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/factures/UpdateFacture.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/gain.vue":
 /*!******************************************!*\
   !*** ./resources/js/components/gain.vue ***!
@@ -81795,6 +82152,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/factures/UpdateFacture.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/factures/UpdateFacture.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateFacture_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./UpdateFacture.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/factures/UpdateFacture.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateFacture_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/gain.vue?vue&type=script&lang=js&":
 /*!*******************************************************************!*\
   !*** ./resources/js/components/gain.vue?vue&type=script&lang=js& ***!
@@ -82425,6 +82798,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreFacture_vue_vue_type_template_id_703de950___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreFacture_vue_vue_type_template_id_703de950___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./StoreFacture.vue?vue&type=template&id=703de950& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/factures/StoreFacture.vue?vue&type=template&id=703de950&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/factures/UpdateFacture.vue?vue&type=template&id=35fed946&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/factures/UpdateFacture.vue?vue&type=template&id=35fed946& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateFacture_vue_vue_type_template_id_35fed946___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateFacture_vue_vue_type_template_id_35fed946___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateFacture_vue_vue_type_template_id_35fed946___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./UpdateFacture.vue?vue&type=template&id=35fed946& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/factures/UpdateFacture.vue?vue&type=template&id=35fed946&");
 
 
 /***/ }),
@@ -84702,9 +85092,9 @@ var render = function () {
       "section",
       { staticClass: "section" },
       [
-        _c("store-facture", { ref: "" }),
+        _c("store-facture"),
         _vm._v(" "),
-        _c("list-facture", { staticClass: "mt-3", on: { show: _vm.show } }),
+        _c("list-facture", { staticClass: "mt-3" }),
       ],
       1
     ),
@@ -84888,6 +85278,8 @@ var render = function () {
                             staticStyle: { color: "#fff", background: "black" },
                           },
                           [
+                            _c("th", [_vm._v("#")]),
+                            _vm._v(" "),
                             _c("th", [_vm._v("Total")]),
                             _vm._v(" "),
                             _c("th", [_vm._v("E")]),
@@ -84902,7 +85294,7 @@ var render = function () {
                             _vm._v(" "),
                             _c("th", [_vm._v("POS")]),
                             _vm._v(" "),
-                            _c("th", [_vm._v("D")]),
+                            _c("th", [_vm._v("Fac")]),
                             _vm._v(" "),
                             _c("th", [_vm._v("E")]),
                           ]
@@ -84917,6 +85309,8 @@ var render = function () {
                       var rows = ref.rows
                       return _vm._l(rows, function (row) {
                         return _c("tr", { key: row.id }, [
+                          _c("td", [_vm._v(_vm._s(row.id))]),
+                          _vm._v(" "),
                           _c("td", [
                             _vm._v(_vm._s(_vm._f("currency")(row.tot))),
                           ]),
@@ -84962,37 +85356,15 @@ var render = function () {
                           _vm._v(" "),
                           _c(
                             "td",
-                            [
-                              _c("Modal-Ticket", { attrs: { cod: row.id } }),
-                              _vm._v(" "),
-                              _c("Modal-Fac", { attrs: { cod: row.id } }),
-                            ],
+                            [_c("Modal-Ticket", { attrs: { cod: row.id } })],
                             1
                           ),
                           _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "button",
-                              {
-                                directives: [
-                                  {
-                                    name: "can",
-                                    rawName: "v-can",
-                                    value: "enviar factura",
-                                    expression: "'enviar factura'",
-                                  },
-                                ],
-                                staticClass: "btn bg-primary btn-sm",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.emailFac(row.id)
-                                  },
-                                },
-                              },
-                              [_c("i", { staticClass: "fi fi-skype" })]
-                            ),
-                          ]),
+                          _c(
+                            "td",
+                            [_c("Modal-Fac", { attrs: { cod: row.id } })],
+                            1
+                          ),
                           _vm._v(" "),
                           _c(
                             "td",
@@ -85029,7 +85401,7 @@ var render = function () {
                 ],
                 null,
                 false,
-                852989081
+                1589929251
               ),
             }),
             _vm._v(" "),
@@ -86440,6 +86812,431 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/factures/UpdateFacture.vue?vue&type=template&id=35fed946&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/factures/UpdateFacture.vue?vue&type=template&id=35fed946& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.update
+      ? _c("div", [
+          _c(
+            "form",
+            {
+              attrs: {
+                method: "POST",
+                autocomplete: "off",
+                onKeyPress:
+                  "if(event.keyCode == 13) event.returnValue = false;",
+              },
+              on: {
+                submit: function ($event) {
+                  if (
+                    !$event.type.indexOf("key") &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  $event.preventDefault()
+                  return _vm.updateFacture()
+                },
+              },
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "alert alert-primary",
+                  attrs: { role: "alert" },
+                },
+                [
+                  _vm._v("\n                TOT "),
+                  _c("strong", [
+                    _vm._v(_vm._s(_vm._f("currency")(_vm.form.tot)) + " "),
+                  ]),
+                  _vm._v(
+                    " Venta #\n                " +
+                      _vm._s(_vm.form.id) +
+                      "\n            "
+                  ),
+                ]
+              ),
+              _vm._v(" "),
+              _c("p"),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-4" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { attrs: { for: "" } }, [_vm._v("Efectivo")]),
+                      _vm._v(" "),
+                      _c("currency-input", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: {
+                              min_value: 0,
+                              required: true,
+                              max_value: _vm.form.tot,
+                            },
+                            expression:
+                              "{\n                                min_value: 0,\n                                required: true,\n                                max_value: form.tot,\n                            }",
+                          },
+                          {
+                            name: "currency",
+                            rawName: "v-currency",
+                            value: {
+                              currency: "USD",
+                              precision: 0,
+                              locale: "en",
+                            },
+                            expression:
+                              "{\n                                currency: 'USD',\n                                precision: 0,\n                                locale: 'en',\n                            }",
+                          },
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        class: {
+                          "is-invalid":
+                            _vm.submitted && _vm.errors.has("efectivo"),
+                        },
+                        attrs: { name: "efectivo" },
+                        on: {
+                          keyup: function ($event) {
+                            return _vm.equalsTot()
+                          },
+                        },
+                        model: {
+                          value: _vm.form.efecty,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.form, "efecty", $$v)
+                          },
+                          expression: "form.efecty",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _vm.submitted && _vm.errors.has("efectivo")
+                        ? _c("div", { staticClass: "invalid-feedback" }, [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.errors.first("efectivo")) +
+                                "\n                        "
+                            ),
+                          ])
+                        : _vm._e(),
+                    ],
+                    1
+                  ),
+                ]),
+                _vm._v(" "),
+                _vm.form.efecty < _vm.form.tot
+                  ? _c("div", { staticClass: "col-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "" } }, [_vm._v("otros")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model.number",
+                              value: _vm.form.other,
+                              expression: "form.other",
+                              modifiers: { number: true },
+                            },
+                          ],
+                          staticClass: "form-control form-control-sm",
+                          attrs: { disabled: "" },
+                          domProps: { value: _vm.form.other },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "other",
+                                _vm._n($event.target.value)
+                              )
+                            },
+                            blur: function ($event) {
+                              return _vm.$forceUpdate()
+                            },
+                          },
+                        }),
+                      ]),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.form.other > 0
+                  ? _c("div", { staticClass: "col-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "my-select" } }, [
+                          _vm._v("Banco"),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.type_sale,
+                                expression: "form.type_sale",
+                              },
+                            ],
+                            staticClass: "form-control form-control-sm",
+                            attrs: { required: "" },
+                            on: {
+                              change: function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.form,
+                                  "type_sale",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              },
+                            },
+                          },
+                          _vm._l(_vm.moneySingle, function (item, index) {
+                            return _c(
+                              "option",
+                              { key: index, domProps: { value: item.name } },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(item.name) +
+                                    "\n                            "
+                                ),
+                              ]
+                            )
+                          }),
+                          0
+                        ),
+                      ]),
+                    ])
+                  : _c("div"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Vendedor")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.user_id,
+                            expression: "form.user_id",
+                          },
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { required: "" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "user_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                        },
+                      },
+                      _vm._l(_vm.users, function (item, index) {
+                        return _c(
+                          "option",
+                          { key: index, domProps: { value: item.id } },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(item.name) +
+                                "\n                            "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              !_vm.send
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button", disabled: "" },
+                    },
+                    [
+                      _c("span", {
+                        staticClass: "spinner-border spinner-border-sm",
+                        attrs: { role: "status", "aria-hidden": "true" },
+                      }),
+                      _vm._v("\n                Loading...\n            "),
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.send
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-primary",
+                      attrs: { hidden: _vm.errors.any(), type: "submit" },
+                    },
+                    [_c("i", { staticClass: "fi fi-like" })]
+                  )
+                : _vm._e(),
+            ]
+          ),
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "table-responsive" },
+      [
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.filters.id.value,
+                expression: "filters.id.value",
+              },
+            ],
+            staticClass: "form-control mt-3",
+            attrs: { type: "text", placeholder: "Buscar factura" },
+            domProps: { value: _vm.filters.id.value },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.filters.id, "value", $event.target.value)
+              },
+            },
+          }),
+        ]),
+        _vm._v(" "),
+        _c("VTable", {
+          staticClass: "table table-striped table-dark table-borderless mt-3",
+          attrs: { data: _vm.factures, filters: _vm.filters },
+          scopedSlots: _vm._u([
+            {
+              key: "head",
+              fn: function () {
+                return [
+                  _c("tr", [
+                    _c("th", [_vm._v("#")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Total")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("E")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("O")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Banco")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Vendedor")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("E")]),
+                  ]),
+                ]
+              },
+              proxy: true,
+            },
+            {
+              key: "body",
+              fn: function (ref) {
+                var rows = ref.rows
+                return _vm._l(rows, function (row) {
+                  return _c("tr", { key: row.id }, [
+                    _c("td", [_vm._v(_vm._s(row.id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm._f("currency")(row.tot)))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm._f("currency")(row.efecty)))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm._f("currency")(row.other)))]),
+                    _vm._v(" "),
+                    row.type_sale == 1
+                      ? _c("td", [_c("i", { staticClass: "fi fi-dollar" })])
+                      : _c("td", [_vm._v(_vm._s(row.type_sale))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(row.name))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn bg-success btn-sm",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.show(row)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fi fi-eye" })]
+                      ),
+                    ]),
+                  ])
+                })
+              },
+            },
+          ]),
+        }),
+      ],
+      1
+    ),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/gain.vue?vue&type=template&id=2ffd86ca&":
 /*!****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/gain.vue?vue&type=template&id=2ffd86ca& ***!
@@ -86956,22 +87753,7 @@ var render = function () {
         _vm._v(" "),
         _c("VTable", {
           staticClass: "table table-borderless mt-3",
-          attrs: {
-            data: _vm.income,
-            "page-size": 5,
-            currentPage: _vm.currentPage,
-          },
-          on: {
-            "update:currentPage": function ($event) {
-              _vm.currentPage = $event
-            },
-            "update:current-page": function ($event) {
-              _vm.currentPage = $event
-            },
-            totalPagesChanged: function ($event) {
-              _vm.totalPages = $event
-            },
-          },
+          attrs: { data: _vm.income },
           scopedSlots: _vm._u([
             {
               key: "head",
@@ -87044,29 +87826,6 @@ var render = function () {
               },
             },
           ]),
-        }),
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "text-xs-center" },
-      [
-        _c("VTPagination", {
-          attrs: {
-            currentPage: _vm.currentPage,
-            "total-pages": _vm.totalPages,
-            "boundary-links": true,
-          },
-          on: {
-            "update:currentPage": function ($event) {
-              _vm.currentPage = $event
-            },
-            "update:current-page": function ($event) {
-              _vm.currentPage = $event
-            },
-          },
         }),
       ],
       1
@@ -87169,8 +87928,24 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("VTable", {
-          staticClass: "table table-dark mt-3",
-          attrs: { data: _vm.incometot, filters: _vm.filters },
+          staticClass: "table table-borderless mt-3",
+          attrs: {
+            data: _vm.incometot,
+            filters: _vm.filters,
+            "page-size": 10,
+            currentPage: _vm.currentPage,
+          },
+          on: {
+            "update:currentPage": function ($event) {
+              _vm.currentPage = $event
+            },
+            "update:current-page": function ($event) {
+              _vm.currentPage = $event
+            },
+            totalPagesChanged: function ($event) {
+              _vm.totalPages = $event
+            },
+          },
           scopedSlots: _vm._u([
             {
               key: "head",
@@ -87205,6 +87980,29 @@ var render = function () {
               },
             },
           ]),
+        }),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "text-xs-center" },
+      [
+        _c("VTPagination", {
+          attrs: {
+            currentPage: _vm.currentPage,
+            "total-pages": _vm.totalPages,
+            "boundary-links": true,
+          },
+          on: {
+            "update:currentPage": function ($event) {
+              _vm.currentPage = $event
+            },
+            "update:current-page": function ($event) {
+              _vm.currentPage = $event
+            },
+          },
         }),
       ],
       1
@@ -90486,7 +91284,7 @@ var render = function () {
     _c(
       "button",
       {
-        staticClass: "btn bg-warning btn-sm",
+        staticClass: "btn bg-dark btn-sm",
         attrs: {
           type: "button",
           "data-toggle": "modal",

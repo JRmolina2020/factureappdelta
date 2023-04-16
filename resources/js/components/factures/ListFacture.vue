@@ -77,6 +77,7 @@
             >
                 <template #head>
                     <tr style="color: #fff; background: black">
+                        <th>#</th>
                         <th>Total</th>
                         <th>E</th>
                         <th>O</th>
@@ -84,12 +85,14 @@
                         <th>Vendedor</th>
                         <th>Estado</th>
                         <th>POS</th>
-                        <th>D</th>
+                        <th>Fac</th>
+                        <!-- <th>D</th> -->
                         <th>E</th>
                     </tr>
                 </template>
                 <template #body="{ rows }">
                     <tr v-for="row in rows" :key="row.id">
+                        <td>{{ row.id }}</td>
                         <td>{{ row.tot | currency }}</td>
                         <td>{{ row.efecty | currency }}</td>
                         <td>{{ row.other | currency }}</td>
@@ -110,10 +113,12 @@
                         </td>
                         <td>
                             <Modal-Ticket v-bind:cod="row.id"></Modal-Ticket>
+                        </td>
+                        <td>
                             <Modal-Fac v-bind:cod="row.id"></Modal-Fac>
                         </td>
 
-                        <td>
+                        <!-- <td>
                             <button
                                 v-can="'enviar factura'"
                                 type="button"
@@ -122,7 +127,7 @@
                             >
                                 <i class="fi fi-skype"></i>
                             </button>
-                        </td>
+                        </td> -->
                         <td v-can="'eliminar factura'">
                             <button
                                 type="button"
@@ -308,6 +313,7 @@ export default {
                 console.log(error);
             }
         },
+
         async emailFac(id) {
             Swal.fire("Enviando...");
             let url = "api/emailfac/" + id;

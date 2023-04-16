@@ -68,8 +68,10 @@ class FactureController extends Controller
         'f.status',
         'f.type_sale',
         'u.name',
+        'u.id as idu',
         'c.nit',
         'c.fullname',
+        'c.id as idc'
     )
     ->where('f.date_facture',$date)
     ->orderBy('f.id', 'desc')->get();
@@ -190,6 +192,18 @@ public function descriptionFacture($date){
       $facture->delete();
       return response()->json(["message" => "Factura eliminada"]);
   }
+  public function fupdate($id)
+    {
+        $facture = Facture::find($id, ['id']);
+        $facture->fill([
+            'other' => request('other'),
+            'efecty' => request('efecty'),
+            'type_sale' => request('type_sale'),
+            'user_id' => request('user_id'),
+           
+        ])->save();
+        return response()->json(['message' => 'La factura ha sido modificada'], 201);
+    }
  
 
 }

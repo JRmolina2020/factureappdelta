@@ -12,7 +12,7 @@
              window.Permissions = [];
           @endauth
        </script>
-        <title>Lambda</title>
+        <title>40F.com.co</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontisto@v3.0.4/css/fontisto/fontisto.min.css"></i> 
         <link rel="shortcut icon" type="image/png" href="{{secure_asset('/img/favicon.ico') }}">
         <link rel="shortcut icon" sizes="192x192" href="{{secure_asset('/img/favicon.ico') }}">
@@ -20,6 +20,10 @@
         {{-- <link rel="shortcut icon" type="image/png" href="{{asset('/img/favicon.ico') }}">
         <link rel="shortcut icon" sizes="192x192" href="{{asset('/img/favicon.ico') }}">
         <link rel="stylesheet" href="{{asset('css/lte.min.css') }}"> --}}
+        {{--  --}}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap" rel="stylesheet">
 
     </head>
     <style>
@@ -31,5 +35,11 @@
         .icon-a {
           color: #FFF;
           font-size: 0.9em;
+      }
+      h1.stylep{
+        font-family: 'Rowdies', cursive;
+      }
+      p.stylep{
+        font-family: 'Rowdies', cursive;
       }
         </style>
