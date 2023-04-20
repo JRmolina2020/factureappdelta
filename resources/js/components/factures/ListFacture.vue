@@ -86,7 +86,7 @@
                         <th>Estado</th>
                         <th>POS</th>
                         <th>Fac</th>
-                        <!-- <th>D</th> -->
+                        <th>D</th>
                         <th>E</th>
                     </tr>
                 </template>
@@ -118,7 +118,7 @@
                             <Modal-Fac v-bind:cod="row.id"></Modal-Fac>
                         </td>
 
-                        <!-- <td>
+                        <td>
                             <button
                                 v-can="'enviar factura'"
                                 type="button"
@@ -127,7 +127,7 @@
                             >
                                 <i class="fi fi-skype"></i>
                             </button>
-                        </td> -->
+                        </td>
                         <td v-can="'eliminar factura'">
                             <button
                                 type="button"

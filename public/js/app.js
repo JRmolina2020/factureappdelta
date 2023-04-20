@@ -85296,6 +85296,8 @@ var render = function () {
                             _vm._v(" "),
                             _c("th", [_vm._v("Fac")]),
                             _vm._v(" "),
+                            _c("th", [_vm._v("D")]),
+                            _vm._v(" "),
                             _c("th", [_vm._v("E")]),
                           ]
                         ),
@@ -85366,6 +85368,30 @@ var render = function () {
                             1
                           ),
                           _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                directives: [
+                                  {
+                                    name: "can",
+                                    rawName: "v-can",
+                                    value: "enviar factura",
+                                    expression: "'enviar factura'",
+                                  },
+                                ],
+                                staticClass: "btn bg-primary btn-sm",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.emailFac(row.id)
+                                  },
+                                },
+                              },
+                              [_c("i", { staticClass: "fi fi-skype" })]
+                            ),
+                          ]),
+                          _vm._v(" "),
                           _c(
                             "td",
                             {
@@ -85401,7 +85427,7 @@ var render = function () {
                 ],
                 null,
                 false,
-                1589929251
+                3214634375
               ),
             }),
             _vm._v(" "),
