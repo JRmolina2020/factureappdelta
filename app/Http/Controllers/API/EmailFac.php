@@ -29,7 +29,7 @@ class EmailFac extends Controller
       );
       
         $data["email"] = $email;
-        $data["title"] = "Factura de venta";
+        $data["title"] = "Factura electronica de venta";
         $data["body"] = "Factura pos";
         Mail::send('emailHead', $data, function($message)use($data, $pdf) {
             $message->to($data["email"], $data["email"])

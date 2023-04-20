@@ -3,6 +3,6 @@
 <head>
 </head>
 <body>
-    <h2>Factura de venta</h2>
+    <h2>Factura electrónica de venta</h2>
 </body>
 </html>
