@@ -95,14 +95,13 @@
                                 class="modal fade"
                                 :id="'exampleModal' + index"
                                 tabindex="-1"
+                                role="dialog"
                                 data-backdrop="static"
                                 data-keyboard="false"
                             >
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <p>cambia precio</p>
-                                        </div>
+                                        <div class="modal-header"></div>
                                         <div class="modal-body">
                                             <label style="color: black"
                                                 >Otro precio</label
