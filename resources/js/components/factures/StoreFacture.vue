@@ -103,6 +103,9 @@
                             >
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
+                                        <div class="modal-header">
+                                            <p>cambia precio</p>
+                                        </div>
                                         <div class="modal-body">
                                             <label style="color: black"
                                                 >Otro precio</label

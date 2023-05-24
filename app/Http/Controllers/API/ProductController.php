@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    // all posts
+  
     public function index()
     {
         $products = DB::table('products')->select('id', 'name','price','price_two','cost')
@@ -17,7 +17,7 @@ class ProductController extends Controller
         return $products;
     }
  
-    // add post
+   
     public function store(Request $request)
     {
          Product::create([

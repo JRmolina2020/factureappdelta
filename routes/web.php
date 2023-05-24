@@ -12,6 +12,7 @@ use App\Http\Controllers\API\BillController;
 use App\Http\Controllers\API\CompanyController;
 use App\Http\Controllers\API\MoneyController;
 use App\Http\Controllers\API\IncomeController;
+use App\Http\Controllers\API\ProviderController;
 use App\Http\Controllers\API\EmailFac;
 use App\Http\Controllers\AuthController;
 
@@ -73,6 +74,9 @@ Route::get('/entradas', function () {
 });
 Route::get('/inventario', function () {
     return view('inventory.index');
+});
+Route::get('/proveedores', function () {
+    return view('provider.index');
 });
 Route::prefix('api')->group(function () {
  Route::group(['middleware' => ['getAuth']], function () {
@@ -153,6 +157,11 @@ Route::post('income', [IncomeController::class, 'store']);
 Route::get('/income/{date}', [IncomeController::class, 'indexData']);
 Route::get('/incometwo/{date}/{datetwo}', [IncomeController::class, 'indexDatatwo']);
 Route::delete('/income/{id}', [IncomeController::class, 'destroy'])->where('id', '[0-9]+');
+//providers
+Route::get('/providers', [ProviderController::class, 'index']);
+Route::post('providers', [ProviderController::class, 'store']);
+// Route::put('/clients/{id}', [ClientController::class, 'update'])->where('id', '[0-9]+');
+// Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->where('id', '[0-9]+');
 });
 });
  });
