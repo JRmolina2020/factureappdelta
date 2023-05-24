@@ -4531,9 +4531,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -85762,11 +85759,8 @@ var render = function () {
                     attrs: {
                       id: "exampleModal" + index,
                       tabindex: "-1",
-                      role: "dialog",
                       "data-backdrop": "static",
                       "data-keyboard": "false",
-                      "aria-labelledby": "exampleModalLabel",
-                      "aria-hidden": "true",
                     },
                   },
                   [
