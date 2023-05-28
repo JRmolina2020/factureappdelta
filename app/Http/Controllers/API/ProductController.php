@@ -12,7 +12,7 @@ class ProductController extends Controller
   
     public function index()
     {
-        $products = DB::table('products')->select('id', 'name','price','price_two','cost')
+        $products = DB::table('products')->select('id', 'name','price','price_two','cost','stock')
         ->orderBy('name', 'ASC')->get();
         return $products;
     }

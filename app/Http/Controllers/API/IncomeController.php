@@ -63,7 +63,25 @@ class IncomeController extends Controller
         $income->quantity = $request['quantity'];
         $income->date_income = $request['date_income'];
         $income->save();
+        $id=$income->id;
+        $this->update_stock($id,'add');
         return response()->json(['message' => 'Entrada registrada'], 200);
+       
+    }
+
+    public function update_stock($id,$type)
+    {
+        $income = Income::find($id);
+        $product = Product::find($income->product_id);
+        if($type=='add'){
+        $stock=DB::raw("stock + $income->quantity");
+        $product->stock=$stock;
+        }else{
+        $stock=DB::raw("stock - $income->quantity");
+        $product->stock=$stock;
+        }
+       
+        $product->save();
        
     }
 
@@ -76,11 +94,12 @@ class IncomeController extends Controller
      */
     public function destroy($id)
     {
-        
+          
         $income = Income::find($id);
         if (!$income) {
             return response()->json(["message" => "Entrada no encontrado"], 404);
         }
+        $this->update_stock($id,'delete');
         $income->delete();
         return response()->json(["message" => "Entrada eliminada"]);
     }

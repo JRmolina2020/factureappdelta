@@ -38,6 +38,8 @@ Vue.directive("can", function (el, binding, vnode) {
         return (vnode.elm.hidden = true);
     }
 });
+//
+
 //end utils
 //components
 Vue.component(

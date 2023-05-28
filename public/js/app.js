@@ -5342,6 +5342,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -6800,10 +6802,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      barcodeValue: "",
+      barcodeint: 0,
+      barcodeint2: 0,
       totalPages: 1,
       currentPage: 1,
       filters: {
@@ -6819,6 +6828,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.getList();
   },
   methods: {
+    barcodeTot: function barcodeTot() {
+      this.barcodeint = this.barcodeint2;
+    },
     getList: function getList() {
       this.$store.dispatch("Productactions");
     },
@@ -7093,6 +7105,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7111,6 +7131,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       submitted: true,
       send: 1,
       price_default: 1000,
+      barcodeint2: 0,
+      tag: "svg",
+      options: {
+        lineColor: "#ff7069",
+        fontSize: 32,
+        font: "Courier",
+        width: 3,
+        height: 60,
+        marginBottom: 60,
+        format: "MSI",
+        background: "#ccffff"
+      },
       form: {
         id: null,
         name: "",
@@ -7139,6 +7171,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.cost = 0;
       this.$validator.reset();
       this.send = true;
+      this.barcodeint2 = 0;
     }
   }
 });
@@ -8679,7 +8712,8 @@ Vue.directive("can", function (el, binding, vnode) {
   } else {
     return vnode.elm.hidden = true;
   }
-}); //end utils
+}); //
+//end utils
 //components
 
 Vue.component("user_example", (__webpack_require__(/*! ./components/users/UserExample.vue */ "./resources/js/components/users/UserExample.vue")["default"]));
@@ -87464,7 +87498,7 @@ var render = function () {
               attrs: {
                 data: _vm.gain,
                 filters: _vm.filters,
-                "page-size": 5,
+                "page-size": 10,
                 currentPage: _vm.currentPage,
               },
               on: {
@@ -87591,7 +87625,9 @@ var render = function () {
                   attrs: {
                     currentPage: _vm.currentPage,
                     "total-pages": _vm.totalPages,
+                    lastText: _vm.Last,
                     "boundary-links": true,
+                    maxPageLinks: 4,
                   },
                   on: {
                     "update:currentPage": function ($event) {
@@ -87777,7 +87813,7 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("VTable", {
-          staticClass: "table table-borderless mt-3",
+          staticClass: "table table-dark mt-3",
           attrs: { data: _vm.income },
           scopedSlots: _vm._u([
             {
@@ -87953,7 +87989,7 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("VTable", {
-          staticClass: "table table-borderless mt-3",
+          staticClass: "table table-borderless table-dark mt-3",
           attrs: {
             data: _vm.incometot,
             filters: _vm.filters,
@@ -89382,7 +89418,7 @@ var render = function () {
           attrs: {
             data: _vm.products,
             filters: _vm.filters,
-            "page-size": 5,
+            "page-size": 10,
             currentPage: _vm.currentPage,
           },
           on: {
@@ -89407,6 +89443,8 @@ var render = function () {
                       _c("VTh", { attrs: { sortKey: "name" } }, [
                         _vm._v("Nombre"),
                       ]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Stock")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("Costo")]),
                       _vm._v(" "),
@@ -89441,6 +89479,8 @@ var render = function () {
                           ),
                         ])
                       : _c("td", [_vm._v(_vm._s(row.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(row.stock))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(_vm._f("currency")(row.cost)))]),
                     _vm._v(" "),
@@ -89560,6 +89600,7 @@ var render = function () {
                 currentPage: _vm.currentPage,
                 "total-pages": _vm.totalPages,
                 "boundary-links": true,
+                maxPageLinks: 4,
               },
               on: {
                 "update:currentPage": function ($event) {
@@ -89981,6 +90022,43 @@ var render = function () {
                     )
                   : _vm._e(),
               ]
+            ),
+            _vm._v(" "),
+            this.form.id
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.barcodeint2,
+                      expression: "barcodeint2",
+                      modifiers: { number: true },
+                    },
+                  ],
+                  staticClass: "form-control form-control-sm",
+                  domProps: { value: _vm.barcodeint2 },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.barcodeint2 = _vm._n($event.target.value)
+                    },
+                    blur: function ($event) {
+                      return _vm.$forceUpdate()
+                    },
+                  },
+                })
+              : _vm._e(),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row" },
+              _vm._l(_vm.barcodeint2, function (item) {
+                return _c("div", { staticClass: "col-lg-12" })
+              }),
+              0
             ),
           ]),
         ]

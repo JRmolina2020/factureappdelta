@@ -177,6 +177,14 @@
                         ></i>
                     </button>
                 </form>
+                <input
+                    v-if="this.form.id"
+                    class="form-control form-control-sm"
+                    v-model.number="barcodeint2"
+                /><br />
+                <div class="row">
+                    <div class="col-lg-12" v-for="item in barcodeint2"></div>
+                </div>
             </section>
         </Modal-Resource>
     </div>
@@ -203,6 +211,18 @@ export default {
             submitted: true,
             send: 1,
             price_default: 1000,
+            barcodeint2: 0,
+            tag: "svg",
+            options: {
+                lineColor: "#ff7069",
+                fontSize: 32,
+                font: "Courier",
+                width: 3,
+                height: 60,
+                marginBottom: 60,
+                format: "MSI",
+                background: "#ccffff",
+            },
             form: {
                 id: null,
                 name: "",
@@ -212,6 +232,7 @@ export default {
             },
         };
     },
+
     mixins: [add],
     methods: {
         show(row) {
@@ -231,6 +252,7 @@ export default {
             this.form.cost = 0;
             this.$validator.reset();
             this.send = true;
+            this.barcodeint2 = 0;
         },
     },
 };

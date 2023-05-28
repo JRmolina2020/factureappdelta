@@ -75,7 +75,7 @@
                     <VTable
                         :data="gain"
                         :filters="filters"
-                        :page-size="5"
+                        :page-size="10"
                         :currentPage.sync="currentPage"
                         @totalPagesChanged="totalPages = $event"
                         class="table table-dark"
@@ -109,7 +109,9 @@
                         <VTPagination
                             :currentPage.sync="currentPage"
                             :total-pages="totalPages"
+                            :lastText="Last"
                             :boundary-links="true"
+                            :maxPageLinks=4
                         />
                     </div>
                 </div>

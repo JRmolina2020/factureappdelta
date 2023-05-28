@@ -20,7 +20,7 @@
                     Buscar
                 </button>
             </div>
-            <VTable :data="income" class="table table-borderless mt-3">
+            <VTable :data="income" class="table table-dark mt-3">
                 <template #head>
                     <tr>
                         <VTh sortKey="product">Producto</VTh>
@@ -95,7 +95,7 @@
                 :page-size="10"
                 :currentPage.sync="currentPage"
                 @totalPagesChanged="totalPages = $event"
-                class="table table-borderless mt-3"
+                class="table table-borderless table-dark mt-3"
             >
                 <template #head>
                     <tr>

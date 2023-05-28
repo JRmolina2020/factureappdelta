@@ -8,11 +8,12 @@
                 placeholder="Buscar productos"
             />
         </div>
+
         <div class="table-responsive">
             <VTable
                 :data="products"
                 :filters="filters"
-                :page-size="5"
+                :page-size="10"
                 :currentPage.sync="currentPage"
                 @totalPagesChanged="totalPages = $event"
                 class="table"
@@ -20,6 +21,7 @@
                 <template #head>
                     <tr>
                         <VTh sortKey="name">Nombre</VTh>
+                        <th>Stock</th>
                         <th>Costo</th>
                         <th>Precio M</th>
                         <th>Precio D</th>
@@ -35,6 +37,7 @@
                             {{ row.name }}
                         </td>
                         <td v-else>{{ row.name }}</td>
+                        <td>{{ row.stock }}</td>
                         <td>{{ row.cost | currency }}</td>
                         <td>
                             {{ row.price | currency }}
@@ -72,6 +75,7 @@
                     :currentPage.sync="currentPage"
                     :total-pages="totalPages"
                     :boundary-links="true"
+                    :maxPageLinks="4"
                 />
             </div>
         </div>
@@ -79,9 +83,13 @@
 </template>
 <script>
 import { mapState } from "vuex";
+
 export default {
     data() {
         return {
+            barcodeValue: "",
+            barcodeint: 0,
+            barcodeint2: 0,
             totalPages: 1,
             currentPage: 1,
             filters: {
@@ -89,6 +97,7 @@ export default {
             },
         };
     },
+
     computed: {
         ...mapState(["products", "status", "urlproducts"]),
     },
@@ -96,6 +105,9 @@ export default {
         this.getList();
     },
     methods: {
+        barcodeTot() {
+            this.barcodeint = this.barcodeint2;
+        },
         getList() {
             this.$store.dispatch("Productactions");
         },
