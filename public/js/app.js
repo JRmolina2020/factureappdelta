@@ -8679,7 +8679,8 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 window.Axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
- //utils
+
+; //utils
 //table
 
 

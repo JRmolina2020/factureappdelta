@@ -5,6 +5,7 @@ window.Axios = require("axios");
 import store from "./store";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
+;
 //utils
 //table
 import SmartTable from "vuejs-smart-table";
