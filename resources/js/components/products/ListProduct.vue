@@ -27,6 +27,7 @@
                         <th>Precio D</th>
                         <th>%GM</th>
                         <th>%GD</th>
+                        <th>Tipo</th>
 
                         <th>Op</th>
                     </tr>
@@ -50,6 +51,7 @@
                         <td v-can="'gestion producto'" class="bg-info">
                             {{ (row.price_two - row.cost) | currency }}
                         </td>
+                        <td>{{ row.type }}</td>
 
                         <td v-can="'gestion producto'">
                             <button

@@ -532,6 +532,7 @@
                                     <div class="card-body">
                                         <p>
                                             {{ item.name }}
+                                            {{ item.categorie_id }}
                                         </p>
                                         <p
                                             v-if="type_sale === 1"

@@ -9,6 +9,7 @@ export default new Vuex.Store({
         roles: [],
         permissions: [],
         products: [],
+        categories:[],
         clients: [],
         factures: [],
         typeSale: [],
@@ -18,6 +19,8 @@ export default new Vuex.Store({
         billstot: [],
         gain: [],
         gaintot: [],
+        gaintotf: [],
+        gaintotPayment:[],
         usertot: [],
         facUnique: [],
         descriptionF: [],
@@ -31,6 +34,7 @@ export default new Vuex.Store({
         urlroles: "/api/roles",
         urlpermissions: "/api/permissions",
         urlproducts: "/api/products",
+        urlcategories: "/api/categories",
         urlclients: "/api/clients",
         urlfactures: "/api/factures",
         urltype_sale: "/api/type_sale",
@@ -42,6 +46,8 @@ export default new Vuex.Store({
         urlbillstot: "/api/billsTot",
         urlgain: "/api/gain",
         urlgaintot: "/api/gainTot",
+        urlgaintotf: "/api/gainTotf",
+        urlgaintotPayment: "/api/gainTotPayment",
         urlusertot: "/api/userTot",
         urlcompany: "/api/company",
         urlcompanies: "/api/companies",
@@ -62,6 +68,9 @@ export default new Vuex.Store({
         },
         Productmutations(state, item) {
             state.products = item;
+        },
+        Categoriemutations(state, item) {
+            state.categories = item;
         },
         Clientmutations(state, item) {
             state.clients = item;
@@ -95,6 +104,12 @@ export default new Vuex.Store({
         },
         Gaintotmutations(state, item) {
             state.gaintot = item;
+        },
+        Gaintotfmutations(state, item) {
+            state.gaintotf = item;
+        },
+        GaintotPaymentmutations(state, item) {
+            state.gaintotPayment = item;
         },
         Usertotmutations(state, item) {
             state.usertot = item;
@@ -150,6 +165,15 @@ export default new Vuex.Store({
             try {
                 let response = await axios.get(state.urlproducts);
                 commit("Productmutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async Categorieactions({ commit, state }) {
+            try {
+                let response = await axios.get(state.urlcategories);
+                commit("Categoriemutations", response.data);
                 state.status = true;
             } catch (error) {
                 console.log(error);
@@ -247,7 +271,7 @@ export default new Vuex.Store({
         async Gainactions({ commit, state }, obj) {
             try {
                 let response = await axios.get(
-                    `${state.urlgain}/${obj.prop1}/${obj.prop2}`
+                    `${state.urlgain}/${obj.prop1}/${obj.prop2}/${obj.type}`
                 );
                 commit("Gainmutations", response.data);
                 state.status = true;
@@ -258,9 +282,31 @@ export default new Vuex.Store({
         async Gaintotactions({ commit, state }, obj) {
             try {
                 let response = await axios.get(
-                    `${state.urlgaintot}/${obj.prop1}/${obj.prop2}`
+                    `${state.urlgaintot}/${obj.prop1}/${obj.prop2}/${obj.type}`
                 );
                 commit("Gaintotmutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async Gaintotfactions({ commit, state }, obj) {
+            try {
+                let response = await axios.get(
+                    `${state.urlgaintotf}/${obj.prop1}/${obj.prop2}/${obj.type}`
+                );
+                commit("Gaintotfmutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async GaintotPaymentactions({ commit, state }, obj) {
+            try {
+                let response = await axios.get(
+                    `${state.urlgaintotPayment}/${obj.prop1}/${obj.prop2}/${obj.type}/${obj.type2}`
+                );
+                commit("GaintotPaymentmutations", response.data);
                 state.status = true;
             } catch (error) {
                 console.log(error);

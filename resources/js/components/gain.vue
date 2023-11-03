@@ -19,6 +19,16 @@
                         min=""
                         placeholder=".form-control-sm"
                     />
+                    <!-- select categorie -->
+                    <select v-model="form.type" v-if="this.datetwo != ''">
+                        <option
+                            v-for="item in categories"
+                            :key="item.id"
+                            :value="item.id"
+                        >
+                            {{ item.name }}
+                        </option>
+                    </select>
 
                     <button
                         v-if="this.datetwo != ''"
@@ -61,7 +71,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-lg-6 col-12">
                 <div class="form-group">
                     <input
@@ -105,15 +115,6 @@
                             </tr>
                         </template>
                     </VTable>
-                    <div class="text-xs-center">
-                        <VTPagination
-                            :currentPage.sync="currentPage"
-                            :total-pages="totalPages"
-                            :lastText="Last"
-                            :boundary-links="true"
-                            :maxPageLinks=4
-                        />
-                    </div>
                 </div>
             </div>
             <div class="col-lg-6 col-xs-12 col-sm-12">
@@ -134,14 +135,56 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-3">
                 <div
                     class="alert alert-dark"
                     v-for="(item, index) in gaintot"
                     :key="'b' + index"
                     role="alert"
                 >
-                    <p>TOT HOY ${{ item.gaintot | currency }}</p>
+                    <p>TOTAL VENTA ${{ item.gaintot | currency }}</p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div
+                    class="alert alert-dark"
+                    v-for="(item, index) in gaintotf"
+                    :key="'b' + index"
+                    role="alert"
+                >
+                    <p>TOT GANANCIA ${{ item.gain | currency }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="alert alert-primary" role="alert">
+                    TOTAL por cuenta bancaria
+                </div>
+            </div>
+        </div>
+
+        <div v-if="this.datetwo != ''">
+            <select @click="getDatePayment()" v-model="form.type_payment">
+                <option v-for="item in money" :key="item.id" :value="item.name">
+                    {{ item.name }}
+                </option>
+            </select>
+            <select @click="getDatePayment()" v-model="form.type_payment">
+                <option value="1">efectivo</option>
+            </select>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-lg-6">
+                <div
+                    class="alert alert-dark"
+                    v-for="(item, index) in gaintotPayment"
+                    :key="'b' + index"
+                    role="alert"
+                >
+                    <p>TOT HOY ${{ item.gaintotp | currency }}</p>
                 </div>
             </div>
         </div>
@@ -154,6 +197,10 @@ import date_now from "../mixins/date";
 export default {
     data() {
         return {
+            form: {
+                type: 1,
+                type_payment: 1,
+            },
             totalPages: 1,
             currentPage: 1,
             date: "",
@@ -166,20 +213,38 @@ export default {
         };
     },
     computed: {
-        ...mapState(["gain", "gaintot", "usertot"]),
+        ...mapState([
+            "gain",
+            "gaintot",
+            "gaintotf",
+            "gaintotPayment",
+            "usertot",
+            "categories",
+            "money",
+        ]),
     },
     created() {
         this.getList();
         this.getListUser();
+        this.getCategorie();
+        this.getListMoney();
     },
     methods: {
+        getListMoney() {
+            this.$store.dispatch("Moneyactions");
+        },
+        getCategorie() {
+            this.$store.dispatch("Categorieactions");
+        },
         getList() {
             let obj = {
                 prop1: date_now,
                 prop2: date_now,
+                type: this.form.type,
             };
             this.$store.dispatch("Gainactions", obj);
             this.$store.dispatch("Gaintotactions", obj);
+            this.$store.dispatch("Gaintotfactions", obj);
         },
         getListUser() {
             let obj = {
@@ -188,14 +253,27 @@ export default {
             };
             this.$store.dispatch("Usertotactions", obj);
         },
+
         getDate() {
             let obj = {
                 prop1: this.date,
                 prop2: this.datetwo,
+                type: this.form.type,
             };
             this.$store.dispatch("Gainactions", obj);
             this.$store.dispatch("Gaintotactions", obj);
+            this.$store.dispatch("Gaintotfactions", obj);
         },
+        getDatePayment() {
+            let obj = {
+                prop1: this.date,
+                prop2: this.datetwo,
+                type: this.form.type_payment,
+                type2: this.form.type,
+            };
+            this.$store.dispatch("GaintotPaymentactions", obj);
+        },
+
         getDateUser() {
             let obj = {
                 prop1: this.dateuser,

@@ -4530,6 +4530,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5344,11 +5345,58 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      form: {
+        type: 1,
+        type_payment: 1
+      },
       totalPages: 1,
       currentPage: 1,
       date: "",
@@ -5363,19 +5411,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["gain", "gaintot", "usertot"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["gain", "gaintot", "gaintotf", "gaintotPayment", "usertot", "categories", "money"])),
   created: function created() {
     this.getList();
     this.getListUser();
+    this.getCategorie();
+    this.getListMoney();
   },
   methods: {
+    getListMoney: function getListMoney() {
+      this.$store.dispatch("Moneyactions");
+    },
+    getCategorie: function getCategorie() {
+      this.$store.dispatch("Categorieactions");
+    },
     getList: function getList() {
       var obj = {
         prop1: _mixins_date__WEBPACK_IMPORTED_MODULE_0__["default"],
-        prop2: _mixins_date__WEBPACK_IMPORTED_MODULE_0__["default"]
+        prop2: _mixins_date__WEBPACK_IMPORTED_MODULE_0__["default"],
+        type: this.form.type
       };
       this.$store.dispatch("Gainactions", obj);
       this.$store.dispatch("Gaintotactions", obj);
+      this.$store.dispatch("Gaintotfactions", obj);
     },
     getListUser: function getListUser() {
       var obj = {
@@ -5387,10 +5445,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getDate: function getDate() {
       var obj = {
         prop1: this.date,
-        prop2: this.datetwo
+        prop2: this.datetwo,
+        type: this.form.type
       };
       this.$store.dispatch("Gainactions", obj);
       this.$store.dispatch("Gaintotactions", obj);
+      this.$store.dispatch("Gaintotfactions", obj);
+    },
+    getDatePayment: function getDatePayment() {
+      var obj = {
+        prop1: this.date,
+        prop2: this.datetwo,
+        type: this.form.type_payment,
+        type2: this.form.type
+      };
+      this.$store.dispatch("GaintotPaymentactions", obj);
     },
     getDateUser: function getDateUser() {
       var obj = {
@@ -6806,6 +6875,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -7113,6 +7184,54 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7124,12 +7243,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     ModalResource: _utilities_modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)(["urlproducts"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)(["urlproducts", "categories"])),
   data: function data() {
     return {
       actions: "Productactions",
       submitted: true,
       send: 1,
+      disabled: 0,
       price_default: 1000,
       barcodeint2: 0,
       tag: "svg",
@@ -7144,34 +7264,69 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         background: "#ccffff"
       },
       form: {
-        id: null,
-        name: "",
-        price: 0,
-        price_two: 0,
-        cost: 0
+        products: [{
+          id: "",
+          name: "",
+          price: 0,
+          price_two: 0,
+          cost: 0,
+          color: 0,
+          categorie_id: null
+        }]
       }
     };
   },
   mixins: [(_mixins_add__WEBPACK_IMPORTED_MODULE_1___default())],
+  created: function created() {
+    this.getCategorie();
+  },
   methods: {
+    getCategorie: function getCategorie() {
+      this.$store.dispatch("Categorieactions");
+    },
+    reset: function reset() {
+      this.form.products.name = "";
+    },
+    addItem: function addItem() {
+      this.form.products.push({
+        id: null,
+        name: this.form.products.name,
+        price: this.form.products.price,
+        price_two: this.form.products.price_two,
+        cost: this.form.products.cost,
+        color: this.form.products.color,
+        categorie_id: this.form.products.categorie_id
+      });
+    },
+    removeItem: function removeItem(index) {
+      this.form.products.splice(index, 1);
+    },
     show: function show(row) {
-      this.form.id = row.id;
-      this.form.name = row.name;
-      this.form.price = parseFloat(row.price);
-      this.form.price_two = parseFloat(row.price_two);
-      this.form.cost = parseFloat(row.cost);
+      this.form.products.length = 1;
+      this.form.products[0].id = row.id;
+      this.form.products[0].name = row.name;
+      this.form.products[0].price = parseFloat(row.price);
+      this.form.products[0].price_two = parseFloat(row.price_two);
+      this.form.products[0].cost = parseFloat(row.cost);
+      this.form.products[0].color = parseFloat(row.color);
+      this.form.products[0].categorie_id = parseFloat(row.idc);
       $("#model").modal("show");
       this.send = true;
+      this.disabled = true;
     },
     clear: function clear() {
-      this.form.id = null;
-      this.form.name = null;
-      this.form.price = 0;
-      this.form.price_two = 0;
-      this.form.cost = 0;
+      this.form.products[0].id = null;
+      this.form.products[0].name = null;
+      this.form.products[0].price = 0;
+      this.form.products[0].price_two = 0;
+      this.form.products[0].cost = 0;
+      this.form.products[0].color = "";
+      this.form.products[0].categorie_id = "";
       this.$validator.reset();
       this.send = true;
       this.barcodeint2 = 0;
+      this.form.products.length = 1;
+      this.disabled = false;
     }
   }
 });
@@ -9000,6 +9155,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     roles: [],
     permissions: [],
     products: [],
+    categories: [],
     clients: [],
     factures: [],
     typeSale: [],
@@ -9009,6 +9165,8 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     billstot: [],
     gain: [],
     gaintot: [],
+    gaintotf: [],
+    gaintotPayment: [],
     usertot: [],
     facUnique: [],
     descriptionF: [],
@@ -9022,6 +9180,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     urlroles: "/api/roles",
     urlpermissions: "/api/permissions",
     urlproducts: "/api/products",
+    urlcategories: "/api/categories",
     urlclients: "/api/clients",
     urlfactures: "/api/factures",
     urltype_sale: "/api/type_sale",
@@ -9033,6 +9192,8 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     urlbillstot: "/api/billsTot",
     urlgain: "/api/gain",
     urlgaintot: "/api/gainTot",
+    urlgaintotf: "/api/gainTotf",
+    urlgaintotPayment: "/api/gainTotPayment",
     urlusertot: "/api/userTot",
     urlcompany: "/api/company",
     urlcompanies: "/api/companies",
@@ -9053,6 +9214,9 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     },
     Productmutations: function Productmutations(state, item) {
       state.products = item;
+    },
+    Categoriemutations: function Categoriemutations(state, item) {
+      state.categories = item;
     },
     Clientmutations: function Clientmutations(state, item) {
       state.clients = item;
@@ -9086,6 +9250,12 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     },
     Gaintotmutations: function Gaintotmutations(state, item) {
       state.gaintot = item;
+    },
+    Gaintotfmutations: function Gaintotfmutations(state, item) {
+      state.gaintotf = item;
+    },
+    GaintotPaymentmutations: function GaintotPaymentmutations(state, item) {
+      state.gaintotPayment = item;
     },
     Usertotmutations: function Usertotmutations(state, item) {
       state.usertot = item;
@@ -9235,7 +9405,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee4, null, [[1, 9]]);
       }))();
     },
-    Clientactions: function Clientactions(_ref5) {
+    Categorieactions: function Categorieactions(_ref5) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee5$(_context5) {
@@ -9245,11 +9415,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref5.commit, state = _ref5.state;
                 _context5.prev = 1;
                 _context5.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlclients);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlcategories);
 
               case 4:
                 response = _context5.sent;
-                commit("Clientmutations", response.data);
+                commit("Categoriemutations", response.data);
                 state.status = true;
                 _context5.next = 12;
                 break;
@@ -9267,7 +9437,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee5, null, [[1, 9]]);
       }))();
     },
-    Factureactions: function Factureactions(_ref6, date) {
+    Clientactions: function Clientactions(_ref6) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee6$(_context6) {
@@ -9277,11 +9447,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref6.commit, state = _ref6.state;
                 _context6.prev = 1;
                 _context6.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlfactures, "/").concat(date));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlclients);
 
               case 4:
                 response = _context6.sent;
-                commit("Facturemutations", response.data);
+                commit("Clientmutations", response.data);
                 state.status = true;
                 _context6.next = 12;
                 break;
@@ -9299,7 +9469,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee6, null, [[1, 9]]);
       }))();
     },
-    DescriptionFactions: function DescriptionFactions(_ref7, date) {
+    Factureactions: function Factureactions(_ref7, date) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee7$(_context7) {
@@ -9309,11 +9479,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref7.commit, state = _ref7.state;
                 _context7.prev = 1;
                 _context7.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urldescriptionF, "/").concat(date));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlfactures, "/").concat(date));
 
               case 4:
                 response = _context7.sent;
-                commit("DescriptitonFmutations", response.data);
+                commit("Facturemutations", response.data);
                 state.status = true;
                 _context7.next = 12;
                 break;
@@ -9331,7 +9501,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee7, null, [[1, 9]]);
       }))();
     },
-    TypeSaleactions: function TypeSaleactions(_ref8, date) {
+    DescriptionFactions: function DescriptionFactions(_ref8, date) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee8$(_context8) {
@@ -9341,11 +9511,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref8.commit, state = _ref8.state;
                 _context8.prev = 1;
                 _context8.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urltype_sale, "/").concat(date));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urldescriptionF, "/").concat(date));
 
               case 4:
                 response = _context8.sent;
-                commit("TypeSalemutations", response.data);
+                commit("DescriptitonFmutations", response.data);
                 state.status = true;
                 _context8.next = 12;
                 break;
@@ -9363,8 +9533,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee8, null, [[1, 9]]);
       }))();
     },
-    //type banca
-    TypeSale_one_actions: function TypeSale_one_actions(_ref9, obj) {
+    TypeSaleactions: function TypeSaleactions(_ref9, date) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee9$(_context9) {
@@ -9374,11 +9543,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref9.commit, state = _ref9.state;
                 _context9.prev = 1;
                 _context9.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urltype_sale_one, "/").concat(obj.prop1, "/").concat(obj.prop2));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urltype_sale, "/").concat(date));
 
               case 4:
                 response = _context9.sent;
-                commit("TypeSale_one_mutations", response.data);
+                commit("TypeSalemutations", response.data);
                 state.status = true;
                 _context9.next = 12;
                 break;
@@ -9396,7 +9565,8 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee9, null, [[1, 9]]);
       }))();
     },
-    FactureDetailactions: function FactureDetailactions(_ref10, id) {
+    //type banca
+    TypeSale_one_actions: function TypeSale_one_actions(_ref10, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee10$(_context10) {
@@ -9406,11 +9576,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref10.commit, state = _ref10.state;
                 _context10.prev = 1;
                 _context10.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urldetails, "/").concat(id));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urltype_sale_one, "/").concat(obj.prop1, "/").concat(obj.prop2));
 
               case 4:
                 response = _context10.sent;
-                commit("FactureDetailmutations", response.data);
+                commit("TypeSale_one_mutations", response.data);
                 state.status = true;
                 _context10.next = 12;
                 break;
@@ -9428,7 +9598,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee10, null, [[1, 9]]);
       }))();
     },
-    FactureUniquections: function FactureUniquections(_ref11, id) {
+    FactureDetailactions: function FactureDetailactions(_ref11, id) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee11$(_context11) {
@@ -9438,11 +9608,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref11.commit, state = _ref11.state;
                 _context11.prev = 1;
                 _context11.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlfactureUnique, "/").concat(id));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urldetails, "/").concat(id));
 
               case 4:
                 response = _context11.sent;
-                commit("FactureUniquemutations", response.data);
+                commit("FactureDetailmutations", response.data);
                 state.status = true;
                 _context11.next = 12;
                 break;
@@ -9460,7 +9630,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee11, null, [[1, 9]]);
       }))();
     },
-    Billactions: function Billactions(_ref12, date) {
+    FactureUniquections: function FactureUniquections(_ref12, id) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee12$(_context12) {
@@ -9470,11 +9640,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref12.commit, state = _ref12.state;
                 _context12.prev = 1;
                 _context12.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlbills, "/").concat(date));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlfactureUnique, "/").concat(id));
 
               case 4:
                 response = _context12.sent;
-                commit("Billmutations", response.data);
+                commit("FactureUniquemutations", response.data);
                 state.status = true;
                 _context12.next = 12;
                 break;
@@ -9492,7 +9662,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee12, null, [[1, 9]]);
       }))();
     },
-    Billtotactions: function Billtotactions(_ref13, date) {
+    Billactions: function Billactions(_ref13, date) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee13$(_context13) {
@@ -9502,11 +9672,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref13.commit, state = _ref13.state;
                 _context13.prev = 1;
                 _context13.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlbillstot, "/").concat(date));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlbills, "/").concat(date));
 
               case 4:
                 response = _context13.sent;
-                commit("Billtotmutations", response.data);
+                commit("Billmutations", response.data);
                 state.status = true;
                 _context13.next = 12;
                 break;
@@ -9524,7 +9694,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee13, null, [[1, 9]]);
       }))();
     },
-    Gainactions: function Gainactions(_ref14, obj) {
+    Billtotactions: function Billtotactions(_ref14, date) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee14$(_context14) {
@@ -9534,11 +9704,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref14.commit, state = _ref14.state;
                 _context14.prev = 1;
                 _context14.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgain, "/").concat(obj.prop1, "/").concat(obj.prop2));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlbillstot, "/").concat(date));
 
               case 4:
                 response = _context14.sent;
-                commit("Gainmutations", response.data);
+                commit("Billtotmutations", response.data);
                 state.status = true;
                 _context14.next = 12;
                 break;
@@ -9556,7 +9726,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee14, null, [[1, 9]]);
       }))();
     },
-    Gaintotactions: function Gaintotactions(_ref15, obj) {
+    Gainactions: function Gainactions(_ref15, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee15$(_context15) {
@@ -9566,11 +9736,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref15.commit, state = _ref15.state;
                 _context15.prev = 1;
                 _context15.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgaintot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgain, "/").concat(obj.prop1, "/").concat(obj.prop2, "/").concat(obj.type));
 
               case 4:
                 response = _context15.sent;
-                commit("Gaintotmutations", response.data);
+                commit("Gainmutations", response.data);
                 state.status = true;
                 _context15.next = 12;
                 break;
@@ -9588,7 +9758,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee15, null, [[1, 9]]);
       }))();
     },
-    Usertotactions: function Usertotactions(_ref16, obj) {
+    Gaintotactions: function Gaintotactions(_ref16, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee16$(_context16) {
@@ -9598,11 +9768,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref16.commit, state = _ref16.state;
                 _context16.prev = 1;
                 _context16.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlusertot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgaintot, "/").concat(obj.prop1, "/").concat(obj.prop2, "/").concat(obj.type));
 
               case 4:
                 response = _context16.sent;
-                commit("Usertotmutations", response.data);
+                commit("Gaintotmutations", response.data);
                 state.status = true;
                 _context16.next = 12;
                 break;
@@ -9620,7 +9790,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee16, null, [[1, 9]]);
       }))();
     },
-    Companyactions: function Companyactions(_ref17) {
+    Gaintotfactions: function Gaintotfactions(_ref17, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee17$(_context17) {
@@ -9630,11 +9800,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref17.commit, state = _ref17.state;
                 _context17.prev = 1;
                 _context17.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlcompany);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgaintotf, "/").concat(obj.prop1, "/").concat(obj.prop2, "/").concat(obj.type));
 
               case 4:
                 response = _context17.sent;
-                commit("Companymutations", response.data);
+                commit("Gaintotfmutations", response.data);
                 state.status = true;
                 _context17.next = 12;
                 break;
@@ -9652,7 +9822,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee17, null, [[1, 9]]);
       }))();
     },
-    Moneyactions: function Moneyactions(_ref18) {
+    GaintotPaymentactions: function GaintotPaymentactions(_ref18, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee18() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee18$(_context18) {
@@ -9662,11 +9832,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref18.commit, state = _ref18.state;
                 _context18.prev = 1;
                 _context18.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlmoney);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgaintotPayment, "/").concat(obj.prop1, "/").concat(obj.prop2, "/").concat(obj.type, "/").concat(obj.type2));
 
               case 4:
                 response = _context18.sent;
-                commit("Moneymutations", response.data);
+                commit("GaintotPaymentmutations", response.data);
                 state.status = true;
                 _context18.next = 12;
                 break;
@@ -9684,7 +9854,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee18, null, [[1, 9]]);
       }))();
     },
-    MoneySigleactions: function MoneySigleactions(_ref19) {
+    Usertotactions: function Usertotactions(_ref19, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee19() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee19$(_context19) {
@@ -9694,11 +9864,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref19.commit, state = _ref19.state;
                 _context19.prev = 1;
                 _context19.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlmoneySingle);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlusertot, "/").concat(obj.prop1, "/").concat(obj.prop2));
 
               case 4:
                 response = _context19.sent;
-                commit("MoneySinglemutations", response.data);
+                commit("Usertotmutations", response.data);
                 state.status = true;
                 _context19.next = 12;
                 break;
@@ -9716,7 +9886,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee19, null, [[1, 9]]);
       }))();
     },
-    Incomeactions: function Incomeactions(_ref20, date) {
+    Companyactions: function Companyactions(_ref20) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee20() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee20$(_context20) {
@@ -9726,11 +9896,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref20.commit, state = _ref20.state;
                 _context20.prev = 1;
                 _context20.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlincome, "/").concat(date));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlcompany);
 
               case 4:
                 response = _context20.sent;
-                commit("Incomemutations", response.data);
+                commit("Companymutations", response.data);
                 state.status = true;
                 _context20.next = 12;
                 break;
@@ -9748,7 +9918,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee20, null, [[1, 9]]);
       }))();
     },
-    IncomeTwoactions: function IncomeTwoactions(_ref21, obj) {
+    Moneyactions: function Moneyactions(_ref21) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee21() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee21$(_context21) {
@@ -9758,11 +9928,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref21.commit, state = _ref21.state;
                 _context21.prev = 1;
                 _context21.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlincometot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlmoney);
 
               case 4:
                 response = _context21.sent;
-                commit("IncomeTwomutations", response.data);
+                commit("Moneymutations", response.data);
                 state.status = true;
                 _context21.next = 12;
                 break;
@@ -9778,6 +9948,102 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
             }
           }
         }, _callee21, null, [[1, 9]]);
+      }))();
+    },
+    MoneySigleactions: function MoneySigleactions(_ref22) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee22() {
+        var commit, state, response;
+        return _regeneratorRuntime().wrap(function _callee22$(_context22) {
+          while (1) {
+            switch (_context22.prev = _context22.next) {
+              case 0:
+                commit = _ref22.commit, state = _ref22.state;
+                _context22.prev = 1;
+                _context22.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlmoneySingle);
+
+              case 4:
+                response = _context22.sent;
+                commit("MoneySinglemutations", response.data);
+                state.status = true;
+                _context22.next = 12;
+                break;
+
+              case 9:
+                _context22.prev = 9;
+                _context22.t0 = _context22["catch"](1);
+                console.log(_context22.t0);
+
+              case 12:
+              case "end":
+                return _context22.stop();
+            }
+          }
+        }, _callee22, null, [[1, 9]]);
+      }))();
+    },
+    Incomeactions: function Incomeactions(_ref23, date) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee23() {
+        var commit, state, response;
+        return _regeneratorRuntime().wrap(function _callee23$(_context23) {
+          while (1) {
+            switch (_context23.prev = _context23.next) {
+              case 0:
+                commit = _ref23.commit, state = _ref23.state;
+                _context23.prev = 1;
+                _context23.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlincome, "/").concat(date));
+
+              case 4:
+                response = _context23.sent;
+                commit("Incomemutations", response.data);
+                state.status = true;
+                _context23.next = 12;
+                break;
+
+              case 9:
+                _context23.prev = 9;
+                _context23.t0 = _context23["catch"](1);
+                console.log(_context23.t0);
+
+              case 12:
+              case "end":
+                return _context23.stop();
+            }
+          }
+        }, _callee23, null, [[1, 9]]);
+      }))();
+    },
+    IncomeTwoactions: function IncomeTwoactions(_ref24, obj) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee24() {
+        var commit, state, response;
+        return _regeneratorRuntime().wrap(function _callee24$(_context24) {
+          while (1) {
+            switch (_context24.prev = _context24.next) {
+              case 0:
+                commit = _ref24.commit, state = _ref24.state;
+                _context24.prev = 1;
+                _context24.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlincometot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+
+              case 4:
+                response = _context24.sent;
+                commit("IncomeTwomutations", response.data);
+                state.status = true;
+                _context24.next = 12;
+                break;
+
+              case 9:
+                _context24.prev = 9;
+                _context24.t0 = _context24["catch"](1);
+                console.log(_context24.t0);
+
+              case 12:
+              case "end":
+                return _context24.stop();
+            }
+          }
+        }, _callee24, null, [[1, 9]]);
       }))();
     }
   }
@@ -86791,6 +87057,8 @@ var render = function () {
                             _vm._v(
                               "\n                                        " +
                                 _vm._s(item.name) +
+                                "\n                                        " +
+                                _vm._s(item.categorie_id) +
                                 "\n                                    "
                             ),
                           ]),
@@ -87373,6 +87641,55 @@ var render = function () {
           _vm._v(" "),
           this.datetwo != ""
             ? _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.type,
+                      expression: "form.type",
+                    },
+                  ],
+                  on: {
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "type",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                  },
+                },
+                _vm._l(_vm.categories, function (item) {
+                  return _c(
+                    "option",
+                    { key: item.id, domProps: { value: item.id } },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(item.name) +
+                          "\n                    "
+                      ),
+                    ]
+                  )
+                }),
+                0
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          this.datetwo != ""
+            ? _c(
                 "button",
                 {
                   staticClass: "btn btn-outline-secondary btn-sm",
@@ -87464,7 +87781,7 @@ var render = function () {
       ]),
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row mt-3" }, [
       _c("div", { staticClass: "col-lg-6 col-12" }, [
         _c("div", { staticClass: "form-group" }, [
           _c("input", {
@@ -87617,31 +87934,6 @@ var render = function () {
                 },
               ]),
             }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "text-xs-center" },
-              [
-                _c("VTPagination", {
-                  attrs: {
-                    currentPage: _vm.currentPage,
-                    "total-pages": _vm.totalPages,
-                    lastText: _vm.Last,
-                    "boundary-links": true,
-                    maxPageLinks: 4,
-                  },
-                  on: {
-                    "update:currentPage": function ($event) {
-                      _vm.currentPage = $event
-                    },
-                    "update:current-page": function ($event) {
-                      _vm.currentPage = $event
-                    },
-                  },
-                }),
-              ],
-              1
-            ),
           ],
           1
         ),
@@ -87669,7 +87961,7 @@ var render = function () {
     _c("div", { staticClass: "row" }, [
       _c(
         "div",
-        { staticClass: "col-lg-6" },
+        { staticClass: "col-lg-3" },
         _vm._l(_vm.gaintot, function (item, index) {
           return _c(
             "div",
@@ -87680,7 +87972,142 @@ var render = function () {
             },
             [
               _c("p", [
-                _vm._v("TOT HOY $" + _vm._s(_vm._f("currency")(item.gaintot))),
+                _vm._v(
+                  "TOTAL VENTA $" + _vm._s(_vm._f("currency")(item.gaintot))
+                ),
+              ]),
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-lg-3" },
+        _vm._l(_vm.gaintotf, function (item, index) {
+          return _c(
+            "div",
+            {
+              key: "b" + index,
+              staticClass: "alert alert-dark",
+              attrs: { role: "alert" },
+            },
+            [
+              _c("p", [
+                _vm._v(
+                  "TOT GANANCIA $" + _vm._s(_vm._f("currency")(item.gain))
+                ),
+              ]),
+            ]
+          )
+        }),
+        0
+      ),
+    ]),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    this.datetwo != ""
+      ? _c("div", [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.type_payment,
+                  expression: "form.type_payment",
+                },
+              ],
+              on: {
+                click: function ($event) {
+                  return _vm.getDatePayment()
+                },
+                change: function ($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function (o) {
+                      return o.selected
+                    })
+                    .map(function (o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.form,
+                    "type_payment",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                },
+              },
+            },
+            _vm._l(_vm.money, function (item) {
+              return _c(
+                "option",
+                { key: item.id, domProps: { value: item.name } },
+                [
+                  _vm._v(
+                    "\n                " + _vm._s(item.name) + "\n            "
+                  ),
+                ]
+              )
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.type_payment,
+                  expression: "form.type_payment",
+                },
+              ],
+              on: {
+                click: function ($event) {
+                  return _vm.getDatePayment()
+                },
+                change: function ($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function (o) {
+                      return o.selected
+                    })
+                    .map(function (o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.form,
+                    "type_payment",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                },
+              },
+            },
+            [_c("option", { attrs: { value: "1" } }, [_vm._v("efectivo")])]
+          ),
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mt-3" }, [
+      _c(
+        "div",
+        { staticClass: "col-lg-6" },
+        _vm._l(_vm.gaintotPayment, function (item, index) {
+          return _c(
+            "div",
+            {
+              key: "b" + index,
+              staticClass: "alert alert-dark",
+              attrs: { role: "alert" },
+            },
+            [
+              _c("p", [
+                _vm._v("TOT HOY $" + _vm._s(_vm._f("currency")(item.gaintotp))),
               ]),
             ]
           )
@@ -87700,6 +88127,20 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Vendedor")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("total")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-6 col-md-6 col-12" }, [
+        _c(
+          "div",
+          { staticClass: "alert alert-primary", attrs: { role: "alert" } },
+          [_vm._v("\n                TOTAL por cuenta bancaria\n            ")]
+        ),
       ]),
     ])
   },
@@ -89457,6 +89898,8 @@ var render = function () {
                       _vm._v(" "),
                       _c("th", [_vm._v("%GD")]),
                       _vm._v(" "),
+                      _c("th", [_vm._v("Tipo")]),
+                      _vm._v(" "),
                       _c("th", [_vm._v("Op")]),
                     ],
                     1
@@ -89542,6 +89985,8 @@ var render = function () {
                         ),
                       ]
                     ),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(row.type))]),
                     _vm._v(" "),
                     _c(
                       "td",
@@ -89686,7 +90131,7 @@ var render = function () {
         "Modal-Resource",
         {
           attrs: {
-            sone: "modal-dialog modal-xs",
+            sone: "modal-dialog modal-lg",
             title: "Registro de productos",
           },
           on: { clear: _vm.clear },
@@ -89698,12 +90143,16 @@ var render = function () {
             [_vm._v("Registrar productos")]
           ),
           _vm._v(" "),
-          !_vm.form.id
+          !_vm.form.products[0].id
             ? _c("section", { attrs: { slot: "title" }, slot: "title" }, [
                 _vm._v("\n            Registro de productos\n        "),
               ])
             : _c("section", { attrs: { slot: "title" }, slot: "title" }, [
-                _vm._v("Editar producto"),
+                _vm._v(
+                  "\n            Editar producto " +
+                    _vm._s(_vm.form.products[0].id) +
+                    "\n        "
+                ),
               ]),
           _vm._v(" "),
           _c("section", { attrs: { slot: "closebtn" }, slot: "closebtn" }, [
@@ -89715,6 +90164,11 @@ var render = function () {
                   type: "button",
                   "data-dismiss": "modal",
                   "aria-label": "Close",
+                },
+                on: {
+                  click: function ($event) {
+                    return _vm.reset()
+                  },
                 },
               },
               [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
@@ -89740,326 +90194,433 @@ var render = function () {
                       return null
                     }
                     $event.preventDefault()
-                    return _vm.add(_vm.form.id, _vm.actions, _vm.urlproducts)
+                    return _vm.add(
+                      _vm.form.products[0].id,
+                      _vm.actions,
+                      _vm.urlproducts
+                    )
                   },
                 },
               },
               [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-lg-6 col-12" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "" } }, [_vm._v("Nombre")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "validate",
-                            rawName: "v-validate",
-                            value: "required|max:30|min:3",
-                            expression: "'required|max:30|min:3'",
-                          },
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.name,
-                            expression: "form.name",
-                          },
-                        ],
-                        ref: "name",
-                        staticClass: "form-control form-control-sm",
-                        class: {
-                          "is-invalid":
-                            _vm.submitted && _vm.errors.has("nombre"),
-                        },
-                        attrs: {
-                          type: "text",
-                          placeholder: "Nombre",
-                          name: "nombre",
-                        },
-                        domProps: { value: _vm.form.name },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "name", $event.target.value)
-                          },
-                        },
-                      }),
-                      _vm._v(" "),
-                      _vm.submitted && _vm.errors.has("nombre")
-                        ? _c("div", { staticClass: "invalid-feedback" }, [
-                            _vm._v(
-                              "\n                                " +
-                                _vm._s(_vm.errors.first("nombre")) +
-                                "\n                            "
-                            ),
-                          ])
-                        : _vm._e(),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-lg-6 col-12" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("label", { attrs: { for: "" } }, [_vm._v("Costo")]),
-                        _vm._v(" "),
-                        _c("currency-input", {
-                          directives: [
-                            {
-                              name: "validate",
-                              rawName: "v-validate",
-                              value: {
-                                required: true,
+                _vm._l(_vm.form.products, function (item, index) {
+                  return _c("div", { key: index }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-lg-2 col-12" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { attrs: { for: "" } }, [_vm._v("Ref")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.products[index].name,
+                                expression: "form.products[index].name",
                               },
-                              expression:
-                                "{\n                                    required: true,\n                                }",
+                            ],
+                            ref: "name",
+                            refInFor: true,
+                            staticClass: "form-control form-control-sm",
+                            attrs: {
+                              type: "text",
+                              required: "",
+                              placeholder: "Referencia",
+                              name: "nombre",
                             },
-                            {
-                              name: "currency",
-                              rawName: "v-currency",
-                              value: {
-                                currency: "USD",
-                                precision: 0,
-                                locale: "en",
+                            domProps: { value: _vm.form.products[index].name },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form.products[index],
+                                  "name",
+                                  $event.target.value
+                                )
                               },
-                              expression:
-                                "{\n                                    currency: 'USD',\n                                    precision: 0,\n                                    locale: 'en',\n                                }",
                             },
-                          ],
-                          staticClass: "form-control form-control-sm",
-                          class: {
-                            "is-invalid":
-                              _vm.submitted && _vm.errors.has("costo"),
-                          },
-                          attrs: { name: "costo" },
-                          model: {
-                            value: _vm.form.cost,
-                            callback: function ($$v) {
-                              _vm.$set(_vm.form, "cost", _vm._n($$v))
-                            },
-                            expression: "form.cost",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _vm.submitted && _vm.errors.has("costo")
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.errors.first("costo")) +
-                                  "\n                            "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ],
-                      1
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-lg-6 col-12" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Precio mayorista"),
+                          }),
                         ]),
-                        _vm._v(" "),
-                        _c("currency-input", {
-                          directives: [
-                            {
-                              name: "validate",
-                              rawName: "v-validate",
-                              value: "|required|min_value:0",
-                              expression: "'|required|min_value:0'",
-                            },
-                            {
-                              name: "currency",
-                              rawName: "v-currency",
-                              value: {
-                                currency: "USD",
-                                precision: 0,
-                                locale: "en",
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-lg-2 col-12" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("label", [_vm._v("Costo")]),
+                            _vm._v(" "),
+                            _c("currency-input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: {
+                                    required: true,
+                                  },
+                                  expression:
+                                    "{\n                                        required: true,\n                                    }",
+                                },
+                                {
+                                  name: "currency",
+                                  rawName: "v-currency",
+                                  value: {
+                                    currency: "USD",
+                                    precision: 0,
+                                    locale: "en",
+                                  },
+                                  expression:
+                                    "{\n                                        currency: 'USD',\n                                        precision: 0,\n                                        locale: 'en',\n                                    }",
+                                },
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              class: {
+                                "is-invalid":
+                                  _vm.submitted && _vm.errors.has("costo"),
                               },
-                              expression:
-                                "{\n                                    currency: 'USD',\n                                    precision: 0,\n                                    locale: 'en',\n                                }",
-                            },
+                              attrs: { name: "costo" },
+                              model: {
+                                value: _vm.form.products[index].cost,
+                                callback: function ($$v) {
+                                  _vm.$set(
+                                    _vm.form.products[index],
+                                    "cost",
+                                    _vm._n($$v)
+                                  )
+                                },
+                                expression:
+                                  "\n                                        form.products[index].cost\n                                    ",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _vm.submitted && _vm.errors.has("costo")
+                              ? _c("div", { staticClass: "invalid-feedback" }, [
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(_vm.errors.first("costo")) +
+                                      "\n                                "
+                                  ),
+                                ])
+                              : _vm._e(),
                           ],
-                          staticClass: "form-control form-control-sm",
-                          class: {
-                            "is-invalid":
-                              _vm.submitted &&
-                              _vm.errors.has("precio mayorista"),
-                          },
-                          attrs: { name: "precio de compra" },
-                          model: {
-                            value: _vm.form.price,
-                            callback: function ($$v) {
-                              _vm.$set(_vm.form, "price", _vm._n($$v))
-                            },
-                            expression: "form.price",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _vm.submitted && _vm.errors.has("precio mayorista")
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.errors.first("precio mayorista")) +
-                                  "\n                            "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ],
-                      1
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-lg-6 col-12" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Precio de venta"),
-                        ]),
-                        _vm._v(" "),
-                        _c("currency-input", {
-                          directives: [
-                            {
-                              name: "validate",
-                              rawName: "v-validate",
-                              value: {
-                                min_value: 0,
-                              },
-                              expression:
-                                "{\n                                    min_value: 0,\n                                }",
-                            },
-                            {
-                              name: "currency",
-                              rawName: "v-currency",
-                              value: {
-                                currency: "USD",
-                                precision: 0,
-                                locale: "en",
-                              },
-                              expression:
-                                "{\n                                    currency: 'USD',\n                                    precision: 0,\n                                    locale: 'en',\n                                }",
-                            },
-                          ],
-                          staticClass: "form-control form-control-sm",
-                          class: {
-                            "is-invalid":
-                              _vm.submitted &&
-                              _vm.errors.has("precio de venta"),
-                          },
-                          attrs: { name: "precio de venta" },
-                          model: {
-                            value: _vm.form.price_two,
-                            callback: function ($$v) {
-                              _vm.$set(_vm.form, "price_two", _vm._n($$v))
-                            },
-                            expression: "form.price_two",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _vm.submitted && _vm.errors.has("precio de venta")
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.errors.first("precio de venta")) +
-                                  "\n                            "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ],
-                      1
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                !_vm.send
-                  ? _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { type: "button", disabled: "" },
-                      },
-                      [
-                        _c("span", {
-                          staticClass: "spinner-border spinner-border-sm",
-                          attrs: { role: "status", "aria-hidden": "true" },
-                        }),
-                        _vm._v(
-                          "\n                    Loading...\n                "
+                          1
                         ),
-                      ]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.send
-                  ? _c(
-                      "button",
-                      {
-                        class: {
-                          "btn btn-outline-primary ": !this.form.id,
-                          "btn btn-outline-danger ": this.form.id,
-                        },
-                        attrs: { hidden: _vm.errors.any(), type: "submit" },
-                      },
-                      [
-                        _c("i", {
-                          class: {
-                            "fi fi-wink": !this.form.id,
-                            "fi fi-like": this.form.id,
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-lg-3 col-12" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("label", { attrs: { for: "" } }, [
+                              _vm._v("Precio mayorista"),
+                            ]),
+                            _vm._v(" "),
+                            _c("currency-input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "|required|min_value:0",
+                                  expression: "'|required|min_value:0'",
+                                },
+                                {
+                                  name: "currency",
+                                  rawName: "v-currency",
+                                  value: {
+                                    currency: "USD",
+                                    precision: 0,
+                                    locale: "en",
+                                  },
+                                  expression:
+                                    "{\n                                        currency: 'USD',\n                                        precision: 0,\n                                        locale: 'en',\n                                    }",
+                                },
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              class: {
+                                "is-invalid":
+                                  _vm.submitted &&
+                                  _vm.errors.has("precio mayorista"),
+                              },
+                              attrs: { name: "precio de compra" },
+                              model: {
+                                value: _vm.form.products[index].price,
+                                callback: function ($$v) {
+                                  _vm.$set(
+                                    _vm.form.products[index],
+                                    "price",
+                                    _vm._n($$v)
+                                  )
+                                },
+                                expression:
+                                  "\n                                        form.products[index].price\n                                    ",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _vm.submitted && _vm.errors.has("precio mayorista")
+                              ? _c("div", { staticClass: "invalid-feedback" }, [
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(
+                                        _vm.errors.first("precio mayorista")
+                                      ) +
+                                      "\n                                "
+                                  ),
+                                ])
+                              : _vm._e(),
+                          ],
+                          1
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-lg-3 col-12" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("label", { attrs: { for: "" } }, [
+                              _vm._v("Precio de venta"),
+                            ]),
+                            _vm._v(" "),
+                            _c("currency-input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: {
+                                    min_value: 0,
+                                  },
+                                  expression:
+                                    "{\n                                        min_value: 0,\n                                    }",
+                                },
+                                {
+                                  name: "currency",
+                                  rawName: "v-currency",
+                                  value: {
+                                    currency: "USD",
+                                    precision: 0,
+                                    locale: "en",
+                                  },
+                                  expression:
+                                    "{\n                                        currency: 'USD',\n                                        precision: 0,\n                                        locale: 'en',\n                                    }",
+                                },
+                              ],
+                              staticClass: "form-control form-control-sm",
+                              class: {
+                                "is-invalid":
+                                  _vm.submitted &&
+                                  _vm.errors.has("precio de venta"),
+                              },
+                              attrs: { name: "precio de venta" },
+                              model: {
+                                value: _vm.form.products[index].price_two,
+                                callback: function ($$v) {
+                                  _vm.$set(
+                                    _vm.form.products[index],
+                                    "price_two",
+                                    _vm._n($$v)
+                                  )
+                                },
+                                expression:
+                                  "\n                                        form.products[index].price_two\n                                    ",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _vm.submitted && _vm.errors.has("precio de venta")
+                              ? _c("div", { staticClass: "invalid-feedback" }, [
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(
+                                        _vm.errors.first("precio de venta")
+                                      ) +
+                                      "\n                                "
+                                  ),
+                                ])
+                              : _vm._e(),
+                          ],
+                          1
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-lg-2 col-12" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { attrs: { for: "" } }, [
+                            _vm._v("Color"),
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.products[index].color,
+                                expression: "form.products[index].color",
+                              },
+                            ],
+                            ref: "color",
+                            refInFor: true,
+                            staticClass: "form-control form-control-sm",
+                            attrs: { type: "text", name: "color" },
+                            domProps: { value: _vm.form.products[index].color },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form.products[index],
+                                  "color",
+                                  $event.target.value
+                                )
+                              },
+                            },
+                          }),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-lg-4 col-12" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", [_vm._v("Categoria")]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.products[index].categorie_id,
+                                  expression:
+                                    "\n                                        form.products[index].categorie_id\n                                    ",
+                                },
+                              ],
+                              attrs: { required: "" },
+                              on: {
+                                change: function ($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function (o) {
+                                      return o.selected
+                                    })
+                                    .map(function (o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form.products[index],
+                                    "categorie_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                },
+                              },
+                            },
+                            _vm._l(_vm.categories, function (item) {
+                              return _c(
+                                "option",
+                                { key: item.id, domProps: { value: item.id } },
+                                [
+                                  _vm._v(
+                                    "\n                                        " +
+                                      _vm._s(item.name) +
+                                      "\n                                    "
+                                  ),
+                                ]
+                              )
+                            }),
+                            0
+                          ),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _vm.form.products.length != 1
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger btn-xs",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.removeItem(index)
+                              },
+                            },
                           },
-                          attrs: { "aria-hidden": "true" },
-                        }),
-                      ]
-                    )
-                  : _vm._e(),
-              ]
-            ),
-            _vm._v(" "),
-            this.form.id
-              ? _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model.number",
-                      value: _vm.barcodeint2,
-                      expression: "barcodeint2",
-                      modifiers: { number: true },
-                    },
-                  ],
-                  staticClass: "form-control form-control-sm",
-                  domProps: { value: _vm.barcodeint2 },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.barcodeint2 = _vm._n($event.target.value)
-                    },
-                    blur: function ($event) {
-                      return _vm.$forceUpdate()
-                    },
-                  },
-                })
-              : _vm._e(),
-            _c("br"),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(_vm.barcodeint2, function (item) {
-                return _c("div", { staticClass: "col-lg-12" })
-              }),
-              0
+                          [_c("i", { staticClass: "fi fi-trash" })]
+                        )
+                      : _vm._e(),
+                  ])
+                }),
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.form.products.id) +
+                    "\n                "
+                ),
+                _c("div", { staticClass: "mt-3" }, [
+                  _vm.form.products[0].id == null
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.addItem()
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fi fi-nav-icon-list" })]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !_vm.send
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "button", disabled: "" },
+                        },
+                        [
+                          _c("span", {
+                            staticClass: "spinner-border spinner-border-sm",
+                            attrs: { role: "status", "aria-hidden": "true" },
+                          }),
+                          _vm._v(
+                            "\n                        Loading...\n                    "
+                          ),
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.send
+                    ? _c(
+                        "button",
+                        {
+                          class: {
+                            "btn btn-outline-primary ": !this.form.products.id,
+                            "btn btn-outline-danger ": this.form.products.id,
+                          },
+                          attrs: { hidden: _vm.errors.any(), type: "submit" },
+                        },
+                        [
+                          _c("i", {
+                            class: {
+                              "fi fi-wink": !this.form.products.id,
+                              "fi fi-like": this.form.products.id,
+                            },
+                            attrs: { "aria-hidden": "true" },
+                          }),
+                        ]
+                      )
+                    : _vm._e(),
+                ]),
+              ],
+              2
             ),
           ]),
         ]

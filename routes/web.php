@@ -5,6 +5,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\PermissionController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\CategorieController;
 use App\Http\Controllers\API\ClientController;
 use App\Http\Controllers\API\FactureController;
 use App\Http\Controllers\API\FactureDetailController;
@@ -83,6 +84,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::prefix('api')->group(function () {
         Route::group(['middleware' => ['getAuth']], function () {
+
             //routes app fuctions
             //routes users
             Route::get('/users', [UserController::class, 'index']);
@@ -111,6 +113,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('/products/{id}', [ProductController::class, 'update'])->where('id', '[0-9]+');
             Route::delete('/products/{id}', [ProductController::class, 'destroy']);
             //end
+            //categories
+            Route::get('/categories', [CategorieController::class, 'index']);
+            //
             //clients
             Route::get('/clients', [ClientController::class, 'index']);
             Route::post('clients', [ClientController::class, 'store']);
@@ -127,8 +132,10 @@ Route::group(['middleware' => 'auth'], function () {
             Route::delete('/factures/{id}', [FactureController::class, 'destroy'])->where('id', '[0-9]+');
             Route::put('/factures/{id}', [FactureController::class, 'updateStatus'])->where('id', '[0-9]+');
             Route::put('/fupdate/{id}', [FactureController::class, 'fupdate'])->where('id', '[0-9]+');
-            Route::get('/gain/{date}/{datetwo}', [FactureController::class, 'gain']);
-            Route::get('/gainTot/{date}/{datetwo}', [FactureController::class, 'gainTot']);
+            Route::get('/gain/{date}/{datetwo}/{type}', [FactureController::class, 'gain']);
+            Route::get('/gainTot/{date}/{datetwo}/{type}', [FactureController::class, 'gainTot']);
+            Route::get('/gainTotf/{date}/{datetwo}/{type}', [FactureController::class, 'gainTotf']);
+            Route::get('/gainTotPayment/{date}/{datetwo}/{type}/{type2}', [FactureController::class, 'gainTotPayment']);
             Route::get('/userTot/{date}/{datetwo}', [FactureController::class, 'userTot']);
             Route::get('/emailfac/{id}', [EmailFac::class, 'sendMailWithPDF'])->where('id', '[0-9]+');
             //
