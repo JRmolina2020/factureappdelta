@@ -181,7 +181,7 @@ class FactureController extends Controller
             ->join('factures as f', 'f.id', '=', 'fd.facture_id')
             ->join('products as p', 'p.id', '=', 'fd.product_id')
             ->select(
-                DB::raw('SUM(f.tot) as gaintotp'),
+                DB::raw('SUM(fd.tot) as gaintotp'),
             )
             ->whereBetween('f.date_facture', [$date, $datetwo])
             ->where('f.status', 1)
