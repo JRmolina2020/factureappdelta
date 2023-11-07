@@ -5388,6 +5388,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5411,7 +5439,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["gain", "gaintot", "gaintotf", "gaintotPayment", "usertot", "categories", "money"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["gain", "gaintot", "gaintotf", "gaintotPayment", "gaintotPaymentefecty", "usertot", "categories", "money"])),
   created: function created() {
     this.getList();
     this.getListUser();
@@ -5451,6 +5479,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch("Gainactions", obj);
       this.$store.dispatch("Gaintotactions", obj);
       this.$store.dispatch("Gaintotfactions", obj);
+      this.getDatePaymentefecty();
     },
     getDatePayment: function getDatePayment() {
       var obj = {
@@ -5460,6 +5489,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         type2: this.form.type
       };
       this.$store.dispatch("GaintotPaymentactions", obj);
+    },
+    getDatePaymentefecty: function getDatePaymentefecty() {
+      var obj = {
+        prop1: this.date,
+        prop2: this.datetwo,
+        type: 1,
+        type2: this.form.type
+      };
+      this.$store.dispatch("GaintotPaymenefectyactions", obj);
+      this.Gettotefecty();
+    },
+    Gettotother: function Gettotother() {
+      var tot = 0;
+      tot = parseInt(tot);
+      this.gaintotPayment.map(function (data) {
+        tot = tot + parseInt(data.tot);
+      });
+      return tot;
+    },
+    Gettotefecty: function Gettotefecty() {
+      var tot = 0;
+      tot = parseInt(tot);
+      this.gaintotPaymentefecty.map(function (data) {
+        tot = tot + parseInt(data.tot);
+      });
+      return tot;
     },
     getDateUser: function getDateUser() {
       var obj = {
@@ -9167,6 +9222,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     gaintot: [],
     gaintotf: [],
     gaintotPayment: [],
+    gaintotPaymentefecty: [],
     usertot: [],
     facUnique: [],
     descriptionF: [],
@@ -9194,6 +9250,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     urlgaintot: "/api/gainTot",
     urlgaintotf: "/api/gainTotf",
     urlgaintotPayment: "/api/gainTotPayment",
+    urlgaintotPaymentefecty: "/api/gainTotPaymentefecty",
     urlusertot: "/api/userTot",
     urlcompany: "/api/company",
     urlcompanies: "/api/companies",
@@ -9256,6 +9313,9 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
     },
     GaintotPaymentmutations: function GaintotPaymentmutations(state, item) {
       state.gaintotPayment = item;
+    },
+    GaintotPaymentefectymutations: function GaintotPaymentefectymutations(state, item) {
+      state.gaintotPaymentefecty = item;
     },
     Usertotmutations: function Usertotmutations(state, item) {
       state.usertot = item;
@@ -9854,7 +9914,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee18, null, [[1, 9]]);
       }))();
     },
-    Usertotactions: function Usertotactions(_ref19, obj) {
+    GaintotPaymenefectyactions: function GaintotPaymenefectyactions(_ref19, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee19() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee19$(_context19) {
@@ -9862,31 +9922,32 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
             switch (_context19.prev = _context19.next) {
               case 0:
                 commit = _ref19.commit, state = _ref19.state;
-                _context19.prev = 1;
-                _context19.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlusertot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+                console.log('hola');
+                _context19.prev = 2;
+                _context19.next = 5;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlgaintotPaymentefecty, "/").concat(obj.prop1, "/").concat(obj.prop2, "/").concat(obj.type, "/").concat(obj.type2));
 
-              case 4:
+              case 5:
                 response = _context19.sent;
-                commit("Usertotmutations", response.data);
+                commit("GaintotPaymentefectymutations", response.data);
                 state.status = true;
-                _context19.next = 12;
+                _context19.next = 13;
                 break;
 
-              case 9:
-                _context19.prev = 9;
-                _context19.t0 = _context19["catch"](1);
+              case 10:
+                _context19.prev = 10;
+                _context19.t0 = _context19["catch"](2);
                 console.log(_context19.t0);
 
-              case 12:
+              case 13:
               case "end":
                 return _context19.stop();
             }
           }
-        }, _callee19, null, [[1, 9]]);
+        }, _callee19, null, [[2, 10]]);
       }))();
     },
-    Companyactions: function Companyactions(_ref20) {
+    Usertotactions: function Usertotactions(_ref20, obj) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee20() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee20$(_context20) {
@@ -9896,11 +9957,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref20.commit, state = _ref20.state;
                 _context20.prev = 1;
                 _context20.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlcompany);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlusertot, "/").concat(obj.prop1, "/").concat(obj.prop2));
 
               case 4:
                 response = _context20.sent;
-                commit("Companymutations", response.data);
+                commit("Usertotmutations", response.data);
                 state.status = true;
                 _context20.next = 12;
                 break;
@@ -9918,7 +9979,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee20, null, [[1, 9]]);
       }))();
     },
-    Moneyactions: function Moneyactions(_ref21) {
+    Companyactions: function Companyactions(_ref21) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee21() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee21$(_context21) {
@@ -9928,11 +9989,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref21.commit, state = _ref21.state;
                 _context21.prev = 1;
                 _context21.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlmoney);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlcompany);
 
               case 4:
                 response = _context21.sent;
-                commit("Moneymutations", response.data);
+                commit("Companymutations", response.data);
                 state.status = true;
                 _context21.next = 12;
                 break;
@@ -9950,7 +10011,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee21, null, [[1, 9]]);
       }))();
     },
-    MoneySigleactions: function MoneySigleactions(_ref22) {
+    Moneyactions: function Moneyactions(_ref22) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee22() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee22$(_context22) {
@@ -9960,11 +10021,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref22.commit, state = _ref22.state;
                 _context22.prev = 1;
                 _context22.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlmoneySingle);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlmoney);
 
               case 4:
                 response = _context22.sent;
-                commit("MoneySinglemutations", response.data);
+                commit("Moneymutations", response.data);
                 state.status = true;
                 _context22.next = 12;
                 break;
@@ -9982,7 +10043,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee22, null, [[1, 9]]);
       }))();
     },
-    Incomeactions: function Incomeactions(_ref23, date) {
+    MoneySigleactions: function MoneySigleactions(_ref23) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee23() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee23$(_context23) {
@@ -9992,11 +10053,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref23.commit, state = _ref23.state;
                 _context23.prev = 1;
                 _context23.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlincome, "/").concat(date));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get(state.urlmoneySingle);
 
               case 4:
                 response = _context23.sent;
-                commit("Incomemutations", response.data);
+                commit("MoneySinglemutations", response.data);
                 state.status = true;
                 _context23.next = 12;
                 break;
@@ -10014,7 +10075,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
         }, _callee23, null, [[1, 9]]);
       }))();
     },
-    IncomeTwoactions: function IncomeTwoactions(_ref24, obj) {
+    Incomeactions: function Incomeactions(_ref24, date) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee24() {
         var commit, state, response;
         return _regeneratorRuntime().wrap(function _callee24$(_context24) {
@@ -10024,11 +10085,11 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
                 commit = _ref24.commit, state = _ref24.state;
                 _context24.prev = 1;
                 _context24.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlincometot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlincome, "/").concat(date));
 
               case 4:
                 response = _context24.sent;
-                commit("IncomeTwomutations", response.data);
+                commit("Incomemutations", response.data);
                 state.status = true;
                 _context24.next = 12;
                 break;
@@ -10044,6 +10105,38 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_2_
             }
           }
         }, _callee24, null, [[1, 9]]);
+      }))();
+    },
+    IncomeTwoactions: function IncomeTwoactions(_ref25, obj) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee25() {
+        var commit, state, response;
+        return _regeneratorRuntime().wrap(function _callee25$(_context25) {
+          while (1) {
+            switch (_context25.prev = _context25.next) {
+              case 0:
+                commit = _ref25.commit, state = _ref25.state;
+                _context25.prev = 1;
+                _context25.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(state.urlincometot, "/").concat(obj.prop1, "/").concat(obj.prop2));
+
+              case 4:
+                response = _context25.sent;
+                commit("IncomeTwomutations", response.data);
+                state.status = true;
+                _context25.next = 12;
+                break;
+
+              case 9:
+                _context25.prev = 9;
+                _context25.t0 = _context25["catch"](1);
+                console.log(_context25.t0);
+
+              case 12:
+              case "end":
+                return _context25.stop();
+            }
+          }
+        }, _callee25, null, [[1, 9]]);
       }))();
     }
   }
@@ -88022,9 +88115,6 @@ var render = function () {
                 },
               ],
               on: {
-                click: function ($event) {
-                  return _vm.getDatePayment()
-                },
                 change: function ($event) {
                   var $$selectedVal = Array.prototype.filter
                     .call($event.target.options, function (o) {
@@ -88057,63 +88147,61 @@ var render = function () {
           ),
           _vm._v(" "),
           _c(
-            "select",
+            "button",
             {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.type_payment,
-                  expression: "form.type_payment",
-                },
-              ],
               on: {
                 click: function ($event) {
                   return _vm.getDatePayment()
                 },
-                change: function ($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function (o) {
-                      return o.selected
-                    })
-                    .map(function (o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.form,
-                    "type_payment",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
-                },
               },
             },
-            [_c("option", { attrs: { value: "1" } }, [_vm._v("efectivo")])]
+            [_vm._v("VER")]
           ),
         ])
       : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-3" }, [
-      _c(
-        "div",
-        { staticClass: "col-lg-6" },
-        _vm._l(_vm.gaintotPayment, function (item, index) {
-          return _c(
-            "div",
-            {
-              key: "b" + index,
-              staticClass: "alert alert-dark",
-              attrs: { role: "alert" },
-            },
-            [
-              _c("p", [
-                _vm._v("TOT HOY $" + _vm._s(_vm._f("currency")(item.gaintotp))),
-              ]),
-            ]
-          )
-        }),
-        0
-      ),
+      _c("div", { staticClass: "col-lg-2 col-12" }, [
+        _c("table", { staticClass: "table" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.gaintotPayment, function (item, index) {
+              return _c("tr", { key: "b" + index }, [
+                _c("th", { attrs: { scope: "row" } }, [
+                  _vm._v(_vm._s(item.id)),
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.tot))]),
+              ])
+            }),
+            0
+          ),
+        ]),
+        _vm._v("\n            " + _vm._s(_vm.Gettotother()) + "\n        "),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-2 col-12" }, [
+        _c("table", { staticClass: "table" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.gaintotPaymentefecty, function (item, index) {
+              return _c("tr", { key: "b" + index }, [
+                _c("th", { attrs: { scope: "row" } }, [
+                  _vm._v(_vm._s(item.id)),
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.tot))]),
+              ])
+            }),
+            0
+          ),
+        ]),
+        _vm._v("\n            " + _vm._s(_vm.Gettotefecty()) + "\n        "),
+      ]),
     ]),
   ])
 }
@@ -88141,6 +88229,30 @@ var staticRenderFns = [
           { staticClass: "alert alert-primary", attrs: { role: "alert" } },
           [_vm._v("\n                TOTAL por cuenta bancaria\n            ")]
         ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
       ]),
     ])
   },

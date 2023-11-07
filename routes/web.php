@@ -136,6 +136,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/gainTot/{date}/{datetwo}/{type}', [FactureController::class, 'gainTot']);
             Route::get('/gainTotf/{date}/{datetwo}/{type}', [FactureController::class, 'gainTotf']);
             Route::get('/gainTotPayment/{date}/{datetwo}/{type}/{type2}', [FactureController::class, 'gainTotPayment']);
+            Route::get('/gainTotPaymentefecty/{date}/{datetwo}/{type}/{type2}', [FactureController::class, 'gainTotPaymentefecty']);
             Route::get('/userTot/{date}/{datetwo}', [FactureController::class, 'userTot']);
             Route::get('/emailfac/{id}', [EmailFac::class, 'sendMailWithPDF'])->where('id', '[0-9]+');
             //

@@ -21,6 +21,7 @@ export default new Vuex.Store({
         gaintot: [],
         gaintotf: [],
         gaintotPayment:[],
+        gaintotPaymentefecty:[],
         usertot: [],
         facUnique: [],
         descriptionF: [],
@@ -48,6 +49,7 @@ export default new Vuex.Store({
         urlgaintot: "/api/gainTot",
         urlgaintotf: "/api/gainTotf",
         urlgaintotPayment: "/api/gainTotPayment",
+        urlgaintotPaymentefecty: "/api/gainTotPaymentefecty",
         urlusertot: "/api/userTot",
         urlcompany: "/api/company",
         urlcompanies: "/api/companies",
@@ -110,6 +112,9 @@ export default new Vuex.Store({
         },
         GaintotPaymentmutations(state, item) {
             state.gaintotPayment = item;
+        },
+        GaintotPaymentefectymutations(state, item) {
+            state.gaintotPaymentefecty = item;
         },
         Usertotmutations(state, item) {
             state.usertot = item;
@@ -307,6 +312,22 @@ export default new Vuex.Store({
                     `${state.urlgaintotPayment}/${obj.prop1}/${obj.prop2}/${obj.type}/${obj.type2}`
                 );
                 commit("GaintotPaymentmutations", response.data);
+          
+               
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async GaintotPaymenefectyactions({ commit, state }, obj) {
+            console.log('hola')
+            try {
+                let response = await axios.get(
+                    `${state.urlgaintotPaymentefecty}/${obj.prop1}/${obj.prop2}/${obj.type}/${obj.type2}`
+                );
+                commit("GaintotPaymentefectymutations", response.data);
+          
+               
                 state.status = true;
             } catch (error) {
                 console.log(error);

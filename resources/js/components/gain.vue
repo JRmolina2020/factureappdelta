@@ -166,26 +166,54 @@
         </div>
 
         <div v-if="this.datetwo != ''">
-            <select @click="getDatePayment()" v-model="form.type_payment">
+            <select v-model="form.type_payment">
                 <option v-for="item in money" :key="item.id" :value="item.name">
                     {{ item.name }}
                 </option>
             </select>
-            <select @click="getDatePayment()" v-model="form.type_payment">
-                <option value="1">efectivo</option>
-            </select>
+            <button @click="getDatePayment()">VER</button>
         </div>
 
         <div class="row mt-3">
-            <div class="col-lg-6">
-                <div
-                    class="alert alert-dark"
-                    v-for="(item, index) in gaintotPayment"
-                    :key="'b' + index"
-                    role="alert"
-                >
-                    <p>TOT HOY ${{ item.gaintotp | currency }}</p>
-                </div>
+            <div class="col-lg-2 col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            v-for="(item, index) in gaintotPayment"
+                            :key="'b' + index"
+                        >
+                            <th scope="row">{{ item.id }}</th>
+                            <td>{{ item.tot }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {{ Gettotother() }}
+            </div>
+            <div class="col-lg-2 col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            v-for="(item, index) in gaintotPaymentefecty"
+                            :key="'b' + index"
+                        >
+                            <th scope="row">{{ item.id }}</th>
+                            <td>{{ item.tot }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {{ Gettotefecty() }}
             </div>
         </div>
     </div>
@@ -218,6 +246,7 @@ export default {
             "gaintot",
             "gaintotf",
             "gaintotPayment",
+            "gaintotPaymentefecty",
             "usertot",
             "categories",
             "money",
@@ -263,6 +292,7 @@ export default {
             this.$store.dispatch("Gainactions", obj);
             this.$store.dispatch("Gaintotactions", obj);
             this.$store.dispatch("Gaintotfactions", obj);
+            this.getDatePaymentefecty();
         },
         getDatePayment() {
             let obj = {
@@ -271,7 +301,39 @@ export default {
                 type: this.form.type_payment,
                 type2: this.form.type,
             };
+
             this.$store.dispatch("GaintotPaymentactions", obj);
+        },
+        getDatePaymentefecty() {
+            let obj = {
+                prop1: this.date,
+                prop2: this.datetwo,
+                type: 1,
+                type2: this.form.type,
+            };
+
+            this.$store.dispatch("GaintotPaymenefectyactions", obj);
+            this.Gettotefecty();
+        },
+        Gettotother() {
+            let tot = 0;
+            tot = parseInt(tot);
+
+            this.gaintotPayment.map((data) => {
+                tot = tot + parseInt(data.tot);
+            });
+
+            return tot;
+        },
+        Gettotefecty() {
+            let tot = 0;
+            tot = parseInt(tot);
+
+            this.gaintotPaymentefecty.map((data) => {
+                tot = tot + parseInt(data.tot);
+            });
+
+            return tot;
         },
 
         getDateUser() {

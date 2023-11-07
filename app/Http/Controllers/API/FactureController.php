@@ -177,17 +177,34 @@ class FactureController extends Controller
     public function gainTotPayment($date, $datetwo, $type, $type2)
     {
 
-        $gain_tot = DB::table('facture_details as fd')
-            ->join('factures as f', 'f.id', '=', 'fd.facture_id')
-            ->join('products as p', 'p.id', '=', 'fd.product_id')
+        $gain_tot = DB::table('factures as f')
+            ->join('facture_details as fd', 'fd.facture_id', '=', 'f.id')
+            ->join('products as p', 'fd.product_id', '=', 'p.id')
             ->select(
-                DB::raw('SUM(fd.tot) as gaintotp'),
+                'f.id',
+                DB::raw('(fd.tot)-(f.efecty) as tot'),
             )
             ->whereBetween('f.date_facture', [$date, $datetwo])
             ->where('f.status', 1)
             ->where('f.type_sale', $type)
             ->where('p.categorie_id', $type2)
-            ->get();
+            ->distinct()->get(['f.id']);
+        return $gain_tot;
+    }
+    public function gainTotPaymentefecty($date, $datetwo, $type, $type2)
+    {
+
+        $gain_tot = DB::table('factures as f')
+            ->join('facture_details as fd', 'fd.facture_id', '=', 'f.id')
+            ->join('products as p', 'fd.product_id', '=', 'p.id')
+            ->select(
+                'f.id',
+                DB::raw('(fd.tot)-(f.other) as tot'),
+            )
+            ->whereBetween('f.date_facture', [$date, $datetwo])
+            ->where('f.status', 1)
+            ->where('p.categorie_id', $type2)
+            ->distinct()->get(['f.id']);
         return $gain_tot;
     }
     //ganancia total 
