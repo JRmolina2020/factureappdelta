@@ -182,12 +182,13 @@ class FactureController extends Controller
             ->join('products as p', 'fd.product_id', '=', 'p.id')
             ->select(
                 'f.id',
-                DB::raw('(fd.tot)-(f.efecty) as tot'),
+                'f.other as tot'
             )
             ->whereBetween('f.date_facture', [$date, $datetwo])
             ->where('f.status', 1)
             ->where('f.type_sale', $type)
             ->where('p.categorie_id', $type2)
+            ->where('f.other', '>', 0)
             ->distinct()->get(['f.id']);
         return $gain_tot;
     }
@@ -199,11 +200,13 @@ class FactureController extends Controller
             ->join('products as p', 'fd.product_id', '=', 'p.id')
             ->select(
                 'f.id',
-                DB::raw('(fd.tot)-(f.other) as tot'),
+                'f.efecty as tot'
+
             )
             ->whereBetween('f.date_facture', [$date, $datetwo])
             ->where('f.status', 1)
             ->where('p.categorie_id', $type2)
+            ->where('f.efecty', '>', 0)
             ->distinct()->get(['f.id']);
         return $gain_tot;
     }
