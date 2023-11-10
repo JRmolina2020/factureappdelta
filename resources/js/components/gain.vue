@@ -152,7 +152,9 @@
                     :key="'b' + index"
                     role="alert"
                 >
-                    <p>TOT GANANCIA ${{ item.gain | currency }}</p>
+                    <p v-can="'ver indicador'">
+                        TOT GANANCIA ${{ item.gain | currency }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -175,12 +177,12 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col-lg-2 col-12">
+            <div class="col-lg-3 col-12">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Total</th>
+                            <th scope="col"># venta</th>
+                            <th scope="col">Total Cuenta</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -189,18 +191,18 @@
                             :key="'b' + index"
                         >
                             <th scope="row">{{ item.id }}</th>
-                            <td>{{ item.tot }}</td>
+                            <td>${{ item.tot | currency }}</td>
                         </tr>
                     </tbody>
                 </table>
                 {{ Gettotother() }}
             </div>
-            <div class="col-lg-2 col-12">
+            <div class="col-lg-3 col-12">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Total</th>
+                            <th scope="col"># venta</th>
+                            <th scope="col">Total efectivo</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -209,7 +211,7 @@
                             :key="'b' + index"
                         >
                             <th scope="row">{{ item.id }}</th>
-                            <td>{{ item.tot }}</td>
+                            <td>${{ item.tot | currency }}</td>
                         </tr>
                     </tbody>
                 </table>

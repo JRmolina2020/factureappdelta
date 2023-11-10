@@ -3,7 +3,7 @@
         <Modal-Resource
             v-on:clear="clear"
             title="Registro de clientes"
-            sone="modal-dialog modal-sm"
+            sone="modal-dialog modal-lg"
         >
             <section slot="titlebutton">Registrar clientes</section>
 
@@ -27,7 +27,7 @@
                     onKeyPress="if(event.keyCode == 13) event.returnValue = false;"
                 >
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-lg-3 col-12">
                             <div class="form-group">
                                 <label for>Nit</label>
                                 <input
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-lg-3 col-12">
                             <div class="form-group">
                                 <label for>Nombre</label>
                                 <input
@@ -75,7 +75,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-lg-2 col-12">
                             <div class="form-group">
                                 <label for>Tel</label>
                                 <input
@@ -100,27 +100,16 @@
                             </div>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-lg-4 col-12">
                             <div class="form-group">
                                 <label for>Email</label>
                                 <input
                                     type="email"
-                                    v-validate="'required|max:30|min:3'"
                                     class="form-control form-control-sm"
-                                    :class="{
-                                        'is-invalid':
-                                            submitted && errors.has('email'),
-                                    }"
                                     placeholder="Email"
                                     v-model="form.email"
                                     name="email"
                                 />
-                                <div
-                                    v-if="submitted && errors.has('email')"
-                                    class="invalid-feedback"
-                                >
-                                    {{ errors.first("email") }}
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -156,6 +145,27 @@
                         ></i>
                     </button>
                 </form>
+                <div class="alert alert-primary mt-3" role="alert">
+                    Últimas 5 compras del clienteS.
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Fecha venta</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Vendedor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in clientot" :key="item.id">
+                            <th scope="row">{{ item.name }}</th>
+                            <td>{{ item.date }}</td>
+                            <td>{{ item.tot }}</td>
+                            <td>{{ item.user }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
         </Modal-Resource>
     </div>
@@ -173,9 +183,7 @@ export default {
     components: {
         ModalResource,
     },
-    computed: {
-        ...mapState(["urlclients"]),
-    },
+
     data() {
         return {
             actions: "Clientactions",
@@ -192,8 +200,13 @@ export default {
         };
     },
     mixins: [add],
+
+    computed: {
+        ...mapState(["urlclients", "clientot"]),
+    },
     methods: {
         show(row) {
+            this.$store.dispatch("clientTotactions", row.id);
             this.form.id = row.id;
             this.form.nit = row.nit;
             this.form.fullname = row.fullname;
@@ -203,6 +216,7 @@ export default {
             $("#model").modal("show");
             this.send = true;
         },
+
         clear() {
             this.form.id = null;
             this.form.nit = null;

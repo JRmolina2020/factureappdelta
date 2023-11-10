@@ -133,6 +133,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('/factures/{id}', [FactureController::class, 'updateStatus'])->where('id', '[0-9]+');
             Route::put('/fupdate/{id}', [FactureController::class, 'fupdate'])->where('id', '[0-9]+');
             Route::get('/gain/{date}/{datetwo}/{type}', [FactureController::class, 'gain']);
+            Route::get('/clientot/{id}', [FactureController::class, 'clientTot']);
             Route::get('/gainTot/{date}/{datetwo}/{type}', [FactureController::class, 'gainTot']);
             Route::get('/gainTotf/{date}/{datetwo}/{type}', [FactureController::class, 'gainTotf']);
             Route::get('/gainTotPayment/{date}/{datetwo}/{type}/{type2}', [FactureController::class, 'gainTotPayment']);

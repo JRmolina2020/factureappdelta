@@ -140,6 +140,19 @@ class FactureController extends Controller
             ->get();
         return $facture_tot;
     }
+    public function clientTot($id)
+    {
+        $clientot = DB::table('factures as f')
+            ->join('clients as c', 'f.client_id', '=', 'c.id')
+            ->join('users as u', 'f.user_id', '=', 'u.id')
+            ->select('c.fullname as name', 'f.date_facture as date', 'f.tot', 'u.name as user')
+            ->where('c.id', $id)
+            ->orderBy('f.date_facture', 'DESC')
+            ->limit('5')
+            ->get();
+
+        return $clientot;
+    }
     public function gain($date, $datetwo, $type)
     {
         $gain = DB::table('facture_details as fd')

@@ -39,7 +39,9 @@
                         </td>
                         <td v-else>{{ row.name }}</td>
                         <td>{{ row.stock }}</td>
-                        <td>{{ row.cost | currency }}</td>
+                        <td v-can="'gestion producto'">
+                            {{ row.cost | currency }}
+                        </td>
                         <td>
                             {{ row.price | currency }}
                         </td>

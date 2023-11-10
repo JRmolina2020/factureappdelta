@@ -18,6 +18,7 @@ export default new Vuex.Store({
         bills: [],
         billstot: [],
         gain: [],
+        clientot:[],
         gaintot: [],
         gaintotf: [],
         gaintotPayment:[],
@@ -46,6 +47,7 @@ export default new Vuex.Store({
         urlbills: "/api/bills",
         urlbillstot: "/api/billsTot",
         urlgain: "/api/gain",
+        urlclientot: "/api/clientot",
         urlgaintot: "/api/gainTot",
         urlgaintotf: "/api/gainTotf",
         urlgaintotPayment: "/api/gainTotPayment",
@@ -104,6 +106,12 @@ export default new Vuex.Store({
         Gainmutations(state, item) {
             state.gain = item;
         },
+   
+        Clientotmutations(state, item) {
+            state.clientot = item;
+          console.log(item)
+        },
+        
         Gaintotmutations(state, item) {
             state.gaintot = item;
         },
@@ -255,6 +263,7 @@ export default new Vuex.Store({
                 console.log(error);
             }
         },
+
         async Billactions({ commit, state }, date) {
             try {
                 let response = await axios.get(`${state.urlbills}/${date}`);
@@ -290,6 +299,17 @@ export default new Vuex.Store({
                     `${state.urlgaintot}/${obj.prop1}/${obj.prop2}/${obj.type}`
                 );
                 commit("Gaintotmutations", response.data);
+                state.status = true;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async clientTotactions({ commit, state }, id) {
+            try {
+                let response = await axios.get(
+                    `${state.urlclientot}/${id}`
+                );
+                commit("Clientotmutations", response.data);
                 state.status = true;
             } catch (error) {
                 console.log(error);
