@@ -2682,6 +2682,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5207,6 +5209,14 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -84345,7 +84355,11 @@ var render = function () {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(row.fullname))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(row.phone))]),
+                    _c("td", [
+                      _c("a", { attrs: { href: "https://wa.me/57" } }, [
+                        _vm._v("Anchor text"),
+                      ]),
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(row.email))]),
                     _vm._v(" "),
@@ -88107,6 +88121,30 @@ var render = function () {
                 },
               ]),
             }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "text-xs-center" },
+              [
+                _c("VTPagination", {
+                  attrs: {
+                    currentPage: _vm.currentPage,
+                    "total-pages": _vm.totalPages,
+                    "boundary-links": true,
+                    maxPageLinks: 4,
+                  },
+                  on: {
+                    "update:currentPage": function ($event) {
+                      _vm.currentPage = $event
+                    },
+                    "update:current-page": function ($event) {
+                      _vm.currentPage = $event
+                    },
+                  },
+                }),
+              ],
+              1
+            ),
           ],
           1
         ),

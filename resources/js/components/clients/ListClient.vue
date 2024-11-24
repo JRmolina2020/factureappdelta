@@ -30,7 +30,9 @@
                     <tr v-for="row in rows" :key="row.id">
                         <td>{{ row.nit }}</td>
                         <td>{{ row.fullname }}</td>
-                        <td>{{ row.phone }}</td>
+                        <td>
+                            <a href="https://wa.me/57">Anchor text</a>
+                        </td>
                         <td>{{ row.email }}</td>
 
                         <td>
